@@ -22,6 +22,10 @@
     }
 }
 
+.github-repo-card img { 
+    height: 0;
+}
+
 .github-repo-card a { 
     text-decoration: none;
 }
@@ -71,6 +75,3 @@
     margin-right: 4px !important;
 }
 
-.github-repo-card img { 
-    height: 0;
-}

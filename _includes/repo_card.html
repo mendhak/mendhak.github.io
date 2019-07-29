@@ -1,29 +1,27 @@
 
 
-            {% assign repository = site.github.public_repositories | where: "name", include.reponame | first %}
+{% assign repository = site.github.public_repositories | where: "name", include.reponame | first %}
             
 
-  <div class="github-component height-full text-left border border-gray-light bg-white rounded-1 p-3">
-    <div class="d-flex flex-justify-between flex-items-start mb-1">
-      <h1 class="f4 lh-condensed mb-1">
+  <div class="github-repo-card ">
+    <div class="d-flex">
+      <h1 >
         <a href="{{ repository.html_url }}">
-           
-          
-          <span class="text-normal">{{ repository.owner.login }} /</span>
+            <i class="fab fa-github-square gh-icon"></i><span>{{ repository.owner.login }} /</span>
           {{ repository.name }}
         </a>
     </h1>
     </div>
-    <div class="text-gray mb-2 ws-normal">{{ repository.description }}</div>
-    <div class="d-flex f6">
+    <div class="github-repo-text">{{ repository.description }}</div>
+    <div class="stats-icons">
       {% if repository.stargazers_count %}
-        <a href="{{ repository.html_url }}/stargazers" class="d-inline-block link-gray mr-4">
-            <i class="fas fa-star mr-1"></i>{{ repository.stargazers_count }}
+        <a href="{{ repository.html_url }}/stargazers" >
+            <i class="fas fa-star gh-icon"></i>{{ repository.stargazers_count }}
         </a>
       {% endif %}
       {% if repository.forks_count %}
-        <a href="{{ repository.html_url }}/network/members" class="d-inline-block link-gray mr-4">
-            <i class="fas fa-code-branch mr-1"></i>{{ repository.forks_count }}
+        <a href="{{ repository.html_url }}/network/members" >
+            <i class="fas fa-code-branch gh-icon"></i>{{ repository.forks_count }}
         </a>
       {% endif %}
     </div>

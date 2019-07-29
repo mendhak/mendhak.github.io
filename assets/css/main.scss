@@ -37,112 +37,66 @@ ul.photostream li {
     }
 }
 
-.github-component {
+.github-repo-card {
 
     font-family: Segoe UI,Arial,sans-serif,Segoe UI Emoji,Segoe UI Symbol;
     width: 33%;
+    height: 100% !important;
+    text-align: left !important;
+    background-color: #fff !important;
+    border-radius: 3px !important;
+    padding: 16px !important;
 }
 
-.github-component h1 {
-    font-size: 20px;
-    line-height: 20px;
-}
 
-.github-component a { 
+
+.github-repo-card a { 
     text-decoration: none;
 }
 
-.text-left {
-
-    text-align: left !important;
-
-}
-.p-3 {
-
-    padding: 16px !important;
-
-}
-.height-full {
-
-    height: 100% !important;
-
-}
-.bg-white {
-
-    background-color: #fff !important;
-
-}
-.box-shadow {
-
-    box-shadow: 0 1px 1px rgba(27,31,35,0.1) !important;
-
-}
-.rounded-1 {
-
-    border-radius: 3px !important;
-
-}
-
-.d-flex {
-
+.github-repo-card .d-flex {
     display: flex !important;
-
-}
-.mb-1 {
-
     margin-bottom: 4px !important;
-
-}
-.flex-items-start {
-
     align-items: flex-start !important;
-
-}
-.flex-justify-between {
-
     justify-content: space-between !important;
-
 }
 
-.ws-normal {
-
-    white-space: normal !important;
-
+.github-repo-card h1 {
+    font-size: 18px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 4px !important;
 }
-.mb-2 {
 
-    margin-bottom: 8px !important;
-
+.github-repo-card h1 span {
+    font-weight: 400 !important;
 }
-.text-gray {
+
+
+
+.github-repo-card .github-repo-text {
 
     color: #586069 !important;
     font-size: 14px;
     line-height: 21px;
-
-}
-
-.d-flex {
-
     display: flex !important;
+    white-space: normal !important;
+    margin-bottom: 8px !important;
 
 }
-.f6 {
+.github-repo-card .stats-icons {
 
     font-size: 12px !important;
 
 }
-.d-inline-block {
+
+.github-repo-card .stats-icons a {
 
     display: inline-block !important;
-
-}
-.mr-4 {
-
     margin-right: 24px !important;
-
+    color: #586069 !important;
 }
-.mr-1 {
+
+.github-repo-card .gh-icon {
 
     margin-right: 4px !important;
 

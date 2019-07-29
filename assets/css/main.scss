@@ -22,21 +22,6 @@ ul.photostream {
 }
 
 
-ul.photostream li {
-    display: inline-block;
-    height: 150px;
-    weight: 150px;
-    margin: 0 12px 12px 0;
-    padding: 0;
-
-}
-
-@media screen and (max-width: 600px) {
-    ul.photostream { 
-        display: none;
-    }
-}
-
 .github-repo-card {
 
     font-family: Segoe UI,Arial,sans-serif,Segoe UI Emoji,Segoe UI Symbol;
@@ -100,3 +85,19 @@ ul.photostream li {
     margin-right: 4px !important;
 }
 
+
+
+ul.photostream li {
+    display: inline-block;
+    height: 150px;
+    weight: 150px;
+    margin: 0 12px 12px 0;
+    padding: 0;
+
+}
+
+@media screen and (max-width: 600px) {
+    ul.photostream { 
+        display: none;
+    }
+}

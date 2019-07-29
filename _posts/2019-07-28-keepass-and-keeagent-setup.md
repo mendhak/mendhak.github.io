@@ -11,9 +11,6 @@ tags:
 
 
 
-
-<br />
-
      
 While KeePass is generally used for storing credentials, it can also be used to store SSH keys as well as *serve* those SSH keys when applications need it.
 
@@ -24,6 +21,8 @@ Over time though, the number of keys you need to manage and remember can grow.  
 
 **Linux**: Although these instructions are for Windows 10, KeePass works well on Linux and can also serve SSH keys.  See the instructions [here](https://keeagent.readthedocs.io/en/stable/installation.html#ubuntu) for installing KeeAgent.
 {: .notice--info}
+
+{% include repo_card.html reponame="keepass-and-keeagent-setup" %}
 
 ## Install things
 
@@ -143,5 +142,5 @@ You should only check the above option for frequent use keys, and a Git server k
 For occasional use keys, you can double click the *SSH Key Status* column to load them only when you're about to use it, and even unload a few others.
 
 
-{% include repo_card.html reponame="keepass-and-keeagent-setup" %}
+
 

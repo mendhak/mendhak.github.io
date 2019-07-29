@@ -27,10 +27,10 @@ The above will render this:
 
 You will need to copy the include template, and the sass styling as well.  
 
-[View include](https://github.com/mendhak/mendhak.github.io/blob/master/_includes/repo_card.html){: .btn .btn--info }  [View scss](https://github.com/mendhak/mendhak.github.io/blob/master/_sass/github-repo-card.scss){: .btn .btn--info }
+[_include/repo-card.html](https://github.com/mendhak/mendhak.github.io/blob/master/_includes/repo_card.html){: .btn .btn--info }  [_sass/github-repo-card.scss](https://github.com/mendhak/mendhak.github.io/blob/master/_sass/github-repo-card.scss){: .btn .btn--info }
 
 
-I am using the minimal-mistakes theme, which includes Font Awesome for the icons. You may have to tweak the CSS as well for your own themes. 
+I am using the minimal-mistakes theme, which includes Font Awesome for the icons. You may have to tweak the scss for your own themes. 
 
 ## Background
 
@@ -47,5 +47,5 @@ The trick is to filter out to only grab the repo matching the name passed in.
 | first %}%{% endraw %}
 ```
 
-Then it's a simple matter of rendering in HTML and CSS. 
+Then it's a simple matter of using `repository` in the liquid template HTML. 
 

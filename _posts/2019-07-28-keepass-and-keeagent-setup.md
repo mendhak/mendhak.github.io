@@ -9,6 +9,11 @@ tags:
   - windows 10
 ---
 
+
+{% include repo_card.html reponame="keepass-and-keeagent-setup" %}
+
+     
+     
 While KeePass is generally used for storing credentials, it can also be used to store SSH keys as well as *serve* those SSH keys when applications need it.
 
 It's a good idea to use SSH keys when connecting to remote servers rather than username/passwords.  It's also a good practice to generate a keypair for each server you connect to - including when performing remote `git` operations.  

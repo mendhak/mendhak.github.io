@@ -1,0 +1,77 @@
+.github-repo-card {
+
+    font-family: Segoe UI,Arial,sans-serif,Segoe UI Emoji,Segoe UI Symbol;
+    width: 40%;
+    height: 100% !important;
+    text-align: left !important;
+    background-color: #fff !important;
+    border-radius: 3px !important;
+    padding: 16px !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .github-repo-card { 
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .github-repo-card { 
+        width: 80%;
+    }
+}
+
+.github-repo-card a { 
+    text-decoration: none;
+}
+
+.github-repo-card .d-flex {
+    display: flex !important;
+    margin-bottom: 4px !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+}
+
+.github-repo-card h1 {
+    font-size: 18px !important;
+    line-height: 1.25 !important;
+    margin-bottom: 4px !important;
+}
+
+.github-repo-card h1 .gh-icon {
+    font-size: 25px !important;
+    color: #586069 !important;
+    
+}
+
+.github-repo-card h1 span {
+    font-weight: 400 !important;
+}
+
+.github-repo-card .github-repo-text {
+
+    color: #586069 !important;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex !important;
+    white-space: normal !important;
+    margin-bottom: 8px !important;
+
+}
+
+.github-repo-card .stats-icons {
+
+    font-size: 12px !important;
+
+}
+
+.github-repo-card .stats-icons a {
+
+    display: inline-block !important;
+    margin-right: 24px !important;
+    color: #586069 !important;
+}
+
+.github-repo-card .gh-icon {
+    margin-right: 4px !important;
+}

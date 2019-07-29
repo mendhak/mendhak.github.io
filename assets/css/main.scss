@@ -7,19 +7,7 @@
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
 
-ul.photostream {
 
-    list-style: none;
-    margin: 18px 0 24px 0;
-    padding: 0;
-    overflow: hidden;
-    width: 100%;
-    text-align: center;
-    margin-right: auto;
-    margin-left: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-}
 
 
 .github-repo-card {
@@ -50,6 +38,12 @@ ul.photostream {
     font-size: 18px !important;
     line-height: 1.25 !important;
     margin-bottom: 4px !important;
+}
+
+.github-repo-card h1 .gh-icon {
+    font-size: 25px !important;
+    color: #7c848c !important;
+    
 }
 
 .github-repo-card h1 span {
@@ -86,6 +80,19 @@ ul.photostream {
 }
 
 
+ul.photostream {
+
+    list-style: none;
+    margin: 18px 0 24px 0;
+    padding: 0;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
 ul.photostream li {
     display: inline-block;

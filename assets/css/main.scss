@@ -13,12 +13,24 @@
 .github-repo-card {
 
     font-family: Segoe UI,Arial,sans-serif,Segoe UI Emoji,Segoe UI Symbol;
-    width: 33%;
+    width: 40%;
     height: 100% !important;
     text-align: left !important;
     background-color: #fff !important;
     border-radius: 3px !important;
     padding: 16px !important;
+}
+
+@media screen and (max-width: 1200px) {
+    .github-repo-card { 
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .github-repo-card { 
+        width: 80%;
+    }
 }
 
 .github-repo-card a { 

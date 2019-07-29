@@ -19,10 +19,10 @@ It's a good idea to use SSH keys when connecting to remote servers rather than u
 Over time though, the number of keys you need to manage and remember can grow.  There are various ways to solve this, including SSH `.config` files.  KeePass is another way to go about this; by using KeePass and the KeeAgent plugin, we can use the KeePass database as a container for our keys and have it serve when needed.  This has the advantage that the SSH keys are synced with the KeePass database.      
 
 
-**Linux**: Although these instructions are for Windows 10, KeePass works well on Linux and can also serve SSH keys.  See the instructions [here](https://keeagent.readthedocs.io/en/stable/installation.html#ubuntu) for installing KeeAgent.
-{: .notice--info}
 
 {% include repo_card.html reponame="keepass-and-keeagent-setup" %}
+
+
 
 ## Install things
 
@@ -48,6 +48,7 @@ Install [KeeAgent](http://lechnology.com/software/keeagent/#Download) - it's a s
 ![plgx]({{ site.baseurl }}/assets/images/keepass-ssh/keeagent-install-plgx.png)
 
 You will need to reopen KeePass for the plugin to appear.  
+
 
 ### Add keys to your remote Git account
 

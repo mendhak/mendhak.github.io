@@ -1,6 +1,5 @@
 ---
 title: "Using KeePass to serve SSH keys"
-summary: "test1"
 description: "Using KeePass with KeeAgent to serve SSH keys for git and bash. Security setup instructions for using KeePass with KeeAgent for SSH keypairs"
 categories:
   - git

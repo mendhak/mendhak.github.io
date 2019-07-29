@@ -7,6 +7,7 @@
     background-color: #fff !important;
     border-radius: 3px !important;
     padding: 16px !important;
+    margin-bottom: 16px;
 }
 
 @media screen and (max-width: 1200px) {
@@ -74,4 +75,8 @@
 
 .github-repo-card .gh-icon {
     margin-right: 4px !important;
+}
+
+.github-repo-card img { 
+    height: 21px;
 }

@@ -9,6 +9,8 @@ tags:
 
 When someone submits a pull request to your repository, it is actually possible to update their pull request by pushing commits to _their_ fork.  
 
+[View Gist](https://gist.github.com/mendhak/d3cafcf2d1a6764f7c2395e37bc05a81){: .btn .btn--info}
+
 In other words, you can push to a pull request branch, as long as the fork  owner has [allowed it](https://help.github.com/en/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork) while creating the pull request. 
 
 ![pr]({{ site.baseurl }}/assets/images/allow-maintainers-to-make-edits-sidebar-checkbox.png)
@@ -40,7 +42,7 @@ At this point you should make the changes that you want.  Once you're done, you 
 
 
 
-[View Gist](https://gist.github.com/mendhak/d3cafcf2d1a6764f7c2395e37bc05a81){: .btn .btn--info}
+
 
 
 

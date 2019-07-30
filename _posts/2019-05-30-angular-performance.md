@@ -10,10 +10,9 @@ tags:
 
 {{ page.description }} 
 
-[View Demo](sample/){: .btn .btn--info} 
-
 {% include repo_card.html reponame="angular-performance" %}
 
+[View Demo](sample/){: .btn .btn--info} 
 
 
 ## Page Load vs Perceived Page Load

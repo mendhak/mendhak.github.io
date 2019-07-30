@@ -39,6 +39,9 @@ At this point you should make the changes that you want.  Once you're done, you 
     git push otheruser HEAD:master
 
 
-The instructions are also available in [this gist](https://gist.github.com/mendhak/d3cafcf2d1a6764f7c2395e37bc05a81)
+
+[View Gist](https://gist.github.com/mendhak/d3cafcf2d1a6764f7c2395e37bc05a81){: .btn .btn--info}
+
+
 
 

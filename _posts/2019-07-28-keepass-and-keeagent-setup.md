@@ -11,12 +11,16 @@ tags:
      
 While KeePass is generally used for storing credentials, it can also be used to store SSH keys as well as *serve* those SSH keys when applications need it.
 
+{% include repo_card.html reponame="keepass-and-keeagent-setup" %}
+
+## Intro
+
 It's a good idea to use SSH keys when connecting to remote servers rather than username/passwords.  It's also a good practice to generate a keypair for each server you connect to - including when performing remote `git` operations.  
 
 Over time though, the number of keys you need to manage and remember can grow.  There are various ways to solve this, including SSH `.config` files.  KeePass is another way to go about this; by using KeePass and the KeeAgent plugin, we can use the KeePass database as a container for our keys and have it serve when needed.  This has the advantage that the SSH keys are synced with the KeePass database.      
 
 
-{% include repo_card.html reponame="keepass-and-keeagent-setup" %}
+
 
 
 ## Install things

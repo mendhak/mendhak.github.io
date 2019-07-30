@@ -1,0 +1,23 @@
+https://github.com/mendhak/SeenFromSpace
+
+https://github.com/mendhak/xbox-controller-off
+
+https://github.com/mendhak/gradle-crowdin-plugin
+
+https://github.com/mendhak/docker-http-https-echo
+
+https://github.com/mendhak/Airflow-MS-Teams-Operator
+
+https://github.com/mendhak/waveshare-epaper-display
+
+Api gateway
+https://gist.github.com/mendhak/8303d60cbfe8c9bf1905def3ccdb2176
+
+python http server
+https://gist.github.com/mendhak/eb22f70adf0f7e694bbcb4ef0b11b5a8
+
+
+my ubuntu setup
+
+
+The state of Ubuntu in HyperV

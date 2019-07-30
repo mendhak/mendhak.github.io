@@ -9,9 +9,15 @@ tags:
 
 This build feature sends build status updates from TeamCity to Bitbucket.  You can then see build statuses against commits.
 
+{% include repo_card.html reponame="teamcity-stash" %}
 
 
- ![Bitbucket screenshot]({{ site.baseurl }}/assets/images/teamcity-stash/001.png)
+## Why use this
+
+Reporting build statuses to Bitbucket is a useful way of working with pull requests.  Bitbucket allows you to restrict pull request approvals to a passing builds in addition to the usual approvers, so this can be used to gain some confidence with regards to the quality of a pull request. 
+
+
+![Bitbucket screenshot]({{ site.baseurl }}/assets/images/teamcity-stash/001.png)
  
 
 
@@ -19,10 +25,8 @@ This build feature sends build status updates from TeamCity to Bitbucket.  You c
 {: .notice--info}
 
 
-Reporting build statuses to Bitbucket is a useful way of working with pull requests.  Bitbucket allows you to restrict pull request approvals to a passing builds in addition to the usual approvers, so this can be used to gain some confidence with regards to the quality of a pull request. 
 
 
-{% include repo_card.html reponame="teamcity-stash" %}
 
 
 Install

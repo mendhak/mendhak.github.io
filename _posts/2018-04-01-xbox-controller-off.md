@@ -20,7 +20,7 @@ This project is a 'shutdown' script which you can use;
 *  Call it directly to turn the XBox controller off
 
 
-[Get Powershell script](https://github.com/mendhak/xbox-controller-off/blob/master/TurnControllerOff.ps1){: .btn .btn--info} [Get Executable](https://github.com/mendhak/xbox-controller-off/releases){: .btn .btn--info}
+[Get Powershell script](https://github.com/mendhak/xbox-controller-off/blob/master/TurnControllerOff.ps1){: .btn .btn--info} _or_ [Get Executable](https://github.com/mendhak/xbox-controller-off/releases){: .btn .btn--info}
 
 ## Setup
 

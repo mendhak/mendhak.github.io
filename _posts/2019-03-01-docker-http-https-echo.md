@@ -2,10 +2,10 @@
 title: "An `https` echo Docker container for web debugging"
 description: "Docker image that echoes request data as JSON; listens on HTTP/S, useful for debugging."
 categories:
-  - xbox
+  - docker
 tags:
-  - xbox
-  - windows 10
+  - docker
+  - http
 ---
 
 I've often had to test various aspects of web requests such as whether the right headers, querystrings, body, methods, etc. were being passed correctly. 
@@ -30,15 +30,15 @@ Once the container is up, issue a request via your browser or curl -
 
 
 <figure class="half">
-    <a href="https://raw.githubusercontent.com/mendhak/docker-http-https-echo/master/screenshots/screenshot2.png"><img src="https://raw.githubusercontent.com/mendhak/docker-http-https-echo/master/screenshots/screenshot2.png"></a>
-    <a href="https://raw.githubusercontent.com/mendhak/docker-http-https-echo/master/screenshots/screenshot.png"><img src="https://raw.githubusercontent.com/mendhak/docker-http-https-echo/master/screenshots/screenshot.png"></a>
+    <a href="{{ site.baseurl }}/assets/images/xbox-controller-off/001.png"><img src="{{ site.baseurl }}/assets/images/xbox-controller-off/001.png"></a>
+    <a href="{{ site.baseurl }}/assets/images/xbox-controller-off/002.png"><img src="{{ site.baseurl }}/assets/images/xbox-controller-off/002.png"></a>
     <figcaption>curl and browser output</figcaption>
 </figure>
 
 
 You can also see the request appear in the docker logs  
 
-![dockerlogs](https://raw.githubusercontent.com/mendhak/docker-http-https-echo/master/screenshots/screenshot3.png)
+![dockerlogs]({{ site.baseurl }}/assets/images/xbox-controller-off/003.png)
 
 
 

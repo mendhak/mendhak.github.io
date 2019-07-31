@@ -19,14 +19,18 @@ This Docker image echoes various HTTP request properties back to client, as well
 
 You can get started quickly with just this command
 
-    docker run -p 8080:80 -p 8443:443 --rm -t mendhak/http-https-echo
+```bash
+docker run -p 8080:80 -p 8443:443 --rm -t mendhak/http-https-echo
+```
 
 This will bring up the image and start listening (quietly) on port `8080` for http and `8443` for https.  You can substitute with your own ports.  
 
 
 Once the container is up, issue a request via your browser or curl -
 
-    curl -k -X PUT -H "Arbitrary:Header" -d aaa=bbb https://localhost:8443/hello-world
+```bash
+curl -k -X PUT -H "Arbitrary:Header" -d aaa=bbb https://localhost:8443/hello-world
+```
 
 
 <figure class="half">

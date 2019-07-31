@@ -1,10 +1,8 @@
 https://github.com/mendhak/SeenFromSpace
 
-https://github.com/mendhak/xbox-controller-off
 
 https://github.com/mendhak/gradle-crowdin-plugin
 
-https://github.com/mendhak/docker-http-https-echo
 
 https://github.com/mendhak/Airflow-MS-Teams-Operator
 

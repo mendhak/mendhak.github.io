@@ -39,7 +39,7 @@ If you run your build on Travis you should now see colored output.
 
 ![travis]({{ site.baseurl }}/assets/images/gradle-travis-colored-output/001.png)
 
-[Travis Example](https://travis-ci.org/mendhak/gpslogger/builds/112735526#L1954){: .btn .btn--inverse}
+[See Travis CI Example](https://travis-ci.org/mendhak/gpslogger/builds/112735526#L1954){: .btn .btn--inverse}
 
 
 

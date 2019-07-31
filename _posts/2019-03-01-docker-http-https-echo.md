@@ -30,15 +30,15 @@ Once the container is up, issue a request via your browser or curl -
 
 
 <figure class="half">
-    <a href="{{ site.baseurl }}/assets/images/xbox-controller-off/001.png"><img src="{{ site.baseurl }}/assets/images/xbox-controller-off/001.png"></a>
-    <a href="{{ site.baseurl }}/assets/images/xbox-controller-off/002.png"><img src="{{ site.baseurl }}/assets/images/xbox-controller-off/002.png"></a>
+    <a href="{{ site.baseurl }}/assets/images/docker-http-https-echo/001.png"><img src="{{ site.baseurl }}/assets/images/docker-http-https-echo/001.png"></a>
+    <a href="{{ site.baseurl }}/assets/images/docker-http-https-echo/002.png"><img src="{{ site.baseurl }}/assets/images/docker-http-https-echo/002.png"></a>
     <figcaption>curl and browser output</figcaption>
 </figure>
 
 
 You can also see the request appear in the docker logs  
 
-![dockerlogs]({{ site.baseurl }}/assets/images/xbox-controller-off/003.png)
+![dockerlogs]({{ site.baseurl }}/assets/images/docker-http-https-echo/003.png)
 
 
 

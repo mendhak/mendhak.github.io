@@ -6,12 +6,15 @@ categories:
 tags:
   - keepass
   - windows 10
+
 ---
 
      
 While KeePass is generally used for storing credentials, it can also be used to store SSH keys as well as *serve* those SSH keys when applications need it.
 
 {% include repo_card.html reponame="keepass-and-keeagent-setup" %}
+
+
 
 ## Intro
 
@@ -110,10 +113,10 @@ Again, close and reopen KeePass, then head over to *C:\Temp* or whichever path y
 
 ![keeagent8]({{ site.baseurl }}/assets/images/keepass-ssh/keepass-ssh-key-8.png)  
 
-Using your text editor, or even `vi` in Git Bash, edit/create the `~/.bashrc` file.  This would correspond to *C:\users\username\\.bashrc* 
+Using your text editor, or even `vi` in Git Bash, edit/create the `~/.bash_profile` file.  This would correspond to *C:\users\username\\.bash_profile* 
 
 ```bash
-vi ~/.bashrc
+vi ~/.bash_profile
 ```
 
 Add the following line to it - it will set the `SSH_AUTH_SOCK` environment variable, pointing at the socket file.  This is what Git Bash needs to know. 
@@ -142,5 +145,5 @@ You should only check the above option for frequent use keys, and a Git server k
 For occasional use keys, you can double click the *SSH Key Status* column to load them only when you're about to use it, and even unload a few others.
 
 
-
-
+For instructions on using this setup with WSL (Ubuntu), see [Using KeeAgent with WSL and Ubuntu ]({{ site.baseurl }}/keeagent-with-wsl/).
+{: .notice--info}

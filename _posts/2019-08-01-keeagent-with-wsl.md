@@ -33,9 +33,7 @@ Extract the zip in Windows, not in WSL.  You can place it anywhere.  If you're k
 
 ### Tell WSL to use it
 
-You will then need to tell WSL to talk to the weasel-pageant.  In WSL, add the following lines to `~/.bash_profile`, remember to adjust `weaselpath` to match the directory where you extracted weasel-pageant. 
-
-
+You will then need to tell WSL to talk to the weasel-pageant.  In WSL, add the following lines to `~/.bash_profile`, remember to modify `weaselpath` to match the directory where you extracted weasel-pageant. 
 
 
 ```bash
@@ -57,7 +55,7 @@ In WSL, Windows paths are prefixed with `/mnt/c/` for `C:`, and paths with space
 
 ### Test it
 
-Reload a WSL bash session and you should see `pageant loading, wait...` at the top.  Once it's done, test a connection to github as usual. 
+Reload a WSL bash session and you should see `pageant loading, wait...` at the top.  Once your bash prompt appears, test a connection to Github as usual. 
 
 ```bash
 ssh -T git@github.com

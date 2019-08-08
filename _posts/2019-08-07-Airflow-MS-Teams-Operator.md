@@ -14,7 +14,13 @@ This Apache Airflow operator can send messages to specific MS Teams Channels.  I
 {% include repo_card.html reponame="Airflow-MS-Teams-Operator" %}
 
 
-Apache Airflow is a programmatic platform for workflows, crons, ETLs, adhoc scripts. One of its greatest strengths is the concept of operators which are basically wrapped up tasks that take arguments.  This operator is a simple Python script which creates an MS Teams card in a given channel. 
+Common usages for this would be:
+
+* A final step in a DAG to notify of success
+* Notify a group of users when something needs attention
+* Notify developers when a DAG has failed with option to view logs
+
+
 
 ## Usage
 
@@ -39,9 +45,11 @@ op1 = MSTeamsWebhookOperator(task_id='msteamtest',
 `button_url` : What URL the button sends the user to  
 `theme_color` : Color for the card's top line, without the `#`  
 
-This results in a card like this:
+This sends a card to your channel:
 
 ![MS Teams]({{ site.baseurl }}/assets/images/Airflow-MS-Teams-Operator/001.png)
+
+There is a bit of prep work required in Teams as well as Airflow to enable this functionality.  
 
 
 ## Prepare MS Teams

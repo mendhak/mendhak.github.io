@@ -136,8 +136,8 @@ proxy = "https://my-proxy:3128/",
 
 # How it works
 
-MS Teams allows creating [actionable message cards](https://docs.microsoft.com/en-gb/outlook/actionable-messages/send-via-connectors) which allow you to send formatted JSON with various things like column layout, text blocks, action buttons, headlines, subtitles and so on.  There are plenty of examples on the [Message Card Playground](https://messagecardplayground.azurewebsites.net/).  
+MS Teams allows creating [actionable message cards](https://docs.microsoft.com/en-gb/outlook/actionable-messages/send-via-connectors) which enable you to send formatted JSON with various things like column layout, text blocks, action buttons, headlines, subtitles and so on.  There are plenty of examples on the [Message Card Playground](https://messagecardplayground.azurewebsites.net/).  
 
-The [incoming webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using) connector is already bundled with MS Teams, and it allows actionable messages to be created.  
+The [incoming webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using) connector is already bundled with MS Teams, and is the simplest means of communicating with a channel.  
 
 The main work happens in the hook which inherits from Airflow's own `HttpHook`; in turn this is simply a Python script which takes the arguments and [builds up](https://github.com/mendhak/Airflow-MS-Teams-Operator/blob/master/ms_teams_webhook_hook.py#L94-L115) the `MessageCard` before performing an HTTP POST.

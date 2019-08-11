@@ -18,6 +18,9 @@ https://gist.github.com/mendhak/eb22f70adf0f7e694bbcb4ef0b11b5a8
 
 my ubuntu setup
 
+visual code extension pack
+
+npm install / -g
 
 The state of Ubuntu in HyperV
 

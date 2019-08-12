@@ -60,7 +60,7 @@ plugins:
 author:
   name   : "mendhak"
   avatar : "https://avatars2.githubusercontent.com/u/746276?s=460&v=4"
-  bio    : " no bio "
+  bio    : ""
   links:
     - label: "Photography"
       icon: "fas fa-fw fa-camera"

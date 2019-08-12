@@ -1,6 +1,6 @@
 ## Environment setup
 
-Set up [Ruby and bundler](https://jekyllrb.com/docs/installation/ubuntu/)
+For local development you will need to set up [Ruby and bundler](https://jekyllrb.com/docs/installation/ubuntu/)
 
     sudo apt update
     sudo apt-get install ruby-full build-essential zlib1g-dev

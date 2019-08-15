@@ -2,7 +2,7 @@
 title: "Short guide to good commit messages"
 description: "Say this to yourself before writing your commit message"
 layout: none
-permalink: /git-commit-message-format/
+permalink: /git-commit-message/
 ---
 
 <html lang="en">

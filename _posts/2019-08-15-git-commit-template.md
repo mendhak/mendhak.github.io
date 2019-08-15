@@ -1,16 +1,14 @@
 ---
-title: "The only git commit template you'll need"
+title: "Short guide to good commit messages"
+description: "Say this to yourself before writing your commit message"
 layout: none
-permalink: /git-commit-template/
+permalink: /git-commit-message-format/
 ---
 
-
-
-<span class="hide">No lengthy essays required, just repeat this during a `git commit` </span>
-
-
-<h1>If applied, this commit will: </h1>
-
+<html lang="en">
+<title>{{page.description}}</title>
+<meta name="description" content="{{page.description}}">
+<head>
 
 <style type="text/css">
 h1 {
@@ -29,3 +27,13 @@ h1 {
     display: none;
 }
 </style>
+</head>
+<body>
+
+<span class="hide">{{ page.description }}</span>
+
+
+<h1>If applied, this commit will:</h1>
+
+</body>
+</html>

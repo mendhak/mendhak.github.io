@@ -5,9 +5,6 @@ https://github.com/mendhak/gradle-crowdin-plugin
 
 
 
-https://github.com/mendhak/Airflow-MS-Teams-Operator
-
-https://github.com/mendhak/waveshare-epaper-display
 
 Api gateway
 https://gist.github.com/mendhak/8303d60cbfe8c9bf1905def3ccdb2176
@@ -20,7 +17,6 @@ my ubuntu setup
 
 visual code extension pack
 
-npm install / -g
 
 The state of Ubuntu in HyperV
 

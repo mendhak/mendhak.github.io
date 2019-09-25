@@ -42,9 +42,12 @@ gallery3:
 gallery4:
   - url: /assets/images/openstreetmap-workflow-marmari/final2.png
     image_path: /assets/images/openstreetmap-workflow-marmari/final2.png
+    title: "Added street names, supermarket, post office, shops, ATM"
+    alt: "Added street names, supermarket, post office, shops, ATM"
   - url: /assets/images/openstreetmap-workflow-marmari/final1.png
     image_path: /assets/images/openstreetmap-workflow-marmari/final1.png
-
+    title: "Added memorials, benches, shelter, ticket office"
+    alt: "Added memorials, benches, shelter, ticket office"
 gallery5:
   - url: /assets/images/openstreetmap-workflow-marmari/handwriting.png
     image_path: /assets/images/openstreetmap-workflow-marmari/handwriting.png
@@ -53,9 +56,9 @@ gallery5:
 
 ---
 
-Although I'm not a prolific or advanced editor, I do enjoy contributing to adding details to OpenStreetMap. I'll generally make changes to OpenStreetMap when I notice new changes in my area or on holiday when I find certain features, trails or details are missing.  
+Although I'm not a prolific or advanced editor, I do enjoy contributing to OpenStreetMap. I'll generally perform edits when I notice new changes in my area or while on holiday when I find certain features, trails or details are missing.  
 
-Recently I was visiting the town of Marmari, Evia in Greece and I noticed that OpenStreetMap had almost no info on this place; there were no street names, stores or ATMs, even though they did exist in real life.  The 'before' is pretty bleak.
+I recently visited the town of Marmari, Evia in Greece and noticed that OpenStreetMap had almost no info on this place; there were no street names, stores or ATMs, even though they did exist in real life.  The 'before' is pretty bleak.
 
 ![before]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/marmari_empty.png)
 
@@ -227,6 +230,6 @@ There is a tool called [WhoDidIt](https://simon04.dev.openstreetmap.org/whodidit
 
 The RSS feed for the Marmari area is: 
 
-[https://simon04.dev.openstreetmap.org/whodidit/scripts/rss.php?bbox=24.306008,38.034519,24.340341,38.060609](https://simon04.dev.openstreetmap.org/whodidit/scripts/rss.php?bbox=24.306008,38.034519,24.340341,38.060609)
+`https://simon04.dev.openstreetmap.org/whodidit/scripts/rss.php?bbox=24.306008,38.034519,24.340341,38.060609`
 
 Adding this RSS link to Feedly then lets me see when other users make changes or when notes are added with corrections or questions. 

@@ -58,7 +58,7 @@ gallery5:
 
 Although I'm not a prolific or advanced editor, I do enjoy contributing to OpenStreetMap. I'll generally perform edits when I notice new changes in my area or while on holiday when I find certain features, trails or details are missing.  
 
-I recently visited the town of Marmari, Evia in Greece and noticed that OpenStreetMap had almost no info on this place; there were no street names, stores or ATMs, even though they did exist in real life.  The 'before' is pretty bleak.
+I recently visited the village of Marmari, Evia in Greece and noticed that OpenStreetMap had almost no info on this place; there were no street names, stores or ATMs, even though they did exist in real life.  The 'before' is pretty bleak.
 
 ![before]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/marmari_empty.png)
 

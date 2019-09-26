@@ -230,6 +230,6 @@ There is a tool called [WhoDidIt](https://simon04.dev.openstreetmap.org/whodidit
 
 The RSS feed for the Marmari area is: 
 
-`https://simon04.dev.openstreetmap.org/whodidit/scripts/rss.php?bbox=24.306008,38.034519,24.340341,38.060609`
+>https://simon04.dev.openstreetmap.org/whodidit/scripts/rss.php?bbox=24.306008,38.034519,24.340341,38.060609
 
 Adding this RSS link to Feedly then lets me see when other users make changes or when notes are added with corrections or questions. 

@@ -220,6 +220,17 @@ I also add the source as 'survey' if I verified the data myself.  In the case of
 ![saving changes]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_064.png)
 
 
+## Viewing your changes
+
+After performing so many edits, it's great to see the results on the map
+
+[https://www.openstreetmap.org/#map=18/38.04896/24.32156](https://www.openstreetmap.org/#map=18/38.04896/24.32156)
+
+However note that the new edits won't appear in OpenStreetMap right away. It can take a few minutes, up to half an hour sometimes, for the new features to appear. While it's tempting to keep refreshing, better to just wait. 
+
+Other applications such as OSMAnd, Maps.Me and anything that uses OpenStreetMap tiles won't get the changes, even if it appears in OpenStreetMap - quite often these development teams will pull in tiles from OpenStreetMap on a scheduled basis, so the wait time for these apps can be a few hours up to a month.  
+
+
 ## Watching for changes
 
 Making so many changes in an area creates a feeling of attachment to it.  I generally want to know what additional changes other OpenStreetMap contributors make and in this case I also want to know if I made any mistakes so that I could learn from them.  
@@ -228,8 +239,6 @@ There is a tool called [WhoDidIt](https://simon04.dev.openstreetmap.org/whodidit
 
 ![RSS]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_065.png)
 
-The RSS feed for the Marmari area is: 
-
->https://simon04.dev.openstreetmap.org/whodidit/scripts/rss.php?bbox=24.306008,38.034519,24.340341,38.060609
+[The RSS feed for the Marmari area is here](https://simon04.dev.openstreetmap.org/whodidit/scripts/rss.php?bbox=24.306008,38.034519,24.340341,38.060609)
 
 Adding this RSS link to Feedly then lets me see when other users make changes or when notes are added with corrections or questions. 

@@ -1,6 +1,6 @@
 ---
-title: "My OpenStreetMap workflow: mapping Marmari, Evia"
-description: "Mapping the town of Marmari, Evia in Greece"
+title: "My OpenStreetMap workflow: mapping the village of Marmari, Evia"
+description: "A general OpenStreetMap editing workflow, with the example of Mapping the village of Marmari, Evia in Greece. "
 categories: 
   - openstreetmap
 tags: 

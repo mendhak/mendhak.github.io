@@ -19,3 +19,8 @@ To run this repo, use
 This repo uses the [Minimal Mistakes Jekyll theme](https://github.com/mmistakes/minimal-mistakes).
 
 
+## To run from docker
+
+    docker-compose up
+
+This should build and run the image.  I was not able to use the `jekyll/builder` image, it kept prefixing URLs with `/pages/mendhak` and I could not figure out how to disable it.     

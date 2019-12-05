@@ -2,9 +2,11 @@ version: '3.7'
 
 services: 
     ghpage:
-        image: jekyll/jekyll:builder
+        image: mendhak/jekyll-site
+        build: 
+            context: .
+
         volumes:
             - ${PWD}:/srv/jekyll
         ports: 
             - "0.0.0.0:4000:4000"
-        command: /bin/bash

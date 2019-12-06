@@ -31,7 +31,7 @@ gallery5:
 
 ---
 
-Documenting the steps I took to get NextDNS, NordVPN and restricted WiFi networks to work together.
+_Documenting the steps I took to get NextDNS, NordVPN and restricted WiFi networks to work together._
 
 I have been experimenting with [NextDNS](https://nextdns.io) recently, a cloud based private DNS with privacy controls.  Feature-wise, it's pretty similar to [Pi-hole](https://pi-hole.net/).  The main difference is that the Pi-hole runs at home, while NextDNS is available everywhere.  This makes it pretty appealing as it allows me to carry my site blocking configuration everywhere. 
 

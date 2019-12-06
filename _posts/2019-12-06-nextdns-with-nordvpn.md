@@ -29,6 +29,12 @@ gallery5:
   - url: /assets/images/nextdns-nordvpn/007.png
     image_path: /assets/images/nextdns-nordvpn/007.png
 
+gallery6:
+  - url: /assets/images/nextdns-nordvpn/009.png
+    image_path: /assets/images/nextdns-nordvpn/009.png
+  - url: /assets/images/nextdns-nordvpn/008.png
+    image_path: /assets/images/nextdns-nordvpn/008.png
+
 ---
 
 _Documenting the steps I took to get NextDNS, NordVPN and restricted WiFi networks to work together._
@@ -126,6 +132,10 @@ Profile: Vpn On (2)
     	A1: HTTP Request [  Method:GET URL:https://link-ip.nextdns.io/924d45/0d927fe242bee36c Headers: Query Parameters: Body: File To Send: File To Save With Output: Timeout (Seconds):30 Trust Any Certificate:Off ]
 
 ```
+
+To test this profile, connect to any NordVPN server.  Then on your mobile device, browse to your NextDNS configuration at [https://my.nextdns.io](https://my.nextdns.io) - you should see an 'All Good!' message at the top, and in the Linked IP section, your IP with a tick next to it.
+
+{% include gallery id="gallery6" layout="half" caption="NextDNS confirms" %}
 
 This setup works reliably, but is only applicable to the NordVPN connection.  When you disconnect from the VPN, you are no longer using NextDNS, and you'll need to launch the NextDNS app and connect there.  
 

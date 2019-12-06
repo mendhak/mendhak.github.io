@@ -54,7 +54,7 @@ Although NordVPN comes with its own [CyberSec](https://nordvpn.com/features/cybe
 
 The [Private DNS](https://android-developers.googleblog.com/2018/04/dns-over-tls-support-in-android-p.html) feature introduced in Android 9 allows you to set a system wide DNS, not just specific to a WiFi.  Android will perform DNS over TLS requests against this address, and in most cases this DNS setting is applied whether you're connected to WiFi, mobile data, or VPN.  Where available, this is the most convenient way to set yourself up with NextDNS, and should play nicely with NordVPN and other VPNs too.
 
-From the main settings page on your NextDNS configuration, find the DNS-over-TLS address.  
+From the main settings page on your NextDNS configuration, find the DNS-over-TLS address.  In your Android settings, search for Private DNS.  For me this was under Settings > Network & Internet > Advanced > Private DNS.
 
 {% include gallery id="gallery2"  caption="DNS over TLS on Android" %}
 

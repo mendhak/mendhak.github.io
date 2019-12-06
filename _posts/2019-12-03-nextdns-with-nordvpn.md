@@ -31,13 +31,13 @@ gallery5:
 
 ---
 
-I recently learned about [NextDNS](https://nextdns.io), a cloud based private DNS with privacy controls.  
+Documenting the steps I took to get NextDNS, NordVPN and restricted WiFi networks to work together.
 
-Feature-wise, it's pretty similar to [Pi-hole](https://pi-hole.net/).  The main difference is that the Pi-hole runs at home, but NextDNS is available everywhere.  This makes it pretty appealing as it allows me to carry my site blocking configuration everywhere. 
+I have been experimenting with [NextDNS](https://nextdns.io) recently, a cloud based private DNS with privacy controls.  Feature-wise, it's pretty similar to [Pi-hole](https://pi-hole.net/).  The main difference is that the Pi-hole runs at home, while NextDNS is available everywhere.  This makes it pretty appealing as it allows me to carry my site blocking configuration everywhere. 
 
-It comes with preset lists, blacklists, whitelists, analytics (graphs) and logs.  The [Linux client is open source](https://github.com/nextdns/nextdns), and the [privacy policy](https://nextdns.io/privacy) looks pretty good. The sign-up process is fast and you are given a unique configuration ID immediately.  
+It comes with preset lists, blacklists, whitelists, analytics (graphs) and logs.  The [Linux client is open source](https://github.com/nextdns/nextdns), and the [privacy policy](https://nextdns.io/privacy) looks pretty good. Where it shines is its connectivity options.  You can use DNS over TLS, DNS over HTTPS, and regular DNS.  They give clear instructions, and there are many options across OSes and browsers.
 
-Where it shines is its connectivity options.  You can use DNS over TLS, DNS over HTTPS, and regular DNS.  
+The sign-up process is fast and you are given a unique configuration ID immediately, and you can start playing with the settings right away.
 
 {% include gallery id="gallery1"  caption="NextDNS screens" %}
 
@@ -52,15 +52,15 @@ Although NordVPN comes with its own [CyberSec](https://nordvpn.com/features/cybe
 
 ## Private DNS in Android 9+
 
-The [Private DNS](https://android-developers.googleblog.com/2018/04/dns-over-tls-support-in-android-p.html) feature introduced in Android 9 allows you to set a system wide DNS.  Android will perform DNS over TLS requests against this address, and in most cases this DNS setting is applied whether you're connected to WiFi, mobile data, or VPN.  Where available, this is the most convenient way to set yourself up with NextDNS, and should work with most VPNs too.  
+The [Private DNS](https://android-developers.googleblog.com/2018/04/dns-over-tls-support-in-android-p.html) feature introduced in Android 9 allows you to set a system wide DNS, not just specific to a WiFi.  Android will perform DNS over TLS requests against this address, and in most cases this DNS setting is applied whether you're connected to WiFi, mobile data, or VPN.  Where available, this is the most convenient way to set yourself up with NextDNS, and should play nicely with NordVPN and other VPNs too.
 
 From the main settings page on your NextDNS configuration, find the DNS-over-TLS address.  
 
 {% include gallery id="gallery2"  caption="DNS over TLS on Android" %}
 
-For the most part this actually works and is a good enough default setting.
+For most scenarios and use cases, this works well enough and is a good enough default setting to stick with.
 
-### Gotcha - captive portals and corporate WiFi
+### There's a catch - captive portals and corporate WiFi
 
 Many workplaces, hotels and airports offer a guest WiFi network to connect personal devices to, and often these come with captive portals.  The trouble here is that such 'corporate' networks often block most outgoing ports, 853 included, which is what DNS-over-TLS makes use of.  When using the Private DNS feature in such a network, Android will mark the corporate WiFi with 'no internet connection'; your web browsing will fail, and you will be unable to connect to VPN.  
 
@@ -71,16 +71,16 @@ Many workplaces, hotels and airports offer a guest WiFi network to connect perso
 <i class="fas fa-times-circle"></i> Not an option on older Android devices    
 
 
-If connecting to a restricted WiFi isn't necessary for you, this is the best place to stop.  
+If connecting to a restricted WiFi isn't necessary for you, this is the best place to stop.  You're in a good position, and you can enjoy both NextDNS and NordVPN.
 
-However if you do need to work with a restricted WiFi, there are a few options to get these working together. 
+If however, you _do_ need to work with a restricted WiFi, there are a few options to get these working together. 
 
 
 ## The NextDNS app
 
-The [NextDNS app](https://play.google.com/store/apps/details?id=io.nextdns.NextDNS&hl=en_GB) on the Play Store has a unique offering - it makes DNS requests using DNS-over-HTTPS.  The advantage of DNS-over-HTTPS is that the DNS requests themselves are made over the 'common' port 443, with TLS certificates encrypting your traffic; to a network this is just normal traffic and will not often be blocked.  
+The [NextDNS app](https://play.google.com/store/apps/details?id=io.nextdns.NextDNS&hl=en_GB) on the Play Store makes DNS requests using DNS-over-HTTPS.  The advantage of DNS-over-HTTPS is that the DNS requests themselves are made over the 'common' port 443, with TLS certificates encrypting your traffic; to a network this just appears as normal traffic and will not often be blocked.  
 
-Using the app will allow you to use NextDNS while on WiFi or mobile network, but won't allow you to use an actual VPN - this is because the app sets up a local device VPN for all traffic, and it then makes requests using DNS-over-HTTPS.  Since it's a local device VPN, the battery consumption is very low.  The main setting in the app is the configuration ID of your NextDNS settings.   You can also get it to send your device model so that you can easily identify it in the logs.  
+Using their app will allow you to use NextDNS while on WiFi or mobile network, but won't allow you to use an actual VPN - this is because the app itself sets up a local device VPN for all traffic, and it then makes requests using DNS-over-HTTPS.  Since it's a local device VPN, the battery consumption is very low.  The main setting in the app is the configuration ID of your NextDNS settings.   You can also get it to send your device model so that you can easily identify it in the logs.  
 
 
 <i class="fas fa-check-circle"></i> Works with WiFi  
@@ -96,13 +96,13 @@ If however, you do need an actual VPN as well as DNS, then read on.
 
 ## NordVPN's custom DNS
 
-Now we're complicated. The NordVPN app allows setting an IP address for a DNS server that it will use when making requests.  Get this from the settings screen on NextDNS, and add it to the NordVPN setting.  
+Now we're complicated. The NordVPN app allows setting an IP address for a DNS server that it will use when making requests.  Get this from the settings screen on NextDNS, and add it to the NordVPN setting, `Custom DNS`.  Since you're connecting to a restricted WiFi, be sure to also select `Use TCP` - this makes NordVPN connect over port 443 to its servers.   
 
 {% include gallery id="gallery4"  caption="DNS in the NordVPN app" %}
 
- However, observe that the NextDNS IP address is actually common to many of its users.  NextDNS needs a way to identify your requests to that IP, among the thousands of other people using the same IP.  You can connect to the VPN, then browse to the NextDNS page and press the "Link IP" button.  It will then detect the IP you're connecting from (the NordVPN server)  and from then on any requests from your device will make use of your NextDNS configurations.
+ However, observe that the NextDNS IP address is actually common to many of its users.  NextDNS needs some way of identifying your requests to that IP, among the thousands of other people using the same IP.  Connect to the VPN, then browse to the NextDNS configuratino page and press the `Link IP` button.  It will then detect the IP you're connecting from (the NordVPN server)  and from then on any requests from your device will make use of your NextDNS configurations.
 
- But pressing the "Link IP" button is not a maintainable solution;  NextDNS provides a convenience URL that you can request - it will detect the IP and set the linked IP address on your behalf. 
+ But pressing the "Link IP" button is not a maintainable solution and is easy to forget; in the screenshot above, NextDNS provides a convenience URL that you can call - it will detect the IP you called from, and set the linked IP address on your behalf. In the example above, this is `https://link-ip.nextdns.io/924d45/0d927fe242bee36c`
 
  We need a way of invoking that URL on a regular basis.  Specifically, we need a way of invoking that URL whenever we connect to a VPN.  
 
@@ -110,7 +110,7 @@ Now we're complicated. The NordVPN app allows setting an IP address for a DNS se
 
 [Tasker](https://play.google.com/store/apps/details?id=net.dinglisch.android.taskerm&hl=en_GB) is an automation app for Android which lets you perform actions based on various conditions, events, variables.  You can create a profile that invokes an HTTP request when connecting to a VPN. 
 
-In Tasker, create a new profile, "NextDNS VPN On".    
+In Tasker, create a new profile, "VPN On".    
 Pick `State`, and in the dialog, search for `VPN Connected`  
 Leave the State as is, and press the back arrow <i class="fas fa-arrow-left"></i>  
 When prompted, create a new Task, "Update NextDNS Linked IP"  
@@ -120,25 +120,31 @@ Paste the URL from the NextDNS setting screen in the URL field
 
 
 ```
-Profile: NextDns Vpn On (2)
+Profile: Vpn On (2)
     	State: VPN Connected [ Active:Any ]
     Enter: Update dynamic ip (3)
     	A1: HTTP Request [  Method:GET URL:https://link-ip.nextdns.io/924d45/0d927fe242bee36c Headers: Query Parameters: Body: File To Send: File To Save With Output: Timeout (Seconds):30 Trust Any Certificate:Off ]
 
 ```
 
-This setup works reliably, but is only applicable to the NordVPN connection.  When you disconnect from the VPN, you'll need to find a different way of reconnecting with NextDNS.  
+This setup works reliably, but is only applicable to the NordVPN connection.  When you disconnect from the VPN, you are no longer using NextDNS, and you'll need to launch the NextDNS app and connect there.  
 
 <i class="fas fa-check-circle"></i> Works with NordVPN  
 <i class="fas fa-check-circle"></i> Works with corporate WiFi/captive portals  
+<i class="fas fa-check-circle"></i> Use the NextDNS app when not on VPN - covers wifi and mobile networks  
 <i class="fas fa-times-circle"></i> Complicated setup  
-<i class="fas fa-times-circle"></i> Use the NordVPN app for WiFi/mobile network  
 
+
+If you can stick to using NordVPN across all your wifi and mobile connections, then this is a good place to stop.  It's going to get _even more complicated_ after this.  Just stop. 
+
+If however, you are looking to automate the switch to NextDNS when NordVPN disconnects, then read on.  
 
 
 ### Launch NextDNS when VPN disconnects
 
-Tasker profiles have the concept of Exit Tasks.  In Tasker, long press the right side of the "NextDNS VPN On" profile. 
+Tasker profiles have the concept of Exit Tasks; we can get Tasker to launch NextDNS when disconnecting from NordVPN.  
+
+In Tasker, long press the right side of the "NextDNS VPN On" profile. 
 Press `Add Exit Task` and Create a New Task <i class="fas fa-plus"></i>, "Launch NextDNS"  
 Press <i class="fas fa-plus"></i> to add an Action, and search for `Launch App`   
 Find NextDNS in the list and select it, then press the back arrow <i class="fas fa-arrow-left"></i>  
@@ -146,10 +152,10 @@ Find NextDNS in the list and select it, then press the back arrow <i class="fas 
 
 {% include gallery id="gallery5" layout="half" caption="Tasker Exit Task" %}
 
-When disconnecting from NordVPN, the NextDNS app will launch and serve as a gentle reminder to connect to it.  
+When disconnecting from NordVPN, the NextDNS app should launch and serve as a gentle reminder to connect to it.  
 
-### Switch to Android's Private DNS when VPN disconnects
-
+This Tasker profile will only work on Android 9 and below.  From Android 10+, Tasker can no longer [launch activities from the background](https://developer.android.com/guide/components/activities/background-starts). 
+{: .notice--warning}
 
 
 

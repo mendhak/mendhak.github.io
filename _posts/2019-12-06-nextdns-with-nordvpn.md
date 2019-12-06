@@ -35,7 +35,7 @@ gallery6:
   - url: /assets/images/nextdns-nordvpn/008.png
     image_path: /assets/images/nextdns-nordvpn/008.png
 
-gallery6:
+gallery7:
   - url: /assets/images/nextdns-nordvpn/011.png
     image_path: /assets/images/nextdns-nordvpn/011.png    
   - url: /assets/images/nextdns-nordvpn/012.png
@@ -201,7 +201,7 @@ Set up a profile for `WiFi connected`, with both the entry and exit task the sam
 The Tasker screen is a little complicated to look at due to the nested If/Elses
 
 
-{% include gallery id="gallery6"  caption="Turn Private DNS on or off based on WiFi network name" %}
+{% include gallery id="gallery7"  caption="Turn Private DNS on or off based on WiFi network name" %}
 
 Using `If` in the task, you can check `%WIFII ~ *connection*` which matches if you are connected to a WiFi network.   
 

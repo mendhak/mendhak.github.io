@@ -66,11 +66,11 @@ The safest way would be to do this from an Ubuntu Live USB and disconnect all ot
 
 ## Install `hdparm`
 
-The command to use here is `hdparm` - if it isn't already install, just install it using
+The tool to use here is `hdparm` - if it isn't already install, just install it using
 
     sudo apt install hdparm
 
-hdparm allows you to work with ATA disks and ATA disk commands.
+hdparm allows you to work with ATA disks and the ATA disk's built in commands.
 
 
 ## Unfreeze the drive. 

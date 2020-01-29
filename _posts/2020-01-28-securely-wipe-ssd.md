@@ -113,7 +113,7 @@ This time you should see, under `Master password`, the `not    enabled` has beco
 
 
 
-## Security Erase or Enhanced Security Erase
+## Security Erase or _Enhanced_ Security Erase
 
 The hdparm output also shows what kind of erase the drive supports.  
 

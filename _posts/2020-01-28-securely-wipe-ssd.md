@@ -34,7 +34,7 @@ gallery1:
 
 Modern SSDs now come with built in commands that can wipe a disk for you.  This is an action that should normally be performed when you're about to give/sell it away.  
 
-As an overview you'll need to find out the disk's label, unfreeze the disk, set a password, and then issue the erase command. 
+As an overview you'll need to find out the disk's label, unfreeze the disk, set a password, and then issue the erase command. We'll perform these steps on Ubuntu using the `hdparm` and `dd` tools.
 
 
 

@@ -97,7 +97,7 @@ If that doesn't work, a simple reboot should be enough.  Try the command again a
 
 ## Set a password
 
-You'll now need to set a password to enable security on the disk.  Any password will do, and this password will disappear once the drive has been securely erased.  
+According to the spec, as a prerequisite to issuing an erase command, you'll need to set a password to enable security on the disk.  Any password will do, and this password will disappear once the drive has been securely erased.  
 
     sudo hdparm --user-master u --security-set-pass hunter2 /dev/sdX 
 

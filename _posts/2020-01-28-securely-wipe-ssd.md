@@ -70,6 +70,7 @@ The command to use here is `hdparm` - if it isn't already install, just install 
 
     sudo apt install hdparm
 
+hdparm allows you to work with ATA disks and ATA disk commands.
 
 
 ## Unfreeze the drive. 
@@ -165,7 +166,7 @@ In the case of a regular erase you will see nothing.
 
 ## Paranoid mode
 
-There is no real standardization in secure erase.  An SSD could report that it has erased the disk but without inspecting the code, there is [no guarantee that it has done so](https://security.stackexchange.com/a/41683).  
+Although there is an [ATA spec proposal for the erase operations](http://web.archive.org/web/20160813235342/http://t13.org/Documents/UploadedDocuments/docs2004/e04147r0-TechProposalFreezeLockSecureErase.pdf), there is no real standardization in secure erase.  An SSD could report that it has erased the disk but without inspecting the code, there is [no guarantee that it has done so](https://security.stackexchange.com/a/41683).  
 
 The erase should be occurring by [changing the internal encryption key](https://security.stackexchange.com/a/64480) thereby making the data useless; in some cases the disk will perform both the normal erase and the security enhanced erase in the same way.  But manufacturers are not forthcoming about these kinds of details, so a level of suspicion or paranoia here is not unusual.  
 

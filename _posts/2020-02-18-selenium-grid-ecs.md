@@ -56,7 +56,6 @@ Open Chrome
 
     Navigate to 'code.mendhak.com'
 
-
         Navigate to 'https://code.mendhak.com/selenium-grid-ecs/'
 
             Navigate to 'https://code.mendhak.com/nextdns-with-nordvpn/'

@@ -26,6 +26,7 @@ Modify the corresponding `variable` values at the top of the Terraform file and 
 * `vpc_id`: The VPC ID where the containers are to be created
 * `subnet_private_ids`: The subnet ID of a private subnet in your VPC - this is where the containers will go
 * `subnet_public_ids`: The subnet IDs of public subnets in your VPC - this is where the load balancer will go
+* `your_ip_addresses`: You can use the default for experimenting, but change it to your IP address.
 
 Once that's done, 
 
@@ -38,8 +39,46 @@ Confirm, and wait for the `hub_address` output to appear, which will be the DNS 
 
 ![grid]({{ site.baseurl }}/assets/images/ecs-selenium-grid/002.png)
 
-**Note:** Running this script will incur a cost in your AWS account. You can get an idea of pricing [here](https://aws.amazon.com/fargate/pricing/).
+**Note:** Running this script will incur a cost in your AWS account. You can get an idea of pricing [here](https://aws.amazon.com/fargate/pricing/).  
+Don't leave `your_ip_addresses` as 0.0.0.0/0, it's only for testing purposes; change it to your own IP address to prevent others from running tests against your grid.
 {: .notice--warning}
+
+
+### Run a test
+
+Here's a quick way to run a test with [Smashtest](https://smashtest.io/).  
+
+Create a file, `main.smash` with this content.  You can paste it a few times for more  tests, but do preserve indentation:
+
+```
+Open Firefox 
+Open Chrome
+
+    Navigate to 'code.mendhak.com'
+
+
+        Navigate to 'https://code.mendhak.com/selenium-grid-ecs/'
+
+            Navigate to 'https://code.mendhak.com/nextdns-with-nordvpn/'
+
+                Go Back
+ 
+                    Go Forward
+ 
+                        Refresh
+
+```                        
+
+Then to run the test, 
+
+```bash
+npm install smashtest
+npx smashtest --test-server=http://your-load-balancer-12345.eu-west-1.elb.amazonaws.com/wd/hub --max-parallel=7
+
+```
+
+This will run the tests against your new Grid and if you refresh the Selenium Hub page you can see where the test is running, indicated by a dimmed browser icon. 
+
 
 ## Overview
 
@@ -53,6 +92,10 @@ The hub node will also need to register itself with a Load Balancer.  This is be
 
 
 ## The details
+
+### The security group
+
+An `aws_security_group` is created
 
 ### The IAM policy 
 

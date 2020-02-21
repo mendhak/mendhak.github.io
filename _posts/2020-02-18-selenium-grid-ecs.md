@@ -299,3 +299,11 @@ DEFINITION
 }
 ```
 
+## Finish
+
+Once you're done playing with the cluster or experimenting, be sure to tear the cluster down 
+
+```bash
+terraform destroy
+```
+

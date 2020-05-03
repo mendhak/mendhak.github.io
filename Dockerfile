@@ -14,4 +14,4 @@ ENV LANGUAGE en_US.UTF-8
 RUN gem install jekyll bundler
 RUN bundle install
 
-CMD ["bundle","exec","jekyll","serve","--config","_config.yml","--host","0.0.0.0","--drafts"]
+CMD ["bundle","exec","jekyll","serve","--config","_config.yml","--host","0.0.0.0","--drafts", "--incremental"]

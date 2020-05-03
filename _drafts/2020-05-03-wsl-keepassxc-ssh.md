@@ -6,19 +6,12 @@ categories:
   - ssh
   - ubuntu
   - windows
+  - keepass
 
 
 ---
 
 
-When working with a Raspberry Pi Zero, as there is no network port, you must enable WiFi and SSH as well so that you can connect to it when it first boots.  
-
-
-![raspberry pi zero wh]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/001.jpg)
-
-
-
-dexter
 
 
 

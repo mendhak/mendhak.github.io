@@ -12,7 +12,12 @@ categories:
 ---
 
 
+KeepassXC can be used to serve SSH keys to WSL.
 
+On the Windows side, download wsl-ssh-agent, a system tray utility.  
+
+
+WSL side set bashrc command
 
 
 

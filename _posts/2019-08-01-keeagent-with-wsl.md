@@ -33,7 +33,7 @@ Extract the zip in Windows, not in WSL.  You can place it anywhere.  If you're k
 
 ### Tell WSL to use it
 
-You will then need to tell WSL to talk to the weasel-pageant.  In WSL, add the following lines to `~/.bash_profile`, remember to modify `weaselpath` to match the directory where you extracted weasel-pageant. 
+You will then need to tell WSL to talk to the weasel-pageant.  In WSL, add the following lines to `~/.bashrc`, remember to modify `weaselpath` to match the directory where you extracted weasel-pageant. 
 
 
 ```bash

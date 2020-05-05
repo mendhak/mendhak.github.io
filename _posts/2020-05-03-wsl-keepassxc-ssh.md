@@ -69,16 +69,14 @@ Extract the zip in Windows, not in WSL. You can place it anywhere. If you’re t
 
 You will need to tell WSL to talk to wsl-ssh-agent, so that it can talk to Windows SSH Agent, so that it can fetch your keys from KeePassXC.  
 
-In your `~/.bashrc`, add the following lines.  
+In your `~/.bashrc`, add the following lines.  Adjust the path to point at wherever you have placed the exe.  Ensure that `C:\Temp` exists, or change the path for the `.sock` file as well. 
 
 ```bash
 
-export SSH_AUTH_SOCK=/c/temp/ssh-agent.sock
+export SSH_AUTH_SOCK=/mnt/c/temp/ssh-agent.sock
 
 (/mnt/c/Users/mendhak/Google\ Drive/Documents/keys/wsl-ssh-agent/wsl-ssh-agent-gui.exe -socket "C:\Temp\ssh-agent.sock" & disown)
 ```
-
-Adjust the path to point at wherever you have placed the exe.  Ensure that `C:\Temp` exists, or change the path for the `.sock` file as well. 
 
 Reload WSL, and this should call out to the wsl-ssh-agent.  
 

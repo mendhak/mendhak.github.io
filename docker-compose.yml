@@ -5,7 +5,7 @@ services:
         image: mendhak/jekyll-site
         build: 
             context: .
-
+        command: "bundle exec jekyll serve --config _config.yml --host 0.0.0.0 --drafts --incremental --force_polling"
         volumes:
             - ${PWD}:/srv/jekyll
         ports: 

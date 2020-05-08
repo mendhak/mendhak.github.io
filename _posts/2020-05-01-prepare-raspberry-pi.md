@@ -118,8 +118,40 @@ pi@192.168.0.247's password:
 
 ```
 
-You're now connected to the Raspberry Pi. As a best practice, run `sudo raspi-config` and follow the prompts to change your password.  
+You're now connected to the Raspberry Pi. 
+
+## Change password
+
+As a best practice, run `sudo raspi-config` and follow the prompts to change your password.  
 
 ![pihole devices]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/011.png)
+
+
+## Change hostname
+
+Under `sudo raspi-config`, choose Network Options, then Hostname.  Set the name to something distinctive from other Raspberry Pis.   
+After renaming you will be prompted to reboot.
+
+
+## Increase swap space
+
+Open up the swap configuration file
+
+```
+sudo nano /etc/dphys-swapfile
+```
+
+Change the `CONF_SWAPSIZE` value from 100 to something larger, like 2048, then save and exit.  Restart the swap service. 
+
+
+```
+sudo /etc/init.d/dphys-swapfile stop
+sudo /etc/init.d/dphys-swapfile start
+```
+
+Verify the new swap space using `free -m`
+
+
+
 
 

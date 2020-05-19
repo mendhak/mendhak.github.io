@@ -39,3 +39,5 @@ set-title Hello World!
 ```
 
 ![results]({{ site.baseurl }}/assets/images/set-terminal-title/001.png)
+
+![results]({{ site.baseurl }}/assets/images/set-terminal-title/002.png)

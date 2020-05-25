@@ -226,9 +226,9 @@ You will need two scripts, a `preparewsl.ps1` and a `preparewsl.sh`.
 Kick off the process by running the Powershell script, which in turn calls the bash script. 
 
 ```powershell
-powershell -executionpolicy bypass -file ./preparewsl.ps1
+powershell -executionpolicy bypass -file .\preparewsl.ps1
 ```
 
-The script creates the default user as `ubuntu` with a password of `ubuntu`.  Change it to what you need. 
+About halfway, the script will prompt you for your desired WSL username and password. 
 {: .notice--info}
 

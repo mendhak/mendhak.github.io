@@ -78,6 +78,9 @@ export SSH_AUTH_SOCK=/mnt/c/temp/ssh-agent.sock
 (/mnt/c/Users/mendhak/Google\ Drive/Documents/keys/wsl-ssh-agent/wsl-ssh-agent-gui.exe -socket "C:\Temp\ssh-agent.sock" & disown)
 ```
 
+If you've changed your WSL mount point to `/c/`, be sure to reflect that in the path above.
+{: .notice--info}
+
 Reload WSL, and this should call out to the wsl-ssh-agent.  
 
 Look at your system tray area for a pair-of-keys icon that appears.  If you click About, you can also see the path to your `.sock` at the bottom of the help dialog.   

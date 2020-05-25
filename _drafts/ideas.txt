@@ -20,3 +20,10 @@ visual code extension pack
 
 The state of Ubuntu in HyperV
 
+
+
+WSL1 setup on Win10 1903 + Permissions + KeepassXC + Docker
+
+Options for packaging applications GTK3/Python, deb, pyinstaller, pyqt5
+
+Enviro Setup + RPI Zero W

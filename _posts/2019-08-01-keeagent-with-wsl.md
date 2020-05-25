@@ -50,7 +50,8 @@ else
 fi
 ```
 
-In WSL, Windows paths are prefixed with `/mnt/c/` for `C:`, and paths with spaces require double quotes around them.
+In WSL, Windows paths are prefixed with `/mnt/c/` for `C:`, and paths with spaces require double quotes around them.  
+If you've changed your WSL mount point to `/c/`, be sure to reflect that in the path above.
 {: .notice--info}
 
 ### Test it

@@ -14,7 +14,9 @@ categories:
 
 
 
-Steps that I take to install WSL with Ubuntu, and set up a dev environment to work with Docker, correct permissions and a few other tweaks, on Windows 10.  I'll show manual commands with explanations, and there are [scripts to automate all of it too.](#automating-the-whole-thing).
+Steps that I take to install WSL with Ubuntu, and set up a dev environment to work with Docker, correct permissions and a few other tweaks, on Windows 10.  I'll show the commands to run with explanations.
+
+You can also [go straight to the automation scripts](#automating-the-whole-thing).
 
 ## Enable WSL
 

@@ -27,3 +27,5 @@ WSL1 setup on Win10 1903 + Permissions + KeepassXC + Docker
 Options for packaging applications GTK3/Python, deb, pyinstaller, pyqt5
 
 Enviro Setup + RPI Zero W
+
+GPG to sign commits in WSL

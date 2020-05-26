@@ -1,6 +1,6 @@
 ---
-title: "Setting up a WSL1 dev environment"
-description: ""
+title: "Setting up a WSL1 dev environment from the command line"
+description: "Command line steps for setting up a WSL1 environment, including enabling WSL, setting the mount point, permissions, installing Docker and Docker compose and other tweaks."
 categories:
   - wsl
   - ssh
@@ -231,6 +231,7 @@ Kick off the process by running the Powershell script, which in turn calls the b
 powershell -executionpolicy bypass -file .\preparewsl.ps1
 ```
 
-About halfway, the script will prompt you for your desired WSL username and password. 
+About halfway, the script will prompt you for your desired WSL username and password.  
+You'll still need to install Docker Desktop for Windows yourself though.  
 {: .notice--info}
 

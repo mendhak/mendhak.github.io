@@ -128,6 +128,24 @@ After installation, be sure to go to Docker Desktop's settings, and choose to `E
 
 ![docker]({{ site.baseurl }}/assets/images/my-wsl-dev-setup/002.png)
 
+It's also possible to automate the installation of Docker Desktop from Powershell:
+
+```powershell
+Start-BitsTransfer -Source "https://download.docker.com/win/stable/Docker%20Desktop%20Installer.exe" -Destination "C:\Temp\docker-desktop-installer.exe"
+C:\Temp\docker-desktop-installer.exe install --quiet
+```
+
+You can even enable the option to expose the daemon by directly modifying Docker's settings file.  
+
+```powershell
+$dockerpath = "$env:APPDATA\Docker\settings.json"
+$settings = Get-Content $dockerpath | ConvertFrom-Json
+$settings.exposeDockerAPIOnTCP2375 = $true
+$settings | ConvertTo-Json | Set-Content $dockerpath
+```
+
+Then restart Docker Desktop.
+
 ### Install docker and docker-compose
 
 Continuing in WSL, install the Docker client first, and add your user to the docker group. Additionally, use an environment variable to point the Docker client at the Windows host. 
@@ -219,7 +237,7 @@ And [configure Ubuntu again](#configure-ubuntu)
 
 ## Automating the whole thing
 
-It's also possible to automate the entire process - from installing WSL to Ubuntu to configuring the bash environment.  
+It's also possible to automate the entire process - from installing WSL to Ubuntu to configuring the bash environment, and even installing Docker Desktop for Windows.  
 
 You will need two scripts, a `preparewsl.ps1` and a `preparewsl.sh`.  
 
@@ -232,6 +250,5 @@ powershell -executionpolicy bypass -file .\preparewsl.ps1
 ```
 
 About halfway, the script will prompt you for your desired WSL username and password.  
-You'll still need to install Docker Desktop for Windows yourself though.  
 {: .notice--info}
 

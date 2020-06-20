@@ -29,3 +29,5 @@ Options for packaging applications GTK3/Python, deb, pyinstaller, pyqt5
 Enviro Setup + RPI Zero W
 
 GPG to sign commits in WSL
+
+Grub Reboot Picker

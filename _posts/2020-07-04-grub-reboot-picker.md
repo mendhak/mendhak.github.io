@@ -24,6 +24,22 @@ When you click one of the options, the system will reboot and the next time the 
 <i class="fab fa-ubuntu"></i> I've only tested this with Ubuntu 18.04 and 20.04 but it should work on any system which runs grub and Gnome.
 {: .notice--info}
 
+
+### How to install and run it
+
+It's available in my ppa, run these commands:
+
+```
+sudo add-apt-repository ppa:mendhak/ppa
+sudo apt update
+sudo apt install grub-reboot-picker
+```
+
+You can then reboot and the reboot icon will appear in the system tray.  
+Or you can search for Grub Reboot Picker in the Gnome Activities search.   
+Or you can run `grub-reboot-picker` from the command line, or search
+
+
 ### How it works
 
 The appliction basically parses `/etc/default/grub` and lists out the entries in the system tray menu.  When an item is picked, the application uses `grub-reboot` and passes the user selected entry, and then runs the `reboot` command.  

@@ -19,9 +19,9 @@ gallery1:
 ---
 
 
-KeePassXC is an alternative to KeePass 2; an interesting feature is that it has SSH agent support built in, rather than supplied via a plugin. It can be used to serve SSH keys to WSL1. 
+KeePassXC is an alternative to KeePass 2; an interesting feature is that it has SSH agent support built in, rather than supplied via a plugin. It can be used to serve SSH keys to WSL1, which is useful when remoting on to servers, or using Git over SSH.
 
-Some benefits of putting your SSH key into your Keepass are that you can have a strong password on the private key but don't need to type it out each time, and that you don't need to save your keys on disk - you can let KeePassXC manage the storage, unlocking and serving of the keys for you.
+Some benefits of putting your SSH key into your Keepass are that you can have a strong password on the private key but don't need to type it out each time, and that you don't need to save your keys on disk - you can let KeePassXC manage the storage, unlocking and serving of the keys for you.  
 
 
 ## Set up KeePassXC

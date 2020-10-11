@@ -109,3 +109,14 @@ Now you can launch your app - either from the Shelter app, or from your apps lis
 Many apps run background services, even when you close the app.  It's a good practice to _Freeze_ the app - this prevents the app from appearing in your apps list, and from running any background services.  
 
 {% include gallery id="gallery6" layout="half" caption="Freeze app" %}
+
+
+### Separate Google Play Accounts
+
+It's entirely possible to run a separate set of accounts in the Work Profile, just sign in to the other Play Store. You'll want to make sure that it's a separate Google account, as using the same account as your original defeats the purpose of having a separate profile. 
+
+### If you need to remove Work Profiles
+
+Note that uninstalling the Shelter app will not remove your Work Profile.  If you need to clean up, go to system Settings, then Accounts.  
+Tap the Work tab, then tap 'Remove work profile'.  This will remove the work profile and any apps you installed into there.  
+

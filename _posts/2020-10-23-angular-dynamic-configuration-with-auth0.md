@@ -10,7 +10,7 @@ categories:
   - access
 
 header: 
-  teaser: /assets/images/angular-dynamic-configuration-with-auth0/001.png
+  teaser: /assets/images/angular-dynamic-configuration-with-auth0/015.png
 
 
 ---

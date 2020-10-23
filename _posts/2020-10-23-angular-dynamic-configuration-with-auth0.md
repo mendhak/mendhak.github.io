@@ -9,6 +9,10 @@ categories:
   - jwt
   - access
 
+header: 
+  teaser: /assets/images/angular-dynamic-configuration-with-auth0/001.png
+
+
 ---
 
 _How to set up an Angular application. Secured with Auth0 logins and protected API requests.  With the configuration loaded dynamically via a web request._

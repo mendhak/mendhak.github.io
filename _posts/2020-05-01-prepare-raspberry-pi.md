@@ -6,6 +6,9 @@ categories:
   - ssh
   - wifi
 
+header: 
+  teaser: /assets/images/prepare-raspberry-pi/002.jpg
+
 
 ---
 

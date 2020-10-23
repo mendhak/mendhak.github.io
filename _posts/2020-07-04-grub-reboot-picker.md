@@ -7,6 +7,9 @@ categories:
   - grub
   - dualboot
 
+header: 
+  teaser: /assets/images/grub-reboot-picker/001.png
+
 ---
 
 Grub Reboot Picker is a tray application that helps you reboot into other operating systems or kernels, UEFI, BIOS, or just reboot.  

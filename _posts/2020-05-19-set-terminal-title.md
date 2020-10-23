@@ -7,6 +7,9 @@ categories:
   - bash
   - tweak
 
+header: 
+  teaser: /assets/images/set-terminal-title/001.png
+
 ---
 
 Both gnome-terminal in Ubuntu as well as Windows Terminal with bash allow you to set the title of the current tab you're working in.  This can be useful if you're in multiple shell sessions and need a visual cue to switch between them.  

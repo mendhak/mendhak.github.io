@@ -7,6 +7,10 @@ categories:
   - shelter
   - security
 
+header: 
+  teaser: /assets/images/privacy-android-shelter/001.png
+
+
 gallery1:
   - url: /assets/images/privacy-android-shelter/002.png
     image_path: /assets/images/privacy-android-shelter/002.png

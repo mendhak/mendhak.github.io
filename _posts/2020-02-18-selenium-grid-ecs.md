@@ -8,6 +8,10 @@ categories:
   - spot
   - docker
   - terraform
+
+header: 
+  teaser: /assets/images/ecs-selenium-grid/002.png
+
 ---  
 
 Here I will go over a Terraform script to help with running a cheap Selenium Grid, in an AWS ECS cluster, with the containers managed by Fargate Spot instances.  To put it in a simpler way, this Selenium Grid (hub and nodes) runs in Docker containers, the containers are run on an [ECS Cluster](https://aws.amazon.com/ecs/).  Within ECS, the containers are managed by [Fargate](https://aws.amazon.com/fargate/), which immensely eases the running of containers from your perspective - you don't have to specify instance details, just tell it how much CPU/RAM you need.  And the backing type that we'll make Fargate use here is [Spot instances](https://aws.amazon.com/ec2/spot/).  Spot instances are unused EC2 capacity that AWS offers cheaply, with the caveat that there is a small chance of your instance being reclaimed with a 2 minute notice.  

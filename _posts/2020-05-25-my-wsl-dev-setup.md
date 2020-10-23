@@ -10,6 +10,10 @@ categories:
   - pgp
   - git
 
+header: 
+  teaser: /assets/images/my-wsl-dev-setup/001.png
+
+
 ---
 
 

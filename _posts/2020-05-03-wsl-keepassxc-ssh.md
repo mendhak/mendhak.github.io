@@ -8,6 +8,9 @@ categories:
   - windows
   - keepass
 
+header: 
+  teaser: /assets/images/wsl-ssh-keepassxc/004.png
+
 
 gallery1:
   - url: /assets/images/wsl-ssh-keepassxc/002.png

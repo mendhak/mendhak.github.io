@@ -8,10 +8,10 @@ tags:
 
 ---
 
+When mapping tall buildings, it's important to ensure that the drawn area matches the building's footprint - where it intersects with the earth.  
 
-I was given a very useful tip while working on some [OpenStreetMap tasks](https://www.hotosm.org/), regarding tall buildings.  
+It's a normal habit to just trace the roof of a building and move on to the next one.  However you need to be careful with tall buildings, just drawing the roof can be misleading, incorrect and could overlap other structures. Here's how to ensure that the buildings are mapped correctly.  
 
-While mapping in OSM, it's a normal habit to just trace the roof of a building and move on to the next one.  However you need to be careful with tall buildings - it's important to ensure that the drawn area matches the building's footprint - in other words, where it intersects with the earth.  
 
 Take this example, there are two tall buildings here, and they're at an angle, not directly overhead.  
 
@@ -31,6 +31,6 @@ It does appear a little odd if you're not familiar with this technique, but once
 
 ![zoom out]({{ site.baseurl }}/assets/images/openstreetmap-tall-buildings/004.png)
 
-I was able to understand this thanks to this helpful video which goes into a little more detail. 
+I was given a very useful tip while working on some [OpenStreetMap tasks](https://www.hotosm.org/) and was able to understand it well, thanks to this helpful video which goes into a little more detail. 
 
 {% include video id="JAPiGntG6fs" provider="youtube" %}

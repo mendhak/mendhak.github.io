@@ -12,15 +12,15 @@ tags:
 
 ---
 
-AWS recently announced the ability to use Docker images in your Lambda functions.  I'll go over a bare minimum set of steps to get a basic example working. 
+AWS recently announced the ability to use Docker images in your Lambda functions.  Here I'll go over a basic set of steps to get a simple example working. 
 
 ## Setup
 
 You will need the latest version of the [AWS CLI v2](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-linux-install). 
 
-You will need to have [configured AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) with an IAM user that can perform actions against your account.  
+Make sure you've [configured AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html) with an IAM user that can perform actions against your account.  
 
-You will need a role for Lambda in your AWS account.  If you haven't created one already, run this and make note of the Role ARN that comes back.  
+You will need a role for Lambdas in your AWS account.  If you haven't created one already, run this and make note of the Role ARN that comes back.  
 
 ```bash
 aws iam create-role --role-name lambda-ex --assume-role-policy-document '{
@@ -31,6 +31,10 @@ aws iam create-role --role-name lambda-ex --assume-role-policy-document '{
 ```
 
 You will need to have Docker installed, obviously.
+
+You can also follow along using the git repo with [sample code](https://github.com/mendhak/lambda-docker-hello-world). 
+{: .notice--info}
+
 
 ## Write your basic Node function
 
@@ -55,7 +59,7 @@ exports.handler = async (event, context) => {
 
 ## Build the Docker image
 
-To make use of Docker in Lambda, AWS provides a [specific Docker image for NodeJS](https://hub.docker.com/r/amazon/aws-lambda-nodejs) that you'll need to use. 
+To make use of Docker in Lambda, AWS provides a [specific Docker image for NodeJS](https://hub.docker.com/r/amazon/aws-lambda-nodejs) to base your image from. 
 
 
 Create a Dockerfile with these contents.
@@ -124,7 +128,7 @@ docker push xxxxxxxxx.dkr.ecr.eu-west-1.amazonaws.com/lambda-docker-hello-world:
 
 Now that the image is in place, you can create the Lambda function in your AWS account. 
 
-You'll need to substitute the `role` below for your Lambda's IAM role. The `ImageUri` needs to point at the image that you pushed to ECR.    
+Substitute the `role` below for your Lambda's IAM role. The `ImageUri` needs to point at the image that you pushed to ECR.    
 
 ```
 aws lambda create-function \ 

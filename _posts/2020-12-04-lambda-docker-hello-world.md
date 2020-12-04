@@ -12,7 +12,7 @@ tags:
 
 ---
 
-AWS recently announced the ability to use Docker images in your Lambda functions.  Here I'll go over a basic set of steps to get a simple example working. 
+AWS [recently announced](https://aws.amazon.com/blogs/aws/new-for-aws-lambda-container-image-support/) the ability to use Docker images in your Lambda functions.  Here I'll go over a basic set of steps to get a simple example working. 
 
 ## Setup
 

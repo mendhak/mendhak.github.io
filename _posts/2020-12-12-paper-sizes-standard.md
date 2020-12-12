@@ -9,7 +9,7 @@ tags:
   - standards
 
 header: 
-  teaser: /assets/images/paper-sizes-standard/001.png
+  teaser: /assets/images/paper-sizes-standard/001preview.png
 
 ---
 

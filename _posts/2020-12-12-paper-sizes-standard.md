@@ -8,6 +8,9 @@ tags:
   - paper
   - standards
 
+header: 
+  teaser: /assets/images/paper-sizes-standard/001.png
+
 ---
 
 The well known A, B, C series paper sizes may seem arbitrary at first glance, but they are actually based on some simple basic principles which make it easy to calculate and understand.  They are quite intuitive and easy to work with and are based on good mathematical foundations.  

@@ -28,16 +28,16 @@ You will need a microSD card and a USB adapter.  These are all cheap and plentif
 
 ## Download OS image
 
-The official image for Raspberry Pi in general is [Raspbian, which can be downloaded here](https://www.raspberrypi.org/downloads/raspbian/).  If you don't need a desktop environment, download the Lite version.  Not having a desktop environment frees up valuable memory and CPU.  
+The official image for Raspberry Pi in general is [Raspberry Pi OS (formerly Raspbian), which can be downloaded here](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit).  If you don't need a desktop environment, download the Lite version.  Not having a desktop environment frees up valuable memory and CPU.  
 
 ![raspbian images]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/005.png)
 
-Optionally, if you have WSL you can download and also verify the checksum.  
+Optionally, you can download and verify the checksum too.  
 
 
 ```bash
-/c/Users/mendhak/Downloads$ wget -O raspbian.zip https://downloads.raspberrypi.org/raspbian_lite_latest 
-/c/Users/mendhak/Downloads$ sha256sum raspbian.zip
+$ wget -O raspbian.zip https://downloads.raspberrypi.org/raspbian_lite_latest 
+$ sha256sum raspbian.zip
 12ae6e17bf95b6ba83beca61e7394e7411b45eba7e6a520f434b0748ea7370e8  raspbian.zip
 ```
 

@@ -193,12 +193,12 @@ cd display
 make
 ```    
 
-### DarkSky API key
+### Climacell API key
 
-The DarkSky API will be used to get the weather conditions.  Modify the `env.sh` file and put [your DarkSky API key](https://darksky.net/dev) in there. 
+The Climacell API will be used to get the weather conditions.  Modify the `env.sh` file and put [your Climacell API key](https://www.climacell.co/weather-api/) in there. 
 
 ```bash
-export DARKSKY_APIKEY=xxxxxx
+export CLIMACELL_APIKEY=xxxxxx
 ```
 
 
@@ -236,7 +236,7 @@ On the first SSH session, you should now see the auth flow complete, and a new `
 
 ## Run it
 
-Run `./run.sh` which should query DarkSky, Google Calendar.  It will then create a png, convert to a 1-bit black and white bmp, then display the bmp on screen. 
+Run `./run.sh` which should query Climacell, Google Calendar.  It will then create a png, convert to a 1-bit black and white bmp, then display the bmp on screen. 
 After a few runs, if everything is working well, you should then make this a cron job. 
 
 ```bash
@@ -262,7 +262,7 @@ Everything starts with the `screen-template.svg` which holds the labels and layo
 
 ### API Calls
 
-The first part of `run.sh` calls on the `screen-weather.get.py` script which queries DarkSky API, gets the weather info and substitutes icons and temperatures in the SVG.  It also sets the date and time.  The SVG is then written out to `screen-output-weather.svg`.  The API response is stored in 
+The first part of `run.sh` calls on the `screen-weather.get.py` script which queries Climacell API, gets the weather info and substitutes icons and temperatures in the SVG.  It also sets the date and time.  The SVG is then written out to `screen-output-weather.svg`.  The API response is stored in 
 
 
 The last API call is to Google Calendar, the upcoming 2 calendar entries are written to the same SVG.  

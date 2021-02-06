@@ -63,6 +63,9 @@ You'll need a 6"x4" picture frame to hold everything together.  This is the best
 [Picture frame](https://www.wilko.com/wilko-6-x-4-inch-black-easy-photo-frame/p/0242493){: .btn .btn--info}
 
 
+{% include repo_card.html reponame="waveshare-epaper-display" %}
+
+
 ## Setup the PI
 
 ### SD Card

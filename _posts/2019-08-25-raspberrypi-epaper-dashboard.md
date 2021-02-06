@@ -35,7 +35,6 @@ The screen will display:
 * Date and time
 * Weather icon with high and low temperature
 * Google Calendar entries
-* Pihole stats
 
 Here it is in action
 
@@ -203,14 +202,6 @@ export DARKSKY_APIKEY=xxxxxx
 ```
 
 
-### PiHole info
-
-If you have a [Pi-Hole](https://pi-hole.net/) set up, you can display stats from its [API](http://pi.hole/admin/api.php) on screen.   Modify the `env.sh` and add the domain of the PiHole in there, eg `pi.hole` or `192.168.0.111`
-
-```bash
-export PIHOLE_ADDR=192.168.0.111
-```
-
 ### Google Calendar info
 
 The script will by default get its info from your primary Google Calendar.  If you need to pick a specific calendar you will need its ID.  To get its ID, open up [Google Calendar](https://calendar.google.com) and go to the settings for your preferred calendar.  Under the 'Integrate Calendar' section you will see a Calendar ID which looks like `xyz12345@group.calendar.google.com`.  Set that value in `env.sh`
@@ -245,7 +236,7 @@ On the first SSH session, you should now see the auth flow complete, and a new `
 
 ## Run it
 
-Run `./run.sh` which should query DarkSky, PiHole, Google Calendar.  It will then create a png, convert to a 1-bit black and white bmp, then display the bmp on screen. 
+Run `./run.sh` which should query DarkSky, Google Calendar.  It will then create a png, convert to a 1-bit black and white bmp, then display the bmp on screen. 
 After a few runs, if everything is working well, you should then make this a cron job. 
 
 ```bash
@@ -273,8 +264,6 @@ Everything starts with the `screen-template.svg` which holds the labels and layo
 
 The first part of `run.sh` calls on the `screen-weather.get.py` script which queries DarkSky API, gets the weather info and substitutes icons and temperatures in the SVG.  It also sets the date and time.  The SVG is then written out to `screen-output-weather.svg`.  The API response is stored in 
 
-
-Next is the Pihole summary, queried using `screen-pihole-get.py` which invokes the Pihole API and gets the summary, again substituting it in the `screen-output-weather.svg` 
 
 The last API call is to Google Calendar, the upcoming 2 calendar entries are written to the same SVG.  
 

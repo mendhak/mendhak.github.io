@@ -122,7 +122,9 @@ Login with the default password of raspberry and change it using the `passwd` co
 The display as well as the code that talks to the display has quite a few dependencies.  Here we're installing a few fonts, some Python dependencies.
 
 ```bash
-sudo apt install git ttf-wqy-zenhei ttf-wqy-microhei python3-pip python-imaging libopenjp2-7-dev libjpeg8-dev inkscape figlet
+sudo apt install git ttf-wqy-zenhei ttf-wqy-microhei python3-pip python-imaging libopenjp2-7-dev libjpeg8-dev inkscape figlet wiringpi python3
+sudo pip3 install astral spidev RPi.GPIO Pillow  # Pillow took multiple attempts to install as it's always missing dependencies
+sudo pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 ```
 
 ### Enable SPI
@@ -148,26 +150,6 @@ sudo make check
 sudo make install
 ```
 
-### Get the WiringPi library
-
-WiringPi also provides access to the GPIO, and also needs to be manually installed. 
-
-```bash
-sudo git clone git://git.drogon.net/wiringPi
-cd wiringPi
-sudo ./build
-```
-
-### Get the Python3 libraries
-
-Installing Pillow took a few attempts as it always seemed to be missing some dependencies.  
-
-```bash
-sudo pip3 install spidev RPi.GPIO Pillow  
-sudo pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
-```
-    
-
 
 ## Using this application
 
@@ -182,16 +164,14 @@ Clone this repository to your Raspberry Pi
 git clone git@github.com:mendhak/waveshare-epaper-display.git
 ```
 
+### Waveshare version
 
-### (Optional) Build the displayer
-
-The `display/display` executable does the work of sending the image over to the screen and is already included in the repo.  If you need to rebuild it however, 
+Modify the env.sh file and set the version of your Waveshare 7.5" e-Paper Module (newer ones are version 2)
 
 ```bash
-cd waveshare-epaper-display
-cd display
-make
-```    
+export WAVESHARE_EPD75_VERSION=2
+```
+
 
 ### Climacell API key
 
@@ -199,6 +179,16 @@ The Climacell API will be used to get the weather conditions.  Modify the `env.s
 
 ```bash
 export CLIMACELL_APIKEY=xxxxxx
+```
+
+### Location information for Weather
+
+Modify the `env.sh` file and update with the latitude and longitude of your location. As needed, change the temperature format (CELSIUS or FARENHEIT).
+
+```bash
+export WEATHER_FORMAT=CELSIUS
+export WEATHER_LATITUDE=51.3656
+export WEATHER_LONGITUDE=0.1963
 ```
 
 
@@ -286,28 +276,12 @@ Waveshare have a [user manual](https://www.waveshare.com/w/upload/7/74/7.5inch-e
 
 The [Waveshare demo repo is here](https://github.com/waveshare/e-Paper).  Assuming all dependencies are installed, these demos should work.  
 
-    git clone https://github.com/waveshare/e-Paper waveshare-epaper-sample
-    cd waveshare-epaper-sample
+    git clone https://github.com/waveshare/e-Paper
+    cd e-Paper
 
+This is the best place to start for troubleshooting - try to make sure the examples given in their repo works for you. 
 
+[Readme for the C demo](https://github.com/waveshare/e-Paper/blob/master/RaspberryPi_JetsonNano/c/readme_EN.txt)
 
+[Readme for the Python demo](https://github.com/waveshare/e-Paper/blob/master/RaspberryPi_JetsonNano/python/readme_jetson_EN.txt)
 
-
-### Run the BCM2835 demo
-
-
-    cd ~/waveshare-epaper-sample/7.5inch_e-paper_code/RaspberryPi/bcm2835/
-    make
-    sudo ./epd
-
-
-### Run the WiringPI demo
-
-    cd ~/waveshare-epaper-sample/7.5inch_e-paper_code/RaspberryPi/wiringpi/
-    make
-    sudo ./epd
-
-### Run the Python3 demo
-
-    cd ~/waveshare-epaper-sample/7.5inch_e-paper_code/RaspberryPi/python3/
-    sudo python3 main.py

@@ -1,6 +1,7 @@
 ---
 title: "Raspberry Pi: Waveshare e-paper dashboard"
 description: "Raspberry Pi dashboard with an e-paper display from waveshare"
+last_modified_at: 2021-02-07T11:00:00Z
 categories: 
   - raspberrypi
 tags: 
@@ -9,7 +10,7 @@ tags:
   - dashboard
 gallery:
   - url: /assets/images/raspberrypi-epaper-dashboard/001.jpg
-    image_path: /assets/images/raspberrypi-epaper-dashboard/001thumb.png
+    image_path: /assets/images/raspberrypi-epaper-dashboard/001.jpg
     alt: "In a picture frame"
     title: "In a picture frame"
   - url: /assets/images/raspberrypi-epaper-dashboard/002.png

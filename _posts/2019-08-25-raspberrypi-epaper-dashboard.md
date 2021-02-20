@@ -69,56 +69,17 @@ You'll need a 6"x4" picture frame to hold everything together.  This is the best
 
 ## Setup the PI
 
-### SD Card
+### Prepare the Pi
 
-Use [Etcher](https://etcher.io) to write the SD card with the [Raspbian Stretch Lite](https://www.raspberrypi.org/downloads/raspbian/) image, no need for the desktop version. 
-
-
-### Enable SSH 
-
-After the image has been written create a file called `ssh` in the boot partition of the card.
-
-```bash
-sudo touch /media/mendhak/boot/ssh
-```
-
-### Enable WiFi
-
-Create a file called `wpa_supplicant.conf` in the boot partition 
-
-```bash
-sudo nano /media/mendhak/boot/wpa_supplicant.conf
-```
-
-with these contents, substituting your Wifi's SSID and password.  You'll also need to change the `country` to match yours.  
-
-
-    update_config=1
-    country=GB
-
-    network={
-        ssid="yourwifi"
-        psk="wifipasswd"
-        key_mgmt=WPA-PSK
-    }
+I've got a separate post for this, [prepare the Raspberry Pi with WiFi and SSH](https://code.mendhak.com/prepare-raspberry-pi/).  Once the Pi is set up, and you can access it, come back here. 
 
 
 ### Connect the display
 
-Put the HAT on top of the Pi's GPIO pins.  
+Turn the Pi off, then put the HAT on top of the Pi's GPIO pins.  
 
-Connect the ribbon from the epaper display to the extension.  To do this you will need to lift the black latch at the back of the connector, insert the ribbon slowly, then push the latch down. 
+Connect the ribbon from the epaper display to the extension.  To do this you will need to lift the black latch at the back of the connector, insert the ribbon slowly, then push the latch down.  Now turn the Pi back on. 
 
-
-### Start the Pi
-
-Insert the SD card.  Connect the Pi to power, let it boot up.  In your router devices page, a new connected device should appear.  If all goes correctly then the pi should be available with its FQDN even.  You can now SSH in. 
-
-```bash
-ssh pi@raspberrypi.lan
-```
-
-Login with the default password of raspberry and change it using the `passwd` command.
 
 
 ## Setup dependencies
@@ -226,11 +187,9 @@ On the first SSH session, you should now see the auth flow complete, and a new `
 
 
 
-
-
 ## Run it
 
-Run `./run.sh` which should query Climacell, Google Calendar.  It will then create a png, convert to a 1-bit black and white bmp, then display the bmp on screen. 
+Run `./run.sh` which should query Climacell, Google Calendar.  It will then create a png, then display the png on screen. 
 After a few runs, if everything is working well, you should then make this a cron job. 
 
 ```bash
@@ -268,10 +227,9 @@ Due to API rate limits, you will see various `.pickle` files which store the Goo
 
 The image is converted from the intermediate SVG to PNG, and then the `display.py` renders it to screen using the e-Paper libraries.  It's slow, it takes about 30 seconds to write to screen. 
 
-It's possible to use the C libraries to make this process faster, but it requires writing and compiling the display binary yourself.  It can further be sped up by converting the PNG to a 1-bit BMP so that there's less data to send over the wire.  The C way would take about 6-8 seconds.  
+It's possible to use the C libraries to make this process faster, but it requires writing and compiling the display binary yourself.  It could further be sped up by converting the PNG to a 1-bit BMP so that there's less data to send over the wire.  The C way would take about 6-8 seconds.  
 
-The reason for sticking with the Python way is that I've got a v1 Waveshare display, while most users have a v2 Waveshare display.  Curse of the early adopter!
-
+The reason for sticking with the Python way is that I've got a v1 Waveshare display, while most users have a v2 Waveshare display, and it's easier to cater to both this way.  Curse of the early adopter!
 
 
 

@@ -165,7 +165,7 @@ You can now use the code from this repo
 Clone this repository to your Raspberry Pi
 
 ```bash
-git clone git@github.com:mendhak/waveshare-epaper-display.git
+git clone --recursive git@github.com:mendhak/waveshare-epaper-display.git
 ```
 
 ### Waveshare version

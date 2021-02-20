@@ -193,7 +193,7 @@ Run `./run.sh` which should query Climacell, Google Calendar.  It will then crea
 After a few runs, if everything is working well, you should then make this a cron job. 
 
 ```bash
-*/1 * * * * cd /home/pi/waveshare-epaper-display && bash run.sh > run.log 2>&1
+* * * * * cd /home/pi/waveshare-epaper-display && bash run.sh > run.log 2>&1
 ```
 
 ## Putting it in a picture frame

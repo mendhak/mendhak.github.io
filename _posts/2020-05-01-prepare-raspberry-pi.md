@@ -36,9 +36,9 @@ Optionally, you can download and verify the checksum too.
 
 
 ```bash
-$ wget -O raspbian.zip https://downloads.raspberrypi.org/raspbian_lite_latest 
-$ sha256sum raspbian.zip
-12ae6e17bf95b6ba83beca61e7394e7411b45eba7e6a520f434b0748ea7370e8  raspbian.zip
+$ wget -O raspios.zip https://downloads.raspberrypi.org/raspios_lite_armhf_latest
+$ sha256sum raspios.zip
+d49d6fab1b8e533f7efc40416e98ec16019b9c034bc89c59b83d0921c2aefeef  raspios.zip
 ```
 
 ## Flash the SD Card

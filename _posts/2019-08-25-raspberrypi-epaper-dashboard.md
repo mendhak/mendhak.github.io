@@ -266,9 +266,12 @@ Due to API rate limits, you will see various `.pickle` files which store the Goo
 
 ### Image conversion and display
 
-The image is converted from the intermediate SVG to PNG, and then converted from a PNG to a 1-bit bitmap.  Using a 1-bit, low grade BMP is what allows the screen to refresh relatively quickly. In my example this refresh takes about 6 seconds.  
+The image is converted from the intermediate SVG to PNG, and then the `display.py` renders it to screen using the e-Paper libraries.  It's slow, it takes about 30 seconds to write to screen. 
 
-It's possible to use Python libraries to display images directly to screen, however it's slow, really slow.  Rendering a 'high quality' JPG/PNG to screen, using Python, took about 35 seconds.  
+It's possible to use the C libraries to make this process faster, but it requires writing and compiling the display binary yourself.  It can further be sped up by converting the PNG to a 1-bit BMP so that there's less data to send over the wire.  The C way would take about 6-8 seconds.  
+
+The reason for sticking with the Python way is that I've got a v1 Waveshare display, while most users have a v2 Waveshare display.  Curse of the early adopter!
+
 
 
 

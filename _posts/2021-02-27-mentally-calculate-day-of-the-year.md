@@ -67,7 +67,7 @@ You can now practice - pick a random date in the year.  Figure out that month's 
 Example: December 25<sup>th</sup> 2021.  
 
 1. The 12<sup>th</sup> of the 12<sup>th</sup> month.  
-1. December 12<sup>th<sup> is a Sunday.  
+1. December 12<sup>th</sup> is a Sunday.  
 1. 12 + 14 days = 26<sup>th</sup> is a Sunday
 1. 25<sup>th</sup> is a Saturday
 

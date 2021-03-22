@@ -18,8 +18,8 @@ So why the fuck won't you build?
 
 My latest abstraction sits neatly in layers,  
 Though my teammates are less than thrilled.  
-But I saw it in some blog post,  
-So please, just fucking build.  
+But I saw it in some blog post, so they're wrong,  
+Help me out with a build.  
 
 Lint warnings I glaze over easily,  
 Code coverage I've lowered and killed.  

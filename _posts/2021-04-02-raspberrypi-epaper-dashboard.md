@@ -1,7 +1,7 @@
 ---
 title: "Raspberry Pi: Waveshare e-paper dashboard"
 description: "Raspberry Pi dashboard with an e-paper display from waveshare"
-last_modified_at: 2021-02-07T11:00:00Z
+last_modified_at: 2021-04-02T21:00:00Z
 categories: 
   - raspberrypi
 tags: 
@@ -35,7 +35,7 @@ The screen will display:
 
 * Date and time
 * Weather icon with high and low temperature
-* Google Calendar entries
+* Google Calendar or Outlook Calendar entries
 
 Here it is in action
 
@@ -89,7 +89,7 @@ The display as well as the code that talks to the display has quite a few depend
 ```bash
 sudo apt install git ttf-wqy-zenhei ttf-wqy-microhei python3-pip python-imaging libopenjp2-7-dev libjpeg8-dev inkscape figlet wiringpi python3
 sudo pip3 install astral spidev RPi.GPIO Pillow  # Pillow took multiple attempts to install as it's always missing dependencies
-sudo pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
+sudo pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib msal
 ```
 
 ### Enable SPI
@@ -157,7 +157,7 @@ export WEATHER_LONGITUDE=0.1963
 ```
 
 
-### Google Calendar info
+### Google Calendar setup
 
 The script will by default get its info from your primary Google Calendar.  If you need to pick a specific calendar you will need its ID.  To get its ID, open up [Google Calendar](https://calendar.google.com) and go to the settings for your preferred calendar.  Under the 'Integrate Calendar' section you will see a Calendar ID which looks like `xyz12345@group.calendar.google.com`.  Set that value in `env.sh`
 
@@ -165,7 +165,7 @@ The script will by default get its info from your primary Google Calendar.  If y
 export GOOGLE_CALENDAR_ID=xyz12345@group.calendar.google.com
 ```
 
-### Google Calendar token
+#### Google Calendar token
 
 In order to display Google Calendar events, we'll need an OAuth Token.  However Google have not made the process of obtaining one simple at all.  The Oauth process needs to complete once manually in order to allow the Python code to then continuously query Google Calendar for information. 
 
@@ -185,11 +185,28 @@ curl "http://localhost:8080/..."
 
 On the first SSH session, you should now see the auth flow complete, and a new `token.pickle` file appears.  The Python script should now be able to run in the future without prompting required.  
 
+### Outlook Calendar setup
+
+You can use Outlook Calendar instead of Google Calendar. The setup is very simple, just run this script which will give instructions on how to login:
+
+```bash
+python3 outlook_util.py
+```
+
+Login with the Microsoft account you want to get the calendar from, and accept the consent screen.
+After a moment, the script will then display a set of Calendar IDs and some sample events from those Calendars.
+Copy the ID of the calendar you want, and add it to `env.sh` like so:
+
+```bash
+export OUTLOOK_CALENDAR_ID=AQMkAxyz...
+```
+
+Note that if you set an Outlook Calendar ID, the Google Calendar will be ignored.
 
 
 ## Run it
 
-Run `./run.sh` which should query Climacell, Google Calendar.  It will then create a png, then display the png on screen. 
+Run `./run.sh` which should query Climacell, Google/Outlook Calendar.  It will then create a png, then display the png on screen. 
 After a few runs, if everything is working well, you should then make this a cron job. 
 
 ```bash
@@ -220,7 +237,7 @@ The first part of `run.sh` calls on the `screen-weather.get.py` script which que
 
 The last API call is to Google Calendar, the upcoming 2 calendar entries are written to the same SVG.  
 
-Due to API rate limits, you will see various `.pickle` files which store the Google Calendar and Dark Sky API responses for a few hours.  This means that any new entries in your target calendar won't show up immediately.  Similarly weather info will be up to a few hours delayed.  
+Due to API rate limits, you will see various `.pickle` files which store the Google/Outlook Calendar and Dark Sky API responses for a few hours.  This means that any new entries in your target calendar won't show up immediately.  Similarly weather info will be up to a few hours delayed.  
 {: .notice--info}
 
 ### Image conversion and display

@@ -1,7 +1,7 @@
 ---
 title: "Raspberry Pi: Waveshare e-paper dashboard"
 description: "Raspberry Pi dashboard with an e-paper display from waveshare"
-last_modified_at: 2021-04-02T21:00:00Z
+last_modified_at: 2021-04-12T20:00:00Z
 categories: 
   - raspberrypi
 tags: 
@@ -138,23 +138,78 @@ export WAVESHARE_EPD75_VERSION=2
 ```
 
 
-### Climacell API key
+## Pick a Weather provider
 
-The Climacell API will be used to get the weather conditions.  Modify the `env.sh` file and put [your Climacell API key](https://www.climacell.co/weather-api/) in there. 
+You can pick between OpenWeatherMap, Met Office, AccuWeather, Met.no and Climacell to provide temperature and weather forecasts.  
+You can switch between them too, by providing the keys and commenting out other ones, but remember to delete the `weather-cache.json` if you switch weather providers. 
 
-```bash
-export CLIMACELL_APIKEY=xxxxxx
-```
+### OpenWeatherMap
+
+Register on the [OpenWeathermap](https://openweathermap.org) website, and go to the [API Keys page](https://home.openweathermap.org/api_keys), that's the key you'll need. 
+Add it to the env.sh file.  
+
+    export OPENWEATHERMAP_APIKEY=xxxxxx
+
+### Met Office (UK)
+
+Create an account [on the Met Office Weather DataHub](https://metoffice.apiconnect.ibmcloud.com/metoffice/production/) site.  
+Next, [register an application](https://metoffice.apiconnect.ibmcloud.com/metoffice/production/application) - just call it Raspberry Pi or Home Project.  
+You'll be shown a Client Secret, and a Client ID.  Copy both of these somewhere, you'll need it later.  
+
+After registering an application, you then "subscribe" to an API by going to the [API Usage Plans](https://metoffice.apiconnect.ibmcloud.com/metoffice/production/product).  
+Pick "Global spot data bundle" which includes the "Global daily spot data" API. 
+Choose the Basic (free) plan and when prompted, pick that application you previously registered.  
+
+Finally, add the Met Office Client ID and Secret to the env.sh file. 
+
+    export METOFFICEDATAHUB_CLIENT_ID=xxxxxx-xxxxxx-....
+    export METOFFICEDATAHUB_CLIENT_SECRET=xxxxxx
+
+### AccuWeather
+
+Register on the [AccuWeather](https://developer.accuweather.com/) site.  
+Next, [register a new application](https://developer.accuweather.com/user/me/apps).  
+I just named it Personal, marked it as Limited Trial, Internal App, Business to Consumer. 
+Once you do this you'll get an API Key, save it. 
+
+You'll also need an AccuWeather Location Key.  
+Do a normal [AccuWeather search](https://www.accuweather.com/) for your location.  
+The last number in the URL is the Location Key.  In the example of [London](https://www.accuweather.com/en/gb/london/ec4a-2/weather-forecast/328328), it's `328328`. 
+
+Add the API Key and Location Key to the `env.sh`. 
+
+    export ACCUWEATHER_APIKEY=xxxxxx
+    export ACCUWEATHER_LOCATIONKEY=328328
+
+### Met.no
+
+Met.no's [Terms of Service](https://api.met.no/doc/TermsOfService) requires you to identify yourself.  The purpose is to ensure they can contact you in case you overload or abuse their servers.  For this reason, you just need to set your email address in `env.sh` like so:
+
+    export METNO_SELF_IDENTIFICATION=you@example.com
+
+Note that the Met.no API provides 6 hours of forecast, rather than a full day.  
+
+### Climacell (tomorrow.io)
+
+Register on the [Climacell site](https://www.climacell.co/weather-api/), and when you do you should be given an API Key.   
+Modify the `env.sh` file and put your Climacell API key in there.  
+
+    export CLIMACELL_APIKEY=xxxxxx
 
 ### Location information for Weather
 
-Modify the `env.sh` file and update with the latitude and longitude of your location. As needed, change the temperature format (CELSIUS or FARENHEIT).
+Whichever weather provider you've picked, you'll need to provide the location and units to display in.  
 
-```bash
-export WEATHER_FORMAT=CELSIUS
-export WEATHER_LATITUDE=51.3656
-export WEATHER_LONGITUDE=0.1963
-```
+Modify the `env.sh` file and update with the latitude and longitude of your location.  
+As needed, change the temperature format (CELSIUS or FAHRENHEIT).  
+
+    export WEATHER_LATITUDE=51.3656
+    export WEATHER_LONGITUDE=0.1963
+    export WEATHER_FORMAT=CELSIUS
+
+## Pick a Calendar provider
+
+You can use Google Calendar or Outlook Calendar to display events.  
 
 
 ### Google Calendar setup
@@ -185,9 +240,11 @@ curl "http://localhost:8080/..."
 
 On the first SSH session, you should now see the auth flow complete, and a new `token.pickle` file appears.  The Python script should now be able to run in the future without prompting required.  
 
+I also have a [post here with screenshots](https://github.com/mendhak/waveshare-epaper-display/issues/19#issuecomment-780397819) walking through the process. 
+
 ### Outlook Calendar setup
 
-You can use Outlook Calendar instead of Google Calendar. The setup is very simple, just run this script which will give instructions on how to login:
+The setup is much simpler, just run this script which will give instructions on how to login:
 
 ```bash
 python3 outlook_util.py

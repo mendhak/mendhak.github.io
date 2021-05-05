@@ -8,6 +8,9 @@ tags:
   - api-gateway
   - openapi
 
+header: 
+  teaser: /assets/images/api-gateway-self-hosted/002.png
+
 ---
 
 It's possible to host your OpenAPI (Swagger) JSON as well the UI from within API Gateway itself, without needing an S3 bucket or any additional infrastructure.

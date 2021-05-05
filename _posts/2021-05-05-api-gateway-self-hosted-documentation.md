@@ -48,6 +48,8 @@ If you have a custom domain on your API Gateway, this could become something ple
 Take a look at the network traffic, you'll see a request made to `/docs/swagger.json`.  Both of these requests are handled by the same API Gateway endpoint and same Lambda.  
 
 
+[Sample repo](https://github.com/mendhak/API-Gateway-Self-Hosted-Documentation){: .btn .btn--info}
+
 
 I'll point out some highlights from the code below. 
 

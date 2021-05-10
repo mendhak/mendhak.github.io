@@ -26,6 +26,10 @@ KeePassXC is an alternative to KeePass 2; an interesting feature is that it has 
 
 Some benefits of putting your SSH key into your Keepass are that you can have a strong password on the private key but don't need to type it out each time, and that you don't need to save your keys on disk - you can let KeePassXC manage the storage, unlocking and serving of the keys for you.  
 
+This post covers WSL1.  For WSL2, see [this post](/wsl2-keepassxc-ssh/)
+{: .notice--info}
+
+
 
 ## Set up KeePassXC
 

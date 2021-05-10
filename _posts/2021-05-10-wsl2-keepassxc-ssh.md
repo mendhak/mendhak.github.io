@@ -2,7 +2,7 @@
 title: "How to use KeepassXC to serve SSH keys to WSL2 and Ubuntu"
 description: "Using KeepassXC SSH, on Windows 10, to serve SSH keys to WSL 2 running Ubuntu"
 categories: 
-  - wsl
+  - wsl2
   - ssh
   - ubuntu
   - windows

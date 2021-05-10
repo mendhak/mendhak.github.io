@@ -27,6 +27,10 @@ I have previously shown how to [serve keys to WSL1](/wsl-keepassxc-ssh/), here I
 KeepassXC can be used to serve SSH keys to WSL2, which is useful when remoting on to servers, or using Git over SSH. Some benefits of putting your SSH key into your KeepassXC are that you can have a strong password on the private key but don't need to type it out each time, and that you don't need to save your keys on disk - you can let KeePassXC manage the storage, unlocking and serving of the keys for you.  
 
 
+You can also skip the steps and go straight to [the setup script](#all-together-in-one-script)
+{: .notice--info}
+
+
 ## Set up KeePassXC
 
 Open up KeePassXC's settings, and choose to `Enable SSH Agent` and also `Use OpenSSH for Windows instead of Pageant`.  

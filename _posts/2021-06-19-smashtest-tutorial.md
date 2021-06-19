@@ -8,6 +8,8 @@ tags:
   - smashtest
   - firefox
  
+header: 
+  teaser: /assets/images/smashtest-tutorial/002.png 
   
 ---
 

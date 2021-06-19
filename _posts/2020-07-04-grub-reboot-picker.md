@@ -14,7 +14,7 @@ header:
 
 Grub Reboot Picker is a tray application that helps you reboot into other operating systems or kernels, UEFI, BIOS, or just reboot.  
 
-![screenshot]({{ site.baseurl }}/assets/images/grub-reboot-picker/001.png)
+[![screenshot]({{ site.baseurl }}/assets/images/grub-reboot-picker/001.png)]({{ site.baseurl }}/assets/images/grub-reboot-picker/001.png)
 
 {% include repo_card.html reponame="grub-reboot-picker" %}
 

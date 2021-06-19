@@ -13,7 +13,7 @@ When someone submits a pull request to your repository, it is actually possible 
 
 In other words, you can push to a pull request branch, as long as the fork  owner has [allowed it](https://help.github.com/en/articles/allowing-changes-to-a-pull-request-branch-created-from-a-fork) while creating the pull request. 
 
-![pr]({{ site.baseurl }}/assets/images/allow-maintainers-to-make-edits-sidebar-checkbox.png)
+[![pr]({{ site.baseurl }}/assets/images/allow-maintainers-to-make-edits-sidebar-checkbox.png)]({{ site.baseurl }}/assets/images/allow-maintainers-to-make-edits-sidebar-checkbox.png)
 
 
 Suppose you receive a pull request against your repo, `yourname/yourrepo.git` and you receive a pull request from `otheruser`'s fork of `yourrepo.git`.  

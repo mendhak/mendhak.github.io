@@ -95,7 +95,7 @@ Reload WSL, and this should call out to the wsl-ssh-agent.
 
 Look at your system tray area for a pair-of-keys icon that appears.  If you click About, you can also see the path to your `.sock` at the bottom of the help dialog.   
 
-![wsl-ssh-agent dialog]({{ site.baseurl }}/assets/images/wsl-ssh-keepassxc/005.png)
+[![wsl-ssh-agent dialog]({{ site.baseurl }}/assets/images/wsl-ssh-keepassxc/005.png)]({{ site.baseurl }}/assets/images/wsl-ssh-keepassxc/005.png)
 
 
 ## Test it

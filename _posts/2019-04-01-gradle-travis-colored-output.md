@@ -1,6 +1,6 @@
 ---
-title: "Colored and folded output for Gradle tests in Travis"
-description: "Script to add colored and folded tests when Travis CI runs your gradle tests."
+title: "Colored and folded output for Gradle tests"
+description: "Script to add colored and folded tests when Travis CI or Github Actions runs your gradle tests."
 categories:
   - travis
 tags:
@@ -37,7 +37,7 @@ project.ext.set("TRAVIS_FOLDING", true)
 
 If you run your build on Travis you should now see colored output.  
 
-![travis]({{ site.baseurl }}/assets/images/gradle-travis-colored-output/001.png)
+[![travis]({{ site.baseurl }}/assets/images/gradle-travis-colored-output/001.png)]({{ site.baseurl }}/assets/images/gradle-travis-colored-output/001.png)
 
 [See Travis CI Example](https://travis-ci.org/mendhak/gpslogger/builds/112735526#L1954){: .btn .btn--inverse}
 
@@ -45,7 +45,7 @@ If you run your build on Travis you should now see colored output.
 
 Additionally you will see colored output in the terminal. 
 
-![travis]({{ site.baseurl }}/assets/images/gradle-travis-colored-output/002.png)
+[![travis]({{ site.baseurl }}/assets/images/gradle-travis-colored-output/002.png)]({{ site.baseurl }}/assets/images/gradle-travis-colored-output/002.png)
 
 
 

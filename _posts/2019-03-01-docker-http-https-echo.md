@@ -42,7 +42,7 @@ curl -k -X PUT -H "Arbitrary:Header" -d aaa=bbb https://localhost:8443/hello-wor
 
 You can also see the request appear in the docker logs  
 
-![dockerlogs]({{ site.baseurl }}/assets/images/docker-http-https-echo/003.png)
+[![dockerlogs]({{ site.baseurl }}/assets/images/docker-http-https-echo/003.png)]({{ site.baseurl }}/assets/images/docker-http-https-echo/003.png)
 
 
 

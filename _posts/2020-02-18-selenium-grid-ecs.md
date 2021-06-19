@@ -41,7 +41,7 @@ terraform apply
 
 Confirm, and wait for the `hub_address` output to appear, which will be the DNS of the ALB.  Wait a few minutes more though (the hub container needs to run, register with the ALB target group), then browse to the address and the Selenium Hub page should appear.  If you go to `/grid/console` then you can see the Selenium browser nodes appear as well. 
 
-![grid]({{ site.baseurl }}/assets/images/ecs-selenium-grid/002.png)
+[![grid]({{ site.baseurl }}/assets/images/ecs-selenium-grid/002.png)]({{ site.baseurl }}/assets/images/ecs-selenium-grid/002.png)
 
 **Note:** Running this script will incur a cost in your AWS account. You can get an idea of pricing [here](https://aws.amazon.com/fargate/pricing/).  
 Don't leave `your_ip_addresses` as 0.0.0.0/0, it's only for testing purposes; change it to your own IP address to prevent others from running tests against your grid.
@@ -82,12 +82,14 @@ npx smashtest --test-server=http://your-load-balancer-12345.eu-west-1.elb.amazon
 
 This will run the tests against your new Grid and if you refresh the Selenium Hub page you can see where the test is running, indicated by a dimmed browser icon. 
 
+To understand the Smashtest syntax above, see [this tutorial](/smashtest-tutorial/).  
+{: .notice--info}
 
 ## Overview
 
 There are quite a few AWS services that need to work together for this setup.  The Docker images for [Selenium Hub](https://hub.docker.com/r/selenium/hub/tags) as well as the browsers are [already provided by Selenium](https://hub.docker.com/r/selenium/node-firefox/tags).  This saves us the effort of having to build one. We just need to create task definitions for the hub and each browser, then run them as services in the ECS Cluster.
 
-![overview]({{ site.baseurl }}/assets/images/ecs-selenium-grid/001.png)
+[![overview]({{ site.baseurl }}/assets/images/ecs-selenium-grid/001.png)]({{ site.baseurl }}/assets/images/ecs-selenium-grid/001.png)
 
 Each browser container will need to know where the hub is and register itself.  To help them out, the hub will need to register itself with AWS Cloud Map, which is a service discovery tool.  You can think of it as a 'private' DNS within your VPC.
 

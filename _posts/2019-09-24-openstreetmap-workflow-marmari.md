@@ -60,7 +60,7 @@ Although I'm not a prolific or advanced editor, I do enjoy contributing to OpenS
 
 I recently visited the village of Marmari, Evia (Μαρμάρι, Εύβοια) in Greece and noticed that OpenStreetMap had almost no info on this place; there were no street names, stores or ATMs, even though they did exist in real life.  The 'before' is pretty bleak.
 
-![before]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/marmari_empty.png)
+[![before]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/marmari_empty.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/marmari_empty.png)
 
 I spent some time filling in missing information and bringing the [end result](https://www.openstreetmap.org/#map=18/38.04896/24.32156) into a decent state, though it isn't a complete picture of the village.  There were still a lot of steps and considerations involved in getting the data into OpenStreetMap, and I thought it would be helpful to write up the workflow I followed, loosely, along with additional details that I generally look for when doing OpenStreetMap work.  
 
@@ -89,13 +89,13 @@ It's worth understanding that OpenStreetMap isn't just a map similar to Google M
 
 One of the best features of OpenStreetMap is that you can make edits right in your browser.   Once I've uploaded my trace for the day, I'll go to [my traces](https://www.openstreetmap.org/traces/mine), and click edit.  
 
-![OSM Traces]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_054.png)
+[![OSM Traces]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_054.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_054.png)
 
 This opens up the edit view and overlays the trace along with annotations.  
 
 The annotations are simply indicators as to what was in the vicinity, not the actual objects themselves. Having the Bing aerial imagery provided helps find the actual points of interest relative to the nearby buildings and streets.  In the example below I've indicated some monuments and columns, and benches, so this area would be of interest to tourists to wander about, query some details about the monuments, and rest on the benches and enjoy the sea view.  
 
-![OSM Edit View]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_055.png)
+[![OSM Edit View]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_055.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_055.png)
 
 
 ## Adding features to the map
@@ -107,13 +107,13 @@ There were many different aspects involved here so I'll go over each type of fea
 
 Here I'm adding the building Καλλιανιωτης Supermarket.  This store would close between 2PM and 5:30PM which caught me unaware, and these timings were not written anywhere making it very much local knowledge; that made it definitely worth recording for other visitors. The telephone number as well as wheelchair accessibility were useful to know.  Additionally, this shop did not accept credit cards; like many parts of Greece, it was cash only.  With that I added as many details as I could understand including address and phone number.
 
-![Supermarkets]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_056.png)
+[![Supermarkets]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_056.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_056.png)
 
 ### ATMs and shops
 
 There was one ATM I could find near the church.  I recorded its currency as well as whether it charged any fees.  
 
-![ATMs and shops]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_057.png)
+[![ATMs and shops]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_057.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_057.png)
 
 There was also a bakery shop, a general store and a [taverna](https://en.wikipedia.org/wiki/Taverna).  Despite checking I was unable to find opening times on the doors, in the shops or on the menus, and I was too shy to verbally ask, so I left it to a future mapper.
 
@@ -121,13 +121,13 @@ There was also a bakery shop, a general store and a [taverna](https://en.wikiped
 
 While in Marmari, there were very strong winds and the ferries had shut down for a few days in between. Knowing the location of the ticket office became of great importance: it was the only place where the frequently modified schedules were available at short notice.  We were also given advice regarding tickets - for an early ferry ride, it was best to get the ticket the evening before.  
 
-![Ferry times]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/ferry_times.jpg)
+[![Ferry times]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/ferry_times.jpg)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/ferry_times.jpg)
 
-![Ferry tickets]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_058.png)
+[![Ferry tickets]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_058.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_058.png)
 
 On other days, it was also oppressively hot and staying in the sun for too long was impairing my cognitive functions.  Shelters and waiting areas suddenly became another point of interest.  I recorded whether it had benches as well as lighting with a bit of description.  
 
-![Waiting areas]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_059.png)
+[![Waiting areas]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_059.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_059.png)
 
 Together, these features should help visitors know where to buy their tickets and spend some time waiting if necessary. 
 
@@ -170,11 +170,11 @@ I followed the handwriting-to-text technique mentioned above and added those as 
 
 The column with a flame on top was a monument dedicated to [Greek Resistance](https://en.wikipedia.org/wiki/Greek_Resistance).  
 
-![inscription]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_061.png)
+[![inscription]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_061.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_061.png)
 
 The statue of the sailor near the ferry ticket office was a monument to lost sailors.  I learned that most Greek ferry ports have a monument and came across [this interesting forum thread](https://translate.google.com/translate?sl=auto&tl=auto&u=https%3A%2F%2Fforum.nautilia.gr%2Fshowthread.php%3F24788) with some enthusiasts.  
 
-![statue]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_062.png)
+[![statue]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_062.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_062.png)
 
 
 #### Wikidata and National Websites
@@ -207,7 +207,7 @@ There's a `ΣΤΑΜ.` - which may be short for `Σταμάτη` - however I was 
 
 At least benches are pretty simple.  Add a point, and make it of type bench.  I'll usually add in the type of material and how many people it can seat. 
 
-![benches]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_060.png)
+[![benches]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_060.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_060.png)
 
 
 ## Uploading changes
@@ -216,7 +216,7 @@ I try to keep the changesets similar to git commits, as small and 'related' as p
 
 I also add the source as 'survey' if I verified the data myself.  In the case of drawing buildings, the source is 'aerial imagery'.  
 
-![saving changes]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_064.png)
+[![saving changes]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_064.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_064.png)
 
 
 ## Viewing your changes
@@ -236,7 +236,7 @@ Making so many feature additions in an area creates a feeling of cartographic se
 
 There is a tool called [WhoDidIt](https://simon04.dev.openstreetmap.org/whodidit/) which can help.  First, I zoom in to the area of interest.  Then click 'Get RSS Link', and draw a large box around the area.  An 'RSS Link' is then available. 
 
-![RSS]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_065.png)
+[![RSS]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_065.png)]({{ site.baseurl }}/assets/images/openstreetmap-workflow-marmari/Selection_065.png)
 
 [The RSS feed for the Marmari area is here](https://simon04.dev.openstreetmap.org/whodidit/scripts/rss.php?bbox=24.306008,38.034519,24.340341,38.060609)
 

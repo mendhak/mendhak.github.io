@@ -104,7 +104,7 @@ At this point if you open [Microsoft Terminal](https://www.microsoft.com/en-gb/p
 
 Choose Ubuntu.  The user should already be set to `mendhak` and the path should already be set to `/c/Users/...`. 
 
-![wsl]({{ site.baseurl }}/assets/images/my-wsl-dev-setup/001.png)
+[![wsl]({{ site.baseurl }}/assets/images/my-wsl-dev-setup/001.png)]({{ site.baseurl }}/assets/images/my-wsl-dev-setup/001.png)
 
 ### Install some dependencies
 
@@ -130,7 +130,7 @@ sudo apt-get install -y unzip git figlet jq screenfetch \
 Over in Windows 10, install [Docker Desktop](https://www.docker.com/products/docker-desktop).  The installer should configure HyperV for you as well.  
 After installation, be sure to go to Docker Desktop's settings, and choose to `Expose daemon on tcp://localhost:2375 without TLS`
 
-![docker]({{ site.baseurl }}/assets/images/my-wsl-dev-setup/002.png)
+[![docker]({{ site.baseurl }}/assets/images/my-wsl-dev-setup/002.png)]({{ site.baseurl }}/assets/images/my-wsl-dev-setup/002.png)
 
 It's also possible to automate the installation of Docker Desktop from Powershell:
 

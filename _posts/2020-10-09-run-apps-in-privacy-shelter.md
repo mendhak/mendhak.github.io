@@ -74,7 +74,7 @@ Sometimes you may need to run an app that you're not comfortable with or don't n
 Android [Work Profiles](https://blog.google/products/android-enterprise/work-profile-new-standard-employee-privacy/) create a workspace isolated from the functionality of your regular apps.  Work profiles come with their own contacts, files and accounts.  This means any apps that run in the Work Profile will not have access to your normal contacts, files and accounts.  
 
 
-![work profiles]({{ site.baseurl }}/assets/images/privacy-android-shelter/001.png)
+[![work profiles]({{ site.baseurl }}/assets/images/privacy-android-shelter/001.png)]({{ site.baseurl }}/assets/images/privacy-android-shelter/001.png)
 
 ### Install Shelter
 

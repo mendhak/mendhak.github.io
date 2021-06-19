@@ -29,7 +29,7 @@ Although weasel-pageant is meant to allow usage of Pageant keys from WSL, it wor
 
 Extract the zip in Windows, not in WSL.  You can place it anywhere.  If you're keeping with the portable theme, it can be placed in a synched directory near Keepass and your KDBX.   
 
-![keeagent11]({{ site.baseurl }}/assets/images/keepass-ssh/keepass-ssh-key-11.png)
+[![keeagent11]({{ site.baseurl }}/assets/images/keepass-ssh/keepass-ssh-key-11.png)]({{ site.baseurl }}/assets/images/keepass-ssh/keepass-ssh-key-11.png)
 
 ### Tell WSL to use it
 
@@ -63,4 +63,4 @@ ssh -T git@github.com
 ```
 
 
-![test]({{ site.baseurl }}/assets/images/keepass-ssh/keepass-ssh-key-12.png)
+[![test]({{ site.baseurl }}/assets/images/keepass-ssh/keepass-ssh-key-12.png)]({{ site.baseurl }}/assets/images/keepass-ssh/keepass-ssh-key-12.png)

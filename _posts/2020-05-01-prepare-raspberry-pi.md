@@ -24,13 +24,13 @@ This is far simpler than the alternative, which is to connect a keyboard and mon
 
 You will need a microSD card and a USB adapter.  These are all cheap and plentiful, some examples of adapters are [here](https://smile.amazon.co.uk/Integral-AMINCRSD-Digital-Frustration-Free-Packaging/dp/B0047T6XWY) and [here](https://smile.amazon.co.uk/Vanja-Reader-Adapter-Portable-Memory/dp/B01JJ1VDQK).  Plug your microSD card into a USB adapter, then plug it into your computer.  
 
-![USB SD Adapter]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/003.jpg)
+[![USB SD Adapter]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/003.jpg)]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/003.jpg)
 
 ## Download OS image
 
 The official image for Raspberry Pi in general is [Raspberry Pi OS (formerly Raspbian), which can be downloaded here](https://www.raspberrypi.org/software/operating-systems/#raspberry-pi-os-32-bit).  If you don't need a desktop environment, download the Lite version.  Not having a desktop environment frees up valuable memory and CPU.  
 
-![raspbian images]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/005.png)
+[![raspbian images]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/005.png)]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/005.png)
 
 Optionally, you can download and verify the checksum too.  
 
@@ -45,15 +45,15 @@ d49d6fab1b8e533f7efc40416e98ec16019b9c034bc89c59b83d0921c2aefeef  raspios.zip
 
 Download [Balena Etcher](https://etcher.io), choose the portable version from the dropdown. 
 
-![etcher]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/004.png)
+[![etcher]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/004.png)]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/004.png)
 
 Launch Etcher, then select the zip file that you just downloaded, and choose the USB device carefully.  
 
-![etcher]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/006.png)
+[![etcher]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/006.png)]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/006.png)
 
 Click Flash and the image should get written to the SD card shortly.
 
-![etcher]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/007.png)
+[![etcher]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/007.png)]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/007.png)
 
 
 
@@ -61,7 +61,7 @@ Click Flash and the image should get written to the SD card shortly.
 
 Once flashing is complete, unplug and replug the USB adapter.  The drive should now appear in Windows (it appeared as D:\ for me) filled with OS files for the Raspberry Pi. 
 
-![boot drive]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/008.png)
+[![boot drive]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/008.png)]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/008.png)
 
 You now need to allow the Raspberry Pi Zero W to connect to your network _and_ allow yourself to connect to it. 
 
@@ -69,7 +69,7 @@ You now need to allow the Raspberry Pi Zero W to connect to your network _and_ a
 
 Raspbian disables SSH by default.  To enable it, create an empty file in this drive, called `ssh`. 
 
-![enable ssh]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/009.png)
+[![enable ssh]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/009.png)]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/009.png)
 
 Just the presence of this empty file on disk is enough for Raspbian to enable SSH when you power up the Raspberry Pi later. 
 
@@ -104,12 +104,12 @@ The country code is not always necessary, but helps the WiFi radio figure out wh
 
 Plug the SD Card into the Raspberry Pi Zero W. Connect a micro-USB cable and power up the Pi.  You can use the official Raspberry Pi power supply (~2.5A) or a USB port that supplies adequate power (~1.2A). 
 
-![raspberry pi zero wh]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/002.jpg)
+[![raspberry pi zero wh]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/002.jpg)]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/002.jpg)
 
 
 Wait a few minutes, then have a look at the list of connected devices on your router's admin pages and find its IP address.  If you're having trouble figuring it out, pick one, start pinging it, and disconnect your most recent Pi to see if that's the right IP. 
 
-![pihole devices]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/010.png)
+[![pihole devices]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/010.png)]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/010.png)
 
 
 Once you have the right IP, `ssh` to it with the default password of `raspberry`
@@ -127,7 +127,7 @@ You're now connected to the Raspberry Pi.
 
 As a best practice, run `sudo raspi-config` and follow the prompts to change your password.  
 
-![pihole devices]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/011.png)
+[![pihole devices]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/011.png)]({{ site.baseurl }}/assets/images/prepare-raspberry-pi/011.png)
 
 
 ## Change hostname

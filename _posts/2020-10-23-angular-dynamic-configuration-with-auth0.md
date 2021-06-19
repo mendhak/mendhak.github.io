@@ -24,7 +24,7 @@ Setting up the login and protecting API calls with OAuth up front is useful beca
 Loading the frontend configuration from your backend API is useful as it allows building the frontend once and deploying everywhere by removing environment specific settings from the frontend code; since the backend API runs serverside, it can pick up and expose any environment variables as needed to the frontend. 
 
 
-![Concept]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/001.png)
+[![Concept]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/001.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/001.png)
 
 This writeup is accompanied by a sample repo, you can jump straight to it and run it to see the above concepts in action. 
 
@@ -49,7 +49,7 @@ npm --prefix frontend start
 ```
 
 
-![New Angular Application]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/002.png)
+[![New Angular Application]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/002.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/002.png)
 
 
 ## Auth0.com Application Setup
@@ -57,16 +57,16 @@ npm --prefix frontend start
 If you haven't already, sign up for a free Auth0.com account and create a tenant.  For this example I have created `mydemotenant`.  
 In the tenant's Applications settings, create a new application of type Single Page Application.  This application will represent your Angular application.  
 
-![New Auth0 Application]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/003.png)
+[![New Auth0 Application]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/003.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/003.png)
 
 Auth0 generates a Client ID for you which you will need shortly.  
 
-![Auth0 Client ID]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/004.png)
+[![Auth0 Client ID]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/004.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/004.png)
 
 You'll also need to tell Auth0 where your application's requests will be coming from.  On the application page, add `http://localhost:4200` to the Allowed Callback URLs, Logout URLs and Web Origins, then click _Save Changes_. 
 
 
-![Allowed URLs]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/005.png)
+[![Allowed URLs]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/005.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/005.png)
 
 
 ## Angular integration with Auth0
@@ -144,7 +144,7 @@ Some info about you:
 
 Reload the page and click the Login button.  If everything is configured correctly, you are redirected to mydemotenant on Auth0 where you can login/signup and come back to the application. 
 
-![Login page]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/006.png)
+[![Login page]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/006.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/006.png)
 
 On return to the application the email you signed up with is displayed on the page. 
 
@@ -171,7 +171,7 @@ Once it's done, browse to [http://localhost:3000](http://localhost:3000) to make
 
 
 
-![Express API]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/007.png)
+[![Express API]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/007.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/007.png)
 
 ### Create an endpoint for frontend settings
 
@@ -190,7 +190,7 @@ In a real application scenario, you would load the domain, clientId, and various
 
 Restart the Express app, then browse to [http://localhost:3000/uiconfig](http://localhost:3000/uiconfig).  You should see a JSON response with the Auth0 configuration settings. 
 
-![UI Config]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/008.png)
+[![UI Config]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/008.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/008.png)
 
 ## Loading Angular configuration from a backend API call
 
@@ -237,7 +237,7 @@ npm --prefix frontend start
 
 Now browse to [http://localhost:4200/api/uiconfig](http://localhost:4200/api/uiconfig) and it should show the same contents as [http://localhost:3000/uiconfig](http://localhost:3000/uiconfig). 
 
-![UI Config via Proxy]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/009.png)
+[![UI Config via Proxy]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/009.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/009.png)
 
 
 ### Angular loading dynamic configuration
@@ -339,7 +339,7 @@ A few things to note about this service
 
 That was a lot of work but now you can reload the page, and this time watch developer tools.  You will see a request being made to `/api/uiconfig`, and the config is printed out to console.  The application's login and logout functionality should work as normal.  
 
-![Dynamic configuration]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/010.png)
+[![Dynamic configuration]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/010.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/010.png)
 
 
 ## Securing API calls
@@ -350,7 +350,7 @@ So far everything done has been to secure the application frontend for a user, w
 
 Back in Auth0.com in your tenant, go to the API section and create a new API, and give it an audience.  The audience can be anything, including a URL, but I prefer normal words like `my-api`.  
 
-![Auth0 API]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/011.png)
+[![Auth0 API]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/011.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/011.png)
 
 ### Express secure endpoint
 
@@ -405,7 +405,7 @@ npm --prefix api start
 Then browse to the protected endpoint at [http://localhost:3000/protected](http://localhost:3000/protected), you should get an HTTP 401 Unauthorized error, as you haven't passed any headers in.
 
 
-![401]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/012.png)
+[![401]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/012.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/012.png)
 
 
 ### Make the frontend a first-party application
@@ -422,7 +422,7 @@ This requires two changes to the frontend application:
 
 In the Auth0.com tenant settings, modify the application's callback, login and logout URLs to use `https://frontend.example:4200`. 
 
-![Auth0 Configuration]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/013.png)
+[![Auth0 Configuration]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/013.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/013.png)
 
 #### Host file
 
@@ -462,7 +462,7 @@ npm --prefix frontend start
 
 Open [https://frontend.example:4200/](https://frontend.example:4200/) in the browser.  Accept the warning about the self signed certificate.  Try out the login and logout functionality, everything should work as before including the dynamic configuration loading.
 
-![First Party with Cert]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/014.png)
+[![First Party with Cert]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/014.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/014.png)
 
 ### Configure Auth0 library to secure calls to `/api`
 
@@ -544,7 +544,7 @@ import { HttpClient } from '@angular/common/http';
 Refresh the frontend page and the message _"This is a protected endpoint"_ appears if you're logged in. 
 Refresh once more and watch the network traffic in developer tools.   Note that the Auth0 `authorize` and `token` exchanges happen twice.  
 
-![Secure API call]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/015.png)
+[![Secure API call]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/015.png)]({{ site.baseurl }}/assets/images/angular-dynamic-configuration-with-auth0/015.png)
 
 The first exchange is for your normal authentication check (which is how the username and email are displayed).  The response contains a JWT ID Token, but an opaque access token which isn't of much use to us. 
 The second exchange is when the `http.get` call is about to be made - the library requests an Access Token with the `my-api` audience, and a JWT Access Token is in the response. 

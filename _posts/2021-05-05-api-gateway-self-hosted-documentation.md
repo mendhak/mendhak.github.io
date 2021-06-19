@@ -18,7 +18,7 @@ It's possible to host your OpenAPI (Swagger) JSON as well the UI from within API
 
 The most common recommended ways of hosting API Gateway documentation often involve putting the OpenAPI JSON, along with a static website, on an S3 bucket and directing users to that. But this isn't simple and introduces deployment complexity.  It's easier though, to simply serve the JSON and UI from a Lambda. This is convenient as it allows your API code sit with, and be deployed with, the rest of your code. 
 
-![Concept]({{ site.baseurl }}/assets/images/api-gateway-self-hosted/001.png)
+[![Concept]({{ site.baseurl }}/assets/images/api-gateway-self-hosted/001.png)]({{ site.baseurl }}/assets/images/api-gateway-self-hosted/001.png)
 
 This can be done by getting API Gateway to pass everything from the path `/docs` onwards to your Lambda which in turn just serves documentation.  
 
@@ -42,7 +42,7 @@ go_to = "https://bolcx9v796.execute-api.eu-west-1.amazonaws.com/test/docs/"
 
 Open that URL in a browser you should see a single page with the Petstore documentation, using Redoc's theme. 
 
-![screenshot]({{ site.baseurl }}/assets/images/api-gateway-self-hosted/002.png)
+[![screenshot]({{ site.baseurl }}/assets/images/api-gateway-self-hosted/002.png)]({{ site.baseurl }}/assets/images/api-gateway-self-hosted/002.png)
 
 Notice that the URL ends with `/docs/`.  
 

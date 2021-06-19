@@ -24,7 +24,7 @@ Using just this statement we can figure out the required aspect ratio.  Once we 
 
 To illustrate this principle, in the image below, we take a sheet of paper with height `x` and width `y`.  It is cut width-wise, and one half is discarded.  The remaining half is rotated.  That new height and width should have the same ratio as the original piece of paper.  
 
-![maintain ratio]({{ site.baseurl }}/assets/images/paper-sizes-standard/001.png)
+[![maintain ratio]({{ site.baseurl }}/assets/images/paper-sizes-standard/001.png)]({{ site.baseurl }}/assets/images/paper-sizes-standard/001.png)
 
 
 ## Calculate the ratio

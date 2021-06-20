@@ -1,7 +1,7 @@
 ---
 title: "Smashtest Tutorial"
 description: "Smashtest introduction, just the basic features"
-last_modified_at: 2021-04-12T20:00:00Z
+last_modified_at: 2021-06-20T04:01:00Z
 categories: 
   - smashtest
 tags: 

@@ -95,7 +95,7 @@ When the test completes, preview the `smashtest/report.html` file, which shows t
 
 Writing tests interactively is useful for slightly complicated examples.  A good example is Google search - when visiting google.com for the first time, a cookie dialog appears.  The dialog needs to be dismissed before performing a search.  
 
-Start by replaicng the `main.smash` file, and putting these lines in:
+Start by replacing the `main.smash` file, and putting these lines in:
 
 ```
 Open Firefox
@@ -298,8 +298,7 @@ Create a `smashtest.json` with:
 
 If you now run `npx smashtest`, the browser should open, and the Smashtest report should contain screenshots. 
 
-For a list of config that can go in `smashtest.json`, see [command-line options](https://smashtest.io/running-tests/command-line-options)  
-For options without a value, use an empty string.  `"recursive": ""`
+For a list of config that can go in `smashtest.json`, see [command-line options](https://slowmonkey.github.io/smashtest-cli-json-mapping)  
 {: .notice--info}
 
 

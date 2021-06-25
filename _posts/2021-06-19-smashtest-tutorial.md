@@ -528,7 +528,7 @@ Open Firefox
             props({
                 'Search box': `#main-q`,
                 'Search Result Link': `div.search-results h3`,
-                'Dutch language option': `#language-selector option[value="de"]`
+                'German language option': `#language-selector option[value="de"]`
             })
         }
 
@@ -538,7 +538,7 @@ Open Firefox
 
                     Click ['Change language']
 
-                        Click 'Dutch language option'
+                        Click 'German language option'
 
                             $ Click [button, 'Change language'] 
 ```

@@ -555,7 +555,7 @@ Open Firefox
                 'Search box': `#main-q`,
                 'Search Result Link': `div.search-results h3`,
                 'Change Language Link': `'Change language'`,
-                'Dutch language option': `#language-selector option[value="de"]`,
+                'German language option': `#language-selector option[value="de"]`,
                 'Change Language Button': `button, 'Change language'`
             })
         }
@@ -566,7 +566,7 @@ Open Firefox
 
                     Click 'Change Language Link'
 
-                        Click 'Dutch language option'
+                        Click 'German language option'
 
                             $ Click 'Change Language Button'
 ```

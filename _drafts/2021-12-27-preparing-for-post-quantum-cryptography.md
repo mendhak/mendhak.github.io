@@ -2,6 +2,19 @@
 title: "Making sense of ongoing work happening towards post quantum cryptography"
 description: "..."
 
+gallery1:
+  - url: /assets/images/preparing-for-post-quantum-cryptography/002.png
+    image_path: /assets/images/preparing-for-post-quantum-cryptography/002.png
+  - url: /assets/images/preparing-for-post-quantum-cryptography/003.png
+    image_path: /assets/images/preparing-for-post-quantum-cryptography/003.png
+
+gallery2:
+  - url: /assets/images/preparing-for-post-quantum-cryptography/005.png
+    image_path: /assets/images/preparing-for-post-quantum-cryptography/005.png
+  - url: /assets/images/preparing-for-post-quantum-cryptography/006.png
+    image_path: /assets/images/preparing-for-post-quantum-cryptography/006.png    
+  - url: /assets/images/preparing-for-post-quantum-cryptography/007.png
+    image_path: /assets/images/preparing-for-post-quantum-cryptography/007.png    
 ---
 
 
@@ -10,9 +23,11 @@ As a computing end user, I've been vaguely aware of quantum computing emerging o
 
 ## How it started, Shor's Algorithm
 
-In 1994, mathematician Peter Shor devised a quantum computing algorithm to solve a problem that goes, _"Given an integer N, find its prime factors"_.  The significance is that the stated problem is how you'd go about decrypting messages based on our current key exchange algorithms. That is, many key exchange algorithms today work in the opposite direction, by multiplying two large numbers, and rely on the opposite direction being difficult to solve. On today's computers (usually referred to as classical machines), for large values, this can take trillions of years, and it is this difficulty which gives us the assurance we need that our key exchanges and authentication steps are safe.  
+In 1994, mathematician Peter Shor devised a quantum computing algorithm to solve a problem that goes, _"Given an integer N, find its prime factors"_.  It's a simple sentence with large implications.  The significance is that the stated problem is how you'd go about decrypting messages based on our current key exchange algorithms. That is, many key exchange algorithms today work by multiplying two large prime numbers to get a result, and rely on the opposite direction, figuring out which prime numbers were used, being difficult to solve. 
 
+On today's computers (usually referred to as classical machines), for large values, this can take trillions of years, and it is this difficulty which gives us the assurance we need that our key exchanges and authentication steps are safe.  
 
+[![prime factors of an integer]({{ site.baseurl }}/assets/images/preparing-for-post-quantum-cryptography/001.png)]({{ site.baseurl }}/assets/images/preparing-for-post-quantum-cryptography/001.png)
 
 
 ### What this means for SSH and TLS
@@ -21,7 +36,7 @@ By showing that this stated problem has a trivial solution on quantum computers,
 
 As it stands right now, our SSH keys are not quantum safe.  Even though OpenSSH have recently [deprecated RSA](https://levelup.gitconnected.com/demystifying-ssh-rsa-in-openssh-deprecation-notice-22feb1b52acd), and many people will be moving towards the more secure ED25519 key format, neither are safe.  
 
-The same vulnerabilities apply to TLS used by browsers and other tools when negotiating traffic to HTTPS URLs.  Not just browers but by backend systems too such as clients talking to databases, queues and messaging systems.  TLS is a huge part of the software operational backbone.  
+The same vulnerabilities apply to TLS, where the impact is even larger.  TLS is of course used by browsers and other tools when negotiating traffic to HTTPS URLs.  It's also used by backend systems, such as clients talking to databases, queues and messaging systems.  TLS is a huge part of the software operational backbone for TCP communications.   
 
 All this in turn means, some day in the future, we will need to start using a newer type of SSH key and newer TLS encryption schemes across systems.  Between SSH and TLS, this pretty much covers a huge swathe of infrastructure that our economy and way of life depends on.  
 
@@ -29,24 +44,34 @@ All this in turn means, some day in the future, we will need to start using a ne
 
 ### Quantum computers are weak today
 
-Quantum computers aren't very powerful today.  They are constrained by a few problems, the first one is called coherence time; it's the duration that the qubits in a quantum computer can stay useful for the purposes of a calculation.  The best time achieved as of 2021 has been around 300 to 500 microseconds, which isn't very useful considering the 10 seconds quoted above for braeking RSA-2048.  However there is always research being done to [increase this coherence time to 1 hour and more](https://www.nature.com/articles/s41467-020-20330-w).   
+Quantum computers aren't very powerful today.  They are constrained by a few problems, the first one is called coherence time; it's the duration that the qubits in a quantum computer can stay useful for the purposes of a calculation.  If a calculation on a quantum machine requires more time than the coherence, then the machine won't be able to solve the problem.  The best time achieved as of 2021 has been around 300 to 500 microseconds, which isn't very useful considering the 10 seconds quoted above for breaking RSA-2048.  However there is always research being done to [increase this coherence time to 1 hour and more](https://www.nature.com/articles/s41467-020-20330-w).   
+
+{% include gallery id="gallery1" layout="third" caption="Increasing quantum coherence" %}
 
 The other problem is the number of qubits in the quantum computer.  In the above RSA-2048 breaking example, the quantum computer would need 4099 stable qubits, in addition to the stable coherence time stated. In 2021, IBM has the largest quantum computer at a mere [127 qubits](https://www.newscientist.com/article/2297583-ibm-creates-largest-ever-superconducting-quantum-computer/).  I say 'mere' here as qubits could become subject to a quantum version of Moore's law and this number becomes a footnote.  
 
 These stated numbers are changing frequently though, as universities and organisations are outdoing each other in a slow arms race.  It's still tempting to think that quantum computing might stay in the realm of curiosity and not progress much past this coherence and qubit size, similar sentiments have been held in the past regarding classical computers and the internet as well.    
 
+{% include gallery id="gallery2" layout="third" caption="Breaking qubits barrier" %}
+
 ### But the IT industry is slow
 
-From what I've seen, most authorities are estimating that at some point in the next 20 years, quantum computers will become sufficiently powerful to pose a real threat to today's signature and key exchange algorithms.  Anyone with experience in the IT sector can attest to the glacial pace at which changes occur across any given systems.  This is even more the case with systems that are entrenched and embedded among large sprawling legacy setups in complex dependencies that build up over time in undocumented ways, but which also serves as crucial points for public infrastructure.  
+From what I've seen, most authoritative bodies are estimating that at some point in the next 15-20 years, quantum computers will become sufficiently powerful to pose a real threat to today's security.  That seems like a generation away, but anyone with experience in the IT sector can attest to the glacial pace at which changes occur across any given systems.  This is even more the case with systems that are entrenched and embedded among large sprawling legacy setups in complex dependencies that build up over time in undocumented ways, but which also serves as crucial points for public infrastructure.  
 
-It's scary how much of this today's infrastructure is held together by virtual duct-tape with very little knowledge about how they are working.  Now couple that with a great SSH/TLS migration, where any traces of the 'old world' algorithms need to be done away with completely.  Implementing new SSH and TLS across old and new systems in complex setups is most definitely a non trivial task and would require years to implement.  
+It's frightening how much of this today's infrastructure is held together by virtual duct-tape with very little knowledge about how they are working.  Now couple that with a great SSH/TLS migration, where any traces of the 'old world' algorithms need to be done away with completely, while keeping those same systems running.  Implementing new SSH and TLS across old and new systems in complex setups is most definitely a non trivial task and would require years to implement.  
 
-That is the reason for starting looking at replacements now.  By the time decisions have been made and the right security algorithms make it into the software that we use, a great deal of time will have passed.  
+That is the reason that authoritative bodies have started looking at solutions now.  By the time decisions have been made and the right security algorithms work their way into the software that we use, a great deal of time will have passed.  
+
+Even then, it will still take a long time to convince businesses and organisations to put in the time and effort to modify all their systems.  It's a bit of speculation, but it might take an actual, high-impact security incident to occur to convince product and business owners to scramble to patch their own systems.  
 
 
-### Who's deciding
+## Who decides?
 
 NIST , others are following
+
+How are they deciding things. 
+
+What criteria.  
 
 
 ### Links

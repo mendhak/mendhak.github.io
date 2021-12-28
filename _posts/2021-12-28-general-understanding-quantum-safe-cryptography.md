@@ -198,6 +198,6 @@ Microsoft Research are covering [their efforts](https://www.microsoft.com/en-us/
 
 ## Final thoughts and how to keep up with PQC news
 
-So there's more to come over the next few years.  Final choices and recommendations, hopefully some resolution to the potential patent headaches, and some actual implementations. 
+So there's more to come over the next few years.  Final choices and recommendations, hopefully some resolution to the potential patent headaches, and some actual implementations.  What is clear though, is that doing nothing isn't an option, and that's a pretty Shor bet.  
 
 Keeping up with ongoing PQC updates doesn't seem to be easy.  One way would be to join their [mailing list](https://csrc.nist.gov/Projects/post-quantum-cryptography/Email-List) at the risk of getting too much indecipherable 'noise'.  The other would be to 'watch' the [NIST PQC News page](https://csrc.nist.gov/Projects/post-quantum-cryptography/news).  That page doesn't seem to have an RSS feed, although there are a few [topic based RSS feeds](https://www.nist.gov/pao/nist-rss-feeds), again with the risk of too much 'other noise'.  

@@ -278,7 +278,7 @@ The first part of `run.sh` calls on the `screen-weather.get.py` script which que
 
 The last API call is to Google Calendar, the upcoming 2 calendar entries are written to the same SVG.  
 
-Due to API rate limits, you will see various `.pickle` files which store the Google/Outlook Calendar and Dark Sky API responses for a few hours.  This means that any new entries in your target calendar won't show up immediately.  Similarly weather info will be up to a few hours delayed.  
+Due to API rate limits, you will see various `.pickle` files which store the Google/Outlook Calendar and weather API responses for a few hours.  This means that any new entries in your target calendar won't show up immediately.  Similarly weather info will be up to a few hours delayed.  
 {: .notice--info}
 
 ### Image conversion and display

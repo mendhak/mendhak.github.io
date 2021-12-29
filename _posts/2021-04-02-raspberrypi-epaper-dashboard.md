@@ -1,7 +1,7 @@
 ---
 title: "Raspberry Pi: Waveshare e-paper dashboard"
 description: "Raspberry Pi dashboard with an e-paper display from waveshare"
-last_modified_at: 2021-04-12T20:00:00Z
+last_modified_at: 2021-12-29T10:00:00Z
 categories: 
   - raspberrypi
 tags: 
@@ -84,12 +84,12 @@ Connect the ribbon from the epaper display to the extension.  To do this you wil
 
 ## Setup dependencies
 
-The display as well as the code that talks to the display has quite a few dependencies.  Here we're installing a few fonts, some Python dependencies.
+The display as well as the code that talks to the display has quite a few dependencies.  
 
 ```bash
-sudo apt install git ttf-wqy-zenhei ttf-wqy-microhei python3-pip python-imaging libopenjp2-7-dev libjpeg8-dev inkscape figlet wiringpi python3
-sudo pip3 install python-dateutil astral spidev RPi.GPIO Pillow  # Pillow took multiple attempts to install as it's always missing dependencies
-sudo pip3 install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib msal
+sudo apt update && sudo apt upgrade  
+sudo apt install git python3 python3-pip cairosvg pigpio python3-pigpio  
+sudo pip3 install python-dateutil astral spidev RPi.GPIO Pillow google-api-python-client google-auth-httplib2 google-auth-oauthlib msal
 ```
 
 ### Enable SPI
@@ -100,21 +100,6 @@ sudo pip3 install --upgrade google-api-python-client google-auth-httplib2 google
 sudo sed -i s/#dtparam=spi=on/dtparam=spi=on/ /boot/config.txt  #This enables SPI
 sudo reboot
 ```
-
-### Get the BCM2835 library
-
-The BCM2835 library provides access to the GPIO pins and it needs to be manually installed.  
-
-```bash
-wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.58.tar.gz
-sudo tar zxvf bcm2835-1.58.tar.gz
-cd bcm2835-1.58/
-sudo ./configure
-sudo make
-sudo make check
-sudo make install
-```
-
 
 ## Using this application
 
@@ -127,6 +112,7 @@ Clone this repository to your Raspberry Pi
 
 ```bash
 git clone --recursive git@github.com:mendhak/waveshare-epaper-display.git
+cd waveshare-epaper-display
 ```
 
 ### Waveshare version
@@ -224,21 +210,19 @@ export GOOGLE_CALENDAR_ID=xyz12345@group.calendar.google.com
 
 In order to display Google Calendar events, we'll need an OAuth Token.  However Google have not made the process of obtaining one simple at all.  The Oauth process needs to complete once manually in order to allow the Python code to then continuously query Google Calendar for information. 
 
-Go to the [Python Quickstart](https://developers.google.com/calendar/quickstart/python) page and enable Google Calendar API.  When presented, download or copy the `credentials.json` file and add it to this directory. 
+Go to the [Google Cloud Platform library page](https://console.cloud.google.com/apis/library), search for and enable the [Calendar API](https://console.cloud.google.com/apis/api/calendar-json.googleapis.com/overview).  
 
-Next, on the Raspberry Pi, run: 
+Next, head over to the [API Dashboard Credentials page](https://console.cloud.google.com/apis/credentials), and create new credentials of type "OAuth Client ID".  For application type, choose "Desktop app" and give it a name such as "Epaper Display".  When presented, download or copy the `credentials.json` file and add it to this directory. 
 
-```bash
-python3 screen-calendar-get.py
-```
+You can now kick off the authentication process. On the Raspberry Pi, run: 
 
-The script will prompt you to visit a URL in your browser and then wait.  Copy the URL, open it in a browser on another PC, and you will go through the login process.  When the OAuth workflow tries to redirect back (and fails), copy the URL it was trying to go to (eg: `http://localhost:8080/...`).  Open up a brand new SSH session to the Raspberry Pi, and curl that URL. 
+    python3 screen-calendar-get.py
 
-```bash
-curl "http://localhost:8080/..." 
-```
+The script will prompt you to visit a URL in your browser and then wait.  Copy the URL, open it in a browser and you will go through the login process.  When the OAuth workflow tries to redirect back (and fails), copy the URL it was trying to go to (eg: http://localhost:8080/...) and in another SSH session with the Raspberry Pi, 
 
-On the first SSH session, you should now see the auth flow complete, and a new `token.pickle` file appears.  The Python script should now be able to run in the future without prompting required.  
+    curl "http://localhost:8080/..." 
+
+On the first screen you should see the auth flow complete, and a new `token.pickle` file appears.  The Python script should now be able to run in the future without prompting required.  
 
 I also have a [post here with screenshots](https://github.com/mendhak/waveshare-epaper-display/issues/19#issuecomment-780397819) walking through the process. 
 

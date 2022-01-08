@@ -1,7 +1,7 @@
 ---
 title: "Raspberry Pi: Waveshare e-paper dashboard"
 description: "Raspberry Pi dashboard with an e-paper display from waveshare"
-last_modified_at: 2021-12-29T10:00:00Z
+last_modified_at: 2022-01-08T14:00:00Z
 categories: 
   - raspberrypi
 tags: 
@@ -88,8 +88,8 @@ The display as well as the code that talks to the display has quite a few depend
 
 ```bash
 sudo apt update && sudo apt upgrade  
-sudo apt install git python3 python3-pip cairosvg pigpio python3-pigpio  
-sudo pip3 install python-dateutil astral spidev RPi.GPIO Pillow google-api-python-client google-auth-httplib2 google-auth-oauthlib msal
+sudo apt install git gsfonts python3 python3-pip cairosvg pigpio python3-pigpio  
+sudo pip3 install python-dateutil astral spidev RPi.GPIO Pillow google-api-python-client google-auth-httplib2 google-auth-oauthlib msal cryptography==36.0.0
 ```
 
 ### Enable SPI

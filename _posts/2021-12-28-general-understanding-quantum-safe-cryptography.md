@@ -145,7 +145,7 @@ The two most popular VPN implementations are OpenVPN and WireGuard.  Microsoft R
 
 ### IoT and embedded devices
 
-Embedded devices play a role in critical infrastructure, such as power grids, transportation and water.  These devices can stay in place for decades, and work with very limited resources (for example, 4KB RAM and 100 MHz CPUs).  For that reason their selection criteria depend greatly on key sizes. And because there are devices today which will be around in 20 years, embedded device and IoT engineers need to get started with implementations as soon as possible. [Their preference](https://csrc.nist.gov/Presentations/2021/requirements-for-post-quantum-cryptography-on-embe) would be Kyber or Saber for key algorithms, and Dilithium for signatures.  
+Embedded devices play a role in critical infrastructure, such as power grids, transportation and water.  These devices can stay in place for decades, and work with very limited resources (for example, 4KB RAM and 100 MHz CPUs).  For that reason their selection criteria depend greatly on key sizes. And because there are devices today which will be around in 20 years, embedded device and IoT engineers need to get started with implementations as soon as possible. [Their preference](https://csrc.nist.gov/Presentations/2021/requirements-for-post-quantum-cryptography-on-embe) would be Kyber or Saber for key algorithms, and Falcon for signatures.  
 
 ### What vehicle manufacturers want
 

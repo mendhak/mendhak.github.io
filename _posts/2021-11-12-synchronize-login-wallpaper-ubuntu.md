@@ -114,14 +114,14 @@ The simplest way, if you use [Variety wallpaper changer](https://peterlevi.com/v
 To do this, edit the Variety set_wallpaper script:
 
 ```
-nano nano ~/.config/variety/scripts/set_wallpaper
+nano ~/.config/variety/scripts/set_wallpaper
 ```
 
 And near the end of the file, but before the `exit 0`, add this line.  Replace the path below with your own.  
 
 ```
 # Use Change-GDM-Background to set login screen background. 
-sudo /home/myusername/change-gdm-background/change-gdm-background $1
+sudo /home/myusername/change-gdm-background/change-gdm-background "$1"
 ```
 
 Save and that's it. Try changing the wallpaper via Variety, and then reboot.  The login screen should match.  

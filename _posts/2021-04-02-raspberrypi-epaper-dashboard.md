@@ -36,8 +36,8 @@ Here I will share instructions on setting up a Raspberry Pi Zero WH with a Waves
 The screen will display: 
 
 * Date and time
-* Weather icon and short description, with high and low temperature 
-* A severe weather warning
+* Weather icon and short description, with high and low temperature (OpenWeatherMap, Met office, AccuWeather, Met.no, Climacell, VisualCrossing)
+* A severe weather warning (provided by Met Office or Weather.gov)
 * Google Calendar or Outlook Calendar entries
 
 Here it is in action

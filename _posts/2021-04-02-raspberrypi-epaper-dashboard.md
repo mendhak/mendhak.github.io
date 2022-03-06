@@ -134,7 +134,7 @@ Due to API rate limits, you will see various `.pickle` files which store the Goo
 
 ### Image conversion and display
 
-The image is converted from the intermediate SVG to PNG, and then the `display.py` renders it to screen using the e-Paper libraries.  This used to take 30 seconds, but [recent improvements](https://github.com/waveshare/e-Paper/pull/104) have brought it down to just 3-5 seconds. 
+The image is converted from the intermediate SVG to PNG, and then the `display.py` renders it to screen using the e-Paper libraries.  This used to take 30 seconds, but [recent improvements](https://github.com/waveshare/e-Paper/pull/104) have brought it down to less than 10 seconds. Which is decent, considering the Raspberry Pi Zero hardware.  
 
 It's possible to use the C libraries to make this process even faster, but it requires writing and compiling the display binary yourself.  It could further be sped up by converting the PNG to a 1-bit BMP so that there's less data to send over the wire.  The C way would take about 6-8 seconds.  
 

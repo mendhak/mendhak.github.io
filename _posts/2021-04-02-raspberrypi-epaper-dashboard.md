@@ -1,7 +1,7 @@
 ---
-title: "Raspberry Pi: Waveshare e-paper dashboard"
-description: "Raspberry Pi dashboard with an e-paper display from waveshare"
-last_modified_at: 2022-01-08T14:00:00Z
+title: "Raspberry Pi: Simple Waveshare e-paper dashboard with weather and calendar"
+description: "Raspberry Pi dashboard with an e-paper display from waveshare, shows weather info, severe weather, and calendar entries"
+last_modified_at: 2022-03-06T14:00:00Z
 categories: 
   - raspberrypi
 tags: 
@@ -30,11 +30,14 @@ gallery2:
   
 ---
 
-Instructions on setting up a Raspberry Pi Zero WH with a Waveshare ePaper 7.5 Inch HAT. 
+I have created a simple, DIY e-paper dashboard setup that displays the weather and calendar information.  It's minimal, and doesn't require a lot of power, so it can run on a Raspberry Pi Zero.  I have been running it for several years now and it is very reliable. 
+
+Here I will share instructions on setting up a Raspberry Pi Zero WH with a Waveshare ePaper 7.5 Inch HAT. 
 The screen will display: 
 
 * Date and time
-* Weather icon with high and low temperature
+* Weather icon and short description, with high and low temperature 
+* A severe weather warning
 * Google Calendar or Outlook Calendar entries
 
 Here it is in action
@@ -80,174 +83,22 @@ Turn the Pi off, then put the HAT on top of the Pi's GPIO pins.
 
 Connect the ribbon from the epaper display to the extension.  To do this you will need to lift the black latch at the back of the connector, insert the ribbon slowly, then push the latch down.  Now turn the Pi back on. 
 
+Wait a few minutes, and let the Pi connect over WiFi.  You should be able to SSH onto the Pi now. 
 
+### Configure the application
 
-## Setup dependencies
+[The Github Repo](https://github.com/mendhak/waveshare-epaper-display#readme) covers all configuration instructions. This includes:
 
-The display as well as the code that talks to the display has quite a few dependencies.  
+* Installing the code and dependencies 
+* Choosing a weather provider (OpenWeatherMap, Met Office, AccuWeather, Met.no, Weather.gov, Climacell)
+* Choosing a severe weather alert provider (Met Office and Weather.gov)
+* Choosing a calendar provider (Google Calendar and Outlook)
 
-```bash
-sudo apt update && sudo apt upgrade  
-sudo apt install git gsfonts python3 python3-pip cairosvg pigpio python3-pigpio  
-sudo pip3 install python-dateutil astral spidev RPi.GPIO Pillow google-api-python-client google-auth-httplib2 google-auth-oauthlib msal cryptography==36.0.0
-```
-
-### Enable SPI
-
-[SPI](https://learn.sparkfun.com/tutorials/serial-peripheral-interface-spi/all) is how the Raspberry Pi will send data over the ribbon to the e-paper display.   You will need to enable it and reboot the device.  
-
-```bash
-sudo sed -i s/#dtparam=spi=on/dtparam=spi=on/ /boot/config.txt  #This enables SPI
-sudo reboot
-```
-
-## Using this application
-
-You can now use the code from this repo
-
-
-### Clone it
-
-Clone this repository to your Raspberry Pi
-
-```bash
-git clone --recursive git@github.com:mendhak/waveshare-epaper-display.git
-cd waveshare-epaper-display
-```
-
-### Waveshare version
-
-Modify the env.sh file and set the version of your Waveshare 7.5" e-Paper Module (newer ones are version 2)
-
-```bash
-export WAVESHARE_EPD75_VERSION=2
-```
-
-
-## Pick a Weather provider
-
-You can pick between OpenWeatherMap, Met Office, AccuWeather, Met.no and Climacell to provide temperature and weather forecasts.  
-You can switch between them too, by providing the keys and commenting out other ones, but remember to delete the `weather-cache.json` if you switch weather providers. 
-
-### OpenWeatherMap
-
-Register on the [OpenWeathermap](https://openweathermap.org) website, and go to the [API Keys page](https://home.openweathermap.org/api_keys), that's the key you'll need. 
-Add it to the env.sh file.  
-
-    export OPENWEATHERMAP_APIKEY=xxxxxx
-
-### Met Office (UK)
-
-Create an account [on the Met Office Weather DataHub](https://metoffice.apiconnect.ibmcloud.com/metoffice/production/) site.  
-Next, [register an application](https://metoffice.apiconnect.ibmcloud.com/metoffice/production/application) - just call it Raspberry Pi or Home Project.  
-You'll be shown a Client Secret, and a Client ID.  Copy both of these somewhere, you'll need it later.  
-
-After registering an application, you then "subscribe" to an API by going to the [API Usage Plans](https://metoffice.apiconnect.ibmcloud.com/metoffice/production/product).  
-Pick "Global spot data bundle" which includes the "Global daily spot data" API. 
-Choose the Basic (free) plan and when prompted, pick that application you previously registered.  
-
-Finally, add the Met Office Client ID and Secret to the env.sh file. 
-
-    export METOFFICEDATAHUB_CLIENT_ID=xxxxxx-xxxxxx-....
-    export METOFFICEDATAHUB_CLIENT_SECRET=xxxxxx
-
-### AccuWeather
-
-Register on the [AccuWeather](https://developer.accuweather.com/) site.  
-Next, [register a new application](https://developer.accuweather.com/user/me/apps).  
-I just named it Personal, marked it as Limited Trial, Internal App, Business to Consumer. 
-Once you do this you'll get an API Key, save it. 
-
-You'll also need an AccuWeather Location Key.  
-Do a normal [AccuWeather search](https://www.accuweather.com/) for your location.  
-The last number in the URL is the Location Key.  In the example of [London](https://www.accuweather.com/en/gb/london/ec4a-2/weather-forecast/328328), it's `328328`. 
-
-Add the API Key and Location Key to the `env.sh`. 
-
-    export ACCUWEATHER_APIKEY=xxxxxx
-    export ACCUWEATHER_LOCATIONKEY=328328
-
-### Met.no
-
-Met.no's [Terms of Service](https://api.met.no/doc/TermsOfService) requires you to identify yourself.  The purpose is to ensure they can contact you in case you overload or abuse their servers.  For this reason, you just need to set your email address in `env.sh` like so:
-
-    export METNO_SELF_IDENTIFICATION=you@example.com
-
-Note that the Met.no API provides 6 hours of forecast, rather than a full day.  
-
-### Climacell (tomorrow.io)
-
-Register on the [Climacell site](https://www.climacell.co/weather-api/), and when you do you should be given an API Key.   
-Modify the `env.sh` file and put your Climacell API key in there.  
-
-    export CLIMACELL_APIKEY=xxxxxx
-
-### Location information for Weather
-
-Whichever weather provider you've picked, you'll need to provide the location and units to display in.  
-
-Modify the `env.sh` file and update with the latitude and longitude of your location.  
-As needed, change the temperature format (CELSIUS or FAHRENHEIT).  
-
-    export WEATHER_LATITUDE=51.3656
-    export WEATHER_LONGITUDE=0.1963
-    export WEATHER_FORMAT=CELSIUS
-
-## Pick a Calendar provider
-
-You can use Google Calendar or Outlook Calendar to display events.  
-
-
-### Google Calendar setup
-
-The script will by default get its info from your primary Google Calendar.  If you need to pick a specific calendar you will need its ID.  To get its ID, open up [Google Calendar](https://calendar.google.com) and go to the settings for your preferred calendar.  Under the 'Integrate Calendar' section you will see a Calendar ID which looks like `xyz12345@group.calendar.google.com`.  Set that value in `env.sh`
-
-```bash
-export GOOGLE_CALENDAR_ID=xyz12345@group.calendar.google.com
-```
-
-#### Google Calendar token
-
-In order to display Google Calendar events, we'll need an OAuth Token.  However Google have not made the process of obtaining one simple at all.  The Oauth process needs to complete once manually in order to allow the Python code to then continuously query Google Calendar for information. 
-
-Go to the [Google Cloud Platform library page](https://console.cloud.google.com/apis/library), search for and enable the [Calendar API](https://console.cloud.google.com/apis/api/calendar-json.googleapis.com/overview).  
-
-Next, head over to the [API Dashboard Credentials page](https://console.cloud.google.com/apis/credentials), and create new credentials of type "OAuth Client ID".  For application type, choose "Desktop app" and give it a name such as "Epaper Display".  When presented, download or copy the `credentials.json` file and add it to this directory. 
-
-You can now kick off the authentication process. On the Raspberry Pi, run: 
-
-    python3 screen-calendar-get.py
-
-The script will prompt you to visit a URL in your browser and then wait.  Copy the URL, open it in a browser and you will go through the login process.  When the OAuth workflow tries to redirect back (and fails), copy the URL it was trying to go to (eg: http://localhost:8080/...) and in another SSH session with the Raspberry Pi, 
-
-    curl "http://localhost:8080/..." 
-
-On the first screen you should see the auth flow complete, and a new `token.pickle` file appears.  The Python script should now be able to run in the future without prompting required.  
-
-I also have a [post here with screenshots](https://github.com/mendhak/waveshare-epaper-display/issues/19#issuecomment-780397819) walking through the process. 
-
-### Outlook Calendar setup
-
-The setup is much simpler, just run this script which will give instructions on how to login:
-
-```bash
-python3 outlook_util.py
-```
-
-Login with the Microsoft account you want to get the calendar from, and accept the consent screen.
-After a moment, the script will then display a set of Calendar IDs and some sample events from those Calendars.
-Copy the ID of the calendar you want, and add it to `env.sh` like so:
-
-```bash
-export OUTLOOK_CALENDAR_ID=AQMkAxyz...
-```
-
-Note that if you set an Outlook Calendar ID, the Google Calendar will be ignored.
-
+[Instructions on Github](https://github.com/mendhak/waveshare-epaper-display#readme){: .btn .btn--info}
 
 ## Run it
 
-Run `./run.sh` which should query Climacell, Google/Outlook Calendar.  It will then create a png, then display the png on screen. 
+Run `./run.sh` which should query your chosen weather provider, as well as Google/Outlook calendar.  It will then create a png, then display the png on screen. 
 After a few runs, if everything is working well, you should then make this a cron job. 
 
 ```bash
@@ -283,11 +134,21 @@ Due to API rate limits, you will see various `.pickle` files which store the Goo
 
 ### Image conversion and display
 
-The image is converted from the intermediate SVG to PNG, and then the `display.py` renders it to screen using the e-Paper libraries.  It's slow, it takes about 30 seconds to write to screen. 
+The image is converted from the intermediate SVG to PNG, and then the `display.py` renders it to screen using the e-Paper libraries.  This used to take 30 seconds, but [recent improvements](https://github.com/waveshare/e-Paper/pull/104) have brought it down to just 3-5 seconds. 
 
-It's possible to use the C libraries to make this process faster, but it requires writing and compiling the display binary yourself.  It could further be sped up by converting the PNG to a 1-bit BMP so that there's less data to send over the wire.  The C way would take about 6-8 seconds.  
+It's possible to use the C libraries to make this process even faster, but it requires writing and compiling the display binary yourself.  It could further be sped up by converting the PNG to a 1-bit BMP so that there's less data to send over the wire.  The C way would take about 6-8 seconds.  
 
 The reason for sticking with the Python way is that I've got a v1 Waveshare display, while most users have a v2 Waveshare display, and it's easier to cater to both this way.  Curse of the early adopter!
+
+### Refreshing the screen at 2 AM
+
+The display by default does a 'partial' refresh every minute when displaying the new image.  However, the [Waveshare documentation](https://www.waveshare.com/w/upload/7/74/7.5inch-e-paper-hat-user-manual-en.pdf) recommends refreshing the screen fully once every 24 hours.  
+
+
+> We suggest you update e-Paper once every 24 hours or at least 10 days to update again. Otherwise, ghost of the last content may cannot [sic] be cleared
+
+To this effect, the screen goes fully blank at 2 AM for a minute, with the assumption that very few people will be awake to see it.  
+
 
 ## Troubleshooting
 
@@ -298,8 +159,8 @@ If you've set up the cron job as shown above, a `run.log` file will appear which
 If there isn't enough information in there, you can set `export LOG_LEVEL=DEBUG` in the `env.sh` and the `run.log` will contain even more information.  
 
 The scripts cache the calendar and weather information, to avoid hitting weather API rate limits.   
-If you want to force a weather update, you can delete the `weather-cache.json`.   
-If you want to force a calendar update, you can delete the `calendar.pickle` or `outlookcalendar.pickle`.   
+If you want to force a weather update, you can delete the `cache_weather.json`.   
+If you want to force a calendar update, you can delete the `cache_calendar.pickle` or `cache_outlookcalendar.pickle`.   
 If you want to force a re-login to Google or Outlook, delete the `token.pickle` or `outlooktoken.bin`.  
 
 ## Learn more: Waveshare documentation and sample code

@@ -1,5 +1,5 @@
 ---
-title: "Easily typing special characters using compose keys"
+title: "Easily type special characters using compose keys"
 description: ""
 
 categories: 
@@ -11,3 +11,4 @@ tags:
   - linux
 
 ---
+

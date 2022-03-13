@@ -305,15 +305,12 @@ For a list of config that can go in `smashtest.json`, see [command-line options]
 
 # A more involved test on MDN
 
-Due to Mozilla MDN's recent redesign, these steps will not work.  I will look to adjust these steps for the new layout. 
-{: .notice--warning}
-
 The most important skill to learn when writing Smashtests is telling it how to find the element you're interested in.  
 
 Some elements will be easy to find, they'll have a unique `id`.    
 Some elements will be nested deep inside layers of `div`s or in very dynamic SPAs.  
 
-In this next test, you'll go to Mozilla's MDN web docs, search for the `splice()` function, click the first result, and then change the page's language to Deutsch. This should cover a few different ways of finding elements. 
+In this next test, you'll go to Mozilla's MDN web docs, search for the `array` object, click the first result, and then change the page's language to Deutsch. This should cover a few different ways of finding elements. 
 
 Due to the nature of the web, these steps may become invalidated in a few years if MDN ever changes.  
 The screenshots should still illustrate the concepts of finding elements.  
@@ -322,7 +319,7 @@ The screenshots should still illustrate the concepts of finding elements.
 
 ## Perform a search
 
-To begin, open up [https://developer.mozilla.org](https://developer.mozilla.org) in your own browser.  Right click the 'Search MDN' textbox and inspect element.  
+To begin, open up [https://developer.mozilla.org](https://developer.mozilla.org) in your own browser.  Right click the main search textbox and inspect element.  
 Right away, the `id` of that input field is an obvious candidate to use.  
 
 [![inspect element]({{ site.baseurl }}/assets/images/smashtest-tutorial/005.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/005.png)
@@ -335,14 +332,16 @@ Open Firefox
 
     Navigate to 'https://developer.mozilla.org/'
 
-        $ Type 'splice[enter]' into '#main-q'
+        $ Type 'array' into '#hp-search-q'
+
+            Wait '5' secs
 ```
 
-This should successfully you to the search results page.  
+This should open MDN, type 'array' and a dropdown of search results should appear. 
 
 ## Click the first search result
 
-The next objective is to click the first link on the search results page. 
+The next objective is to click the first link in the search results dropdown. 
 
 In your `mdn.smash`: 
 
@@ -351,39 +350,27 @@ Open Firefox
 
     Navigate to 'https://developer.mozilla.org/'
 
-        ~ Type 'splice[enter]' into '#main-q'
+        ~ Type 'array' into '#hp-search-q'
 ```        
 
-Use the `~` modifier to go into interactive mode.  Press enter so that you get to the search results page.  
+Use the `~` modifier to go into interactive mode.  Press enter in the console so that Smashtest proceeds to the next step, and the search results dropdown appears. 
 
 Right click and inspect the first search result, as expected there isn't anything unique that marks it from the others.    
 
 [![inspect element]({{ site.baseurl }}/assets/images/smashtest-tutorial/006.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/006.png)
 
-You could type, 
 
-```
-Click 'h3'
-```
-
-And the browser will go to the correct page.  But `h3`, is far too generic to use; clicking the first `h3` could easily produce unexpected results in the future.  
-
-Go back to the search results page and try something else.  
-
-```
-Go Back
-```
 
 ### Picking useful selectors
 
-Notice that each link is inside a list, which is inside a `div` with `class=search-results`. 
+Notice that all the results are under a `div` with `class=search-results`.  And each item has a `class=result-item`
 
-That means a possible selector is `div.search-results h3`.  
+That means a possible selector is `div.search-results .result-item`.  
 
 Although this will match _every_ search result link, by default Smashtest will match against the first one.  To see for yourself, switch to the Console of developer tools, and type this
 
 ```
-document.querySelector("div.search-results h3");
+document.querySelector('div.search-results .result-item')
 ```
 
 The first search result gets highlighted.  That's pretty much the same behavior as Smashtest's.    
@@ -393,7 +380,7 @@ The first search result gets highlighted.  That's pretty much the same behavior 
 Now that you've found a good selector to use, try it in the terminal.  Entering just a selector will let you know if Smashtest was able to find it. 
 
 ```
-'div.search-results h3'
+'div.search-results .result-item'
 ```
 
 Found it:
@@ -406,24 +393,24 @@ Now that you know Smashtest can work with it, get Smashtest to click it.
 
 
 ```
-Click 'div.search-results h3'
+Click 'div.search-results .result-item'
 ```
 
-That should take you to the splice() documentation page.  Enter `x` to exit, and add it to your `mdn.smash`:
+That should take you to the Array documentation page.  Enter `x` to exit, and add it to your `mdn.smash`:
 
 ```
 Open Firefox
 
     Navigate to 'https://developer.mozilla.org/'
 
-        Type 'splice[enter]' into '#main-q'
+        Type 'array' into '#hp-search-q'
 
-            $ Click 'div.search-results h3'
+            $ Click 'div.search-results .result-item'
 ```
 
 ### Give selectors a friendly, readable name
 
-The selector `'div.search-results h3'` is not very readable, and neither is `'#main-q'`.  Smashtest has a feature called `props` which lets you map readable names to CSS selectors.  
+The selector `'div.search-results .result-item'` is not very readable, and neither is `'#hp-search-q'`.  Smashtest has a feature called `props` which lets you map readable names to CSS selectors.  
 
 Props are just another step in the test branch, and are just 'lookups', so they can go anywhere in the steps.  The `mdn.smash` can be rewritten like this, try running it: 
 
@@ -434,12 +421,12 @@ Open Firefox
 
         On MDN {
             props({
-                'Search box': `#main-q`,
-                'Search Result Link': `div.search-results h3`
+                'Search box': `#hp-search-q`,
+                'Search Result Link': `div.search-results .result-item`
             })
         }
 
-            Type 'splice[enter]' into 'Search box'
+            Type 'array' into 'Search box'
 
                 $ Click '1st Search Result Link'
 ```
@@ -461,32 +448,32 @@ Open Firefox
 
         On MDN {
             props({
-                'Search box': `#main-q`,
-                'Search Result Link': `div.search-results h3`
+                'Search box': `#hp-search-q`,
+                'Search Result Link': `div.search-results .result-item`
             })
         }
 
-            Type 'splice[enter]' into 'Search box'
+            Type 'array' into 'Search box'
 
                 ~ Click '1st Search Result Link'
 ```
 
-Run it with `npx smashtest` and press Enter to get to the documentation page. Right click the 'Change language' link in the top right, and inspect element.  
+Run it with `npx smashtest` and press Enter in the console to get to the documentation page. Right click the 'English' menu in the top right, and inspect element.  
 
 [![inspect element]({{ site.baseurl }}/assets/images/smashtest-tutorial/008.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/008.png)
 
-It's a simple `span` with the words `Change language` in it.  In the terminal, try:
+It's a simple `span` with the word `English` in it.  In the terminal, try:
 
 ```
-[span, 'Change language']
+[span, 'English']
 ```
 
-And that should work, it basically means, look for any `span` element on the page, with the inner text 'Change language'. 
+And that should work, it basically means, look for any `span` element on the page, with the inner text 'Change language', even if that inner text is nested. 
 
 But if you try it without any element, that will work too:
 
 ```
-['Change language']
+['English']
 ```
 
 This syntax means, look for _any_ element on the page, with the inner text 'Change language'.  In other words, it's a useful shortcut for strings that you know are unique on a page. 
@@ -494,29 +481,23 @@ This syntax means, look for _any_ element on the page, with the inner text 'Chan
 Proceed by clicking it. 
 
 ```
-Click ['Change language']
+Click ['English']
 ```
 
-The page scrolls to the the bottom, where there is a dropdown. Inspecting the dropdown reveals that it has a unique id, and a list of `option`s to choose from.  
+A dropdown with a list of languages appears. Inspecting the dropdown reveals that it has a unique class, `.language-menu` and contains a list of `li` and `button` with the languages to choose from.  
 
 [![inspect element]({{ site.baseurl }}/assets/images/smashtest-tutorial/009.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/009.png)
 
 In terminal, try:
 
 ```
-'#language-selector option'
+'.language-menu li' 
 ```
 
-This is going to match multiple values, but the requirement is to be more specific.  Use the `value` of the `option`. 
+This is going to match multiple values, and could probably work, but the requirement is to be more specific.  Let's try the `button` directly, which contains a `name` attribute. 
 
 ```
-Click '#language-selector option[value="de"]'
-```
-
-And finally, click the 'Change language' button. 
-
-```
-Click [button, 'Change language']
+Click '.language-menu button[name="de"]'
 ```
 
 That should be enough to update our `mdn.smash`.  Also from previous experience, the selector for Deutsch doesn't look very readable, so give it a prop.  
@@ -529,21 +510,19 @@ Open Firefox
 
         On MDN {
             props({
-                'Search box': `#main-q`,
-                'Search Result Link': `div.search-results h3`,
-                'German language option': `#language-selector option[value="de"]`
+                'Search box': `#hp-search-q`,
+                'Search Result Link': `div.search-results .result-item`,
+                'German language option': `.language-menu button[name="de"]`
             })
         }
 
-            Type 'splice[enter]' into 'Search box'
+            Type 'array' into 'Search box'
 
                 Click '1st Search Result Link'
 
-                    Click ['Change language']
+                    Click ['English']
 
-                        Click 'German language option'
-
-                            $ Click [button, 'Change language'] 
+                        $ Click 'German language option'
 ```
 
 Taking it even further, those finders in square brackets can also be converted to props.  Square brackets become backticks.  
@@ -555,23 +534,21 @@ Open Firefox
 
         On MDN {
             props({
-                'Search box': `#main-q`,
-                'Search Result Link': `div.search-results h3`,
-                'Change Language Link': `'Change language'`,
-                'German language option': `#language-selector option[value="de"]`,
-                'Change Language Button': `button, 'Change language'`
+                'Search box': `#hp-search-q`,
+                'Search Result Link': `div.search-results .result-item`,
+                'German language option': `.language-menu button[name="de"]`,
+                'Change language button': `'English'`
             })
         }
 
-            Type 'splice[enter]' into 'Search box'
+            Type 'array' into 'Search box'
 
                 Click '1st Search Result Link'
 
-                    Click 'Change Language Link'
+                    Click 'Change language button'
 
-                        Click 'German language option'
+                        $ Click 'German language option'
 
-                            $ Click 'Change Language Button'
 ```
 
 

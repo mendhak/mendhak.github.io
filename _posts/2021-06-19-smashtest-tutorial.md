@@ -305,6 +305,9 @@ For a list of config that can go in `smashtest.json`, see [command-line options]
 
 # A more involved test on MDN
 
+Due to Mozilla MDN's recent redesign, these steps will not work.  I will look to adjust these steps for the new layout. 
+{: .notice--warning}
+
 The most important skill to learn when writing Smashtests is telling it how to find the element you're interested in.  
 
 Some elements will be easy to find, they'll have a unique `id`.    

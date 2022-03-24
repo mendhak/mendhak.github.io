@@ -14,7 +14,7 @@ a { text-decoration: none; }
 
 article  a, article a:visited { color: #39626e; }
 
-article.archive__item a, article.archive__item a:visited { color: #343434; }
+header a, header a:visited, article.archive__item a, article.archive__item a:visited { color: #343434; }
 
 kbd {
     background-color: #eee;

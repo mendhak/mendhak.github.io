@@ -10,7 +10,11 @@
 @import "github-repo-card";
 
 
-article a, article a:visited { text-decoration: none; color: #39626e; }
+a { text-decoration: none; }
+
+article  a, article a:visited { color: #39626e; }
+
+article.archive__item a, article.archive__item a:visited { color: #343434; }
 
 ul.photostream {
 

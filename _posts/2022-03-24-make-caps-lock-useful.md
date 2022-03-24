@@ -13,6 +13,19 @@ tags:
 
 header: 
   teaser: /assets/images/make-caps-lock-useful/001.png
+
+gallery1:
+  - url: /assets/images/make-caps-lock-useful/007.png
+    image_path: /assets/images/make-caps-lock-useful/007.png
+  - url: /assets/images/make-caps-lock-useful/006.png
+    image_path: /assets/images/make-caps-lock-useful/006.png
+
+gallery2:
+  - url: /assets/images/make-caps-lock-useful/001.png
+    image_path: /assets/images/make-caps-lock-useful/001.png
+    title: "Inscription"
+    alt: "Inscription"
+
 ---
 
 
@@ -23,6 +36,8 @@ There do exist other keys which are less often used, such as Pause, and Scroll L
 It is even harmful.  An accidental press of Caps Lock can lead to accidental shouting in social media, incorrect password attempts, and even bad habits forming.  I have even witnessed actual grown adults, functioning members of society, using it in place of a Shift key.  They will press Caps Lock, type the letter, then press Caps Lock again.  I did not enquire as to what series of circumstances, events and abuse led to such a habit being formed.  I could only inform them that the Shift key exists, and merely holding this key down for a moment replicates the entire functionality of Caps Lock — they feigned polite interest.  
 
 I have been searching for better uses of the Caps Lock key and am listing some better uses I've found, as well as some observations regarding this key.   
+
+{% include gallery id="gallery2" caption="Caps Lock key replaced on my keyboard with a shrug (MT3 Susuwatari)" %}
 
 Of course there are some fields where the Caps Lock key gets used regularly, such as engineering drawing, certain kinds of data entry, and legal.  However for the purposes of self-serving hyperbole, these shall be ignored. 
 {: .notice--info}
@@ -60,6 +75,8 @@ The Chromebook actually recognizes how unnecessary this key is, and goes ahead a
 
 PowerToys is a collection of useful utilities meant for power users on Windows.  One of its utilities is a feature called [Video Conference Mute](https://docs.microsoft.com/en-us/windows/powertoys/video-conference-mute), which lets you quickly mute or unmute yourself regardless of the video conferencing software you're using such as Teams, Zoom or Slack.  The default shortcut for the audio mute is <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd>.  
 
+
+{% include gallery id="gallery1" layout="half" caption="Getting CapsLock to toggle mute in video conferences" %}
 
 It  cannot _directly_ be set to Caps Lock, however PowerToys also comes with a [Keyboard Manager](https://docs.microsoft.com/en-us/windows/powertoys/keyboard-manager) which allows you to assign a key to another key sequence. In Keyboard Manager, set <kbd>Caps</kbd> to <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd>, and there's your audio mute, with a somewhat useful Caps Lock key. 
 

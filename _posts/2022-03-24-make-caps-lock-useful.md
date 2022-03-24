@@ -21,8 +21,8 @@ gallery1:
     image_path: /assets/images/make-caps-lock-useful/006.png
 
 gallery2:
-  - url: /assets/images/make-caps-lock-useful/001.png
-    image_path: /assets/images/make-caps-lock-useful/001.png
+  - url: /assets/images/make-caps-lock-useful/001full.png
+    image_path: /assets/images/make-caps-lock-useful/001full.png
     title: "Inscription"
     alt: "Inscription"
 

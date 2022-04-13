@@ -1,7 +1,7 @@
 ---
 title: "Raspberry Pi: Simple Waveshare e-paper dashboard with weather and calendar"
 description: "Raspberry Pi dashboard with an e-paper display from waveshare, shows weather info, severe weather, and calendar entries"
-last_modified_at: 2022-03-06T14:00:00Z
+last_modified_at: 2022-04-13T14:00:00Z
 categories: 
   - raspberrypi
 tags: 
@@ -93,6 +93,7 @@ Wait a few minutes, and let the Pi connect over WiFi.  You should be able to SSH
 * Choosing a weather provider (OpenWeatherMap, Met Office, AccuWeather, Met.no, Weather.gov, Climacell)
 * Choosing a severe weather alert provider (Met Office and Weather.gov)
 * Choosing a calendar provider (Google Calendar and Outlook)
+* Choosing a layout
 
 [Instructions on Github](https://github.com/mendhak/waveshare-epaper-display#readme){: .btn .btn--info}
 

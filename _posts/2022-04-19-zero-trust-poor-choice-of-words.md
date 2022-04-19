@@ -1,6 +1,6 @@
 ---
 title: "'Zero Trust' security is a poor choice of words"
-description: "Consider the user's perspective when naming a security initiative, and try to get their buy-in"
+description: "Consider the user's perspective when naming a security initiative"
 
 categories: 
   - security

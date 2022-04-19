@@ -33,7 +33,7 @@ From a _security_ perspective, 'zero trust' makes a lot of sense and conveys inf
 
 As distasteful as it may seem to technologists, the 'marketing' around a name plays a big role.  An example from another area is ['serverless computing'](https://en.wikipedia.org/wiki/Serverless_computing), which most certainly involves servers, just not servers that its users would normally be concerned with.  It is a misnomer from the implementer's perspective, that conveys certain aspects of its usage to developers.  It certainly beats "deploy and run your code to my server" which starts going into details that some people would rather not think about.
 
-On the other hand, we don't want to go too far with the naming.  An example that springs to mind is the prefix 'magic'.  [Magic links](https://www.okta.com/uk/blog/2020/09/magic-links/), where a user clicks a link to authenticate.  Calling something 'magic' is in the realm of telling the user they're too stupid to understand what's going on.  
+On the other hand, we don't want to go too far with the naming.  An example that springs to mind is the prefix 'magic'.  See [Magic links](https://www.okta.com/uk/blog/2020/09/magic-links/), where a user clicks a link to authenticate.  Calling something 'magic' is in the realm of telling the user they're too stupid to understand what's going on.  
 
 ### Examples
 

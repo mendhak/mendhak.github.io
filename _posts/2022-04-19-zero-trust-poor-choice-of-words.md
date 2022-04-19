@@ -27,7 +27,7 @@ It's important to point out here, if we want widespread adoption of a new securi
 
 Naming things is hard, I'm not good at it; I can, however, recognize where a better name would help.  Also, that isn't going to stop me from making suggestions anyway.  
 
-From a _security_ perspective, 'zero trust' makes a lot of sense and conveys information about the underlying trust model.  Expecting users to grasp its implications from just that is a [You're Not Wrong meme](https://i.imgur.com/40Idny0.png).  If security is everybody's responsibility, there needs to be a sense of togetherness on the journey.  The naming and messaging needs to tell the user that the speed bumps they're encountering are there for a reason, the reason should be easy to intuit, and _ideally_ also convey that worth it in the grand scheme of things.  
+From a _security_ perspective, 'zero trust' makes a lot of sense and conveys information about the underlying trust model.  Expecting users to grasp its implications from just that is a [You're Not Wrong meme](https://i.imgur.com/40Idny0.png).  If security is everybody's responsibility, there needs to be a sense of togetherness on the journey.  The naming and messaging needs to tell the user that the speed bumps they're encountering are there for a reason, the reason should be easy to intuit, and _ideally_ (but more likely impossibly) also convey that worth it in the grand scheme of things.  
 
 ### Marketing
 

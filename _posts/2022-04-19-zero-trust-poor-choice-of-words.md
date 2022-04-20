@@ -39,7 +39,7 @@ On the other hand, we don't want to go too far with the naming.  An example that
 
 Google have phrased their implementation as ["BeyondCorp"](https://www.beyondcorp.com/) which takes the connotations away by talking about the edges. Could this be evolved to take on a more generic meaning?  
 
-"Parameterless Security" or "Boundaryless Security" - in a similar veing to BeyondCorp, it's conveying a sense of security that's everywhere.  Quite a mouthful to say.  
+"Parameterless Security" or "Boundaryless Security" - in a similar vein to BeyondCorp, it's conveying a sense of security that's everywhere.  Quite a mouthful to say.  
 
 "Continuous Verification" or "Continuous Security" - this is somewhat accurate, though it sounds a bit tedious; would a user think that they'll need to keep logging in every few minutes? 
 

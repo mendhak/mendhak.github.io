@@ -18,7 +18,7 @@ This isn't going to be a frictionless process — workflow changes are very diff
 
 ## Why it's important
 
-User frustration will be brought to the forefront, and this security model will be seen as a blocker to productivity and 'getting the job done'.  What will not help is the users is being told that this is part of a 'zero trust' security model.  From the user's perspective, this phrase has a negative connotation — it tells the user that they are not trustworthy, and it [goes again building trust in the workplace](https://www.forbes.com/sites/johnhall/2021/03/14/why-a-focus-on-employee-trust-is-essential/).  
+User frustration will be brought to the forefront, and this security model will be seen as a blocker to productivity and 'getting the job done'.  What will not help is the users is being told that this is part of a 'zero trust' security model.  From the user's perspective, this phrase has a negative connotation — it tells the user that they are not trustworthy, and it [goes against building trust in the workplace](https://www.forbes.com/sites/johnhall/2021/03/14/why-a-focus-on-employee-trust-is-essential/).  
 
 It's important to point out here, if we want widespread adoption of a new security model, getting buy-in from the people who will be living it, is paramount.  With the right buy-in, the same users can become proponents and even champions of the new systems, and that helps _everyone_.  Antagonistic phrasing paired with a troublesome implementation can make the same users the biggest barriers to its adoption.  
 

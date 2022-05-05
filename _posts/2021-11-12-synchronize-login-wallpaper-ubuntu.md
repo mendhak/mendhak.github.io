@@ -10,7 +10,8 @@ gallery1:
 
 header: 
   teaser: /assets/images/synchronize-login-wallpaper-ubuntu/003.png
-  
+
+last_modified_at: 2022-04-05T19:00:00Z
 
 ---
 
@@ -109,25 +110,40 @@ Try testing it by changing the wallpaper and waiting a few minutes, then rebooti
 
 ## Synchronizing with Variety
 
-The simplest way, if you use [Variety wallpaper changer](https://peterlevi.com/variety/), is to have the login screen wallpaper change together with the desktop wallpaper by [adding a custom command](https://answers.launchpad.net/variety/+faq/2143).  
+The simplest way, if you use [Variety wallpaper changer](https://peterlevi.com/variety/), is to have the login screen wallpaper change together with the desktop wallpaper by [adding a custom command](https://github.com/varietywalls/variety/blob/a8abe2bd36e293300bc1d3066726b660a3db9078/data/config/variety.conf#L16-L25).  
 
-To do this, edit the Variety set_wallpaper script:
-
-```
-nano ~/.config/variety/scripts/set_wallpaper
-```
-
-And near the end of the file, but before the `exit 0`, add this line.  Replace the path below with your own.  
+To do this, edit the Variety config file:
 
 ```
-# Use Change-GDM-Background to set login screen background. 
-sudo /home/myusername/change-gdm-background/change-gdm-background "$1"
+nano ~/.config/variety/variety.conf
 ```
 
-Save and that's it. Try changing the wallpaper via Variety, and then reboot.  The login screen should match.  
+At the top of the file, add this line which tells Variety to execute a specific bash script when the wallpaper should change.  
 
-There's a possibility that a future Variety update overwrites your modification.  You will need to re-add your lines in when that happens. 
-{: .notice--info}
+```
+set_wallpaper_script = /home/username/change-gdm-background/set_both_wallpapers.sh
+```
+
+Save, then create the `set_both_wallpapers.sh` script. 
+
+```
+nano /home/username/change-gdm-background/set_both_wallpapers.sh
+```
+
+Add these lines in:
+
+```bash
+#!/bin/bash 
+
+# Set the lock screen wallpaper
+echo "n" | sudo /home/username/change-gdm-background/change-gdm-background "$1" 2>&1 > /home/username/change-gdm-background/run.log
+
+# Now let Variety set the desktop wallpaper as usual.
+~/.config/variety/scripts/set_wallpaper $@
+```
+
+This script takes the wallpaper path passed by Variety, sets the lock screen wallpaper, then calls the regular Variety script to set the desktop wallpaper. 
+Try changing the wallpaper via Variety, and then reboot.  The login screen should match.  
 
 
 ## Special note for multi-monitor setups

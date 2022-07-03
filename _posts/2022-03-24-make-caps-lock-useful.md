@@ -57,6 +57,10 @@ To enable Compose Keys in Ubuntu 20.04, open [Gnome Tweaks](https://linuxhint.co
 
 [![Gnome Tweaks Compose Key]({{ site.baseurl }}/assets/images/make-caps-lock-useful/003.png)]({{ site.baseurl }}/assets/images/make-caps-lock-useful/003.png)
 
+In Ubuntu 22.04, it's available directly in Settings.  Go to Keyboard, and under 'Special Character Entry' change the Compose Key there.  
+
+[![Ubuntu 22.04 Compose Key]({{ site.baseurl }}/assets/images/make-caps-lock-useful/003b.png)]({{ site.baseurl }}/assets/images/make-caps-lock-useful/003b.png)
+
 There are [Compose Key Cheatsheets available](https://cheatography.com/davechild/cheat-sheets/ubuntu-compose-key-combinations/) which usually list the most common combinations; the [complete list is massive](https://cgit.freedesktop.org/xorg/lib/libX11/plain/nls/en_US.UTF-8/Compose.pre)
 
 Note that the Compose Keys are a _sequence_.  Don't hold down Caps while pressing the other keys like a shortcut.  Simply type the keys one after the other. 

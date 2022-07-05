@@ -44,7 +44,9 @@ header:
 ---
 
 
-I used to have a simple life — I'd buy books off Amazon, and read them on a Kindle.  But over the past few years, my reading habits changed drastically.  I'm now reading a lot more things, from a lot more sources, on a lot more devices and have had to break out of the Amazon bubble.  But I still wanted a relatively convenient setup for fetching and reading ebooks, and I've managed to achieve something that's working well enough for me.  Here I'm writing up my ebook getting and reading setup, and the reasoning behind each of the decisions I've made. 
+I used to have a simple life — I'd buy books off Amazon, and read them on a Kindle.  But over the past few years, my reading habits changed drastically.  I'm now reading a lot more things, from a lot more sources, on a lot more devices and have had to break out of the Amazon bubble.  
+
+But I still wanted a relatively convenient setup for fetching and reading ebooks, and I've managed to achieve something that's working well enough for me.  I'm able to get books from the library, bundles, direct downloads, and I access them from my computer, phone as well as Kindle device.  Here I'm writing up my ebook getting, surfacing, and reading setup, along with the reasoning behind each of the decisions I've made. 
 
 ## Where I get books
 

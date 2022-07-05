@@ -38,6 +38,9 @@ gallery3:
   - url: /assets/images/my-ebook-reading-setup/010b.png
     image_path: /assets/images/my-ebook-reading-setup/010b.png    
 
+header: 
+  teaser: /assets/images/my-ebook-reading-setup/012.png
+
 ---
 
 

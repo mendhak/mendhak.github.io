@@ -1,6 +1,6 @@
 ---
 title: "My ebook reading setup"
-description: "Various software and tools I use to read ebooks across multiple devices from multiple sources"
+description: "Using Calibre-Web hosted on a Raspberry Pi, surfaced through Cloudflare Tunnel, to read ebooks across multiple devices from multiple sources like libraries and bundles and light novels."
 
 categories: 
   - ebook

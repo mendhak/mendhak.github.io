@@ -13,6 +13,7 @@ tags:
   - standard
   - simplified
  
+last_modified_at: 2022-07-06T05:00:00Z
 
 gallery1:
   - url: /assets/images/general-understanding-quantum-safe-cryptography/002.png
@@ -201,3 +202,11 @@ Microsoft Research are covering [their efforts](https://www.microsoft.com/en-us/
 So there's more to come over the next few years.  Final choices and recommendations, hopefully some resolution to the potential patent headaches, and some actual implementations.  What is clear though, is that doing nothing isn't an option, and that's a pretty Shor bet.  
 
 Keeping up with ongoing PQC updates doesn't seem to be easy.  One way would be to join their [mailing list](https://csrc.nist.gov/Projects/post-quantum-cryptography/Email-List) at the risk of getting too much indecipherable 'noise'.  The other would be to 'watch' the [NIST PQC News page](https://csrc.nist.gov/Projects/post-quantum-cryptography/news).  That page doesn't seem to have an RSS feed, although there are a few [topic based RSS feeds](https://www.nist.gov/pao/nist-rss-feeds), again with the risk of too much 'other noise'.  
+
+
+## Update, 2022-07-06
+
+NIST have [announced](https://csrc.nist.gov/News/2022/pqc-candidates-to-be-standardized-and-round-4) some candidates to be standardized.  For general encryption (which will be used for browsing websites), NIST has selected the [CRYSTALS-Kyber](https://github.com/pq-crystals/kyber) algorithm. For signatures, three have been chosen:  [CRYSTALS-Dilithium](https://github.com/pq-crystals/dilithium), [FALCON](https://falcon-sign.info/) and [SPHINCS+](https://sphincs.org/).
+
+They are also proceeding to the [fourth round](https://csrc.nist.gov/News/2022/pqc-candidates-to-be-standardized-and-round-4#fourth-round) for additional candidates to standardize on.  
+

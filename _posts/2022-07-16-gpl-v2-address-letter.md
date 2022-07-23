@@ -12,7 +12,7 @@ tags:
   - gpl
 
 header: 
-  teaser: /assets/images/gpl-v2-address-letter/004a.jpg
+  teaser: /assets/images/gpl-v2-address-letter/005a.jpg
 
 gallery1:
   - url: /assets/images/gpl-v2-address-letter/003a.jpg

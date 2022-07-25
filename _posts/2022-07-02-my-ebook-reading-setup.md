@@ -111,7 +111,7 @@ To run, Calibre-Web requires the Calibre database file, as well as the books the
 
 ### Cloudflare Tunnel
 
-To expose Calibre-Web to the internet, I _could_ open a port on my home router and forward all traffic to the Raspberry Pi, but a much neater way of doing it is through [Cloudflare's tunnel](https://www.cloudflare.com/en-gb/products/tunnel/) which doesn't require opening any ports at all and.  Since my DNS is hosted in Cloudflare, the tunnel works by mapping a DNS hostname, `mylibrary.example.com` directly through Cloudflare's network to the tunnel software running on the Raspberry Pi, which forwards traffic onto the Calibre-Web server.  
+To expose Calibre-Web to the internet, I _could_ open a port on my home router and forward all traffic to the Raspberry Pi, but a much neater way of doing it is through [Cloudflare's tunnel](https://www.cloudflare.com/en-gb/products/tunnel/) which doesn't require opening any ports at all.  Since my DNS is hosted in Cloudflare, the tunnel works by mapping a DNS hostname, `mylibrary.example.com` directly through Cloudflare's network to the tunnel software running on the Raspberry Pi, which forwards traffic onto the Calibre-Web server.  
 
 I've got the entire setup with instructions in a [Github repo](https://github.com/mendhak/docker-calibre-web-cloudflared).  Everything required is in [the docker-compose.yml](https://github.com/mendhak/docker-calibre-web-cloudflared/blob/master/docker-compose.yml), including running the tunnel.  
 

@@ -100,3 +100,7 @@ Conveniently, a `dream_log.txt` file shows you all the prompts you've run in cas
 Type `--help` at the `dream>` prompt to see a list of options.  You can use flags like `-n5` to generate multiple images, `-s` for number of steps, and `-g` to generate a grid.  
 
 More details, including how to use an image as a starting prompt, can be found in [the README](https://github.com/lstein/stable-diffusion#interactive-command-line-interface-similar-to-the-discord-bot).  
+
+### Prompts
+
+If you need ideas for prompts, try the [Lexica.art](https://lexica.art/) site.  Find something interesting, and copy the prompt used, then try modifying it.  

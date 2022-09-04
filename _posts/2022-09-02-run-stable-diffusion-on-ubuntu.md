@@ -15,6 +15,21 @@ tags:
 header: 
   teaser: /assets/images/run-stable-diffusion-on-ubuntu/003.png
 
+gallery1:
+  - url: /assets/images/run-stable-diffusion-on-ubuntu/004.png
+    image_path: /assets/images/run-stable-diffusion-on-ubuntu/004.png
+  - url: /assets/images/run-stable-diffusion-on-ubuntu/005.png
+    image_path: /assets/images/run-stable-diffusion-on-ubuntu/005.png
+  - url: /assets/images/run-stable-diffusion-on-ubuntu/006.png
+    image_path: /assets/images/run-stable-diffusion-on-ubuntu/006.png
+
+gallery2:
+  - url: /assets/images/run-stable-diffusion-on-ubuntu/007.png
+    image_path: /assets/images/run-stable-diffusion-on-ubuntu/007.png
+  - url: /assets/images/run-stable-diffusion-on-ubuntu/008.png
+    image_path: /assets/images/run-stable-diffusion-on-ubuntu/008.png
+  - url: /assets/images/run-stable-diffusion-on-ubuntu/009.png
+    image_path: /assets/images/run-stable-diffusion-on-ubuntu/009.png    
 ---
 
 Stable Diffusion is a machine learning model that can generate images from natural language descriptions.  Because it's open source, it's also easy to run it locally, which makes it very convenient to experiment with in your own time. The simplest and best way of running Stable Diffusion is through the [Dream Script Stable Diffusion](https://github.com/lstein/stable-diffusion) fork, which comes with some convenience functions.  
@@ -88,19 +103,64 @@ A prompt will appear where you can enter some natural language text.
 dream>
 ```
 
-As an example, try *photograph of highly detailed closeup of victoria sponge cake*.  Wait a few seconds, and an image gets generated in the `outputs/img-sample` folder.  
+As an example, try 
+
+```
+dream> photograph of highly detailed closeup of victoria sponge cake
+```
+
+Wait a few seconds, and an image gets generated in the `outputs/img-sample` folder.  
 
 [![Example]({{ site.baseurl }}/assets/images/run-stable-diffusion-on-ubuntu/001.png)]({{ site.baseurl }}/assets/images/run-stable-diffusion-on-ubuntu/001.png)
 
-Conveniently, a `dream_log.txt` file shows you all the prompts you've run in case you want to refer back to something. 
+Conveniently, a `dream_log.txt` file shows you all the prompts you've run in case you want to refer back to something. Against each line, you will also see a seed number that looks something like this: `-S2420237860`.  This allows you to regenerate the exact same image by specifying the seed with your text prompt. 
+
+```
+dream> photograph of highly detailed closeup of victoria sponge cake -S2420237860
+```
+
+### Using an image as a source
+
+You can also use a crude image as a source for the prompt with the `--init_img` flag.  
+
+```
+dream> mountains and river, Artstation, Golden Hour, Sunlight, detailed, elegant, ornate, rocky mountains, Illustration, by Weta Digital, Painting, Saturated, Sun rays  --init_img=/home/mendhak/Desktop/rough_drawing.png
+```
+
+You can take the output from one step and re-feed it as the input again, and come up with some interesting results. 
+
+{% include gallery id="gallery1" caption="Mountains and river, output re-fed multiple times" %}
 
 
-### Extras
+
+### Generating larger images
+
+By default the output is 512x512 pixels.  There is a separate module you can use to upscale the output, called Real-ESRGAN.  
+It's really simple to install, while in the conda ldm environment, run: 
+
+```bash
+pip install realesrgan
+```
+
+After it's installed, go back into the dream script, generate an image, and this time add the `-U` flag at the end of the prompt (either 2 or 4)
+
+```
+dream> butterfly -U 4
+```
+
+### Face restoration
+
+The module for face restoration is called GFPGAN.  [Follow its installation instructions here](https://github.com/TencentARC/GFPGAN#installation), clone the GFPGAN directory alongside the stable-diffusion directory. And be sure to download the pre-trained model as shown. You can then use the `-G` flag as shown [in the Dream Script Stable Diffusion repo](https://github.com/lstein/stable-diffusion#gfpgan-and-real-esrgan-support).  
+
+
+
+### Notes and further reading
 
 Type `--help` at the `dream>` prompt to see a list of options.  You can use flags like `-n5` to generate multiple images, `-s` for number of steps, and `-g` to generate a grid.  
 
 More details, including how to use an image as a starting prompt, can be found in [the README](https://github.com/lstein/stable-diffusion#interactive-command-line-interface-similar-to-the-discord-bot).  
 
-### Prompts
+## Prompts
 
-If you need ideas for prompts, try the [Lexica.art](https://lexica.art/) site.  Find something interesting, and copy the prompt used, then try modifying it.  
+If you're like me, you will need ideas for prompts.  The best place to start, I've found, the [Lexica.art](https://lexica.art/) site.  Find something interesting, and copy the prompt used, then try modifying it.  
+

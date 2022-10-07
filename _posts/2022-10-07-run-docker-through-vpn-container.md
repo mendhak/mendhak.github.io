@@ -180,3 +180,7 @@ services:
 
 
 For more details, see [the gluetun wiki](https://github.com/qdm12/gluetun/wiki/Surfshark) which has lots of VPN provider instructions and more details.  
+
+## The country is optional
+
+In the examples above I've chosen a country deliberately, just for the sake of safety and thoroughness. But actually, specifying a country is optional.  The `SERVER_COUNTRIES`, if omitted, will cause the VPN to use your country. 

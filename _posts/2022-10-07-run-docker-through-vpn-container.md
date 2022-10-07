@@ -28,7 +28,7 @@ From the Locations tab, pick a country you want the traffic routed through.  Dow
 
 ![Address]({{ site.baseurl }}/assets/images/run-docker-through-vpn-container/002.png)
 
-## Set up Docker Compose
+## Set up the VPN container
 
 Create a docker-compose.yml file as below, and substitute the noted values.  The private key goes in `WIREGUARD_PRIVATE_KEY`, the address goes in `WIREGUARD_ADDRESSES`, and the country name goes in `SERVER_COUNTRIES`.  
 

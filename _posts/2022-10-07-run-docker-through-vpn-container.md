@@ -77,7 +77,7 @@ services:
       - SERVER_COUNTRIES=Finland
   curl:
     image: curlimages/curl
-    network_mode: "service:gluetun"
+    network_mode: "service:gluetun"  # <-- the magic
 ```
 
 Start the gluetun container, 

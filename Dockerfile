@@ -11,6 +11,8 @@ ENV LC_ALL C.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
 
+RUN gem install rouge -v 3.30.0
+RUN gem install public_suffix -v 4.0.7
 RUN gem install jekyll bundler
 RUN bundle install
 

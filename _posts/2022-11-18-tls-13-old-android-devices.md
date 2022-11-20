@@ -25,7 +25,7 @@ In many parts of the world, using mobile devices with older OSes are a fact of l
 
 Working on [GPSLogger](https://gpslogger.app/) over the past several years has put me in contact with a large userbase who are completely unlike myself; they are diverse in nature of usage and backgrounds. Among these, GPSLogger is used by several NGOs and charities around the world, as well as people and communities in emerging economies.  Most of these users do not have the latest devices with the latest OS versions, as it is not a primary concern in their usage habits. Instead, mobile devices are seen as a means to run tools to assist their tasks.  
 
-But these same circumstances also mean that the latest security improvements are out of reach for them.  That's because the web applications and services they connect to exist as independent entities and will have their own roadmaps of security, 
+But these same circumstances also mean that the latest security improvements are out of reach for them.  That's because the web applications and services they connect to exist as independent entities and will have their own roadmaps of security, independent of devices that access them.
 
 ![Android OS distribution]({{ site.baseurl }}/assets/images/tls-13-old-android-devices/001.png)
 
@@ -61,7 +61,7 @@ But there was a problem right away; it's huge!  Adding the library to GPSLogger 
 
 ### F-Droid post
 
-I eventually found [this blog post from F-Droid](https://f-droid.org/2020/05/29/android-updates-and-tls-connections.html) which talked about this very issue and how it could be solved, the answers wre all there!  Being lazy, I chose the simplest solution:  create a separate application that includes the library, let users install that application if needed, and only include the security provider if that application exists on the user's device.  
+I eventually found [this blog post from F-Droid](https://f-droid.org/2020/05/29/android-updates-and-tls-connections.html) which talked about this very issue and how it could be solved, the answers were all there!  Being lazy, I chose the simplest solution:  create a separate application that includes the library, let users install that application if needed, and only include the security provider if that application exists on the user's device.  
 
 ## Conscrypt Provider App
 

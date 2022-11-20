@@ -29,7 +29,7 @@ But these same circumstances also mean that the latest security improvements are
 
 ![Android OS distribution]({{ site.baseurl }}/assets/images/tls-13-old-android-devices/001.png)
 
-A good example of this is the OpenStreetMap trace upload feature.  Recently, I had started receiving reports regarding older Android devices being unable to upload traces to OpenStreetMap, and that that this feature had stopped working.  After some investigation, it turned out that OpenStreetMap had moved to TLS 1.2 and TLS 1.3, and this could be confirmed by trying to connect using TLS 1.1. 
+A good example of this is the OpenStreetMap trace upload feature.  Recently, I had started receiving reports regarding older Android devices being unable to upload traces to OpenStreetMap, and that this feature had stopped working.  After some investigation, it turned out that OpenStreetMap had moved to TLS 1.2 and TLS 1.3, and this could be confirmed by trying to connect using TLS 1.1. 
 
 
 ```bash
@@ -44,12 +44,12 @@ no peer certificate available
 
 ### Provider Installer, Google Play Services
 
-Several versions of Android already come with TLS versions _available_, just not _enabled_ by default.  Enabling them for an application requires using something called the  [ProviderInstaller](https://developers.google.com/android/reference/com/google/android/gms/security/ProviderInstaller), which is invoked using `ProviderInstaller.installIfNeeded(context)`.  Simple, but just one problem — the library is closed source and isn't eligible for use on F-Droid.  
+Several versions of Android already come with TLS versions _available_, just not _enabled_ by default.  Enabling them for an application requires using something called the  [ProviderInstaller](https://developers.google.com/android/reference/com/google/android/gms/security/ProviderInstaller), which is invoked using `ProviderInstaller.installIfNeeded(context)`.  Simple, but just one problem — the library is closed source and isn't eligible for use on F-Droid.
 
 
 ### Conscrypt Provider, Open Source
 
-[Conscrypt](https://github.com/google/conscrypt) is an open source library by Google that acts as a Java Security Provider (JSP).  Unsurprisingly, I couldn't find any good documentation on JSPs, how they work, or why they're needed, but it was enough to understand that JSPs can be plugged in to your application and the Java Runtime will make use of them.  The great part about Conscrypt is that it can work on Android devices as old as version 2.2!  
+[Conscrypt](https://github.com/google/conscrypt) is an open source library by Google that acts as a Java Security Provider (JSP).  Unsurprisingly, I couldn't find any good documentation on JSPs, how they work, or why they're needed, but it was enough to understand that JSPs can be plugged into your application and the Java Runtime will make use of them.  The great part about Conscrypt is that it can work on Android devices as old as version 2.2!  
 
 The library is available on maven, and once the library has been added to the application, using it is very simple, 
 
@@ -61,7 +61,7 @@ But there was a problem right away; it's huge!  Adding the library to GPSLogger 
 
 ### F-Droid post
 
-I eventually found [this blog post from F-Droid](https://f-droid.org/2020/05/29/android-updates-and-tls-connections.html) which talked about this very issue and how it could be solved, the answers were all there!  Being lazy, I chose the simplest solution:  create a separate application that includes the library, let users install that application if needed, and only include the security provider if that application exists on the user's device.  
+I eventually found [this blog post from F-Droid](https://f-droid.org/2020/05/29/android-updates-and-tls-connections.html) which talked about this very issue and how it could be solved, the answers were all there!  Being lazy, I chose the simplest solution:  create a separate application that includes the library, let users install that application if needed, and only include the security provider if that application exists on the user's device.
 
 ## Conscrypt Provider App
 
@@ -79,7 +79,7 @@ installMethod.invoke(null);
 Log.i("Conscrypt Provider installed");
 ```    
 
-As the F-Droid post explains, to avoid spoofing, a good mitigation is to check the application's signature.  In my case I am checking both my certificate as well as the F-Droid certificate signature.  
+As the F-Droid post explains, to avoid spoofing, a decent mitigation is to check the application's signature.  In my case, I am checking both my certificate as well as the F-Droid certificate signature.  
 
 ```java
 try {
@@ -121,7 +121,7 @@ With these ingredients in place, I'm now able to provide TLS 1.3 to older device
 
 A chicken and egg situation still exists.  I don't want to nag every user to install the provider app, but only to users that will need it.  How then, do I figure out whether a user needs it?  
 
-A very crude approach is to check the Android vesion and simply offer the extra app to install, but as mentioned earlier, it's just unnecessary for most users if they're not using a service that requires TLS 1.3.  
+A very crude approach is to check the Android version and simply offer the extra app to install, but as mentioned earlier, it's just unnecessary for most users if they're not using a service that requires TLS 1.3.  
 
 A slightly sophisticated approach would require users running into an SSL socket or handshake exception, figuring out whether it's related to TLS versions, and then offering them the option to install the app.  I haven't found a reliable way to determine this. 
 

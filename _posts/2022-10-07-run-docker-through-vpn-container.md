@@ -33,6 +33,7 @@ From the Locations tab, pick a country you want the traffic routed through.  Dow
 Create a docker-compose.yml file as below, and substitute the noted values.  The private key goes in `WIREGUARD_PRIVATE_KEY`, the address goes in `WIREGUARD_ADDRESSES`, and the country name goes in `SERVER_COUNTRIES`.  
 
 ```yaml
+version: "3"
 services:
   gluetun:
     image: qmcgaw/gluetun
@@ -64,6 +65,7 @@ If you see failure messages, the process will keep restarting itself and retryin
 Once the Gluetun container is running, you should do a quick test using curl.  The trick here is to use the `network_mode` argument and point at the gluetun container.   
 
 ```yaml 
+version: "3"
 services:
   gluetun:
     image: qmcgaw/gluetun

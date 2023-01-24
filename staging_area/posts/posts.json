@@ -3,5 +3,6 @@
   "tags": [
     "posts"
   ],
+  "includeJsonLD": true,
   "layout": "layouts/post.njk"
 }

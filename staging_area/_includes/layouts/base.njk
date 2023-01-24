@@ -49,6 +49,26 @@
 
   <link href="{{ metadata.favicon }}" rel="icon" type="image/x-icon" />
 
+  {% if includeJsonLD %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ title or metadata.title }}",
+    "description": "{{ description or metadata.description }}",
+    "image": "{{ (opengraph.image or metadata.opengraph.image) | htmlBaseUrl(metadata.url) }}",
+    "keywords": "{{ (tags or metadata.tags) | filterTagList }}",
+    "url": "{{ page.url | htmlBaseUrl(metadata.url) }}",
+    "dateModified": "{{ page.date | htmlDateString }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ metadata.author.name }}",
+        "url": "{{ metadata.author.url }}"
+    }
+  }
+  </script>
+  {% endif %}
+
 </head>
 
 <body>

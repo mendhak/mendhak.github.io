@@ -1,0 +1,45 @@
+{
+  "name": "eleventy-mendhak-blog-theme",
+  "version": "1.0.0",
+  "description": "My simplified opinionated eleventy theme, the focus is on content first, and less on other things.",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "bench": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy",
+    "start": "ELEVENTY_ENV=development npx @11ty/eleventy --serve --watch --incremental",
+    "debug": "DEBUG=* npx @11ty/eleventy",
+    "test": "cd tests;npx smashtest",
+    "stop": "kill -9 $(lsof -t -i :8080)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mendhak/eleventy-mendhak-blog-theme.git"
+  },
+  "author": {
+    "name": "mendhak",
+    "email": "mendhak@users.noreply.github.com",
+    "url": "https://code.mendhak.com/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mendhak/eleventy-mendhak-blog-theme/issues"
+  },
+  "homepage": "https://code.mendhak.com/eleventy-mendhak-blog-theme/",
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.0-beta.1",
+    "@11ty/eleventy-plugin-rss": "^1.2.0",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.2.0",
+    "clean-css": "^5.3.2",
+    "luxon": "^3.2.1",
+    "markdown-it": "^13.0.1",
+    "markdown-it-anchor": "^8.6.6",
+    "prism-themes": "^1.9.0",
+    "simpledotcss": "^2.1.1",
+    "simplelightbox": "^2.12.1"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "smashtest": "^1.7.0"
+  }
+}

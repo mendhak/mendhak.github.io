@@ -1,0 +1,25 @@
+{
+  "title": "Mendhak's Eleventy Theme",
+  "url": "https://code.mendhak.com/eleventy-mendhak-blog-theme/",
+  "pathPrefix": "/eleventy-mendhak-blog-theme/",
+  "language": "en",
+  "paginationSize": 4,
+  "favicon": "/assets/images/favicon.png",
+  "description": "Blog theme for Eleventy with various new features",
+  "tags": ["eleventy", "blog", "theme", "template", "starter"],
+  "feed": {
+    "path": "/feed.xml"
+  },
+  "jsonfeed": {
+    "path": "/feed.json"
+  },
+  "author": {
+    "name": "mendhak",
+    "email": "",
+    "url": "https://github.com/mendhak/eleventy-mendhak-blog-theme"
+  },
+  "opengraph": {
+    "image": "/assets/images/article.png",
+    "type": "article"
+  }
+}

@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="{{ metadata.language }}">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ title or metadata.title }}</title>
+
+  <style>
+    {# Couldn't put this into a .css file for minification, because the font URLs need the | htmlBaseUrl helper.  #}
+    /* lora-700 - latin */
+    @font-face {
+      font-family: 'Lora';
+      font-style: normal;
+      font-weight: 700;
+      src: local(''),
+          url('{{ "/assets/fonts/lora-v26-latin-700.woff2" | htmlBaseUrl }}') format('woff2'), /* Chrome 26+, Opera 23+, Firefox 39+ */
+          url('{{ "/assets/fonts/lora-v26-latin-700.woff" | htmlBaseUrl }}') format('woff'); /* Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+    }
+
+
+  {% if extraWideMedia==false %}{% set fullbleed = "" %}{% else %}{% set fullbleed = "assets/css/fullbleed.css" %}{% endif %}
+
+  {% cssminification %}
+    [
+    "node_modules/simpledotcss/simple.min.css",
+    "assets/css/index.css",
+    "node_modules/prism-themes/themes/prism-a11y-dark.css",
+    "{{ fullbleed }}"
+    ]
+  {% endcssminification %}
+  </style>
+
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml">
+  <link rel="alternate" href="{{ metadata.feed.path }}" type="application/atom+xml" title="{{ metadata.title }}">
+  <link rel="alternate" href="{{ metadata.jsonfeed.path  }}" type="application/json" title="{{ metadata.title }}">
+
+  <meta property="og:title" content="{{ title or metadata.title }}"/>
+  <meta property="og:url" content="{{ page.url | htmlBaseUrl(metadata.url) }}" />
+  <meta property="og:description" content="{{ description or metadata.description }}" />
+  <meta property="og:image" content="{{ (opengraph.image or metadata.opengraph.image) | htmlBaseUrl(metadata.url) }}" />
+  <meta property="og:type" content="{{ metadata.opengraph.type }}" />
+  <meta property="og:article:author" content="{{ metadata.author.name }}" />
+  <meta property="og:article:tag" content="{{ tags or metadata.tags }}" />
+  <meta name="description" content="{{ description or metadata.description }}">
+  <meta name="keywords" content="{{ tags or metadata.tags | filterTagList }}">
+
+  <meta name="generator" content="{{ eleventy.generator }}">
+
+  <link href="{{ metadata.favicon }}" rel="icon" type="image/x-icon" />
+
+</head>
+
+<body>
+  <header>
+    <a href="/">{{ metadata.title }}</a>
+  </header>
+  <main>
+    <h1><a href="">{%- if title %}{{ title }}{%- endif %}</a></h1>
+    {{ content | safe }}
+  </main>
+
+  <footer>
+
+    <ul class="bottomlinks">
+        {%- for item in bottomlinks -%}
+        <li><a href="{{ item.link }}">{{ item.text }}</a></li>&nbsp;&nbsp;&nbsp;
+        {%- endfor -%}
+    </ul>
+
+    <p>&mdash; &copy; {% year %} {{ metadata.author.name }} &mdash;</p>
+
+    <ul class="photostream">
+        {%- for photo in photostream -%}
+        <li><a href="{{ photo.link }}"><img width="150" height="150" alt="thumbnail" src="{{ photo.img }}" loading="lazy"></a></li>&nbsp;&nbsp;&nbsp;
+        {%- endfor -%}
+    </ul>
+  </footer>
+
+
+{# Detects if images are in the content, it will add the simplelightbox JS/CSS if needed.  #}
+{% addLightBoxRefIfNecessary %}
+
+  <!-- Current page: {{ page.url | htmlBaseUrl }} -->
+</body>
+
+</html>

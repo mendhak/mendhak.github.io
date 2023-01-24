@@ -1,0 +1,10 @@
+---
+layout: layouts/home.njk
+# Pagination is set in index.11tydata.js
+permalink: "/{% if pagination.pageNumber > 0 %}{{ pagination.pageNumber + 1 }}/{% endif %}"
+---
+
+
+{% include "postslist.njk" %}
+
+{% include "pagination.njk" %}

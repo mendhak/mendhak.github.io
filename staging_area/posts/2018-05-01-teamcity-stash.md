@@ -9,7 +9,7 @@ tags:
 
 This build feature sends build status updates from TeamCity to Bitbucket.  You can then see build statuses against commits.
 
-{% include repo_card.html reponame="teamcity-stash" %}
+{% githubrepocard "mendhak/teamcity-stash" %}
 
 
 ## Why use this
@@ -17,15 +17,12 @@ This build feature sends build status updates from TeamCity to Bitbucket.  You c
 Reporting build statuses to Bitbucket is a useful way of working with pull requests.  Bitbucket allows you to restrict pull request approvals to a passing builds in addition to the usual approvers, so this can be used to gain some confidence with regards to the quality of a pull request. 
 
 
-![Bitbucket screenshot]({{ site.baseurl }}/assets/images/teamcity-stash/001.png)
+![Bitbucket screenshot](/assets/images/teamcity-stash/001.png)
  
 
-
+{% notice "info" %}
 **TeamCity 10:** Recent releases of TeamCity now include a [commit status publisher](https://www.jetbrains.com/help/teamcity/commit-status-publisher.html) which works with Bitbucket, Github, Gitlab and Gerrit.
-{: .notice--info}
-
-
-
+{% endnotice %}
 
 
 
@@ -40,12 +37,12 @@ Set-up
 
 Under your build steps, click on `Add Build Feature`. It will appear in the dropdown list.
 
-![Build Feature]({{ site.baseurl }}/assets/images/teamcity-stash/002.png)
+![Build Feature](/assets/images/teamcity-stash/002.png)
 
 
 Simply enter your Bitbucket server details and credentials to connect with. The plugin will now send build status updates to your Bitbucket server.
 
-![Configuration]({{ site.baseurl }}/assets/images/teamcity-stash/003.png)
+![Configuration](/assets/images/teamcity-stash/003.png)
 
 
 How it works

@@ -1,7 +1,7 @@
 {
-  "title": "Mendhak's Eleventy Theme",
-  "url": "https://code.mendhak.com/eleventy-mendhak-blog-theme/",
-  "pathPrefix": "/eleventy-mendhak-blog-theme/",
+  "title": "Mendhak / Code",
+  "url": "https://code.mendhak.com/",
+  "pathPrefix": "/",
   "language": "en",
   "paginationSize": 4,
   "favicon": "/assets/images/favicon.png",
@@ -16,7 +16,7 @@
   "author": {
     "name": "mendhak",
     "email": "",
-    "url": "https://github.com/mendhak/eleventy-mendhak-blog-theme"
+    "url": "https://code.mendhak.com"
   },
   "opengraph": {
     "image": "/assets/images/article.png",

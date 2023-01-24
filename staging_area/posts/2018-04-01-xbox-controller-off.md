@@ -6,6 +6,8 @@ categories:
 tags:
   - xbox
   - windows 10
+
+extraWideMedia: false  
 ---
 
 If you have a wireless XBox controller for PC, then you cannot turn the controller off without removing-and-reattaching the battery pack. Further, if you shut your computer off, the XBox controller will keep trying to find the wireless receiver until it drains the battery.

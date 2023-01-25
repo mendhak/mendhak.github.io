@@ -20,7 +20,7 @@ This Docker image echoes various HTTP request properties back to client, as well
 You can get started quickly with just this command
 
 ```bash
-docker run -p 8080:80 -p 8443:443 --rm -t mendhak/http-https-echo
+docker run -p 8080:8080 -p 8443:8443 --rm -t mendhak/http-https-echo
 ```
 
 This will bring up the image and start listening (quietly) on port `8080` for http and `8443` for https.  You can substitute with your own ports.  
@@ -41,7 +41,7 @@ curl -k -X PUT -H "Arbitrary:Header" -d aaa=bbb https://localhost:8443/hello-wor
 
 You can also see the request appear in the docker logs  
 
-[![`docker logs -f`]({{ site.baseurl }}/assets/images/docker-http-https-echo/003.png)]({{ site.baseurl }}/assets/images/docker-http-https-echo/003.png)
+[![Docker log output]({{ site.baseurl }}/assets/images/docker-http-https-echo/003.png)]({{ site.baseurl }}/assets/images/docker-http-https-echo/003.png)
 
 ## Features
 

@@ -11,7 +11,7 @@ tags:
 
 This Apache Airflow operator can send messages to specific MS Teams Channels.  It can be especially useful if you use MS Teams for your chatops.  
 
-{% include repo_card.html reponame="Airflow-MS-Teams-Operator" %}
+{% githubrepocard "mendhak/Airflow-MS-Teams-Operator" %}
 
 
 Common usages for this would be:
@@ -47,7 +47,7 @@ op1 = MSTeamsWebhookOperator(task_id='msteamtest',
 
 This sends a card to your channel:
 
-![MS Teams]({{ site.baseurl }}/assets/images/Airflow-MS-Teams-Operator/001.png)
+![MS Teams](/assets/images/Airflow-MS-Teams-Operator/001.png)
 
 There is a bit of prep work required in Teams as well as Airflow to enable this functionality.  
 
@@ -58,7 +58,7 @@ Pick the channel you want messages sent to, click the `…` > `Connectors` and s
 
 Click Configure, give it a name and you will be given a webhook URL. 
 
-![Webhook]({{ site.baseurl }}/assets/images/Airflow-MS-Teams-Operator/002.png)
+![Webhook](/assets/images/Airflow-MS-Teams-Operator/002.png)
 
 Webhooks don't usually have additional authentication; you should treat this URL as sensitive and keep it in a safe place. 
 {: .notice--warning}
@@ -67,7 +67,7 @@ Webhooks don't usually have additional authentication; you should treat this URL
 
 In Airflow, create a new Connection under Admin > Connections
 
-![http]({{ site.baseurl }}/assets/images/Airflow-MS-Teams-Operator/003.png)
+![http](/assets/images/Airflow-MS-Teams-Operator/003.png)
 
 Note the `Host` field starts directly with `outlook.office.com` and the `Schema` is where you specify `https`.  
 
@@ -75,7 +75,7 @@ Note the `Host` field starts directly with `outlook.office.com` and the `Schema`
 
 Copy the MS Teams operator and Hook into your own Airflow project. 
 
-[MS Teams Hook](https://github.com/mendhak/Airflow-MS-Teams-Operator/blob/master/ms_teams_webhook_hook.py){: .btn .btn--info} [MS Teams Operator](https://github.com/mendhak/Airflow-MS-Teams-Operator/blob/master/ms_teams_webhook_operator.py){: .btn .btn--info} 
+{% button "MS Teams Hook", "https://github.com/mendhak/Airflow-MS-Teams-Operator/blob/master/ms_teams_webhook_hook.py" %} {% button "MS Teams Operator", "https://github.com/mendhak/Airflow-MS-Teams-Operator/blob/master/ms_teams_webhook_operator.py" %}
 
 Import it into your DAG
 
@@ -91,7 +91,7 @@ You can now use the operator as shown above.
 You can also use the operator to notify MS Teams whenever a DAG fails.  This will create a card with a 'View Log' button that developers can click on and go directly to the log of the failing DAG operator.  Very convenient. 
 
 
-![http]({{ site.baseurl }}/assets/images/Airflow-MS-Teams-Operator/004.png)
+![http](/assets/images/Airflow-MS-Teams-Operator/004.png)
 
 To do this, create a method that receives the failure context, which calls `MSTeamsWebhookOperator`.  Set this method in the `on_failure_callback` of the DAG.  
 

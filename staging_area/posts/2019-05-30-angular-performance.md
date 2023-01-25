@@ -1,18 +1,15 @@
 ---
 title: "AngularJS - Perceived Performance"
 description: "Understanding and measuring Angular JS perceived performance"
-categories:
-  - angular
 tags:
   - javascript
   - angular
 ---
 
-{{ page.description }} 
+{{ description }} 
 
-{% include repo_card.html reponame="angular-performance" %}
+{% githubrepocard reponame="mendhak/angular-performance" %}
 
-[View Demo](sample/){: .btn .btn--info} 
 
 
 ## Page Load vs Perceived Page Load
@@ -20,13 +17,13 @@ tags:
 
 In a traditional page, measuring the page performance is quite easy; a request is made, the server responds with some HTML and the browser renders it.  Done.
 
-![Traditional]({{ site.baseurl }}/assets/images/angular-performance/001.png)
+![Traditional](/assets/images/angular-performance/001.png)
 
 A lot of the rendering logic is taken care of as part of the server processing and so looking at `Window Load` and `DOMContentReady` are good indicators of page performance.
 
 In a Single Page Application, things get trickier.  The `Window Load` is only the beginning - that's when the JavaScript has been delivered to the browser, at which point the client-side logic - all the real work - kicks in and begins rendering the page, making API calls and setting up listeners, events, etc.
 
-![SPA]({{ site.baseurl }}/assets/images/angular-performance/002.png)
+![SPA](/assets/images/angular-performance/002.png)
 
 The DOM is then continuously manipulated as part of user interaction or monitoring, polling and other events. As you can see, the traditional definition of a page being 'done' doesn't apply here.
 
@@ -34,11 +31,11 @@ The *perceived* page performance is how long the user thinks the major elements 
 
 Taking GMail as an example, most users will consider the page ready when the list of emails appear.  Whether or not the social tabs, filters, navigation or GTalk appears is less important.  
 
-![gmail]({{ site.baseurl }}/assets/images/angular-performance/003.png)
+![gmail](/assets/images/angular-performance/003.png)
 
 Similarly, on a news website, the title and body of the news article matter the most.  Related articles and featured stories aren't that important, but top stories may matter.
 
-![bbc]({{ site.baseurl }}/assets/images/angular-performance/004.png)
+![bbc](/assets/images/angular-performance/004.png)
 
 The images above are just examples with arbitrarily assigned regions of importance.  The point here is, the definition of page done has to be defined on a per-case basis.  The most common definition is usually something like *"The page is done when this particular div is filled with content"* - indicating that the page loaded, an API call was made and the contents were rendered. On a heavier page, this would be when three or four divs have all been filled with content.  You could even choose to ignore certain parts of the page as being less important.
 
@@ -60,7 +57,7 @@ Because this is a client side operation, a few components are required:
 4. The beacon requests will be stored in your web server logs, and a log parsing application (eg. logster) can retrospectively process it, grab the information and store it your aggregating service (eg. graphite).
 
 
-![components]({{ site.baseurl }}/assets/images/angular-performance/005.png)
+![components](/assets/images/angular-performance/005.png)
 
 
 ## Using the performance directives
@@ -125,11 +122,11 @@ Ensure that the `performance loaded` directives sit within the scope of the `per
 
 See this page for a demo.  
 
-[View Demo](sample/){: .btn .btn--info}
+{% button "View Demo", "sample/" %}
 
 Be sure to open your networks tab or Fiddler to see the beacon request.
 
-![network tab]({{ site.baseurl }}/assets/images/angular-performance/006.png)
+![network tab](/assets/images/angular-performance/006.png)
 
 Look at [index.html](https://github.com/mendhak/angular-performance/blob/master/sample/index.html) and [controllers.js](https://github.com/mendhak/angular-performance/blob/master/sample/js/controllers.js) to see how it's done.
 

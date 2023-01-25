@@ -1,11 +1,11 @@
 ---
 title: "An https echo Docker container for web debugging"
 description: "Docker image that echoes request data as JSON; listens on HTTP/S, useful for debugging."
-categories:
-  - docker
 tags:
   - docker
   - http
+  - debug
+  - utility
 ---
 
 I've often had to test various aspects of web requests such as whether the right headers, querystrings, body, methods, etc. were being passed correctly. 

@@ -1,18 +1,17 @@
 ---
 title: "Using KeePass to serve SSH keys"
 description: "Using KeePass with KeeAgent to serve SSH keys for git and bash. Security setup instructions for using KeePass with KeeAgent for SSH keypairs"
-categories:
-  - git
+
 tags:
   - keepass
-  - windows 10
+  - windows
 
 ---
 
      
 While KeePass is generally used for storing credentials, it can also be used to store SSH keys as well as *serve* those SSH keys when applications need it.
 
-{% include repo_card.html reponame="keepass-and-keeagent-setup" %}
+{% githubrepocard "mendhak/keepass-and-keeagent-setup" %}
 
 
 
@@ -145,5 +144,6 @@ You should only check the above option for frequent use keys, and a Git server k
 For occasional use keys, you can double click the *SSH Key Status* column to load them only when you're about to use it, and even unload a few others.
 
 
-For instructions on using this setup with WSL (Ubuntu), see [Using KeeAgent with WSL and Ubuntu ]({{ site.baseurl }}/keeagent-with-wsl/).
-{: .notice--info}
+{% notice "info" %}
+For instructions on using this setup with WSL (Ubuntu), see [Using KeeAgent with WSL and Ubuntu ](/keeagent-with-wsl/).
+{% endnotice %}

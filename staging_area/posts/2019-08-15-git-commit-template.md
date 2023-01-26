@@ -1,7 +1,7 @@
 ---
 title: "Short guide to good commit messages"
 description: "Say this to yourself before writing your commit message"
-layout: none
+layout: false
 permalink: /git-commit-message/
 ---
 

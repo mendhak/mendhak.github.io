@@ -1,21 +1,21 @@
 ---
 title:      Syncing your Github status with your currently playing Steam game 
 description: "Read the currently playing game on Steam and set it as a Github Status, with busy icon and expiry time"
-categories:
- - tech
- - gaming
- - steam
- - github
+
 tags:
  - tech
  - gaming
  - steam
  - github
+
+opengraph:
+  image: /assets/images/steam-github-profile-status/001.png
+
 ---
 
 I have written a script that will attempt to update your Github user profile status with the game currently being played on Steam.  I haven't been using the Github Profile Status feature for any purpose, so might as well use it for something interesting to me.  
 
-[![Example]({{ site.baseurl }}/assets/images/steam-github-profile-status/001.png)]({{ site.baseurl }}/assets/images/steam-github-profile-status/001.png)
+![Example](/assets/images/steam-github-profile-status/001.png)
 
 The script can mark the status as 'busy', and also expires the status after a certain number of hours. 
 

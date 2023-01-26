@@ -1,10 +1,6 @@
 ---
 title: "Using Gradle to PGP sign and checksum files"
 description: "Using Gradle to automatically and securely PGP sign files and creat checksum files"
-categories: 
-  - gradle
-  - android
-  - pgp
 tags: 
   - gradle
   - android
@@ -52,8 +48,10 @@ signing {
 
 `useGpgCmd()` will use the GPG executable on your system, this should already be present on Linux systems.  With Windows you'd need to install GPG, it comes with with [Git for Windows](https://git-scm.com). 
 
+{% notice "warning" %}
 You will find [other instructions](https://docs.gradle.org/current/userguide/signing_plugin.html#sec:signatory_credentials) where a `key`, `password` and `secretKeyRingFile` file are required.  However, since GPG 2.1 [there is no secring file](https://gnupg.org/faq/whats-new-in-2.1.html#nosecring), so it is better to `useGpgCmd()` instead.  
-{: .notice--warning}
+{% endnotice %}
+
 
 
 ### All together in a Gradle task

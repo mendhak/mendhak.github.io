@@ -8,8 +8,8 @@ tags:
   - api-gateway
   - openapi
 
-header: 
-  teaser: /assets/images/api-gateway-self-hosted/002.png
+opengraph: 
+  image: /assets/images/api-gateway-self-hosted/002.png
 
 ---
 
@@ -18,7 +18,7 @@ It's possible to host your OpenAPI (Swagger) JSON as well the UI from within API
 
 The most common recommended ways of hosting API Gateway documentation often involve putting the OpenAPI JSON, along with a static website, on an S3 bucket and directing users to that. But this isn't simple and introduces deployment complexity.  It's easier though, to simply serve the JSON and UI from a Lambda. This is convenient as it allows your API code sit with, and be deployed with, the rest of your code. 
 
-[![Concept]({{ site.baseurl }}/assets/images/api-gateway-self-hosted/001.png)]({{ site.baseurl }}/assets/images/api-gateway-self-hosted/001.png)
+![Concept](/assets/images/api-gateway-self-hosted/001.png)
 
 This can be done by getting API Gateway to pass everything from the path `/docs` onwards to your Lambda which in turn just serves documentation.  
 
@@ -42,7 +42,7 @@ go_to = "https://bolcx9v796.execute-api.eu-west-1.amazonaws.com/test/docs/"
 
 Open that URL in a browser you should see a single page with the Petstore documentation, using Redoc's theme. 
 
-[![screenshot]({{ site.baseurl }}/assets/images/api-gateway-self-hosted/002.png)]({{ site.baseurl }}/assets/images/api-gateway-self-hosted/002.png)
+![Screenshot](/assets/images/api-gateway-self-hosted/002.png)
 
 Notice that the URL ends with `/docs/`.  
 
@@ -51,7 +51,7 @@ If you have a custom domain on your API Gateway, this could become something ple
 Take a look at the network traffic, you'll see a request made to `/docs/swagger.json`.  Both of these requests are handled by the same API Gateway endpoint and same Lambda.  
 
 
-[Sample repo](https://github.com/mendhak/API-Gateway-Self-Hosted-Documentation){: .btn .btn--info}
+{% button "Sample repo", "https://github.com/mendhak/API-Gateway-Self-Hosted-Documentation" %}
 
 
 I'll point out some highlights from the code below. 
@@ -61,7 +61,7 @@ I'll point out some highlights from the code below.
 In the [main Terraform code](https://github.com/mendhak/API-Gateway-Self-Hosted-Documentation/blob/master/main.tf), we need to create one resource for `/docs` and then one for `/docs/{proxy+}` as a child of the `/docs`.  
 
 
-```terraform
+```hcl
  resource "aws_api_gateway_resource" "docs" {
     rest_api_id = aws_api_gateway_rest_api.example.id
     parent_id   = aws_api_gateway_rest_api.example.root_resource_id
@@ -85,7 +85,7 @@ The `{proxy+}` is known as a greedy path variable, think of it a wildcard in you
 
 It's a similar thing with the Lambda integration.  Both resources point at the same Lambda. 
 
-```terraform
+```hcl
 resource "aws_api_gateway_integration" "lambda_docs_root" {
    ...
    integration_http_method = "POST"
@@ -158,7 +158,4 @@ The trick then is to serve `index.html` by default for any incoming path, but fo
 ```
 
 This is what allows keeping the documentation together with the code. 
-
-
-
 

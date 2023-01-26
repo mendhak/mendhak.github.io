@@ -12,8 +12,9 @@ module.exports = function(url, width) {
   }
 
   let youTubeId = getVideoIdFromYouTubeURL(url);
+  console.log(youTubeId);
   if(youTubeId){
-    iframeUrl = `//www.youtube.com/embed/${youTubeId}`;
+    iframeUrl = `https://www.youtube.com/embed/${youTubeId}`;
   }
   else {
     let vimeoId = getVideoIdFromVimeoURL(url);

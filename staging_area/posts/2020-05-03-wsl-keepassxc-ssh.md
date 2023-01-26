@@ -1,24 +1,17 @@
 ---
 title: "How to use KeepassXC to serve SSH keys to WSL1 and Ubuntu"
 description: "Using KeepassXC SSH, on Windows 10, to serve SSH keys to WSL1 running Ubuntu"
-categories: 
+tags: 
   - wsl
   - ssh
   - ubuntu
   - windows
   - keepass
 
-header: 
-  teaser: /assets/images/wsl-ssh-keepassxc/004.png
+opengraph: 
+  image: /assets/images/wsl-ssh-keepassxc/004.png
 
 
-gallery1:
-  - url: /assets/images/wsl-ssh-keepassxc/002.png
-    image_path: /assets/images/wsl-ssh-keepassxc/002.png
-  - url: /assets/images/wsl-ssh-keepassxc/003.png
-    image_path: /assets/images/wsl-ssh-keepassxc/003.png
-  - url: /assets/images/wsl-ssh-keepassxc/004.png
-    image_path: /assets/images/wsl-ssh-keepassxc/004.png
 ---
 
 
@@ -26,8 +19,9 @@ KeePassXC is an alternative to KeePass 2; an interesting feature is that it has 
 
 Some benefits of putting your SSH key into your Keepass are that you can have a strong password on the private key but don't need to type it out each time, and that you don't need to save your keys on disk - you can let KeePassXC manage the storage, unlocking and serving of the keys for you.  
 
+{% notice "info" %}
 This post covers WSL1.  For WSL2, see [this post](/wsl2-keepassxc-ssh/)
-{: .notice--info}
+{% endnotice %}
 
 
 
@@ -57,8 +51,13 @@ Now reopen the entry, then go to the SSH Agent section, under Private key, pick 
 
 
 
+{% gallery "KeePassXC settings" %}    
+![](/assets/images/wsl-ssh-keepassxc/002.png)
+![](/assets/images/wsl-ssh-keepassxc/003.png)
+![](/assets/images/wsl-ssh-keepassxc/004.png)
+{% endgallery %}
 
-{% include gallery id="gallery1" caption="KeePassXC settings" %}
+
 
 
 
@@ -67,12 +66,10 @@ Now reopen the entry, then go to the SSH Agent section, under Private key, pick 
 
 wsl-ssh-agent is a helper tool that interfaces with Windows' own SSH Agent service.  
 
-[Download wsl-ssh-agent](https://github.com/rupor-github/wsl-ssh-agent/releases){: .btn .btn--info}
+{% button "Download wsl-ssh-agent", "https://github.com/rupor-github/wsl-ssh-agent/releases" %}
 
 
 Extract the zip in Windows, not in WSL. You can place it anywhere. If you’re trying to stay portable, it can be placed in a synched directory near KeepassXC and your KDBX, for example your Google Drive or Dropbox folders. 
-
-
 
 
 ## Tell WSL to use it
@@ -88,14 +85,16 @@ export SSH_AUTH_SOCK=/mnt/c/temp/ssh-agent.sock
 (/mnt/c/Users/mendhak/Google\ Drive/Documents/keys/wsl-ssh-agent/wsl-ssh-agent-gui.exe -socket "C:\Temp\ssh-agent.sock" & disown)
 ```
 
+{% notice "info" %}
 If you've changed your WSL mount point to `/c/`, be sure to reflect that in the path above.
-{: .notice--info}
+{% endnotice %}
+
 
 Reload WSL, and this should call out to the wsl-ssh-agent.  
 
 Look at your system tray area for a pair-of-keys icon that appears.  If you click About, you can also see the path to your `.sock` at the bottom of the help dialog.   
 
-[![wsl-ssh-agent dialog]({{ site.baseurl }}/assets/images/wsl-ssh-keepassxc/005.png)]({{ site.baseurl }}/assets/images/wsl-ssh-keepassxc/005.png)
+![wsl-ssh-agent dialog](/assets/images/wsl-ssh-keepassxc/005.png)
 
 
 ## Test it

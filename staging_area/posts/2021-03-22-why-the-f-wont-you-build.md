@@ -2,10 +2,9 @@
 title: "Why the F**k won't you build?"
 description: "To the tune of Go The Fuck To Sleep"
 
-categories: 
-  - build
 tags: 
   - build
+  - poetry
   
 ---
 
@@ -44,7 +43,7 @@ All you had to do was build!
 Dejected and red-eyed I sit here,  
 Now my drink I have accidentally spilled,  
 The AWS free tier nears its limits,  
-I... think I'm about to get billed.  
+I think I'm about to get billed.  
 
 
 

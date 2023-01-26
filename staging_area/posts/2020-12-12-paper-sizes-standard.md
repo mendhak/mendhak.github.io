@@ -1,15 +1,12 @@
 ---
 title: "Standard paper sizes are an elegant example of simple maths"
 description: "The A, B, C series standard paper sizes are based on simple guidelines and can be easily calculated"
-categories: 
-  - paper
-  - standards
 tags: 
   - paper
   - standards
 
-header: 
-  teaser: /assets/images/paper-sizes-standard/001preview.png
+opengraph: 
+  image: /assets/images/paper-sizes-standard/001preview.png
 
 ---
 
@@ -24,7 +21,7 @@ Using just this statement we can figure out the required aspect ratio.  Once we 
 
 To illustrate this principle, in the image below, we take a sheet of paper with height `x` and width `y`.  It is cut width-wise, and one half is discarded.  The remaining half is rotated.  That new height and width should have the same ratio as the original piece of paper.  
 
-[![maintain ratio]({{ site.baseurl }}/assets/images/paper-sizes-standard/001.png)]({{ site.baseurl }}/assets/images/paper-sizes-standard/001.png)
+![Maintain ratio while folding](/assets/images/paper-sizes-standard/001preview.png)
 
 
 ## Calculate the ratio
@@ -33,15 +30,15 @@ Using the above image as reference, we can now calculate the ratio of an A0 pape
 
 Given a sheet with `x` height and `y` width, the next size down results in a 'new' sheet with `y` height and `x/2` width.  And remember that the ratio must be maintained.  Which means:
 
-![ratio]({{ site.baseurl }}/assets/images/paper-sizes-standard/002.png)
+![](/assets/images/paper-sizes-standard/002.png)
 
 Move the x and y across the equal sign, and we get:
 
-![ratio]({{ site.baseurl }}/assets/images/paper-sizes-standard/003.png)
+![](/assets/images/paper-sizes-standard/003.png)
 
 Reducing it finally gives us the ratio,
 
-![ratio]({{ site.baseurl }}/assets/images/paper-sizes-standard/004.png)
+![](/assets/images/paper-sizes-standard/004.png)
 
 Or in simplest terms, the ratio `x÷y = √2`.  
 
@@ -49,8 +46,9 @@ The ratio of height to width of a standard sheet of paper is √2, or 1.414...
 
 ## Calculate the size of an A0 sheet
 
+{% notice "info" %}
 Within each series, the `0` size is the starting point, which is why we'll start at size A0, as the B and C series definitions depend on it.  
-{: .notice--info}
+{% endnotice %}
 
 The A0 size has an additional property, which is: 
 
@@ -60,15 +58,15 @@ That gives us the convenient formula `x*y=1`, and we can start substituting x as
 
 We solve for x by substituting y=1/x. 
 
-![x]({{ site.baseurl }}/assets/images/paper-sizes-standard/006.png)
+![Solving for `x`](/assets/images/paper-sizes-standard/006.png)
 
 Which is [`1.1892071150...`](https://www.wolframalpha.com/input/?i=4th+root+of+2)
 
 And solve for y by substituting x=1/y.
 
-![y]({{ site.baseurl }}/assets/images/paper-sizes-standard/007.png)
+![Solving for `y`](/assets/images/paper-sizes-standard/007.png)
 
-Which is [`0.8408964152...`](https://www.wolframalpha.com/input/?i=1/(4th root of 2))
+Which is [`0.8408964152...`](https://www.wolframalpha.com/input/?i=1/(4th+root+of+2))
 
 The answer - an A0 sheet is 0.841m wide and 1.189m tall.  
 As defined by the standard it's 841mm x 1189mm.  
@@ -82,18 +80,19 @@ We can now work our way down the remaining A sizes.
 
 As illustrated earlier, the width of the previous size becomes the height of the next size.  The height of the previous size is now halved. 
 
-Size | Width | Height
------------- | -------------
-A0 | **841**mm | **1189**mm
-A1 | `1189÷2=` **594**mm | **841**mm
-A2 | `841÷2=` **420**mm | **594**mm
-A3 | `594÷2=` **297**mm | **420**mm
-A4 | `420÷2=` **210**mm | **297**mm
-...| ... | ...
+| Size | Width | Height |
+| ------:| -----------:| -----------:|
+| A0 | **841**mm | **1189**mm |
+| A1 | `1189÷2=` **594**mm | **841**mm |
+| A2 | `841÷2=` **420**mm | **594**mm |
+| A3 | `594÷2=` **297**mm | **420**mm |
+| A4 | `420÷2=` **210**mm | **297**mm |
+| ...| ... | ... |
 
 
+{% notice "info" %}
 This is an easy mental model to figure out paper sizes knowing the A0 starting point.  For a proper equation for any given size, see [Wikipedia](https://en.wikipedia.org/wiki/ISO_216#A_series)
-{: .notice--info}
+{% endnotice %}
 
 
 ## B series sheets
@@ -101,14 +100,14 @@ This is an easy mental model to figure out paper sizes knowing the A0 starting p
 The B series paper is used for posters, books and newspapers, and is meant for use when the A series is not 'suitable'.  Its sizes are related to the A series - each B size is the geometrical mean between adjacent sizes in the A series.  The earlier principle of aspect ratio still remains, so we still have `x÷y = √2`.  Furthermore, the width of a B0 sheet is set to 1000mm exactly.  
 
 
-![B0]({{ site.baseurl }}/assets/images/paper-sizes-standard/008.png)
+![B0](/assets/images/paper-sizes-standard/008.png)
 
 B0 has a height of 1414mm and width of 1000mm.  
 
 As before, we can work our way down and figure out the remaining sizes. 
 
-Size | Width | Height
------------- | -------------
+| Size | Width | Height |
+| ------:| -----------:| -----------:|
 B0 | **1000**mm | **1414**mm
 B1 | `1414÷2=` **707**mm | **1000**mm
 B2 | `1000÷2=` **500**mm | **707**mm
@@ -116,8 +115,9 @@ B3 | `707÷2=` **353**mm | **500**mm
 B4 | `500÷2=` **250**mm | **353**mm
 ...| ... | ...
 
+{% notice "info" %}
 You can also verify these values as geometric means.  For example, B1's height will be the geometric mean between the heights of A0 and A1.  That is, [`√(841*594)`](https://www.wolframalpha.com/input/?i=√(841*594))=707mm.
-{: .notice--info}
+{% endnotice %}
 
 ## C Series Sheets
 
@@ -127,8 +127,8 @@ To figure out C0's width, the geometric mean would be the square root of (A0's w
 
 As before, we can work our way down and figure out the remaining sizes. 
 
-Size | Width | Height
------------- | -------------
+| Size | Width | Height |
+| ------:| -----------:| -----------:|
 C0 | **917**mm | **1297**mm
 C1 | `1297÷2=` **648**mm | **917**mm
 C2 | `917÷2=` **458**mm | **648**mm

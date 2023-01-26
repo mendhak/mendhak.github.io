@@ -1,8 +1,6 @@
 ---
-title: "Issuing multiple requests with `curl`"
+title: "Issuing multiple requests with curl"
 description: "Using curl's sequences feature to issue multiple requests"
-categories: 
-  - bash
 tags: 
   - curl
   - bash
@@ -20,7 +18,8 @@ curl -s  "https://httpbin.org/anything?a=[0-5]"
 
 `curl` will issue 6 request, starting with `?a=0` to `?a=5`, one after the other.  You can see the querystring reflected in the response body.  
 
->{  
+```
+{  
   ...  
   "method": "GET",   
   "url": "https://httpbin.org/anything?a=0"  
@@ -31,7 +30,7 @@ curl -s  "https://httpbin.org/anything?a=[0-5]"
   "url": "https://httpbin.org/anything?a=1"  
 }  
 ...
-
+```
 
 The sequence can go anywhere in the URL and `curl` will increment it. The sequence can also be letters instead of numbers.  
 

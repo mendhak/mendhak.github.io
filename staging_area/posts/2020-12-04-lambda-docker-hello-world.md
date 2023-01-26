@@ -1,10 +1,6 @@
 ---
 title: "A hello world example using a Docker image in AWS Lambda"
 description: "Simple guide to using AWS Lambda with the new Docker image format"
-categories: 
-  - lambda
-  - docker
-  - aws
 tags: 
   - lambda
   - docker
@@ -32,8 +28,9 @@ aws iam create-role --role-name lambda-ex --assume-role-policy-document '{
 
 You will need to have Docker installed, obviously.
 
+{% notice "info" %}
 You can also follow along using the git repo with [sample code](https://github.com/mendhak/lambda-docker-hello-world). 
-{: .notice--info}
+{% endnotice %}
 
 
 ## Write your basic Node function
@@ -79,9 +76,9 @@ Build the image:
 docker build -t lambda-docker-hello-world .
 ```
 
-
+{% notice "info" %}
 There are also base images for [.NET Core](https://hub.docker.com/r/amazon/aws-lambda-dotnet), [Go](https://hub.docker.com/r/amazon/aws-lambda-go), and [Python](https://hub.docker.com/r/amazon/aws-lambda-python) among others. 
-{: .notice--info}
+{% endnotice %}
 
 
 ## Test it locally

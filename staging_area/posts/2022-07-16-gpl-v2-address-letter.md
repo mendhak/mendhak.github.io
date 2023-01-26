@@ -2,31 +2,16 @@
 title: "I wrote to the address in the GPLv2 license notice and received the GPLv3 license"
 description: "I was curious about the 51 Franklin Street address in the GPLv2 license notice so I wrote to them as they said"
 
-categories: 
-  - opensource
-  - license
-  - gpl
+
 tags: 
   - opensource
   - license
   - gpl
 
-header: 
-  teaser: /assets/images/gpl-v2-address-letter/005a.jpg
+opengraph: 
+  image: /assets/images/gpl-v2-address-letter/005a.jpg
 
-gallery1:
-  - url: /assets/images/gpl-v2-address-letter/003a.jpg
-    image_path: /assets/images/gpl-v2-address-letter/003a.jpg
-  - url: /assets/images/gpl-v2-address-letter/003b.jpg
-    image_path: /assets/images/gpl-v2-address-letter/003b.jpg
 
-gallery2:
-  - url: /assets/images/gpl-v2-address-letter/006a.jpg
-    image_path: /assets/images/gpl-v2-address-letter/006a.jpg
-  - url: /assets/images/gpl-v2-address-letter/006b.jpg
-    image_path: /assets/images/gpl-v2-address-letter/006b.jpg
-  - url: /assets/images/gpl-v2-address-letter/006c.jpg
-    image_path: /assets/images/gpl-v2-address-letter/006c.jpg
 
 ---
 
@@ -62,13 +47,17 @@ I ordered what seemed to be a 'global' stamp, for the smallest but safest amount
 
 After a few weeks of waiting, I eventually received the 'African Daisy global forever vert pair' stamp which was round!  I should have noticed that the seller sent me the item using stamps at a much lower denomination that those I had ordered.  Oh well.
 
-{% include gallery id="gallery1" caption="Ebay seller sent me some stamps" %}
+{% gallery "Ebay seller sent me some stamps" %}
+![](/assets/images/gpl-v2-address-letter/003a.jpg)
+![](/assets/images/gpl-v2-address-letter/003b.jpg)
+{% endgallery %}
+
 
 ### I prepared the request
 
 With the self addressed envelope ready, I wrote the request and addressed it to the GPLv2 address.  Luckily I did have some UK stamps available to send the letter with.  
 
-[![I wrote a letter]({{ site.baseurl }}/assets/images/gpl-v2-address-letter/004a.jpg)]({{ site.baseurl }}/assets/images/gpl-v2-address-letter/004a.jpg)
+![I wrote a letter](/assets/images/gpl-v2-address-letter/004a.jpg)
 
 Writing the address on the envelope was awkward, as I haven't used a pen in several years; it took a few attempts and some wasted envelopes, printing the address would have taken less time.  But it was ready so I posted it in my nearest Royal Mail box. 
 
@@ -76,7 +65,7 @@ Writing the address on the envelope was awkward, as I haven't used a pen in seve
 
 I had posted the letter in June 2022 and about five later weeks later, I received a reply.  The round stamps looked sufficiently stamped upon with wavy lines, known as [cancellation marks](https://en.wikipedia.org/wiki/Cancellation_\(mail\)), which are yet another thing that philatelists like to collect! 
 
-[![I received a reply]({{ site.baseurl }}/assets/images/gpl-v2-address-letter/005a.jpg)]({{ site.baseurl }}/assets/images/gpl-v2-address-letter/005a.jpg)
+![I received a reply](/assets/images/gpl-v2-address-letter/005a.jpg)
 
 
 Anyway the letter inside contained the full license text on 5 sheets of double-sided paper.   
@@ -92,7 +81,13 @@ The first thing that came to attention, the paper that the text was printed on w
 
 There was a problem that I noticed right away, though: this text was from the GPL _v3_, not the GPL _v2_.  In my original request I had never mentioned the GPL version I was asking about.  
 
-{% include gallery id="gallery2" caption="GPL license" %}
+{% gallery "GPL license" %}
+![](/assets/images/gpl-v2-address-letter/006a.jpg)
+![](/assets/images/gpl-v2-address-letter/006b.jpg)
+![](/assets/images/gpl-v2-address-letter/006c.jpg)
+{% endgallery %}
+
+
 
 The original license notice makes no mention of GPL version either.  Should the fact that the license notice contained an address have been enough metadata or a clue, that I was actually requesting the GPL v2 license? Or should I have mentioned that I was seeking the GPLv2 license?
 

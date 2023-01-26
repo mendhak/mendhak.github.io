@@ -4,6 +4,8 @@ description: "A general OpenStreetMap editing workflow, with the example of Mapp
 tags: 
   - openstreetmap
   - gps
+  - greece
+  - tutorial
 
 opengraph:
   image: /assets/images/openstreetmap-workflow-marmari/monument3.jpg

@@ -1,13 +1,13 @@
 ---
 title: "Preparing a Raspberry Pi Zero with WiFi and SSH"
 description: "How to flash an SD card for Raspiberry Pi Zero W, with an OS image, set a WiFI password, and enable SSH"
-categories: 
+tags: 
   - raspberrypi
   - ssh
   - wifi
 
-header: 
-  teaser: /assets/images/prepare-raspberry-pi/002.jpg
+opengraph: 
+  image: /assets/images/prepare-raspberry-pi/002.jpg
 
 
 ---

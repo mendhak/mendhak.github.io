@@ -1,8 +1,6 @@
 ---
 title: "Automatically turn XBox controller off with PC"
 description: "Automatically turning off the XBox 360 controller off when the PC is shut down"
-categories:
-  - xbox
 tags:
   - xbox
   - windows 10

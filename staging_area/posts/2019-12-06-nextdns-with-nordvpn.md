@@ -1,6 +1,10 @@
 ---
 title: "Getting NextDNS and NordVPN to work together on Android"
 description: "Using NextDNS with NordVPN, including on Wifi networks with captive portals"
+tags: 
+  - android
+  - nextdns
+  - vpn
 opengraph:
   image: /assets/images/nextdns-nordvpn/007.png
 

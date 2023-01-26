@@ -1,6 +1,10 @@
 ---
 title: "Securely wipe an SSD with its built in commands"
 description: "Using the built in SECURITY ERASE UNIT command to erase an SSD, in Ubuntu"
+tags: 
+  - ssd
+  - security
+  - ubuntu
 opengraph:
   image: /assets/images/securely-wipe-ssd/usb-sata-connected.jpg
 ---

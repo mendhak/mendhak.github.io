@@ -1,15 +1,14 @@
 ---
 title: "Smashtest Tutorial"
 description: "Smashtest introduction, just the basic features"
-last_modified_at: 2022-03-13T04:01:00Z
-categories: 
-  - smashtest
+last_modified_at: 2022-03-13
+
 tags: 
   - smashtest
   - firefox
  
-header: 
-  teaser: /assets/images/smashtest-tutorial/002.png 
+opengraph: 
+  image: /assets/images/smashtest-tutorial/002.png 
   
 ---
 
@@ -77,7 +76,7 @@ npx smashtest --headless=false
 
 A browser window is launched, navigates to example.com and clicks "More Information".  The `--headless=false` lets you see what is happening.
 
-[![smashtest launches a browser]({{ site.baseurl }}/assets/images/smashtest-tutorial/001.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/001.png)
+![Smashtest launches a browser](/assets/images/smashtest-tutorial/001.png)
 
 
 You can also run the test headless by default, but view it as a series of screenshots instead.  
@@ -88,7 +87,7 @@ npx smashtest --screenshots=true
 
 When the test completes, preview the `smashtest/report.html` file, which shows the output with screenshots.
 
-[![smashtest report with screenshots]({{ site.baseurl }}/assets/images/smashtest-tutorial/002.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/002.png)
+![Smashtest report with screenshots](/assets/images/smashtest-tutorial/002.png)
 
 
 ## Write a test interactively
@@ -126,7 +125,7 @@ Type 'hello world[enter]' into 'input'
 
 That takes you to a search results page. 
 
-[![smashtest interactive mode]({{ site.baseurl }}/assets/images/smashtest-tutorial/003.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/003.png)
+![Smashtest interactive mode](/assets/images/smashtest-tutorial/003.png)
 
 Finally use `x` to exit the REPL. 
 
@@ -166,7 +165,7 @@ Open Firefox
 
 Run the test with `npx smashtest --headless=false` and notice that two browser windows open.  
 
-[![smashtest branches]({{ site.baseurl }}/assets/images/smashtest-tutorial/004.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/004.png)
+![Smashtest branches](/assets/images/smashtest-tutorial/004.png)
 
 Indented instructions happen one after the other, in one branch.  
 Instructions at the _same_ level, next to each other, create branches which run separately.  
@@ -221,9 +220,10 @@ Open Firefox
 
 Run the test to ensure it's still working, `npx smashtest`.  As long as part of the URL matches, it will pass.  It's also possible to use regex here. 
 
+{% notice "info" %}
 You don't need to tell smashtest about the new `links.smash`.  By default, smashtest will look for all `.smash` files in the current directory. 
 It's possible to test just one file by passing the filename, `npx smashtest main.smash`  
-{: .notice--info}
+{% endnotice %}
 
 
 ## Create functions
@@ -298,8 +298,9 @@ Create a `smashtest.json` with:
 
 If you now run `npx smashtest`, the browser should open, and the Smashtest report should contain screenshots. 
 
+{% notice "info" %}
 For a list of config that can go in `smashtest.json`, see [command-line options](https://slowmonkey.github.io/smashtest-cli-json-mapping)  
-{: .notice--info}
+{% endnotice %}
 
 
 
@@ -312,9 +313,10 @@ Some elements will be nested deep inside layers of `div`s or in very dynamic SPA
 
 In this next test, you'll go to Mozilla's MDN web docs, search for the `array` object, click the first result, and then change the page's language to Deutsch. This should cover a few different ways of finding elements. 
 
+{% notice "info" %}
 Due to the nature of the web, these steps may become invalidated in a few years if MDN ever changes.  
 The screenshots should still illustrate the concepts of finding elements.  
-{: .notice--info}
+{% endnotice %}
 
 
 ## Perform a search
@@ -322,7 +324,7 @@ The screenshots should still illustrate the concepts of finding elements.
 To begin, open up [https://developer.mozilla.org](https://developer.mozilla.org) in your own browser.  Right click the main search textbox and inspect element.  
 Right away, the `id` of that input field is an obvious candidate to use.  
 
-[![inspect element]({{ site.baseurl }}/assets/images/smashtest-tutorial/005.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/005.png)
+![Inspect element](/assets/images/smashtest-tutorial/005.png)
 
 
 In a new file, `mdn.smash`, add these lines.  Use the `$` as this is a new test and you don't want to wait around for other tests to delay you:  
@@ -357,7 +359,7 @@ Use the `~` modifier to go into interactive mode.  Press enter in the console so
 
 Right click and inspect the first search result, as expected there isn't anything unique that marks it from the others.    
 
-[![inspect element]({{ site.baseurl }}/assets/images/smashtest-tutorial/006.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/006.png)
+![Inspect element](/assets/images/smashtest-tutorial/006.png)
 
 
 
@@ -375,7 +377,7 @@ document.querySelector('div.search-results .result-item')
 
 The first search result gets highlighted.  That's pretty much the same behavior as Smashtest's.    
 
-[![inspect element]({{ site.baseurl }}/assets/images/smashtest-tutorial/007.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/007.png)
+![Inspect element](/assets/images/smashtest-tutorial/007.png)
 
 Now that you've found a good selector to use, try it in the terminal.  Entering just a selector will let you know if Smashtest was able to find it. 
 
@@ -385,9 +387,9 @@ Now that you've found a good selector to use, try it in the terminal.  Entering 
 
 Found it:
 
-[![interactive]({{ site.baseurl }}/assets/images/smashtest-tutorial/007a.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/007a.png)
+![Interactive](/assets/images/smashtest-tutorial/007a.png)
 
-Both  `document.querySelector` and typing selectors into interactive mode are useful ways of finding what you need on the page. 
+Both `document.querySelector` and typing selectors into interactive mode are useful ways of finding what you need on the page. 
 
 Now that you know Smashtest can work with it, get Smashtest to click it. 
 
@@ -460,7 +462,7 @@ Open Firefox
 
 Run it with `npx smashtest` and press Enter in the console to get to the documentation page. Right click the 'English' menu in the top right, and inspect element.  
 
-[![inspect element]({{ site.baseurl }}/assets/images/smashtest-tutorial/008.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/008.png)
+![Inspect element](/assets/images/smashtest-tutorial/008.png)
 
 It's a simple `span` with the word `English` in it.  In the terminal, try:
 
@@ -486,7 +488,7 @@ Click ['English']
 
 A dropdown with a list of languages appears. Inspecting the dropdown reveals that it has a unique class, `.language-menu` and contains a list of `li` and `button` with the languages to choose from.  
 
-[![inspect element]({{ site.baseurl }}/assets/images/smashtest-tutorial/009.png)]({{ site.baseurl }}/assets/images/smashtest-tutorial/009.png)
+![Inspect element](/assets/images/smashtest-tutorial/009.png)
 
 In terminal, try:
 

@@ -1,14 +1,14 @@
 ---
 title: "How to set the title of a tab in terminal"
 description: "From bash, setting the title of a tab in Ubuntu gnome-terminal or in Windows Terminal"
-categories: 
+tags: 
   - wsl
   - ubuntu
   - bash
   - tweak
 
-header: 
-  teaser: /assets/images/set-terminal-title/001.png
+opengraph: 
+  image: /assets/images/set-terminal-title/001.png
 
 ---
 
@@ -41,6 +41,6 @@ Now try setting the title.
 set-title Hello World!
 ```
 
-[![results]({{ site.baseurl }}/assets/images/set-terminal-title/001.png)]({{ site.baseurl }}/assets/images/set-terminal-title/001.png)
+![results](/assets/images/set-terminal-title/001.png)
 
-[![results]({{ site.baseurl }}/assets/images/set-terminal-title/002.png)]({{ site.baseurl }}/assets/images/set-terminal-title/002.png)
+![results](/assets/images/set-terminal-title/002.png)

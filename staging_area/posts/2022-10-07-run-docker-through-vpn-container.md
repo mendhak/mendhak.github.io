@@ -1,14 +1,15 @@
 ---
 title:      How to run any Docker container's traffic through Wireguard or OpenVPN
 description: Run Docker container traffic through VPN protocols such as OpenVPN or Wireguard. Works for Transmission, Sonarr, etc. 
-categories:
- - tech
- - docker
- - vpn
+
 tags:
  - tech
  - docker
  - vpn
+
+
+opengraph:
+  image: /assets/images/run-docker-through-vpn-container/004.png
 
 ---
 
@@ -22,11 +23,11 @@ In this example I will use the [gluetun](https://github.com/qdm12/gluetun) image
 
 Login to Surfshark, and under manual set up, generate a new key pair.  This is required for setting up Wireguard connections.  Make a note of the private key that gets generated, you will need it shortly.  
 
-![Generate new key pair]({{ site.baseurl }}/assets/images/run-docker-through-vpn-container/001.png)
+![Generate new key pair](/assets/images/run-docker-through-vpn-container/001.png)
 
 From the Locations tab, pick a country you want the traffic routed through.  Download the configuration file that comes with it, and open it up.  Make a note of the `Address` field which will also be needed shortly, as well as the country name you chose.  In this example I chose Finland. 
 
-![Address]({{ site.baseurl }}/assets/images/run-docker-through-vpn-container/002.png)
+![Address](/assets/images/run-docker-through-vpn-container/002.png)
 
 ## Set up the VPN container
 
@@ -50,7 +51,7 @@ services:
 
 Test the setup by running `docker-compose up`.  If the connection is successful, you should see some successful messages and a public IP address.  
 
-![successful connection]({{ site.baseurl }}/assets/images/run-docker-through-vpn-container/003.png)
+![Successful connection](/assets/images/run-docker-through-vpn-container/003.png)
 
 If you see failure messages, the process will keep restarting itself and retrying. In such a case, stop the container and then try using `SERVER_HOSTNAMES` instead of `SERVER_COUNTRIES`.  For `SERVER_HOSTNAMES`, put the value of the domain value in `Endpoint` in the downloaded file.  That is: 
 
@@ -145,7 +146,7 @@ Now run the whole setup using `docker-compose up -d`.  Wait a while, and browse 
 To make extra sure that your Transmission traffic is going over the VPN, you can make use of [an IP checking tool by Torguard](https://torguard.net/checkmytorrentipaddress.php).  Simply copy the magnet link and add it to Transmission.  Show the error column in Transmission, where the IP address should appear.  The IP address should also appear on the Torguard page.
 
 
-![torrent ip test]({{ site.baseurl }}/assets/images/run-docker-through-vpn-container/004.png)
+![Torrent ip test](/assets/images/run-docker-through-vpn-container/004.png)
 
 ## Running with other containers
 

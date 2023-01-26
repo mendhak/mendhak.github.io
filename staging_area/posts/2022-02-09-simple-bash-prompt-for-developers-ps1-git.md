@@ -2,10 +2,7 @@
 title: "A simple and effective Bash prompt for developers"
 description: "Simple Bash prompt (PS1) that shows the current git branch and current time"
 
-categories: 
-  - git
-  - bash
-  - developers
+
 tags: 
   - git
   - bash

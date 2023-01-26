@@ -2,9 +2,7 @@
 title: "'Zero Trust' security is a poor choice of words"
 description: "Consider the user's perspective when naming a security initiative"
 
-categories: 
-  - security
-  - zero-trust
+
 tags: 
   - security
   - zero-trust

@@ -1,7 +1,7 @@
 ---
 title: "Running a Selenium Grid cheaply with Fargate Spot containers in AWS ECS"
 description: "Terraform script for running a cheap Selenium Grid, using AWS ECS, with the containers managed by Fargate Spot instances."
-categories: 
+tags: 
   - aws
   - ecs
   - fargate
@@ -9,8 +9,8 @@ categories:
   - docker
   - terraform
 
-header: 
-  teaser: /assets/images/ecs-selenium-grid/002.png
+opengraph: 
+  image: /assets/images/ecs-selenium-grid/002.png
 
 ---  
 
@@ -23,7 +23,7 @@ And importantly, it makes your testers happy.
 
 ## Instructions
 
-[Get the Terraform script](https://github.com/mendhak/selenium-grid-ecs/blob/master/main.tf){: .btn .btn--info}
+{% button "Get the Terraform script", "https://github.com/mendhak/selenium-grid-ecs/blob/master/main.tf" %}
 
 Modify the corresponding `variable` values at the top of the Terraform file and put these values in from your own AWS account:
 
@@ -41,11 +41,12 @@ terraform apply
 
 Confirm, and wait for the `hub_address` output to appear, which will be the DNS of the ALB.  Wait a few minutes more though (the hub container needs to run, register with the ALB target group), then browse to the address and the Selenium Hub page should appear.  If you go to `/grid/console` then you can see the Selenium browser nodes appear as well. 
 
-[![grid]({{ site.baseurl }}/assets/images/ecs-selenium-grid/002.png)]({{ site.baseurl }}/assets/images/ecs-selenium-grid/002.png)
+![grid](/assets/images/ecs-selenium-grid/002.png)
 
+{% notice "warning" %}
 **Note:** Running this script will incur a cost in your AWS account. You can get an idea of pricing [here](https://aws.amazon.com/fargate/pricing/).  
 Don't leave `your_ip_addresses` as 0.0.0.0/0, it's only for testing purposes; change it to your own IP address to prevent others from running tests against your grid.
-{: .notice--warning}
+{% endnotice %}
 
 
 ### Run a test
@@ -82,14 +83,15 @@ npx smashtest --test-server=http://your-load-balancer-12345.eu-west-1.elb.amazon
 
 This will run the tests against your new Grid and if you refresh the Selenium Hub page you can see where the test is running, indicated by a dimmed browser icon. 
 
+{% notice "info" %}
 To understand the Smashtest syntax above, see [this tutorial](/smashtest-tutorial/).  
-{: .notice--info}
+{% endnotice %}
 
 ## Overview
 
 There are quite a few AWS services that need to work together for this setup.  The Docker images for [Selenium Hub](https://hub.docker.com/r/selenium/hub/tags) as well as the browsers are [already provided by Selenium](https://hub.docker.com/r/selenium/node-firefox/tags).  This saves us the effort of having to build one. We just need to create task definitions for the hub and each browser, then run them as services in the ECS Cluster.
 
-[![overview]({{ site.baseurl }}/assets/images/ecs-selenium-grid/001.png)]({{ site.baseurl }}/assets/images/ecs-selenium-grid/001.png)
+![overview](/assets/images/ecs-selenium-grid/001.png)
 
 Each browser container will need to know where the hub is and register itself.  To help them out, the hub will need to register itself with AWS Cloud Map, which is a service discovery tool.  You can think of it as a 'private' DNS within your VPC.
 
@@ -111,7 +113,7 @@ Quite often, ECS needs to execute tasks on your behalf.  This would be things li
 In the service discovery section, we create a CloudMap Namespace with the TLD `.selenium`, and under that the service `hub`.   This is passed in the `service_registries` when creating an ECS Service;  the hub hub container registers here, creating the address `http://hub.selenium` so that the various browser containers can easily find the Selenium Hub container without knowing its IP address in advance.
 
 
-```terraform
+```hcl
 
 ## This makes it `.selenium`
 
@@ -147,7 +149,7 @@ resource "aws_service_discovery_service" "hub" {
 An ECS Cluster is just a logical grouping for ECS tasks, it doesn't actually exist as a thing but is more of a designated area for the containers you want to run.  Here we create the selenium grid cluster. 
 The most crucial money saving part here is specifying `FARGATE_SPOT` as the capacity provider. 
 
-```terraform
+```hcl
 resource "aws_ecs_cluster" "selenium_grid" {
   name = "selenium-grid"
   capacity_providers = ["FARGATE_SPOT"]
@@ -165,7 +167,7 @@ ECS expects containers to be created based on task definitions.  They are somewh
 
 The Selenium Hub listens on port 4444, and we've chosen the `selenium/hub:3.141.59` image from Docker Hub, and requested 1024 CPU units (1 vCPU) and 2 GB RAM.
 
-```terraform
+```hcl
 resource "aws_ecs_task_definition" "seleniumhub" {
   family                = "seleniumhub"
   network_mode = "awsvpc"
@@ -205,7 +207,7 @@ The `capacity_provider_strategy` ensures it is placed on a Spot instance managed
 The `service_registries` ensures it grabs the `hub.selenium` address.  
 The `load_balancer` ensure that it registers with the target group. 
 
-```terraform
+```hcl
 
 resource "aws_ecs_service" "seleniumhub" {
   name          = "seleniumhub"
@@ -246,7 +248,7 @@ We also specify a `NODE_MAX_SESSION` of 3 to indicate a maximum parallelization.
 
 To help with troubleshooting, there's also a logging configuration which uses the `awslogs` driver, which sends the container logs to Cloudwatch.  Since this container will create its own log group, we ensured earlier that the `execution_role_arn` has permissions to create log groups.  
 
-```terraform
+```hcl
 resource "aws_ecs_task_definition" "firefox" {
   family                = "seleniumfirefox"
   network_mode = "awsvpc"

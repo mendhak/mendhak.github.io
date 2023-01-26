@@ -1,10 +1,7 @@
 ---
 title: "Custom TLS certificate validation for Android applications"
 description: "Workflow for properly validating custom and self signed TLS certificates in Android applications"
-categories: 
-  - android
-  - security
-  - tls
+
 ---
 
 How to properly validate TLS certificates from Android applications - without bypassing or compromising validation.
@@ -19,11 +16,11 @@ This is extremely dangerous, considering that such code ends up in actual real-w
 
 The proper validation workflow consists of a few parts.  First the user must enter the server name or URL they want to connect to, which is being served by their custom certificate.  User taps the validation link, and the app makes a request to the server.  The certificate is fetched and tested to see if it is recognized by the Android OS already.  If it isn't a known certificate, the details of the certificate are presented for the user to look at.  The user can accept the certificate, at which point it's stored in a keystore. 
 
-![Validation workflow]({{ site.baseurl }}/assets/images/android-custom-certificate-validation/002_workflow.png)
+![Validation workflow](/assets/images/android-custom-certificate-validation/002_workflow.png)
 
 From then on as part of the normal application's running, any requests made are checked against the keystore in order to validate the certificate. 
 
-![Validation workflow]({{ site.baseurl }}/assets/images/android-custom-certificate-validation/003_workflow.png)
+![Validation workflow](/assets/images/android-custom-certificate-validation/003_workflow.png)
 
 
 
@@ -170,7 +167,7 @@ So we are most interested in #2, the `dNSName` which is the more likely subject.
 
 In my app a user would see a prompt similar to this:
 
-![Custom validation UI]({{ site.baseurl }}/assets/images/android-custom-certificate-validation/001_validation.gif)
+![Custom validation UI](/assets/images/android-custom-certificate-validation/001_validation.gif)
 
 ### Saving the certificate to a keystore
 
@@ -290,84 +287,84 @@ Similarly, FTP requires an `AUTH SSL` to be elevated.  With these two in mind, t
 
 ```java
 
-            try {
-                // Trying handshake first in case the socket is SSL/TLS only
-                connectToSSLSocket(null);
-                postValidationHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Workflow finished - this is a known certificate. Nothing to do. 
-                    }
-                });
-            } catch (final Exception e) {
+try {
+    // Trying handshake first in case the socket is SSL/TLS only
+    connectToSSLSocket(null);
+    postValidationHandler.post(new Runnable() {
+        @Override
+        public void run() {
+            // Workflow finished - this is a known certificate. Nothing to do. 
+        }
+    });
+} catch (final Exception e) {
 
-                if (extractCertificateValidationException(e) != null) {
-                    throw e;
-                }
+    if (extractCertificateValidationException(e) != null) {
+        throw e;
+    }
 
-                // Direct connection failed or no certificate was presented
+    // Direct connection failed or no certificate was presented
 
-                if(serverType== ServerType.HTTPS){
-                    postValidationHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            //Workflow finished - an unknown certificate was found
-                        }
-                    });
-                    return;
-                }
-
-                // Nothing yet, so attempt to connect over plain socket first, then elevate.
-                Socket plainSocket = new Socket(host, port);
-                plainSocket.setSoTimeout(30000);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(plainSocket.getInputStream()));
-                BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(plainSocket.getOutputStream()));
-                String line;
-
-                if (serverType == ServerType.SMTP) {
-
-                    writer.write("EHLO localhost\r\n");
-                    writer.flush();
-                    line = reader.readLine();
-                }
-
-                String command = "", regexToMatch = "";
-                if (serverType == ServerType.FTP) {
-
-                    command = "AUTH SSL\r\n";
-                    regexToMatch = "(?:234.*)";
-
-                } else if (serverType == ServerType.SMTP) {
-
-                    command = "STARTTLS\r\n";
-                    regexToMatch = "(?i:220 .* Ready.*)";
-
-                }
-
-                writer.write(command);
-                writer.flush();
-                while ((line = reader.readLine()) != null) {
-                    if (line.matches(regexToMatch)) {
-                        // Elevate socket and attempt handshake.
-                        connectToSSLSocket(plainSocket);
-                        postValidationHandler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                //Workflow finished - the certificate is known. 
-                            }
-                        });
-                        return;
-                    }
-                }
-
-                //No certificates found.  Giving up.
-                postValidationHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        //Workflow finished, give up. 
-                    }
-                });
+    if(serverType== ServerType.HTTPS){
+        postValidationHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                //Workflow finished - an unknown certificate was found
             }
+        });
+        return;
+    }
+
+    // Nothing yet, so attempt to connect over plain socket first, then elevate.
+    Socket plainSocket = new Socket(host, port);
+    plainSocket.setSoTimeout(30000);
+    BufferedReader reader = new BufferedReader(new InputStreamReader(plainSocket.getInputStream()));
+    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(plainSocket.getOutputStream()));
+    String line;
+
+    if (serverType == ServerType.SMTP) {
+
+        writer.write("EHLO localhost\r\n");
+        writer.flush();
+        line = reader.readLine();
+    }
+
+    String command = "", regexToMatch = "";
+    if (serverType == ServerType.FTP) {
+
+        command = "AUTH SSL\r\n";
+        regexToMatch = "(?:234.*)";
+
+    } else if (serverType == ServerType.SMTP) {
+
+        command = "STARTTLS\r\n";
+        regexToMatch = "(?i:220 .* Ready.*)";
+
+    }
+
+    writer.write(command);
+    writer.flush();
+    while ((line = reader.readLine()) != null) {
+        if (line.matches(regexToMatch)) {
+            // Elevate socket and attempt handshake.
+            connectToSSLSocket(plainSocket);
+            postValidationHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    //Workflow finished - the certificate is known. 
+                }
+            });
+            return;
+        }
+    }
+
+    //No certificates found.  Giving up.
+    postValidationHandler.post(new Runnable() {
+        @Override
+        public void run() {
+            //Workflow finished, give up. 
+        }
+    });
+}
 
 // Additional catch block required outside to handle the elevated socket handshake, capture certificate and present to the user.             
 

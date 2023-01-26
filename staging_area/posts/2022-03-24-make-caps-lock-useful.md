@@ -2,27 +2,18 @@
 title: "Repurposing Caps Lock into something useful"
 description: "Making the Caps Lock key actually useful through compose keys or video conference mute"
 
-categories: 
-  - linux
-  - windows
 tags: 
   - shortcut
   - keyboard
   - characters
   - linux
+  - windows
+  - compose
 
-header: 
-  teaser: /assets/images/make-caps-lock-useful/001.png
+opengraph: 
+  image: /assets/images/make-caps-lock-useful/001.png
 
-gallery1:
-  - url: /assets/images/make-caps-lock-useful/007.png
-    image_path: /assets/images/make-caps-lock-useful/007.png
-  - url: /assets/images/make-caps-lock-useful/006.png
-    image_path: /assets/images/make-caps-lock-useful/006.png
 
-gallery2:
-  - url: /assets/images/make-caps-lock-useful/001full.png
-    image_path: /assets/images/make-caps-lock-useful/001full.png
 
 ---
 
@@ -35,10 +26,11 @@ It is even harmful.  An accidental press of Caps Lock can lead to accidental sho
 
 I have been searching for better uses of the Caps Lock key and am listing some better uses I've found, as well as some observations regarding this key.   
 
-{% include gallery id="gallery2" caption="Caps Lock key replaced on my keyboard with a shrug (MT3 Susuwatari)" %}
+{% figure "/assets/images/make-caps-lock-useful/001full.png", "Caps Lock key replaced on my keyboard with a shrug (MT3 Susuwatari)", "half" %}
 
+{% notice "info" %}
 Of course there are some fields where the Caps Lock key gets used regularly, such as engineering drawing, certain kinds of data entry, and legal.  However for the purposes of self-serving hyperbole, these shall be ignored. 
-{: .notice--info}
+{% endnotice %}
 
 ## Linux, as a Compose Key
 
@@ -53,24 +45,25 @@ By far one of the most intuitive, most human ways I've found of entering special
 <kbd>Caps</kbd> <kbd><</kbd> <kbd>=</kbd> = ≤
 
 
-To enable Compose Keys in Ubuntu 20.04, open [Gnome Tweaks](https://linuxhint.com/gnome_tweak_installation_ubuntu/) keyboard settings, look for the Compose Key option. Caps Lock can be selected here.  
+To enable Compose Keys in Ubuntu 20.04, open [Gnome Tweaks]({{ site.baseurl }}/assets/images/make-caps-lock-useful/004.png)](https://linuxhint.com/gnome_tweak_installation_ubuntu/) keyboard settings, look for the Compose Key option. Caps Lock can be selected here.  
 
-[![Gnome Tweaks Compose Key]({{ site.baseurl }}/assets/images/make-caps-lock-useful/003.png)]({{ site.baseurl }}/assets/images/make-caps-lock-useful/003.png)
+![Gnome Tweaks Compose Key](/assets/images/make-caps-lock-useful/003.png)
 
 In Ubuntu 22.04, it's available directly in Settings.  Go to Keyboard, and under 'Special Character Entry' change the Compose Key there.  
 
-[![Ubuntu 22.04 Compose Key]({{ site.baseurl }}/assets/images/make-caps-lock-useful/003b.png)]({{ site.baseurl }}/assets/images/make-caps-lock-useful/003b.png)
+![Ubuntu 22.04 Compose Key](/assets/images/make-caps-lock-useful/003b.png)
 
 There are [Compose Key Cheatsheets available](https://cheatography.com/davechild/cheat-sheets/ubuntu-compose-key-combinations/) which usually list the most common combinations; the [complete list is massive](https://cgit.freedesktop.org/xorg/lib/libX11/plain/nls/en_US.UTF-8/Compose.pre)
 
+{% notice "info" %}
 Note that the Compose Keys are a _sequence_.  Don't hold down Caps while pressing the other keys like a shortcut.  Simply type the keys one after the other. 
-{: .notice--info}
+{% endnotice %}
 
 ## Chromebook, as a searcher
 
 The Chromebook actually recognizes how unnecessary this key is, and goes ahead and replaces the Caps Lock key entirely.  The button in its place can show the Launcher or start a search.  That's pretty functional. 
 
-[![Chromebook Keyboard]({{ site.baseurl }}/assets/images/make-caps-lock-useful/002.jpg)]({{ site.baseurl }}/assets/images/make-caps-lock-useful/002.jpg)
+![Chromebook Keyboard](/assets/images/make-caps-lock-useful/002.jpg)
 
 
 ## PowerToys, as a video conferencing tool
@@ -78,7 +71,12 @@ The Chromebook actually recognizes how unnecessary this key is, and goes ahead a
 PowerToys is a collection of useful utilities meant for power users on Windows.  One of its utilities is a feature called [Video Conference Mute](https://docs.microsoft.com/en-us/windows/powertoys/video-conference-mute), which lets you quickly mute or unmute yourself regardless of the video conferencing software you're using such as Teams, Zoom or Slack.  The default shortcut for the audio mute is <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd>.  
 
 
-{% include gallery id="gallery1" layout="half" caption="Getting CapsLock to toggle mute in video conferences" %}
+{% gallery "Getting CapsLock to toggle mute in video conferences" %}
+![](/assets/images/make-caps-lock-useful/007.png)
+![](/assets/images/make-caps-lock-useful/006.png)
+{% endgallery %}
+
+
 
 It  cannot _directly_ be set to Caps Lock, however PowerToys also comes with a [Keyboard Manager](https://docs.microsoft.com/en-us/windows/powertoys/keyboard-manager) which allows you to assign a key to another key sequence. In Keyboard Manager, set <kbd>Caps</kbd> to <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>A</kbd>, and there's your audio mute, with a somewhat useful Caps Lock key. 
 
@@ -104,7 +102,7 @@ AutoHotKey adds a lot of versatility, it can also be used to [switch keyboard la
 
 In Ubuntu this can be done by remapping the keyboard shortcut for input sources. 
 
-[![Keyboard shortcuts]({{ site.baseurl }}/assets/images/make-caps-lock-useful/004.png)]({{ site.baseurl }}/assets/images/make-caps-lock-useful/004.png)
+![Keyboard shortcuts](/assets/images/make-caps-lock-useful/004.png)
 
 
 ## Turn it off

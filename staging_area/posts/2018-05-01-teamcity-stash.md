@@ -1,10 +1,11 @@
 ---
 title: "TeamCity to Bitbucket Status Reporter"
-categories:
-  - git
+
 tags:
   - git
   - pull request
+opengraph:
+  image: /assets/images/teamcity-stash/001.png  
 ---
 
 This build feature sends build status updates from TeamCity to Bitbucket.  You can then see build statuses against commits.

@@ -6,6 +6,8 @@ tags:
   - keepass
   - windows
 
+opengraph:
+  image: /assets/images/keepass-ssh/keepass-ssh-key-9.png
 ---
 
      

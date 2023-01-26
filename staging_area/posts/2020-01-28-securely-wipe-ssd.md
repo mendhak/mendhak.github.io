@@ -1,7 +1,8 @@
 ---
 title: "Securely wipe an SSD with its built in commands"
 description: "Using the built in SECURITY ERASE UNIT command to erase an SSD, in Ubuntu"
-
+opengraph:
+  image: /assets/images/securely-wipe-ssd/usb-sata-connected.jpg
 ---
 
 Modern SSDs now come with built in commands that can wipe a disk for you.  This is an action that should normally be performed when you're about to give/sell it away.  

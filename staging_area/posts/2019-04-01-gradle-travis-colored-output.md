@@ -4,6 +4,8 @@ description: "Script to add colored and folded tests when Travis CI or Github Ac
 tags:
   - gradle
   - travis
+opengraph:
+  image: /assets/images/gradle-travis-colored-output/001.png
 ---
 
 When running Gradle tests on Travis CI, the terminal is usually set to `dumb` mode, so you get very plain looking output.  However, Travis does [allow for colors](https://blog.travis-ci.com/2014-04-11-fun-with-logs/) in their logs.

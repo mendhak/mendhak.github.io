@@ -5,11 +5,8 @@ tags:
   - openstreetmap
   - gps
 
-
-
-
-
-
+opengraph:
+  image: /assets/images/openstreetmap-workflow-marmari/monument3.jpg
 
 ---
 
@@ -108,7 +105,7 @@ The best way I eventually settled on was to use Google Translate's handwriting r
 ![](/assets/images/openstreetmap-workflow-marmari/handwriting2.png)
 {% endgallery %}
 
-Once the correct or closest text was chosen, I would copy it, send it to myself on my laptop.  
+Once the correct or closest text wa/assets/images/nextdns-nordvpn/007.pngs chosen, I would copy it, send it to myself on my laptop.  
 
 But that still wasn't enough - [street names should be entered in mixed case](https://wiki.openstreetmap.org/wiki/Naming_conventions), even though the nameplates were all uppercase Greek.  
 

@@ -4,6 +4,8 @@ description: "Understanding and measuring Angular JS perceived performance"
 tags:
   - javascript
   - angular
+opengraph:
+  image: /assets/images/angular-performance/003.png  
 ---
 
 {{ description }} 

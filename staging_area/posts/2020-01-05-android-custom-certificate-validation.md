@@ -1,7 +1,8 @@
 ---
 title: "Custom TLS certificate validation for Android applications"
 description: "Workflow for properly validating custom and self signed TLS certificates in Android applications"
-
+opengraph:
+  image: /assets/images/android-custom-certificate-validation/002_workflow.png
 ---
 
 How to properly validate TLS certificates from Android applications - without bypassing or compromising validation.

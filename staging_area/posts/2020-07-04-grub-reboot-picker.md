@@ -1,22 +1,25 @@
 ---
 title: "Grub Reboot Picker - boot into other OSes and BIOS/UEFI from system tray"
 description: "Tray application to help you reboot into other operating systems, kernels, UEFI, BIOS, or just reboot"
-categories: 
+tags: 
   - ubuntu
   - gnome
   - grub
   - dualboot
 
-header: 
-  teaser: /assets/images/grub-reboot-picker/001.png
+opengraph: 
+  image: /assets/images/grub-reboot-picker/001.png
+
+last_modified_at: 2023-01-26
 
 ---
 
 Grub Reboot Picker is a tray application that helps you reboot into other operating systems or kernels, UEFI, BIOS, or just reboot.  
 
-[![screenshot]({{ site.baseurl }}/assets/images/grub-reboot-picker/001.png)]({{ site.baseurl }}/assets/images/grub-reboot-picker/001.png)
+![screenshot](/assets/images/grub-reboot-picker/001.png)
 
-{% include repo_card.html reponame="grub-reboot-picker" %}
+
+{% githubrepocard "mendhak/grub-reboot-picker" %}
 
 ### What it does 
 
@@ -24,8 +27,9 @@ The application autostarts with the OS and sits in the system tray as an applica
 
 When you click one of the options, the system will reboot and the next time the Grub menu appears, your selection will be preselected.  This allows you to set a small timeout on the Grub menu.  
 
-<i class="fab fa-ubuntu"></i> I've only tested this with Ubuntu 18.04 and 20.04 but it should work on any system which runs grub and Gnome.
-{: .notice--info}
+{% notice "info" %}
+I've only tested this with Ubuntu 18.04, 20.04, and 22.04 but it should work on any system which runs grub and Gnome.
+{% endnotice %}
 
 
 ### How to install and run it
@@ -48,4 +52,3 @@ Or you can run `grub-reboot-picker` from the command line, or search
 The appliction basically parses `/etc/default/grub` and lists out the entries in the system tray menu.  When an item is picked, the application uses `grub-reboot` and passes the user selected entry, and then runs the `reboot` command.  
 
 Since the grub file also contains entries for UEFI/BIOS, it's also convenient even if the system is not dual boot.
-

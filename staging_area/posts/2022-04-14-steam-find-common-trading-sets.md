@@ -2,20 +2,15 @@
 title: "Tool to find Steam trading card sets in common with another user"
 description: "A useful tool based on Docker to help with 1:1 or 2:1 trading with other Steam users, it helps  with cross-set trading by finding common trading sets between two users"
 
-categories: 
-  - steam
+
 tags: 
   - steam
   - trading
 
-gallery1:
-  - url: /assets/images/steam-find-common-trading-sets/001.png
-    image_path: /assets/images/steam-find-common-trading-sets/001.png
-  - url: /assets/images/steam-find-common-trading-sets/002.png
-    image_path: /assets/images/steam-find-common-trading-sets/002.png
 
-header: 
-  teaser: /assets/images/steam-find-common-trading-sets/004.png
+
+opengraph: 
+  image: /assets/images/steam-find-common-trading-sets/004.png
 
 ---
 
@@ -23,7 +18,12 @@ On Steam, I like to trade with other users to complete my card sets, and craft b
 
 Usually, a cross-set trade is where you offer cards belonging to a set that they have, in exchange for 1 card from a set that you want to complete.  I find this to be a good way to offload sets that I'm not interested in.  
 
-{% include gallery id="gallery1" layout="half" caption="People accepting cross set trades" %}
+{% gallery "People accepting cross set trades" %}
+![](/assets/images/steam-find-common-trading-sets/001.png)
+![](/assets/images/steam-find-common-trading-sets/002.png)
+{% endgallery %}
+
+
 
 The problem: these users often have thousands of cards and it isn't a simple task to click through each page, and figure out which trading sets we have in common.  
 
@@ -40,7 +40,7 @@ docker run --rm -t mendhak/steam-find-common-trading-sets <my_user_steam_id> <th
 
 To get the Steam IDs, I use the [steamid.io website](https://steamid.io/).  Entering the Steam usernames there will reveal the SteamID64.  
 
-[![SteamID]({{ site.baseurl }}/assets/images/steam-find-common-trading-sets/003.png)]({{ site.baseurl }}/assets/images/steam-find-common-trading-sets/003.png)
+![SteamID](/assets/images/steam-find-common-trading-sets/003.png)
 
 This gives: 
 
@@ -52,7 +52,7 @@ Running this command, the two inventories are fetched and compared, and the outp
 
 The gray text shows cards that both users have in common, the whiter text shows cards that one user has that the other doesn't.  
 
-[![Results]({{ site.baseurl }}/assets/images/steam-find-common-trading-sets/004.png)]({{ site.baseurl }}/assets/images/steam-find-common-trading-sets/004.png)
+![Results](/assets/images/steam-find-common-trading-sets/004.png)
 
 
 ## Notes

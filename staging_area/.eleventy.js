@@ -93,6 +93,12 @@ module.exports = function (eleventyConfig) {
     return (tags || []).filter(tag => ["all", "nav", "post", "posts"].indexOf(tag) === -1);
   });
 
+  // filter to convert content to Markdown.
+  // Useful for allowing `code` in the h1
+  eleventyConfig.addFilter("markdown", (content) => {
+    return markdownLibrary.renderInline(content);
+  });
+
   // Paired shortcode that takes a JSON array of CSS file paths
   // It then combines them, which includes reconciles overriden values!
   // And returns the output.

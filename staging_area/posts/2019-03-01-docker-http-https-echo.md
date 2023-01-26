@@ -1,5 +1,5 @@
 ---
-title: "An https echo Docker container for web debugging"
+title: "An `https` echo Docker container for web debugging"
 description: "Docker image that echoes request data as JSON; listens on HTTP/S, useful for debugging."
 tags:
   - docker

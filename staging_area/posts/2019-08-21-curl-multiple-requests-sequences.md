@@ -1,5 +1,5 @@
 ---
-title: "Issuing multiple requests with curl"
+title: "Issuing multiple requests with `curl`"
 description: "Using curl's sequences feature to issue multiple requests"
 tags: 
   - curl

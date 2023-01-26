@@ -1,47 +1,7 @@
 ---
 title: "Getting NextDNS and NordVPN to work together on Android"
 description: "Using NextDNS with NordVPN, including on Wifi networks with captive portals"
-categories: 
-  - android
-  - nextdns
-  - vpn
-gallery1:
-  - url: /assets/images/nextdns-nordvpn/002.png
-    image_path: /assets/images/nextdns-nordvpn/002t.png
-  - url: /assets/images/nextdns-nordvpn/003.png
-    image_path: /assets/images/nextdns-nordvpn/003t.png
-  - url: /assets/images/nextdns-nordvpn/004.png
-    image_path: /assets/images/nextdns-nordvpn/004t.png
 
-gallery2:
-  - url: /assets/images/nextdns-nordvpn/001_dnstls.png
-    image_path: /assets/images/nextdns-nordvpn/001_dnstls.png
-  - url: /assets/images/nextdns-nordvpn/005.png
-    image_path: /assets/images/nextdns-nordvpn/005t.png
-
-gallery4:
-  - url: /assets/images/nextdns-nordvpn/001_dns.png
-    image_path: /assets/images/nextdns-nordvpn/001_dns.png
-  - url: /assets/images/nextdns-nordvpn/006.png
-    image_path: /assets/images/nextdns-nordvpn/006.png
-
-gallery5:
-  - url: /assets/images/nextdns-nordvpn/007.png
-    image_path: /assets/images/nextdns-nordvpn/007.png
-
-gallery6:
-  - url: /assets/images/nextdns-nordvpn/009.png
-    image_path: /assets/images/nextdns-nordvpn/009.png
-  - url: /assets/images/nextdns-nordvpn/008.png
-    image_path: /assets/images/nextdns-nordvpn/008.png
-
-gallery7:
-  - url: /assets/images/nextdns-nordvpn/011.png
-    image_path: /assets/images/nextdns-nordvpn/011.png    
-  - url: /assets/images/nextdns-nordvpn/012.png
-    image_path: /assets/images/nextdns-nordvpn/012.png    
-  - url: /assets/images/nextdns-nordvpn/013.png
-    image_path: /assets/images/nextdns-nordvpn/013.png    
 
 ---
 
@@ -53,10 +13,17 @@ It comes with preset lists, blacklists, whitelists, analytics (graphs) and logs.
 
 The sign-up process is fast and you are given a unique configuration ID immediately, and you can start playing with the settings right away.
 
-{% include gallery id="gallery1"  caption="NextDNS screens" %}
 
+
+{% gallery "NextDNS screens" %}
+![](/assets/images/nextdns-nordvpn/002.png)
+![](/assets/images/nextdns-nordvpn/003.png)
+![](/assets/images/nextdns-nordvpn/004.png)
+{% endgallery %}
+
+{% notice "warning" %}
 The configuration ID is unique to your account, only share it with people you trust.  The examples shown on this page are purely for demonstration purposes.
-{: .notice--warning}
+{% endnotice %}
 
 ## NordVPN and NextDNS together
 
@@ -70,7 +37,12 @@ The [Private DNS](https://android-developers.googleblog.com/2018/04/dns-over-tls
 
 From the main settings page on your NextDNS configuration, find the DNS-over-TLS address.  In your Android settings, search for Private DNS.  I found this setting under `Settings > Network & Internet > Advanced > Private DNS`.
 
-{% include gallery id="gallery2"  caption="DNS over TLS on Android" %}
+
+{% gallery "DNS over TLS on Android" %}
+![](/assets/images/nextdns-nordvpn/001_dnstls.png)
+![](/assets/images/nextdns-nordvpn/005.png)
+{% endgallery %}
+
 
 For most scenarios and use cases, this works well enough and is a good enough default setting to stick with.
 
@@ -78,11 +50,11 @@ For most scenarios and use cases, this works well enough and is a good enough de
 
 Many workplaces, hotels and airports offer a guest WiFi network to connect personal devices to, and often these come with captive portals.  The trouble here is that such 'corporate' networks often block most outgoing ports, 853 included, which is what DNS-over-TLS makes use of.  When using the Private DNS feature in such a network, Android will mark the corporate WiFi with 'no internet connection'; your web browsing will fail, and you will be unable to connect to VPN.  
 
-<i class="fas fa-check-circle"></i> Works with WiFi  
-<i class="fas fa-check-circle"></i> Works with mobile networks  
-<i class="fas fa-check-circle"></i> Works with NordVPN  
-<i class="fas fa-times-circle"></i> Doesn't work with corporate WiFi/captive portals    
-<i class="fas fa-times-circle"></i> Not an option on older Android devices    
+✅ Works with WiFi  
+✅ Works with mobile networks  
+✅ Works with NordVPN  
+❌ Doesn't work with corporate WiFi/captive portals    
+❌ Not an option on older Android devices    
 
 
 If connecting to a restricted WiFi isn't necessary for you, this is the best place to stop.  You're in a good position, and you can enjoy both NextDNS and NordVPN.
@@ -97,11 +69,11 @@ The [NextDNS app](https://play.google.com/store/apps/details?id=io.nextdns.NextD
 Using their app will allow you to use NextDNS while on WiFi or mobile network, but won't allow you to use an actual VPN - this is because the app itself sets up [a local device VPN](https://nextdns.io/faq#apps-vpn) to issue DNS-over-HTTPS requests.  The main setting in the app is the configuration ID of your NextDNS settings.   You can also get it to send your device model so that you can easily identify it in the logs.  Since it's a local device VPN, the battery consumption is very low.  
 
 
-<i class="fas fa-check-circle"></i> Works with WiFi  
-<i class="fas fa-check-circle"></i> Works on mobile networks  
-<i class="fas fa-check-circle"></i> Works with corporate WiFi/captive portals  
-<i class="fas fa-check-circle"></i> Works on Android 4+  
-<i class="fas fa-times-circle"></i> Cannot use with actual VPNs
+✅ Works with WiFi  
+✅ Works on mobile networks  
+✅ Works with corporate WiFi/captive portals  
+✅ Works on Android 4+  
+❌ Cannot use with actual VPNs
 
 If using an actual VPN isn't necessary for you, this is the best place to stop.  It only gets more complicated from here.
 
@@ -112,7 +84,12 @@ If however, you _do_ need an actual VPN as well as DNS, then read on.
 
 Now we're in complicated land. The NordVPN app allows setting an IP address for a DNS server that it will use when making requests.  Get this from the settings screen on NextDNS, and add it to the NordVPN setting, `Custom DNS`.  Since you're connecting to a restricted WiFi, be sure to also select `Use TCP` - this makes NordVPN connect over port 443 to its servers.   
 
-{% include gallery id="gallery4"  caption="DNS in the NordVPN app" %}
+
+{% gallery %}
+![](/assets/images/nextdns-nordvpn/001_dns.png)
+![](/assets/images/nextdns-nordvpn/006.png)
+{% endgallery %}
+
 
 Observe that the NextDNS IP address is actually common to many of its users.  NextDNS needs some way of identifying your requests to that IP, among the thousands of other people using the same IP.  
 
@@ -133,9 +110,9 @@ My solution is to create a Tasker profile that invokes an HTTP request when conn
 
 In Tasker, create a new profile, `VPN On`.    
 Pick `State`, and in the dialog, search for `VPN Connected`  
-Leave the State as is, and press the back arrow <i class="fas fa-arrow-left"></i>  
+Leave the State as is, and press the back arrow ⬅️ 
 When prompted, create a new Task, `Update NextDNS Linked IP`  
-Press <i class="fas fa-plus"></i> to add an Action, and search for `HTTP Request`   
+Press ➕ to add an Action, and search for `HTTP Request`   
 Paste the URL from the NextDNS setting screen in the URL field    
 
 
@@ -150,14 +127,20 @@ Profile: Vpn On (2)
 
 To test this is working, connect to any NordVPN server.  Then on your device, browse to your NextDNS configuration at [https://my.nextdns.io](https://my.nextdns.io) - you should see an 'All Good!' message at the top, and in the Linked IP section, your IP with a tick next to it.
 
-{% include gallery id="gallery6" layout="half" caption="NextDNS confirms" %}
+
+{% gallery "NextDNS confirms" %}
+![](/assets/images/nextdns-nordvpn/009.png)
+![](/assets/images/nextdns-nordvpn/008.png)
+{% endgallery %}
+
+
 
 This setup works reliably, but is only applicable to the NordVPN connection.  When you disconnect from the VPN, you are no longer using NextDNS, and you'll need to launch the NextDNS app manually and connect there.  
 
-<i class="fas fa-check-circle"></i> Works with NordVPN  
-<i class="fas fa-check-circle"></i> Works with corporate WiFi/captive portals  
-<i class="fas fa-check-circle"></i> Use the NextDNS app when not on VPN - covers wifi and mobile networks  
-<i class="fas fa-times-circle"></i> Complicated setup  
+✅ Works with NordVPN  
+✅ Works with corporate WiFi/captive portals  
+✅ Use the NextDNS app when not on VPN - covers wifi and mobile networks  
+❌ Complicated setup  
 
 
 If you can stick to using NordVPN across all your wifi and mobile connections, then this is a good place to stop.  It's going to get _even more complicated_ after this.  Just stop, seriously.
@@ -170,17 +153,19 @@ If however, you are looking to automate the switch to NextDNS when NordVPN disco
 Tasker profiles have the concept of Exit Tasks; we can get Tasker to launch NextDNS when disconnecting from NordVPN.  
 
 In Tasker, long press the right side of the "NextDNS VPN On" profile. 
-Press `Add Exit Task` and Create a New Task <i class="fas fa-plus"></i>, "Launch NextDNS"  
-Press <i class="fas fa-plus"></i> to add an Action, and search for `Launch App`   
-Find NextDNS in the list and select it, then press the back arrow <i class="fas fa-arrow-left"></i>  
+Press `Add Exit Task` and Create a New Task ➕, "Launch NextDNS"  
+Press ➕ to add an Action, and search for `Launch App`   
+Find NextDNS in the list and select it, then press the back arrow ⬅️  
 
 
-{% include gallery id="gallery5" layout="half" caption="Tasker Exit Task" %}
+
+![Tasker Exit Task](/assets/images/nextdns-nordvpn/007.png)
 
 When disconnecting from NordVPN, the NextDNS app should launch and serve as a gentle reminder to connect to it.  
 
+{% notice "warning" %}
 This Tasker profile will only work on Android 9 and below.  From Android 10+, Tasker can no longer [launch activities from the background](https://developer.android.com/guide/components/activities/background-starts). 
-{: .notice--warning}
+{% endnotice %}
 
 
 
@@ -201,7 +186,12 @@ Set up a profile for `WiFi connected`, with both the entry and exit task the sam
 The Tasker screen is a little complicated to look at due to the nested If/Elses
 
 
-{% include gallery id="gallery7"  caption="Turn Private DNS on or off based on WiFi network name" %}
+{% gallery "Turn Private DNS on or off based on WiFi network name" %}
+![](/assets/images/nextdns-nordvpn/011.png)
+![](/assets/images/nextdns-nordvpn/012.png)
+![](/assets/images/nextdns-nordvpn/013.png)
+{% endgallery %}
+
 
 Using `If` in the task, you can check `%WIFII ~ *connection*` which matches if you are connected to a WiFi network.   
 

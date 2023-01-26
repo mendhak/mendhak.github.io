@@ -2,22 +2,19 @@
 title: "Syncing the login wallpaper with the desktop wallpaper on Ubuntu 20.04"
 description: "Getting the login wallpaper to sync with the desktop wallpaper, when using standalone or Variety wallpaper changer"
   
-gallery1:
-  - url: /assets/images/synchronize-login-wallpaper-ubuntu/001.png
-    image_path: /assets/images/synchronize-login-wallpaper-ubuntu/001.png
-  - url: /assets/images/synchronize-login-wallpaper-ubuntu/002.png
-    image_path: /assets/images/synchronize-login-wallpaper-ubuntu/002.png
+opengraph: 
+  image: /assets/images/synchronize-login-wallpaper-ubuntu/003.png
 
-header: 
-  teaser: /assets/images/synchronize-login-wallpaper-ubuntu/003.png
-
-last_modified_at: 2022-04-05T19:00:00Z
+last_modified_at: 2022-04-05
 
 ---
 
 In Ubuntu 20.04, the background image that you set for your desktop doesn't appear on the login screen.  There isn't a way to manage the login screen background through the OS settings either.  In this post I will go over two ways of synchronizing the login screen wallpaper to match the one chosen for the desktop.  
 
-{% include gallery id="gallery1" caption="Desktop wallpaper, but dull login screen" %}
+{% gallery "Desktop wallpaper, but dull login screen" %}
+![](/assets/images/synchronize-login-wallpaper-ubuntu/001.png)
+![](/assets/images/synchronize-login-wallpaper-ubuntu/002.png)
+{% endgallery %}
 
 ## Setup
 
@@ -48,10 +45,11 @@ cd change-gdm-background
 sudo ./change-gdm-background ~/Pictures/testwallpaper.jpg
 ```
 
-![login screen wallpaper]({{ site.baseurl }}/assets/images/synchronize-login-wallpaper-ubuntu/003.png)
+![login screen wallpaper](/assets/images/synchronize-login-wallpaper-ubuntu/003.png)
 
+{% notice "info" %}
 Your original theme isn't lost, you can go back to it using `sudo ./change-gdm-background --restore`
-{: .notice--info}
+{% endnotice %}
 
 ### Allow the script to run without prompting for password
 
@@ -154,7 +152,7 @@ The workaround for this is to get your login screen to only work on one monitor.
 
 To do this, first in your own desktop, change the display mode to be Single Display and apply the changes.  
 
-![display settings]({{ site.baseurl }}/assets/images/synchronize-login-wallpaper-ubuntu/004.png)
+![display settings](/assets/images/synchronize-login-wallpaper-ubuntu/004.png)
 
 
 This will have modified your `~/.config/monitors.xml` file that you need to pass to GDM3.  To do that, 

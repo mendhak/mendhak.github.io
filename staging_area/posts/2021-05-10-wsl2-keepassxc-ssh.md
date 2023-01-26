@@ -1,24 +1,18 @@
 ---
 title: "How to use KeepassXC to serve SSH keys to WSL2 and Ubuntu"
 description: "Using KeepassXC SSH, on Windows 10, to serve SSH keys to WSL 2 running Ubuntu"
-categories: 
+tags: 
   - wsl2
   - ssh
   - ubuntu
   - windows
   - keepass
 
-header: 
-  teaser: /assets/images/wsl-ssh-keepassxc/004.png
+opengraph: 
+  image: /assets/images/wsl-ssh-keepassxc/004.png
 
 
-gallery1:
-  - url: /assets/images/wsl-ssh-keepassxc/002.png
-    image_path: /assets/images/wsl-ssh-keepassxc/002.png
-  - url: /assets/images/wsl-ssh-keepassxc/003.png
-    image_path: /assets/images/wsl-ssh-keepassxc/003.png
-  - url: /assets/images/wsl-ssh-keepassxc/004.png
-    image_path: /assets/images/wsl-ssh-keepassxc/004.png
+
 ---
 
 
@@ -27,8 +21,9 @@ I have previously shown how to [serve keys to WSL1](/wsl-keepassxc-ssh/), here I
 KeepassXC can be used to serve SSH keys to WSL2, which is useful when remoting on to servers, or using Git over SSH. Some benefits of putting your SSH key into your KeepassXC are that you can have a strong password on the private key but don't need to type it out each time, and that you don't need to save your keys on disk - you can let KeePassXC manage the storage, unlocking and serving of the keys for you.  
 
 
+{% notice "info" %}
 You can also skip the steps and go straight to [the setup script](#all-together-in-one-script)
-{: .notice--info}
+{% endnotice %}
 
 
 ## Set up KeePassXC
@@ -36,7 +31,7 @@ You can also skip the steps and go straight to [the setup script](#all-together-
 Open up KeePassXC's settings, and choose to `Enable SSH Agent` and also `Use OpenSSH for Windows instead of Pageant`.  
 The second option requires the OpenSSH service in Windows to already be running, you will get an error message if it isn't. 
 
-![keepassxc settings]({{ site.baseurl }}/assets/images/wsl-ssh-keepassxc/001.png)
+![keepassxc settings](/assets/images/wsl-ssh-keepassxc/001.png)
 
 
 
@@ -50,9 +45,11 @@ In the advanced section, attach your public and private key, then hit OK, then s
 Now reopen the entry, then go to the SSH Agent section, under Private key, pick the file you attached earlier.  The rest of the section should get filled out with details about your key. Once again hit OK and save; KeePassXC is now serving those keys to the Windows SSH agent. 
 
 
-{% include gallery id="gallery1" caption="KeePassXC settings" %}
-
-
+{% gallery "KeePassXC settings" %}
+![](/assets/images/wsl-ssh-keepassxc/002.png)
+![](/assets/images/wsl-ssh-keepassxc/003.png)
+![](/assets/images/wsl-ssh-keepassxc/004.png)
+{% endgallery %}
 
 ## Get Npiperelay
 
@@ -70,8 +67,9 @@ rm npiperelay_windows_amd64.zip
 
 This puts the npiperelay.exe at `/home/username/npiperelay`.  
 
+{% notice "info" %}
 You can also [download npiperelay](https://github.com/jstarks/npiperelay/releases) to the Windows side, and substitute the corresponding path below with slash notations, such as `/c/Temp/npiperelay.exe`
-{: .notice--info}
+{% endnotice %}
 
 
 
@@ -101,8 +99,9 @@ if [ $? -ne 0 ]; then
 fi
 ```
 
+{% notice "info" %}
 If you've put npiperelay.exe in another location, replace the `$HOME/npiperelay/npiperelay.exe` above.
-{: .notice--info}
+{% endnotice %}
 
 Exit and reopen your shell, and this should call out to npiperelay.  There is no visual indication to know it's working, you can only find out by testing it. 
 

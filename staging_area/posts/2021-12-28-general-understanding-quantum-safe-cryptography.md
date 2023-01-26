@@ -2,9 +2,6 @@
 title: "How quantum computers break our security, and what's being done about it"
 description: "Quantum computers will defeat common security algorithms that we use today. I'll cover how they break it, and what the cryptographic community is doing about it, with some of my notes."
 
-categories: 
-  - computing
-  - security
 tags: 
   - quantum
   - computing
@@ -13,30 +10,13 @@ tags:
   - standard
   - simplified
  
-last_modified_at: 2022-07-06T05:00:00Z
+last_modified_at: 2022-07-06
 
-gallery1:
-  - url: /assets/images/general-understanding-quantum-safe-cryptography/002.png
-    image_path: /assets/images/general-understanding-quantum-safe-cryptography/002.png
-  - url: /assets/images/general-understanding-quantum-safe-cryptography/003.png
-    image_path: /assets/images/general-understanding-quantum-safe-cryptography/003.png
 
-gallery2:
-  - url: /assets/images/general-understanding-quantum-safe-cryptography/005.png
-    image_path: /assets/images/general-understanding-quantum-safe-cryptography/005.png
-  - url: /assets/images/general-understanding-quantum-safe-cryptography/006.png
-    image_path: /assets/images/general-understanding-quantum-safe-cryptography/006.png    
-  - url: /assets/images/general-understanding-quantum-safe-cryptography/007.png
-    image_path: /assets/images/general-understanding-quantum-safe-cryptography/007.png    
+ 
 
-gallery3:
-  - url: /assets/images/general-understanding-quantum-safe-cryptography/009.jpg
-    image_path: /assets/images/general-understanding-quantum-safe-cryptography/009.jpg
-  - url: /assets/images/general-understanding-quantum-safe-cryptography/010.jpg
-    image_path: /assets/images/general-understanding-quantum-safe-cryptography/010.jpg
-
-header: 
-  teaser: /assets/images/general-understanding-quantum-safe-cryptography/012.jpg
+opengraph: 
+  image: /assets/images/general-understanding-quantum-safe-cryptography/012.jpg
 ---
 
 
@@ -51,7 +31,7 @@ The significance is that the stated problem is how you'd go about decrypting mes
 
 On today's computers (usually referred to as classical machines), for large values, this would take trillions of years, and it is this difficulty which gives us the assurance we need that our key exchanges and authentication steps are safe.  That assurance goes away with quantum computers.  
 
-[![prime factors of an integer]({{ site.baseurl }}/assets/images/general-understanding-quantum-safe-cryptography/001.png)]({{ site.baseurl }}/assets/images/general-understanding-quantum-safe-cryptography/001.png)
+![prime factors of an integer](/assets/images/general-understanding-quantum-safe-cryptography/001.png)
 
 
 
@@ -74,19 +54,31 @@ Quantum computers aren't very powerful today and are constrained by a few proble
 
 The first one is called _coherence time_; it's the duration that the qubits in a quantum computer can stay useful for the purposes of a calculation.  If a calculation on a quantum machine requires more time than the coherence time, then the machine won't be able to solve the problem.  The best time achieved as of 2021 has been around 300 to 500 microseconds, which isn't very useful considering the 10 seconds quoted above for breaking RSA-2048.  However there is always research being done to [increase this coherence time to 1 hour and more](https://www.nature.com/articles/s41467-020-20330-w).   
 
-{% include gallery id="gallery1" layout="third" caption="Increasing quantum coherence" %}
+{% gallery "Increasing quantum coherence" %}
+![](/assets/images/general-understanding-quantum-safe-cryptography/002.png)
+![](/assets/images/general-understanding-quantum-safe-cryptography/003.png)
+{% endgallery %}
+
+
 
 The other problem is the _number of qubits_ in the quantum computer.  In the RSA-2048 breaking example above, the quantum computer would also need 4099 stable qubits. As of 2021, IBM has the largest quantum computer at [127 qubits](https://www.newscientist.com/article/2297583-ibm-creates-largest-ever-superconducting-quantum-computer/) and are predicting [1121 qubits in 2023](https://research.ibm.com/blog/ibm-quantum-roadmap).  
 
+{% notice "info" %}
 If you're wondering where the 4099 number came from for an RSA-2048 bit key, it's based on having [2n+3 qubits rquired for an efficient implementation of Shor's algorithm](https://arxiv.org/pdf/quant-ph/0205095.pdf).  It's possible to have a different number of qubits, the time taken will just be different.  There might also exist other efficient algorithms that require fewer qubits.   
-{: .notice--info}
+{% endnotice %}
 
 These stated numbers are changing frequently though, as universities and organisations are continuously outdoing each other. It's tempting to think that quantum computing might stay in the realm of curiosity, research and academia, without making progress past current coherence and qubit limitations, but this is no [longer](https://techmonitor.ai/technology/ibm-eagle-chip-quantum-computing) a [commonly](https://ai.googleblog.com/2018/03/a-preview-of-bristlecone-googles-new.html) held [viewpoint](https://en.wikipedia.org/wiki/Quantum_supremacy).       
 
-{% include gallery id="gallery2" layout="third" caption="Breaking qubits barrier" %}
+{% gallery "Breaking qubits barrier" %}
+![](/assets/images/general-understanding-quantum-safe-cryptography/005.png)
+![](/assets/images/general-understanding-quantum-safe-cryptography/006.png)
+![](/assets/images/general-understanding-quantum-safe-cryptography/007.png)
+{% endgallery %}
 
+  
+{% notice "info" %}
 It's not important to know what qubits are for this post, it's simpler to think of them as the same as bits in classical computers, but with multiple possible values at the same time. 
-{: .notice--info}
+{% endnotice %}
 
 ### But the IT industry is slow
 
@@ -152,7 +144,13 @@ Embedded devices play a role in critical infrastructure, such as power grids, tr
 
 In [Vehicle to Vehicle communication](https://csrc.nist.gov/CSRC/media/Presentations/suitability-of-3rd-round-signature-candidates-for/images-media/session-5-bindel-suitability-vehicle.pdf), vehicles broadcast Basic Safety Messages (BSMs) 10 times per second to their surroundings, containing information like speed, direction and brake status.  Vehicles are expected to receive and process each other's BSMs rapidly, and so the focus is on reliability and speed of verification due to the realtime nature of the decisions involved in dense environments. The preferred algorithms were Dilithium and Falcon.  However the packet sizes involved with Dilithium weren't great when it came to rapid verifications, so they might be leaning towards Falcon.  
 
-{% include gallery id="gallery3" caption="Vehicle to Vehicle" %}
+{% gallery "Vehicle to Vehicle" %}
+![](/assets/images/general-understanding-quantum-safe-cryptography/009.jpg)
+![](/assets/images/general-understanding-quantum-safe-cryptography/010.jpg)
+{% endgallery %}
+
+
+
 
 ### The Crystals, Kyber and Dilithium
 

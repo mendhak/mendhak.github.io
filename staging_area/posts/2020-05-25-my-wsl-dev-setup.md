@@ -1,7 +1,7 @@
 ---
 title: "Setting up a WSL1 dev environment from the command line"
 description: "Command line steps for setting up a WSL1 environment, including enabling WSL, setting the mount point, permissions, installing Docker and Docker compose and other tweaks."
-categories:
+tags:
   - wsl
   - ssh
   - ubuntu
@@ -10,8 +10,8 @@ categories:
   - pgp
   - git
 
-header: 
-  teaser: /assets/images/my-wsl-dev-setup/001.png
+opengraph: 
+  image: /assets/images/my-wsl-dev-setup/001.png
 
 
 ---
@@ -44,9 +44,9 @@ Invoke-WebRequest -Uri "https://aka.ms/wsl-ubuntu-1804" -OutFile "C:\Temp\UBU180
 Add-AppxPackage -Path "C:\Temp\UBU1804.appx"
 ```
 
-
+{% notice "warning" %}
 I'm choosing Ubuntu 18.04 as [20.04 currently has a critical bug](https://github.com/microsoft/WSL/issues/4898), and there are [more details here](https://discourse.ubuntu.com/t/ubuntu-20-04-and-wsl-1/15291)
-{: .notice--warning}
+{% endnotice %}
 
 ## Configure Ubuntu
 
@@ -104,7 +104,7 @@ At this point if you open [Microsoft Terminal](https://www.microsoft.com/en-gb/p
 
 Choose Ubuntu.  The user should already be set to `mendhak` and the path should already be set to `/c/Users/...`. 
 
-[![wsl]({{ site.baseurl }}/assets/images/my-wsl-dev-setup/001.png)]({{ site.baseurl }}/assets/images/my-wsl-dev-setup/001.png)
+![wsl](/assets/images/my-wsl-dev-setup/001.png)
 
 ### Install some dependencies
 
@@ -130,7 +130,7 @@ sudo apt-get install -y unzip git figlet jq screenfetch \
 Over in Windows 10, install [Docker Desktop](https://www.docker.com/products/docker-desktop).  The installer should configure HyperV for you as well.  
 After installation, be sure to go to Docker Desktop's settings, and choose to `Expose daemon on tcp://localhost:2375 without TLS`
 
-[![docker]({{ site.baseurl }}/assets/images/my-wsl-dev-setup/002.png)]({{ site.baseurl }}/assets/images/my-wsl-dev-setup/002.png)
+![docker](/assets/images/my-wsl-dev-setup/002.png)
 
 It's also possible to automate the installation of Docker Desktop from Powershell:
 
@@ -245,7 +245,9 @@ It's also possible to automate the entire process - from installing WSL to Ubunt
 
 You will need two scripts, a `preparewsl.ps1` and a `preparewsl.sh`.  
 
-[preparewsl.ps1](https://github.com/mendhak/automated-wsl-dev-setup/blob/master/preparewsl.ps1){: .btn .btn--info} [preparewsl.sh](https://github.com/mendhak/automated-wsl-dev-setup/blob/master/preparewsl.sh){: .btn .btn--info} 
+{% button "preparewsl.ps1", "https://github.com/mendhak/automated-wsl-dev-setup/blob/master/preparewsl.ps1" %} {% button "preparewsl.sh", "https://github.com/mendhak/automated-wsl-dev-setup/blob/master/preparewsl.sh" %}
+
+
 
 Kick off the process by running the Powershell script, which in turn calls the bash script. 
 
@@ -253,6 +255,7 @@ Kick off the process by running the Powershell script, which in turn calls the b
 powershell -executionpolicy bypass -file .\preparewsl.ps1
 ```
 
+{% notice "info" %}
 About halfway, the script will prompt you for your desired WSL username and password.  
-{: .notice--info}
+{% endnotice %}
 

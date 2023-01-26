@@ -2,10 +2,6 @@
 title: "In praise of opinionated frameworks"
 description: "Flexibility is overrated, sometimes it is better to use opinionated tools, frameworks, and languages"
 
-categories: 
-  - technology
-  - language
-  - framework
 tags: 
   - technology
   - language

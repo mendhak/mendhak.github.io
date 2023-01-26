@@ -2,14 +2,6 @@
 title: "My ebook reading setup"
 description: "Using Calibre-Web hosted on a Raspberry Pi, surfaced through Cloudflare Tunnel, to read ebooks across multiple devices from multiple sources like libraries and bundles and light novels."
 
-categories: 
-  - ebook
-  - kindle
-  - calibre
-  - reading
-  - multiple
-  - light-novel
-  - library
 
 tags: 
   - ebook
@@ -20,26 +12,12 @@ tags:
   - light-novel
   - library
 
-gallery1:
-  - url: /assets/images/my-ebook-reading-setup/004a.png
-    image_path: /assets/images/my-ebook-reading-setup/004a.png
-  - url: /assets/images/my-ebook-reading-setup/004b.png
-    image_path: /assets/images/my-ebook-reading-setup/004b.png
 
-gallery2:
-  - url: /assets/images/my-ebook-reading-setup/009a.png
-    image_path: /assets/images/my-ebook-reading-setup/009a.png
-  - url: /assets/images/my-ebook-reading-setup/009b.png
-    image_path: /assets/images/my-ebook-reading-setup/009b.png    
 
-gallery3:
-  - url: /assets/images/my-ebook-reading-setup/010a.png
-    image_path: /assets/images/my-ebook-reading-setup/010a.png
-  - url: /assets/images/my-ebook-reading-setup/010b.png
-    image_path: /assets/images/my-ebook-reading-setup/010b.png    
 
-header: 
-  teaser: /assets/images/my-ebook-reading-setup/012.png
+
+opengraph: 
+  image: /assets/images/my-ebook-reading-setup/012.png
 
 ---
 
@@ -50,7 +28,7 @@ But I still wanted a relatively convenient setup for fetching and reading ebooks
 
 ## Where I get books
 
-[![sources]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/002.png)]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/002.png)
+![Sources](/assets/images/my-ebook-reading-setup/002.png)
 
 ### The library
 
@@ -58,7 +36,7 @@ Libraries are great because you can borrow books for free, which sounds obvious 
 
 The selection is actually better than I thought it would be, and I regularly find several items from my 'Want to Read' list.  Since there are limited copies of these ebooks (due to publisher restrictions), I don't always find the book available to borrow right away, but I can place a hold on them.  I get notified by email when it's available to borrow, at which point I go and download it, and add it to my Calibre library. 
 
-[![library]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/005a.png)]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/005a.png)
+![Library](/assets/images/my-ebook-reading-setup/005a.png)
 
 ### Online stores
 
@@ -78,7 +56,11 @@ Humble Bundle will sometimes offer book bundles on sale, and there are occasiona
 
 For literary classics, I'll try out [Project Gutenberg](https://www.gutenberg.org/) which is quite well known, but can be hit-or-miss in terms of quality. For a more curated experience, [Standard Ebooks](https://standardebooks.org/) offers well formatted epubs too.  
 
-{% include gallery id="gallery1" layout="half" caption="Free books" %}
+{% gallery "Free books" %}
+![](/assets/images/my-ebook-reading-setup/004a.png)
+![](/assets/images/my-ebook-reading-setup/004b.png)
+{% endgallery %}
+
 
 ## Organizing files in Calibre
 
@@ -88,7 +70,7 @@ When adding a book to the Calibre library I'll ensure that both epub and mobi fo
 
 Calibre stores its metadata in a local database file, while the actual books are kept on disk, relative to the path of the database.  Both the Calibre database as well as the ebook files files are then synced up to Google Drive using [Insync](https://insynchq.com) which works well on Linux.  
 
-[![calibre]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/003.png)]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/003.png)
+![Calibre](/assets/images/my-ebook-reading-setup/003.png)
 
 
 
@@ -96,7 +78,7 @@ Calibre stores its metadata in a local database file, while the actual books are
 
 The next step is making the library available from anywhere, both at home and while outside, such as at work or while travelling.  This involves putting the library on the internet, which in turn means web access.  Because Calibre is a desktop application, it's not so simple to make it available from anywhere; it does come with a built in content server but it's meant for simple access and library management.  
 
-[![calibre-web on raspberry pi]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/007.png)]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/007.png)
+![Calibre-Web on Raspberry Pi](/assets/images/my-ebook-reading-setup/007.png)
 
 ### Calibre-Web
 
@@ -107,7 +89,7 @@ Calibre-Web can run in a Docker container, which makes it a perfect candidate fo
 To run, Calibre-Web requires the Calibre database file, as well as the books themselves.  I sync these down on a schedule using [Rclone](https://rclone.org/), a commandline application that can sync from Google Drive (among dozens of other sources).  Calibre-Web automatically picks up the latest changes, and is also able to show my Unread books based on the custom column I created in Calibre earlier.  Clicking on a book brings up its dialogue, I can then download the book to the device I'm accessing it from.  As an added bonus, it comes with OAuth authentication and I can use my Github login.  
 
 
-[![calibre-web]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/006.png)]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/006.png)
+![Calibre-Web](/assets/images/my-ebook-reading-setup/006.png)
 
 ### Cloudflare Tunnel
 
@@ -120,7 +102,7 @@ I've got the entire setup with instructions in a [Github repo](https://github.co
 
 Now that I've made the library available, I can access it from the applications and devices that I want to read from.  This is where the application choices become important.  They need to be good at rendering a book of course, but also need to be able to access an online catalog.  For this, there exists the Open Publication Distribution System format, or OPDS.  Most mature readers will be able to access an OPDS feed to present a library to the user and know how to authenticate against those and fetch the right format of books to present.  Calibre-Web presents its OPDS feed at `https://mylibrary.example.com/opds`.  
 
-[![reading from devices]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/011.png)]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/011.png)
+![Reading from devices](/assets/images/my-ebook-reading-setup/011.png)
 
 ### On Desktop, Foliate
 
@@ -128,11 +110,14 @@ I have tried numerous ebook reading applications on desktop, mobile, and tablets
 
 It may sound strange, reading on a computer, especially on a 27" 2560x1440 gaming monitor with 144Hz refresh rate.  After all, dedicated reader devices do exist, but it works for me; I will usually have Foliate open on my second monitor while I'm gaming, writing, or programming on the main monitor.  It's nice to glance away, read a little bit as a break, and then get back to the main task.  In fact, I'm doing it right now.  
 
-[![calibre-web]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/008.png)]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/008.png)
+![Calibre-Web](/assets/images/my-ebook-reading-setup/008.png)
 
 Foliate Catalog feature can access libraries available over the OPDS format.  Since Calibre-Web makes my library available that way, I simply connect Foliate to `https://mylibrary.example.com/opds`, enter credentials, and connect.  The presentation is basic — it can list the categories, including unread, allows some searching, and can add the books to its library for reading.  
 
-{% include gallery id="gallery2" layout="half" caption="Foliate catalog view and customized reading view" %}
+{% gallery "Foliate catalog view and customized reading view" %}
+![](/assets/images/my-ebook-reading-setup/009a.png)
+![](/assets/images/my-ebook-reading-setup/009b.png)
+{% endgallery %}
 
 ### On Mobile, Moon+ Reader Pro
 
@@ -140,7 +125,12 @@ Interacting with content on a mobile device isn't the same as readers, tablets, 
 
 As mentioned, Moon+ Reader can access OPDS feeds, under the Net Library menu. It's a very utilitarian presentation, not even the covers are visible, only the ability to pick a format to download.  It's good enough, and lets me get reading right away. A really neat feature in this app is also the ability to control brightness, so if I'm reading on the phone at night, or in bright sunlight, I can change the screen brightness by sliding my finger across the left edge.  
 
-{% include gallery id="gallery3" layout="half" caption="Moon+ Reader net library, and customized reading view" %}
+{% gallery "Moon+ Reader net library, and customized reading view" %}
+![](/assets/images/my-ebook-reading-setup/010a.png)
+![](/assets/images/my-ebook-reading-setup/010b.png)
+{% endgallery %}
+
+
 
 ### The Kindle
 
@@ -164,6 +154,6 @@ There's a lot of text in this post, but the premise is simple.  Add books to Cal
 
 The flow, end-to-end, looks like this: 
 
-[![all together]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/012.png)]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/012.png)
+![All together](/assets/images/my-ebook-reading-setup/012.png)
 
-([Diagram]({{ site.baseurl }}/assets/images/my-ebook-reading-setup/EbookReading.excalidraw) made in Excalidraw!)
+([Diagram](/assets/images/my-ebook-reading-setup/EbookReading.excalidraw) made in Excalidraw!)

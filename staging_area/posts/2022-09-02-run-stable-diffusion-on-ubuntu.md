@@ -1,35 +1,16 @@
 ---
 title:      The simplest way to get started with Stable Diffusion on Ubuntu 
 description: "Simple set of instructions to run the Dream Script Stable Diffusion on Ubuntu 22.04"
-categories:
- - tech
- - ubuntu
- - machine-learning
- - images
+
 tags:
  - tech
  - ubuntu
  - machine-learning
  - images
 
-header: 
-  teaser: /assets/images/run-stable-diffusion-on-ubuntu/003.png
+opengraph: 
+  image: /assets/images/run-stable-diffusion-on-ubuntu/003.png
 
-gallery1:
-  - url: /assets/images/run-stable-diffusion-on-ubuntu/004.png
-    image_path: /assets/images/run-stable-diffusion-on-ubuntu/004.png
-  - url: /assets/images/run-stable-diffusion-on-ubuntu/005.png
-    image_path: /assets/images/run-stable-diffusion-on-ubuntu/005.png
-  - url: /assets/images/run-stable-diffusion-on-ubuntu/006.png
-    image_path: /assets/images/run-stable-diffusion-on-ubuntu/006.png
-
-gallery2:
-  - url: /assets/images/run-stable-diffusion-on-ubuntu/007.png
-    image_path: /assets/images/run-stable-diffusion-on-ubuntu/007.png
-  - url: /assets/images/run-stable-diffusion-on-ubuntu/008.png
-    image_path: /assets/images/run-stable-diffusion-on-ubuntu/008.png
-  - url: /assets/images/run-stable-diffusion-on-ubuntu/009.png
-    image_path: /assets/images/run-stable-diffusion-on-ubuntu/009.png    
 ---
 
 Stable Diffusion is a machine learning model that can generate images from natural language descriptions.  Because it's open source, it's also easy to run it locally, which makes it very convenient to experiment with in your own time. The simplest and best way of running Stable Diffusion is through the [Dream Script Stable Diffusion](https://github.com/lstein/stable-diffusion) fork, which comes with some convenience functions.  
@@ -129,7 +110,11 @@ dream> mountains and river, Artstation, Golden Hour, Sunlight, detailed, elegant
 
 You can take the output from one step and re-feed it as the input again, and come up with some interesting results. 
 
-{% include gallery id="gallery1" caption="Mountains and river, output re-fed multiple times" %}
+{% gallery "Mountains and river, output re-fed multiple times" %}
+![](/assets/images/run-stable-diffusion-on-ubuntu/004.png)
+![](/assets/images/run-stable-diffusion-on-ubuntu/005.png)
+![](/assets/images/run-stable-diffusion-on-ubuntu/006.png)
+{% endgallery %}
 
 
 

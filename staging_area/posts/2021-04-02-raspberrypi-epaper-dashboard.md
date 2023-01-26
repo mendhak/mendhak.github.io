@@ -1,32 +1,20 @@
 ---
 title: "Raspberry Pi: Simple Waveshare e-paper dashboard with weather and calendar"
 description: "Raspberry Pi dashboard with an e-paper display from waveshare, shows weather info, severe weather, and calendar entries"
-last_modified_at: 2022-04-13T14:00:00Z
-categories: 
-  - raspberrypi
+last_modified_at: 2023-01-25
+
 tags: 
   - raspberrypi
   - epaper
   - dashboard
-gallery:
-  - url: /assets/images/raspberrypi-epaper-dashboard/001.jpg
-    image_path: /assets/images/raspberrypi-epaper-dashboard/001.jpg
-    alt: "In a picture frame"
-    title: "In a picture frame"
-  - url: /assets/images/raspberrypi-epaper-dashboard/002.png
-    image_path: /assets/images/raspberrypi-epaper-dashboard/002.png
-    alt: "Generated image"
-    title: "Generated image"
+  - weather
+  - alerts
+  - warnings
+  - calendar
 
-gallery2:
-  - url: /assets/images/raspberrypi-epaper-dashboard/003.png
-    image_path: /assets/images/raspberrypi-epaper-dashboard/003.png
-    alt: "Cutout for e-paper connector"
-    title: "Cutout for e-paper connector"
-  - url: /assets/images/raspberrypi-epaper-dashboard/004.png
-    image_path: /assets/images/raspberrypi-epaper-dashboard/004.png
-    alt: "Topdown view or Raspberry Pi attached to picture frame stand"
-    title: "Topdown view or Raspberry Pi attached to picture frame stand"    
+opengraph:
+  image: /assets/images/raspberrypi-epaper-dashboard/001.jpg
+
   
 ---
 
@@ -38,11 +26,15 @@ The screen will display:
 * Date and time
 * Weather icon and short description, with high and low temperature (OpenWeatherMap, Met office, AccuWeather, Met.no, Climacell, VisualCrossing)
 * A severe weather warning (provided by Met Office or Weather.gov)
-* Google Calendar or Outlook Calendar entries
+* Google Calendar, Outlook Calendar, ICS or CalDav calendar entries
 
 Here it is in action
 
-{% include gallery caption="epaper dashboard" %}
+{% gallery "epaper dashboard" %}
+![In a picture frame](/assets/images/raspberrypi-epaper-dashboard/001.jpg)
+![Generated image](/assets/images/raspberrypi-epaper-dashboard/002.png)
+{% endgallery %}
+
 
 
 ## Shopping list
@@ -51,23 +43,24 @@ Here it is in action
 
 The most important component is the Waveshare display, which is a [7.5 inch e-paper HAT](https://www.waveshare.com/wiki/7.5inch_e-Paper_HAT) with `SKU: 13504` and `UPC: 614961951068`.  A quick search will also show similar displays available, with a single additional color. As tempting as they may be, the problem with those displays is the refresh rate, in part due to the way the third color is 'pushed' to the surface when displaying a color.  While the black and white display isn't very fast, the colored ones are much, much slower and are only suitable for frequently-refreshing dashboards.  
 
-[E-Paper Display](https://smile.amazon.co.uk/gp/product/B075R4QY3L/){: .btn .btn--info}
+{% button "E-Paper Display", "https://smile.amazon.co.uk/gp/product/B075R4QY3L/" %}
 
 ### Raspberry Pi
 
 Although any Raspberry Pi can be used, the best one to get here is the Raspberry Pi Zero W - it's thinner and more portable.  Since it's a HAT (Hardware Attached on Top), you can save some time by buying it with the GPIO presoldered.  Of course you'll also need a microSD card.  
 
-[Raspberry Pi Zero WH](https://smile.amazon.co.uk/gp/product/B07BHMRTTY/){: .btn .btn--info}
-[microSDHC card](https://smile.amazon.co.uk/gp/product/B073K14CVB){: .btn .btn--info}
+{% button "Raspberry Pi Zero WH", "https://smile.amazon.co.uk/gp/product/B07BHMRTTY/" %}
+{% button "microSDHC card", "https://smile.amazon.co.uk/gp/product/B073K14CVB" %}
 
 ### Picture frame
 
 You'll need a 6"x4" picture frame to hold everything together.  This is the best size just larger than the e-paper display.  The back needs to be made of cheap material so that it can be cut out for the e-paper display's connection mechanism.  
 
-[Picture frame](https://www.wilko.com/wilko-6-x-4-inch-black-easy-photo-frame/p/0242493){: .btn .btn--info}
+{% button "Picture frame", "https://www.wilko.com/wilko-6-x-4-inch-black-easy-photo-frame/p/0242493" %}
 
 
-{% include repo_card.html reponame="waveshare-epaper-display" %}
+
+{% githubrepocard "mendhak/waveshare-epaper-display" %}
 
 
 ## Setup the PI
@@ -95,7 +88,7 @@ Wait a few minutes, and let the Pi connect over WiFi.  You should be able to SSH
 * Choosing a calendar provider (Google Calendar and Outlook)
 * Choosing a layout
 
-[Instructions on Github](https://github.com/mendhak/waveshare-epaper-display#readme){: .btn .btn--info}
+{% button "Instructions on Github", "https://github.com/mendhak/waveshare-epaper-display#readme" %}
 
 ## Run it
 
@@ -114,7 +107,12 @@ The ribbon from the connector loops upwards and over to the picture frame's stan
 
 The only bit of wire in the whole setup is the USB to power the Raspberry Pi.  
 
-{% include gallery id="gallery2" caption="Picture frame details" %}
+
+{% gallery "Picture frame details" %}
+![Cutout for e-paper connector](/assets/images/raspberrypi-epaper-dashboard/003.png)
+![Topdown view or Raspberry Pi attached to picture frame stand](/assets/images/raspberrypi-epaper-dashboard/004.png)
+{% endgallery %}
+
 
 
 ## How it works
@@ -130,8 +128,9 @@ The first part of `run.sh` calls on the `screen-weather.get.py` script which que
 
 The last API call is to Google Calendar, the upcoming 2 calendar entries are written to the same SVG.  
 
+{% notice "info" %}
 Due to API rate limits, you will see various `.pickle` files which store the Google/Outlook Calendar and weather API responses for a few hours.  This means that any new entries in your target calendar won't show up immediately.  Similarly weather info will be up to a few hours delayed.  
-{: .notice--info}
+{% endnotice %}
 
 ### Image conversion and display
 

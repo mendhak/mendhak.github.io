@@ -1,8 +1,6 @@
 ---
 title: "Don't install npm packages globally"
 description: "npm install -g is bad and should be avoided, there are many ways to do this"
-categories: 
-  - node
 tags: 
   - node
   - npm
@@ -19,11 +17,16 @@ gallery:
 
 Many node packages and tools will encourage you to install their tools globally.  This is a bad practice and should be avoided.  
 
-![npmnpx]({{ site.baseurl }}/assets/images/npm-install-globally-is-bad/001.png)
+![](/assets/images/npm-install-globally-is-bad/001.png)
 
 Some examples of this are Angular, Grunt, Gulp, Karma, Verdaccio, Snyk, React Native.  
 
-{% include gallery  %}
+
+{% gallery "Examples of well known packages encouraging global install" %}
+![](/assets/images/npm-install-globally-is-bad/002.png)
+![](/assets/images/npm-install-globally-is-bad/003.png)
+![](/assets/images/npm-install-globally-is-bad/004.png)
+{% endgallery %}
 
 ## Why it should be avoided
 

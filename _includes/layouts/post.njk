@@ -1,0 +1,10 @@
+---
+layout: layouts/base.njk
+---
+
+
+<article>
+{{ content | safe }}
+</article>
+
+<p><time datetime="{{ (last_modified_at or page.date) | htmlDateString }}">Updated: {{ (last_modified_at or page.date) | readableDate }}</time></p>

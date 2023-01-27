@@ -1,0 +1,232 @@
+/* Overriding simple.css values */
+/* Visible at file:///home/mendhak/Projects/eleventy-satisfactory/node_modules/simpledotcss/simple.css */
+
+
+:root {
+  /* Set sans-serif & mono fonts */
+  --sans-font: Roboto,"Nimbus Sans L","Avenir Next",Avenir,"Segoe UI",Arial,Helvetica,"Helvetica Neue",sans-serif;
+  --mono-font: "Ubuntu Mono", Consolas, Menlo, Monaco, "Andale Mono",  monospace;
+}
+
+/* Change some colors for dark mode */
+@media (prefers-color-scheme: dark) {
+:root {
+  --bg: #333333;
+  --accent: #fedb8b;
+}
+}
+
+/* Make the middle column slightly wider, and font slightly larger */
+body {
+  grid-template-columns: 1fr min(55rem, 90%) 1fr;
+  font-size: 1.25rem;
+  line-height: 1.7;
+  overflow-y: scroll; /* stops horizontal shift due to scrollbar */
+}
+
+/* Left align the site's title in the header */
+body > header {
+  text-align: left;
+  padding: 0;
+}
+/* Styling for site title */
+body > header > a {
+  max-width: 1200px;
+  margin: 1rem auto;
+  font-size: 1.5rem;
+  display: block;
+  font-weight: 700;
+  color: var(--text) !important;
+  font-family: 'Lora';
+  padding-left: 0.5rem;
+}
+
+/* No underlines for hyperlinks */
+a {
+  text-decoration: none;
+}
+
+/* Don't italicize blockquote */
+blockquote {
+  font-style: normal;
+}
+
+/* H1s should have the accent color, to make it stand out */
+h1 {
+  color: var(--accent);
+}
+
+/* Use the nice Lora font for headings */
+h1,h2,h3,h4,h5,h6 {
+  font-family: Lora,serif;
+  margin-bottom: 0.25em;
+}
+
+
+
+/* This class is added by the markdown-it-anchor library. Removing the hyperlink color from headers */
+a.header-anchor {
+  color: unset;
+}
+
+/* Time text slightly grayed out */
+time {
+  color: var(--text-light);
+  font-size: 1rem;
+  padding-top: 1.5rem;
+  display: inline-block;
+}
+
+/* Get footer to span all 3 columns */
+footer {
+  grid-column: 1/-1;
+  background-color: var(--accent-bg);
+  padding-top: 3rem;
+  box-shadow: 0 50vh 0 50vh var(--accent-bg);
+}
+
+/* Don't show bullet points for lists in footers */
+footer ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+footer li {
+  display: inline-block;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* Styling for the excerpts appear below article titles on the index page */
+.excerpt {
+  font-size: 1.2rem;
+  padding-bottom: 1.2rem;
+}
+
+/* Styling for the article, which wraps the post body */
+article {
+  border: none;
+  padding: 0;
+  padding-bottom: 2rem;
+}
+
+/* article a {
+  font-weight: bolder;
+  font-family: 'Lora';
+  font-size: 1.5rem;
+} */
+
+/* Styling for the external links appearing in the footer */
+.bottomlinks {
+  font-variant: small-caps;
+  font-weight: bolder;
+  font-size: 1rem;
+}
+
+/* Styling for the photos appearing in the footer */
+.photostream {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Simple lightbox overlay */
+.sl-overlay {
+  background: black !important;
+}
+
+
+
+/* Navigation for Pagination */
+
+nav {
+  display: inline;
+  text-align: center;
+  margin-top: 2rem;
+  width: 100%;
+
+}
+
+nav :is(ol,ul) li {
+  display: inline;
+  list-style-type: none;
+  padding: 0.2rem 0.5rem;
+  text-decoration: none;
+  margin: 0 0.5rem;
+  float: right;
+
+}
+
+/* Alert info warning error panels */
+:root {
+  --notice-color: var(--text);
+  --notice-bg: var(--accent-bg);
+  --notice-info-color: var(--text);
+  --notice-info-bg: #d8ebf1;
+  --notice-success-color: var(--text);
+  --notice-success-bg: #d9edd9;
+  --notice-warning-color: var(--text);
+  --notice-warning-bg: #f7e5cd;
+  --notice-danger-color: var(--text);
+  --notice-danger-bg: #fcdfde;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --notice-color: var(--text);
+    --notice-bg: var(--accent-bg);
+    --notice-info-color: #76a9fa;
+    --notice-info-bg: var(--accent-bg);
+    --notice-success-color: #31c48d;
+    --notice-success-bg: var(--accent-bg);
+    --notice-warning-color: #faca15;
+    --notice-warning-bg: var(--accent-bg);
+    --notice-danger-color: #f98080;
+    --notice-danger-bg: var(--accent-bg);
+  }
+}
+
+.notice {
+  background: var(--accent-bg);
+  border-radius: 5px;
+  padding: 1rem;
+  margin: 2rem 0;
+  font-size: 1rem;
+}
+
+.notice a {
+  color: unset;
+  text-decoration: underline;
+}
+
+.notice.info {
+  color: var(--notice-info-color);
+  background-color: var(--notice-info-bg);
+}
+
+.notice.success {
+  color: var(--notice-success-color);
+  background-color: var(--notice-success-bg);
+}
+
+.notice.warning {
+  color: var(--notice-warning-color);
+  background-color: var(--notice-warning-bg);
+}
+
+.notice.danger {
+  color: var(--notice-danger-color);
+  background-color: var(--notice-danger-bg);
+}
+
+
+.gist td {
+  all: initial;
+}
+
+/* Video */
+
+div.video > iframe {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+}

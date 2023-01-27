@@ -1,12 +1,16 @@
-version: '3.7'
-
-services: 
-    ghpage:
-        build:
-            context: .
-        image: mendhak/jekyll-site
-        command: "bundle exec jekyll serve --config _config.yml --host 0.0.0.0 --drafts --incremental --force_polling"
-        volumes:
-            - ${PWD}:/srv/jekyll
-        ports: 
-            - "0.0.0.0:4000:4000"
+version: "3"
+services:
+  eleventy:
+    image: node:18-slim
+    user: node
+    volumes:
+      - ${PWD}/node_modules
+      - ${PWD}:/app
+    working_dir: /app
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN}
+      - ELEVENTY_ENV=development
+    #   - DEBUG=Eleventy*
+    ports:
+      - 8080:8080
+    command: /bin/bash -c "npm install && npm start"

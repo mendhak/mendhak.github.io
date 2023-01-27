@@ -91,13 +91,13 @@ network={
 }
 ```
 
-
+{% notice "info" %}
 Raspberry Pi Zero W does not support 5 GHz, make sure you have 2.4 GHz enabled on the SSID that you are connecting to. 
-{: .notice--info}
+{% endnotice %}
 
-
+{% notice "info" %}
 The country code is not always necessary, but helps the WiFi radio figure out which channels it can operate on as different nations may [ban the use of certain frequencies](https://kernelmag.dailydot.com/features/report/8051/the-mystery-of-wifi-channel-14/) based on military, security, industrial/scientific requirements.  Without the country code in place, the WiFi may simply refuse to connect. 
-{: .notice--info}
+{% endnotice %}
 
 
 # Run the Raspberry Pi Zero W

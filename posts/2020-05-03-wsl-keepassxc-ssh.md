@@ -36,8 +36,9 @@ The second option requires the OpenSSH service in Windows to already be running,
 
 ### Store an SSH key
 
+{% notice "info" %}
 If you are already using with KeePass 2 and KeeAgent, you can skip this section. KeePassXC can already work with your existing `.kdbx` and KeeAgent entries, and you should already see your SSH keys loaded.  
-{: .notice--info}
+{% endnotice %}
 
 Create a new entry in your database, give it some name, and in the password field, put the passphrase for your SSH key. 
 

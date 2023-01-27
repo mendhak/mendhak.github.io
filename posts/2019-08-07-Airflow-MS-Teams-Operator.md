@@ -60,8 +60,9 @@ Click Configure, give it a name and you will be given a webhook URL.
 
 ![Webhook](/assets/images/Airflow-MS-Teams-Operator/002.png)
 
+{% notice "warning" %}
 Webhooks don't usually have additional authentication; you should treat this URL as sensitive and keep it in a safe place. 
-{: .notice--warning}
+{% endnotice %}
 
 ## Prepare Airflow
 

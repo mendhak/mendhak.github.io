@@ -27,7 +27,7 @@ Working on [GPSLogger](https://gpslogger.app/) over the past several years has p
 
 But these same circumstances also mean that the latest security improvements are out of reach for them.  That's because the web applications and services they connect to exist as independent entities and will have their own roadmaps of security, independent of devices that access them.
 
-![Android OS distribution]({{ site.baseurl }}/assets/images/tls-13-old-android-devices/001.png)
+![Android OS distribution](/assets/images/tls-13-old-android-devices/001.png)
 
 A good example of this is the OpenStreetMap trace upload feature.  Recently, I had started receiving reports regarding older Android devices being unable to upload traces to OpenStreetMap, and that this feature had stopped working.  After some investigation, it turned out that OpenStreetMap had moved to TLS 1.2 and TLS 1.3, and this could be confirmed by trying to connect using TLS 1.1. 
 

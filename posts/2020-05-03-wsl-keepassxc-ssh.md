@@ -30,7 +30,7 @@ This post covers WSL1.  For WSL2, see [this post](/wsl2-keepassxc-ssh/)
 Open up KeePassXC's settings, and choose to `Enable SSH Agent` and also `Use OpenSSH for Windows instead of Pageant`.  
 The second option requires the OpenSSH service in Windows to already be running, you will get an error message if it isn't. 
 
-![keepassxc settings]({{ site.baseurl }}/assets/images/wsl-ssh-keepassxc/001.png)
+![KeepassXC SSH settings](/assets/images/wsl-ssh-keepassxc/001.png)
 
 
 
@@ -57,8 +57,6 @@ Now reopen the entry, then go to the SSH Agent section, under Private key, pick 
 ![](/assets/images/wsl-ssh-keepassxc/003.png)
 ![](/assets/images/wsl-ssh-keepassxc/004.png)
 {% endgallery %}
-
-
 
 
 

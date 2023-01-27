@@ -35,16 +35,16 @@ gpedit.msc
 
 Go to startup/shutdown scripts:
 
-![GPEdit settings]({{ site.baseurl }}/assets/images/xbox-controller-off/001.png)
+![GPEdit settings](/assets/images/xbox-controller-off/001.png)
 
 
 Under the scripts tab, add the powershell script (adding to the PowerShell tab didn't work for me, I used this tab instead):
 
-![Powershell]({{ site.baseurl }}/assets/images/xbox-controller-off/002.png)
+![Powershell](/assets/images/xbox-controller-off/002.png)
 
 Or add the EXE directly:
 
-![Exe]({{ site.baseurl }}/assets/images/xbox-controller-off/003.png)
+![Exe](/assets/images/xbox-controller-off/003.png)
 
 Apply and close.
 

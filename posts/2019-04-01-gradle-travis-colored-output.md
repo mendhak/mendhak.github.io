@@ -37,7 +37,7 @@ project.ext.set("TRAVIS_FOLDING", true)
 
 If you run your build on Travis you should now see colored output.  
 
-[![travis](/assets/images/gradle-travis-colored-output/001.png)](/assets/images/gradle-travis-colored-output/001.png)
+![](/assets/images/gradle-travis-colored-output/001.png)
 
 
 
@@ -45,7 +45,7 @@ If you run your build on Travis you should now see colored output.
 
 Additionally you will see colored output in the terminal. 
 
-[![travis](/assets/images/gradle-travis-colored-output/002.png)](/assets/images/gradle-travis-colored-output/002.png)
+![](/assets/images/gradle-travis-colored-output/002.png)
 
 
 

@@ -181,7 +181,7 @@ There's also [another thread](https://groups.google.com/a/list.nist.gov/g/pqc-fo
 
 This is the part that's closer to us as developers and end users.  Microsoft, IBM, and AWS are working with universities on the [Open Quantum Safe](https://openquantumsafe.org/) project.  The project has created a library called [`liboqs`](https://github.com/open-quantum-safe/liboqs) containing quantum resistant algorithms, which will be made available for use to other software projects.  The project is also prototyping integration into most commonly used protocols such as TLS, SSH, and certificates.  Importantly they also have a [fork of OpenSSL](https://github.com/open-quantum-safe/openssl) with some quantum safe algorithms implemented.  They've got demo integrations with Apache httpd, nginx, curl and [Chromium browser](https://github.com/open-quantum-safe/oqs-demos/releases/).  There are [Docker images too!](https://hub.docker.com/u/openquantumsafe)
 
-[![Open Quantum Safe]({{ site.baseurl }}/assets/images/general-understanding-quantum-safe-cryptography/008.jpg)]({{ site.baseurl }}/assets/images/general-understanding-quantum-safe-cryptography/008.jpg)
+![Open Quantum Safe](/assets/images/general-understanding-quantum-safe-cryptography/008.jpg)
 
 ### Cloudflare
 

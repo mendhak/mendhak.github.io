@@ -92,7 +92,7 @@ dream> photograph of highly detailed closeup of victoria sponge cake
 
 Wait a few seconds, and an image gets generated in the `outputs/img-sample` folder.  
 
-[![Example]({{ site.baseurl }}/assets/images/run-stable-diffusion-on-ubuntu/001.png)]({{ site.baseurl }}/assets/images/run-stable-diffusion-on-ubuntu/001.png)
+![Example](/assets/images/run-stable-diffusion-on-ubuntu/001.png)
 
 Conveniently, a `dream_log.txt` file shows you all the prompts you've run in case you want to refer back to something. Against each line, you will also see a seed number that looks something like this: `-S2420237860`.  This allows you to regenerate the exact same image by specifying the seed with your text prompt. 
 

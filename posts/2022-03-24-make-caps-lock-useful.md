@@ -45,7 +45,7 @@ By far one of the most intuitive, most human ways I've found of entering special
 <kbd>Caps</kbd> <kbd><</kbd> <kbd>=</kbd> = ≤
 
 
-To enable Compose Keys in Ubuntu 20.04, open [Gnome Tweaks]({{ site.baseurl }}/assets/images/make-caps-lock-useful/004.png)](https://linuxhint.com/gnome_tweak_installation_ubuntu/) keyboard settings, look for the Compose Key option. Caps Lock can be selected here.  
+To enable Compose Keys in Ubuntu 20.04, open [Gnome Tweaks](https://linuxhint.com/gnome_tweak_installation_ubuntu/) keyboard settings, look for the Compose Key option. Caps Lock can be selected here.  
 
 ![Gnome Tweaks Compose Key](/assets/images/make-caps-lock-useful/003.png)
 

@@ -12,8 +12,8 @@ tags:
  - security
  - tls
 
-header: 
-  teaser: /assets/images/tls-13-old-android-devices/000.png
+opengraph: 
+  image: /assets/images/tls-13-old-android-devices/000.png
 
 ---
 

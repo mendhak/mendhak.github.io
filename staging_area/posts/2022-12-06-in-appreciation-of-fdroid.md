@@ -1,9 +1,7 @@
 ---
-title:      Appreciating F-Droid as an app developer
+title: Appreciating F-Droid as an app developer
 description: "From an app developer's perspective, F-Droid is a much better, well thought out, app store for Android"
-categories:
- - android
- - fdroid
+
 tags:
  - android
  - fdroid

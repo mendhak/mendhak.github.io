@@ -10,8 +10,6 @@ opengraph:
 
 {{ description }} 
 
-{% githubrepocard reponame="mendhak/angular-performance" %}
-
 
 
 ## Page Load vs Perceived Page Load

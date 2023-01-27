@@ -5,8 +5,8 @@
   "language": "en",
   "paginationSize": 7,
   "favicon": "/assets/images/blogprofile.png",
-  "description": "Blog theme for Eleventy with various new features",
-  "tags": ["eleventy", "blog", "theme", "template", "starter"],
+  "description": "Mendhak's blog on development, programming, technology, science.",
+  "tags": ["mendhak", "blog", "programming", "development", "science", "opinion"],
   "feed": {
     "path": "/feed.xml"
   },

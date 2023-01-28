@@ -4,7 +4,7 @@ date: 2023-01-28
 ---
 
 
-A rite of passage exists, that after a certain amount of time spent writing on a platform, a blogger feels a need to revamp or migrate to something else.  I used to come across such posts on various other blogs and I'd be dismissive of them. Just be happy with what you have, right?  As it turns out, **no**, there are always good reasons to move, and it took a while for me to understand that. I can say I am glad to be free of the torturous hell that is Jekyll and Ruby. 
+A rite of passage exists, that after a certain amount of time spent writing on a platform, a blogger feels a need to revamp or migrate to something else.  I used to come across such posts on various other blogs and I'd be dismissive of them. Just be happy with what you have, right?  As it turns out, **no**, there are always good reasons to move, and it took me a while to understand that. I can say I am glad to be free of the torturous hell that is Jekyll and Ruby. 
 
 ### Jekyll and Minimal Mistakes
 

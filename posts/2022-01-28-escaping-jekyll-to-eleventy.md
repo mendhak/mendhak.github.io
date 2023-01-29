@@ -32,7 +32,7 @@ I did find a few different blog themes, but what I was missing was a feature-set
 
 ### Modifications
 
-I decided to use an Eleventy starter base, and start adding some of those features in, or a close approximation.  Since I've got no web design skills, [SimpleCSS](https://simplecss.org/) was a good place to start. It has a sensible set of defaults and come swith automatic dark and light themes. I was able to modify it to achieve a simplified version of [the Hylia theme](https://hylia.website).  
+I decided to use an Eleventy starter base, and start adding some of those features in, or a close approximation.  Since I've got no web design skills, [SimpleCSS](https://simplecss.org/) was a good place to start. It has a sensible set of defaults and comes with automatic dark and light themes. I was able to modify it to achieve a simplified version of [the Hylia theme](https://hylia.website).  
 
 Some of the modifications I'm happy about. 
 

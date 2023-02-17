@@ -1,6 +1,6 @@
 ---
 title: Fun and learnings with localization on Linux
-description: Things I learned about date and time localization and fonts in Python and Shell
+description: Things I learned about date and time localization and fonts with Python and Bash and SVG
 tags:
   - linux
   - localization

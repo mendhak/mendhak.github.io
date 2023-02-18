@@ -65,7 +65,7 @@ For Korean (ko_KR), the AM/PM indicator come before the time.
 
 #### It's not always "AM" and "PM"
 
-Even if the locale uses English letters, it's not always the suffixes "AM" and "PM" that's used.  Malaysian (ms_MY) uses PG and PTG: 
+Even if the locale uses English letters, it's not always the suffixes "AM" and "PM" that's used.  Malaysian (ms_MY) uses PG (pagi) and PTG (petang): 
 
 `9:15:00 PG`  
 `7:45:00 PTG`

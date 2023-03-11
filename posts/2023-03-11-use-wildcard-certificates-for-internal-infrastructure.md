@@ -35,7 +35,7 @@ A commonly cited example of such exposure was the Transport for New South Wales 
 
 ![The list goes on](/assets/images/use-wildcard-certificates-for-internal-infrastructure/003.png)
 
-Presumably twoards the end of 2020, they seem to have cleaned up their presence (I can only assume due to the attention this CRT received).
+Presumably towards the end of 2020, they seem to have cleaned up their presence (I can only assume due to the attention this CRT received).
 
 
 ## When to use wildcard certificates

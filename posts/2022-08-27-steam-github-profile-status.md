@@ -19,6 +19,8 @@ I have written a script that will attempt to update your Github user profile sta
 
 The script can mark the status as 'busy', and also expires the status after a certain number of hours. 
 
+{% githubrepocard "mendhak/steam-github-profile-status" %}
+
 ## Setup
 
 The script is available as a Github Action, a Docker image, and a standalone script.  That should provide enough flexibility to run it as part of Github CI, or a Raspberry Pi, or something else.  

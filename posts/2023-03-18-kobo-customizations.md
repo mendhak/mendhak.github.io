@@ -60,7 +60,7 @@ Old muscle memory still remains, and I'll accidentally touch the screen while re
 `More` > `Settings` > `Reading settings` (Page Appearance)  
 `Page forward and back by`: `Swiping only`  
 
-![Swipe to change page](/assets/images/kobo-customizations/004.png)
+![Swipe to change page](/assets/images/kobo-customizations/005.png)
 
 ## Some nice to have extras
 

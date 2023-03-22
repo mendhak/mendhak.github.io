@@ -75,6 +75,31 @@ The info panel option is worth playing around with if you want some stats, or ju
 
 ![Book cover full screen](/assets/images/kobo-customizations/006.png)
 
+### Custom image screensavers
+
+Instead of the book cover appearing as the 'screensaver' when the Kobo is turned off, it's possible to have Kobo display a custom image. 
+
+Connect the Kobo to a computer, and create a folder called screensaver under .kobo, that's `.kobo/screensaver`. 
+
+Add a bunch of images inside that folder, ideally at a resolution matching the Kobo's screen. For the Libra 2 this is 1264x1680, and here are some of my images:
+
+{% gallery "Screensaver images for Kobo Libra 2" %}
+![](/assets/images/kobo-customizations/kobo1.jpg)
+![](/assets/images/kobo-customizations/kobo2.jpg)
+![](/assets/images/kobo-customizations/kobo3.jpg)
+
+![](/assets/images/kobo-customizations/kobo4.jpg)
+![](/assets/images/kobo-customizations/kobo5.jpg)
+![](/assets/images/kobo-customizations/kobo6.jpg)
+{% endgallery %}
+
+Then, same as the book covers, enable it in settings. 
+
+`More` > `Settings` > `Energy saving and privacy`  
+`Show book covers full screen`: `On`  
+
+An image should appear the next time the Kobo is put to sleep. 
+
 
 ### Sending articles to Kobo
 
@@ -152,6 +177,7 @@ Here are some of the ones I've made use of:
 
 **Sketch Pad, Solitaire, Sudoku, Word Scramble, Unblock It** — various simple games. Sketch Pad is a quick way of just drawing with your finger, and it saves as SVG.  
 
+**Toggle screensaver** — allows switching between the [book cover](#full-screen-covers) or the [custom images](#custom-image-screensavers) as the screensaver.
 
 ![My NickelMenu options](/assets/images/kobo-customizations/020.png)
 
@@ -171,6 +197,13 @@ menu_item :main    :Solitaire          :nickel_extras      :solitaire
 menu_item :main    :Sudoku             :nickel_extras      :sudoku
 menu_item :main    :Word Scramble      :nickel_extras      :word_scramble
 menu_item :main    :Unblock It         :nickel_extras      :unblock_it
+menu_item : main : Toggle screensaver : cmd_output : 500 : quiet : test -e /mnt/onboard/.kobo/screensaver_old
+      chain_failure : skip : 3
+      chain_success : cmd_spawn : quiet: mv /mnt/onboard/.kobo/screensaver_old /mnt/onboard/.kobo/screensaver
+      chain_success : dbg_toast : Screensaver on
+      chain_always : skip : -1
+      chain_failure : cmd_spawn : quiet: mv /mnt/onboard/.kobo/screensaver /mnt/onboard/.kobo/screensaver_old
+      chain_success : dbg_toast : Screensaver off
 menu_item :main    :Kernel Version     :cmd_output         :500:uname -a
 menu_item :main    :IP Address         :cmd_output         :500:/sbin/ifconfig | /usr/bin/awk '/inet addr/{print substr($2,6)}'
 menu_item :main    :Sleep              :power              :sleep

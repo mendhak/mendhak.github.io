@@ -36,13 +36,13 @@ The CSS is messier, and grows unwieldy as the site's style expands. It's common 
 
 ## Still hacky Javascript, using CSS media features
 
-I've [managed](https://stackoverflow.com/a/75124760/974369) to work out a way of using Javascript to toggle the light and dark themes, while still making use of the `prefers-color-scheme` feature, and without any custom classes. It requires looping through every stylesheet's [rules](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/cssRules), inspecting the media of each one, and swapping the light and dark color schemes out. The code also includes storing the user's preference in localStorage, so it remembers on page refresh. 
+I've [managed](https://stackoverflow.com/a/75124760/974369) to work out a way of using Javascript to toggle the light and dark themes, while still making use of the `prefers-color-scheme` feature, and without any custom classes. It requires looping through every stylesheet's [rules](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/cssRules), inspecting the media of each one, and swapping the light and dark color themes out. The code also includes storing the user's preference in localStorage, so it remembers on page refresh. 
 
 <iframe width="100%" height="300" src="//jsfiddle.net/35e0a97a/xmt1k659/61/embedded/result,js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
 The code involved is somewhat complicated and unoptimized and will probably be slow for heavy stylesheets. The CSSStyleSheet and CSSRule APIs aren't widely used nor are they well documented. However, it works, so it could be considered the best of both worlds: it respects the user's choice at a granular site level.
 
-A further enhancement is to listen to any operating system or browser level preference changes and adjust the applied scheme accordingly. This can be done by adding a listener, `window.matchMedia('(prefers-color-scheme: dark)').addListener(...)` and reapplying the themes. 
+A further enhancement is to listen to any operating system or browser level preference changes and adjust the applied theme accordingly. This can be done by adding a listener, `window.matchMedia('(prefers-color-scheme: dark)').addListener(...)` and reapplying the themes. 
 
 ## Fixing the white flash
 

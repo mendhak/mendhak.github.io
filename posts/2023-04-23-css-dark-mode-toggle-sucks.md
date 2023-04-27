@@ -32,7 +32,7 @@ The most common technique for offering a toggle is to use Javascript to apply a 
 
 <iframe width="100%" height="300" src="//jsfiddle.net/35e0a97a/6g5dreyj/26/embedded/result,css,js,html/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
-The CSS is messier, and grows unwieldy as the site's style expands. It's common to save the user's toggled theme to local storage so that it is automatically loaded on their next visit. 
+The CSS is messier, and grows unwieldy as the site's style expands. As a convenience, it's also common to save the user's toggled theme to local storage so that it is automatically loaded on their next visit. 
 
 ## Still hacky Javascript, using CSS media features
 
@@ -40,7 +40,7 @@ I've [managed](https://stackoverflow.com/a/75124760/974369) to work out a way of
 
 <iframe width="100%" height="300" src="//jsfiddle.net/35e0a97a/xmt1k659/61/embedded/result,js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
-The code involved is somewhat complicated and unoptimized and will probably be slow for heavy stylesheets. The CSSStyleSheet and CSSRule APIs aren't widely used nor are they well documented. However, it works, so it could be considered the best of both worlds: it respects the user's choice at a granular site level.
+The code involved is somewhat complicated and unoptimized and will probably be slow for heavy stylesheets. The CSSStyleSheet and CSSRule APIs aren't widely used nor are they well documented. However, it works, so it could be considered the best of both worlds: it respects the user's choice at a granular site level, while still allowing the use of native CSS features. 
 
 A further enhancement is to listen to any operating system or browser level preference changes and adjust the applied theme accordingly. This can be done by adding a listener, `window.matchMedia('(prefers-color-scheme: dark)').addListener(...)` and reapplying the themes. 
 
@@ -56,6 +56,6 @@ A [workaround](https://zwbetz.com/fix-the-white-flash-on-page-load-when-using-a-
 
 I am still not convinced that offering an option to toggle dark mode is worth the complexity that it entails: possibly some custom CSS, a JavaScript kludge either way, and some additional CSS and further JavaScript band-aid patches to deal with edge cases. 
 
-Looking at this from a high level, I feel that the work and modifications involved in providing a user toggle takes me a step too far from focusing on content-first nature of a web page. I'd prefer a more 'native' way of achieving the same thing; I did try searching for whether there were any standards, discussions or proposals in place, but couldn't find any. 
+Looking at this from a high level, I feel that the work and modifications involved in providing a user toggle takes me a step too far from focusing on the content-first nature of a web page. I'd prefer a more 'native' way of achieving the same thing; I did try searching for whether there were any standards, discussions or proposals in place, but couldn't find any. 
 
 For my own purposes I am using [this extension](https://addons.mozilla.org/en-US/firefox/addon/toggle-dark-mode/), it toggles the browser's own light and dark mode preference. 

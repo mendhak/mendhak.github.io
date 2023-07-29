@@ -1,15 +1,15 @@
 ---
-title: "Syncing the login wallpaper with the desktop wallpaper on Ubuntu 20.04"
+title: "Syncing the login wallpaper with the desktop wallpaper on Ubuntu"
 description: "Getting the login wallpaper to sync with the desktop wallpaper, when using standalone or Variety wallpaper changer"
   
 opengraph: 
   image: /assets/images/synchronize-login-wallpaper-ubuntu/003.png
 
-last_modified_at: 2022-04-05
+last_modified_at: 2023-07-29
 
 ---
 
-In Ubuntu 20.04, the background image that you set for your desktop doesn't appear on the login screen.  There isn't a way to manage the login screen background through the OS settings either.  In this post I will go over two ways of synchronizing the login screen wallpaper to match the one chosen for the desktop.  
+In Ubuntu 20.04 and 22.04, the background image that you set for your desktop doesn't appear on the login screen.  There isn't a way to manage the login screen background through the OS settings either.  In this post I will go over two ways of synchronizing the login screen wallpaper to match the one chosen for the desktop.  
 
 {% gallery "Desktop wallpaper, but dull login screen" %}
 ![](/assets/images/synchronize-login-wallpaper-ubuntu/001.png)
@@ -35,8 +35,12 @@ Download the [change-gdm-background](https://github.com/thiggy01/change-gdm-back
 
 ```bash
 sudo apt install libglib2.0-dev-bin
-git clone https://github.com/thiggy01/change-gdm-background.git
+git clone -b ubuntu-jammy https://github.com/mendhak/change-gdm-background.git
 ```
+
+{% notice "info" %}
+The [original thiggy01 repo](https://github.com/thiggy01/change-gdm-background) hasn't been updated for Ubuntu 22.04 yet, so I've made changes in my own branch. 
+{% endnotice %}
 
 Now, as a test, try setting the login screen wallpaper.  When prompted, if you say `y`, you will get logged out and you can see the new login wallpaper.     
 
@@ -86,7 +90,7 @@ Add these lines in it.  Replace the path to the `change-gdm-background` script w
 ```bash
 currentwpuri=$(gsettings get org.gnome.desktop.background picture-uri | sed "s/'//g")
 currentwppath=$(python3 -c "import sys;from urllib.parse import unquote, urlparse; print(unquote(urlparse(sys.argv[1]).path))" "$currentwpuri")
-sudo /home/myusername/change-gdm-background/change-gdm-background "$currentwppath"
+sudo /home/myusername/Projects/change-gdm-background/change-gdm-background "$currentwppath"
 ```
 
 This script is using `gsettings` to get the currently set wallpaper, then a bit of Python to convert the `file:///` path to a local path, and then passing that along to the main change script.  
@@ -101,14 +105,14 @@ crontab -e
 Add this line, replacing the path to the script. 
 
 ```
-*/5 * * * * bash /home/myusername/change-gdm-background/syncloginwallpaper.sh
+*/5 * * * * bash /home/myusername/Projects/change-gdm-background/syncloginwallpaper.sh
 ```
 
 Try testing it by changing the wallpaper and waiting a few minutes, then rebooting.  
 
 ## Synchronizing with Variety
 
-The simplest way, if you use [Variety wallpaper changer](https://peterlevi.com/variety/), is to have the login screen wallpaper change together with the desktop wallpaper by [adding a custom command](https://github.com/varietywalls/variety/blob/a8abe2bd36e293300bc1d3066726b660a3db9078/data/config/variety.conf#L16-L25).  
+Instead of a cron jobs, if you use [Variety wallpaper changer](https://peterlevi.com/variety/), you can have the login screen wallpaper change together with the desktop wallpaper by [adding a custom command](https://github.com/varietywalls/variety/blob/a8abe2bd36e293300bc1d3066726b660a3db9078/data/config/variety.conf#L16-L25).  
 
 To do this, edit the Variety config file:
 
@@ -119,13 +123,13 @@ nano ~/.config/variety/variety.conf
 At the top of the file, add this line which tells Variety to execute a specific bash script when the wallpaper should change.  
 
 ```
-set_wallpaper_script = /home/username/change-gdm-background/set_both_wallpapers.sh
+set_wallpaper_script = /home/myusername/Projects/change-gdm-background/set_both_wallpapers.sh
 ```
 
 Save, then create the `set_both_wallpapers.sh` script. 
 
 ```
-nano /home/username/change-gdm-background/set_both_wallpapers.sh
+nano /home/myusername/Projects/change-gdm-background/set_both_wallpapers.sh
 ```
 
 Add these lines in:
@@ -133,8 +137,10 @@ Add these lines in:
 ```bash
 #!/bin/bash 
 
+echo "Processing $1" | tee /home/myusername/Projects/change-gdm-background/run.log
+
 # Set the lock screen wallpaper
-echo "n" | sudo /home/username/change-gdm-background/change-gdm-background "$1" 2>&1 > /home/username/change-gdm-background/run.log
+echo "n" | sudo /home/myusername/Projects/change-gdm-background/change-gdm-background "$1" 2>&1 | tee -a /home/myusername/Projects/change-gdm-background/run.log
 
 # Now let Variety set the desktop wallpaper as usual.
 ~/.config/variety/scripts/set_wallpaper $@
@@ -142,6 +148,40 @@ echo "n" | sudo /home/username/change-gdm-background/change-gdm-background "$1" 
 
 This script takes the wallpaper path passed by Variety, sets the lock screen wallpaper, then calls the regular Variety script to set the desktop wallpaper. 
 Try changing the wallpaper via Variety, and then reboot.  The login screen should match.  
+
+## Blurring the background
+
+An additional step, if it appeals, is to make the login screen background a blurred version of the current desktop background. This can be done with `imagemagick` installed, and tweaking the above scripts to created a blurred version just before settings it as the login background. 
+
+The cron script becomes: (modify the paths below to reflect yours)
+
+```bash
+currentwpuri=$(gsettings get org.gnome.desktop.background picture-uri | sed "s/'//g")
+currentwppath=$(python3 -c "import sys;from urllib.parse import unquote, urlparse; print(unquote(urlparse(sys.argv[1]).path))" "$currentwpuri")
+blurredpath=$(dirname $currentwppath)/blurred.jpg
+convert $currentwppath -channel RGBA -blur 0x26 $blurredpath
+sudo /home/myusername/Projects/change-gdm-background/change-gdm-background "$blurredpath"
+```
+
+Similarly the Variety script becomes: (modify the paths below to reflect yours)
+
+```bash
+#!/bin/bash 
+
+echo "Processing $1" | tee /home/myusername/Projects/change-gdm-background/run.log
+
+# Blur the image
+blurredpath=$(dirname $1)/blurred.jpg
+convert $1 -channel RGBA -blur 0x26 $blurredpath
+
+# Set the lock screen wallpaper
+echo "n" | sudo /home/myusername/Projects/change-gdm-background/change-gdm-background "$blurredpath" 2>&1 | tee -a /home/myusername/Projects/change-gdm-background/run.log
+
+# Now let Variety set the desktop wallpaper as usual.
+~/.config/variety/scripts/set_wallpaper $@
+```
+
+
 
 
 ## Special note for multi-monitor setups

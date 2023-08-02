@@ -1,6 +1,6 @@
 ---
 title: "`?`, a simple CLI lookup tool"
-description: A simple CLI lookup tool using OpenAI API
+description: A simple CLI lookup tool using LLMs OpenAI API, Llama and Stable Beluga.
 tags:
   - cli
   - linux

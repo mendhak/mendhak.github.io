@@ -11,7 +11,7 @@ tags:
 opengraph: 
   image: /assets/images/wsl-ssh-keepassxc/004.png
 
-
+last_modified_at: 2023-08-22
 
 ---
 
@@ -146,3 +146,23 @@ exec bash
 echo "Done"
 
 ```
+
+## Troubleshooting Notes
+
+### Make sure the versions match
+
+On Windows 11, you may also need to ensure that the OpenSSH versions match or are close enough. First, check the Ubuntu SSH version. 
+
+```bash
+$ ssh -v localhost
+OpenSSH_8.9p1 Ubuntu-3ubuntu0.1, OpenSSL 3.0.2 15 Mar 2022
+```
+
+On Windows 11 I've found the version of OpenSSH is a bit older so I've had to install a later, matching version using winget. In Powershell:
+
+```powershell
+> winget install Microsoft.OpenSSH.Beta --version 8.9.1.0
+```
+
+Once these versions were close enough, the SSH Agent started working. 
+

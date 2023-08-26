@@ -9,6 +9,8 @@ tags:
   - llm
   - ai
 
+last_modified_at: 2023-08-26
+
 opengraph:
   image: /assets/images/simple-cli-lookup-tool/000.png
 
@@ -126,7 +128,7 @@ It's worth noting that the efficiency gains come at the expense of quality and a
 
 ### Chosen models
 
-The models I chose to run the tool with were [Llama-2-7B-Chat-GGML](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML), and [Stable Beluga 7B GGML](https://huggingface.co/TheBloke/StableBeluga-7B-GGML). The 7B indicates 7 billion parameters, which would fit in about 6GB of RAM, or 6GB of VRAM if offloaded to the GPU. GGML is the name of the quantization format that llama.cpp expects to work with. 
+The models I chose to run the tool with were [Llama-2-7B-Chat-GGML](https://huggingface.co/TheBloke/Llama-2-7B-Chat-GGML), [Stable Beluga 7B GGML](https://huggingface.co/TheBloke/StableBeluga-7B-GGML), and [CodeLlama 7B GGUF](https://huggingface.co/TheBloke/CodeLlama-7B-GGUF). The 7B indicates 7 billion parameters, which would fit in about 6GB of RAM, or 6GB of VRAM if offloaded to the GPU. GGML is the name of the quantization format that llama.cpp expects to work with, although very recently this has now changed to GGUF format.  
 
 The best model would probably have been [WizardCoder 15B](https://huggingface.co/localmodels/WizardCoder-15B-V1.0-GPTQ) which is fine tuned for coding tasks, but it was in GPTQ format and probably required more VRAM than I have available. Perhaps a few years from now it becomes a bit more achievable. Another coding model called [Starcoder](https://huggingface.co/TheBloke/starcoderplus-GGML) was in GGML format but not compatible with llama.cpp. 
 
@@ -142,10 +144,11 @@ To determine that I created an unscientific test. I came up with a list of about
 | Stable Beluga  | 73%                 | 2.93 s             |
 | Llama 2        | 60%                 | 2.94 s             |
 | OpenAI GPT 3.5 | **88%**             | **2.11 s**         |
+| CodeLlama      | 75%                 | 3.16 s             |
 
 
 This was expected of course GPT 3.5 runs on a high end cluster somewhere in OpenAI's estate, while the other two were running on my computer and were the smallest possible. 
-Considering that, Stable Beluga's performance was impressive despite being relatively hobbled. 
+Considering that, Stable Beluga's and CodeLlama's performance was impressive despite being relatively hobbled. 
 
 I did very briefly try out the larger 13B models of Stable Beluga and Llama 2; their answers were indeed better, but the performance not as much; it was taking about 5 seconds to get a response which was just past the threshold of tolerance for me. Perhaps something to try again in the future when I have better hardware. 
 

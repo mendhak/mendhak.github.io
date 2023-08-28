@@ -11,6 +11,8 @@ tags:
 
 opengraph:
   image: /assets/images/kobo-customizations/000.jpg
+
+last_modified_at: 2023-08-28
 ---
 
 I recently switched from a Kindle device to a Kobo Libra 2, and have been playing around with its customization and tweaks. These are the ones I've found useful so far. They include dark mode, immersive reading, less fidgeting, Pocket and Overdrive. Most important is integration with Calibre Web, and some unlocked features with NickelMenu. 

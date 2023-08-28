@@ -8,7 +8,7 @@ Static site for code.mendhak.com.  This site uses the [Eleventy Satisfactory the
 This will do the npm install and npm start together. 
 
 ```
-docker-compose up
+docker compose up
 ```
 
 Then browse to http://localhost:8080/

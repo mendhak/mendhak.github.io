@@ -83,14 +83,23 @@ Connect the Kobo to a computer, and create a folder called screensaver under .ko
 
 Add a bunch of images inside that folder, ideally at a resolution matching the Kobo's screen. For the Libra 2 this is 1264x1680, and here are some of my images:
 
-{% gallery "Screensaver images for Kobo Libra 2" %}
-![](/assets/images/kobo-customizations/kobo1.jpg)
-![](/assets/images/kobo-customizations/kobo2.jpg)
-![](/assets/images/kobo-customizations/kobo3.jpg)
+{% gallery "Screensaver images for Kobo Libra 2." %}
+![](/assets/images/kobo-customizations/kobo_00001.png)
+![](/assets/images/kobo-customizations/kobo_00005.png)
+![](/assets/images/kobo-customizations/kobo_00006.png)
 
-![](/assets/images/kobo-customizations/kobo4.jpg)
-![](/assets/images/kobo-customizations/kobo5.jpg)
-![](/assets/images/kobo-customizations/kobo6.jpg)
+![](/assets/images/kobo-customizations/kobo_00009.png)
+![](/assets/images/kobo-customizations/kobo_00011.png)
+![](/assets/images/kobo-customizations/kobo_00016.png)
+
+![](/assets/images/kobo-customizations/kobo_00017.png)
+![](/assets/images/kobo-customizations/kobo_00020.png)
+![](/assets/images/kobo-customizations/kobo_00021.png)
+
+![](/assets/images/kobo-customizations/kobo_00023.png)
+![](/assets/images/kobo-customizations/kobo_00030.png)
+![](/assets/images/kobo-customizations/kobo_00032.png)
+
 {% endgallery %}
 
 Then, same as the book covers, enable it in settings. 

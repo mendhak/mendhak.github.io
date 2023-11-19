@@ -14,14 +14,18 @@ tags:
 extraWideMedia: false
 ---
 
-In this post I will go over an approach to getting developers familiar with LLMs, and how to write code against them. It is not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. The aim is to simply get developers comfortable interacting with LLMs. As with any field, are nuances in the concepts involved, and those will be conveniently hand-waved away. 
+In this post I will go over an approach to getting developers familiar with LLMs, and how to write code against them. It is not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. The aim is to simply get developers comfortable interacting with LLMs. 
 
-For this tutorial you will need access to a commercial off-the-shelf LLM service, such as [OpenAI Playground](https://platform.openai.com/playground), [Azure OpenAI](https://oai.azure.com/portal/), or [Amazon Bedrock](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/text-playground/amazon.titan-text-express-v1); in my examples I will be referencing OpenAI's playground but the others will have similar functionality to follow along. You'll also need a Python notebook, which can be a service like [Google Colab](https://colab.research.google.com), [Paperspace Gradient](https://www.paperspace.com/), or [locally in VSCode](https://code.visualstudio.com/docs/datascience/jupyter-notebooks). 
+As with any field, are nuances in many of the concepts involved, but those will conveniently be hand-waved away for the sake of getting started.  
+
+For this tutorial you will need access to a commercial off-the-shelf LLM service, such as [OpenAI Playground](https://platform.openai.com/playground), [Azure OpenAI](https://oai.azure.com/portal/), or [Amazon Bedrock](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/text-playground/amazon.titan-text-express-v1); in my examples I will be referencing OpenAI's playground but the others will have similar functionality to follow along. 
+
+You'll also need a Python notebook, which can be a service like [Google Colab](https://colab.research.google.com), [Paperspace Gradient](https://www.paperspace.com/), or [locally in VSCode](https://code.visualstudio.com/docs/datascience/jupyter-notebooks). 
 
 I'll first start with some direct LLM interactions as it helps to have a base understanding of what's happening behind the scenes, and then build up to the actual programmatic interaction in Python. 
 
 
-## Clarify some terms
+## Clarifying some terms
 
 It helps to be familiar with some of the words that are used in this area. Some are pure marketing, and some have specific meanings. 
 
@@ -40,19 +44,19 @@ Of the many types, LLMs get a lot of attention from businesses, research, and ho
 
 ## Text completion and temperature
 
-In your LLM playground, switch to the completions tab. Completions is very close to the raw interface of an LLM, you just provide it with some text and a few additional parameters. 
+In the LLM playground, switch to the completions tab. Completions is as close as it gets to the raw interface of an LLM, it only needs some text and some additional parameters. 
 
 Give it any sentence fragment to begin with, like
 
     Once upon a time, 
 
-and let it generate text. It might appear a little nonsensical, but the LLM simply produces what it thinks should come next after your fragment. 
+and let it generate text. It might appear a little nonsensical, but the LLM simply produces what it thinks should come next after the given fragment. 
 
 Try a few more fragments, which can be quite revealing. 
 
     The following is a C# function to reverse a string:
 
-See how it produces the C# function asked for, but carries on producing output (such as how to use the function, or the same function in other languages), until it reaches the maximum length. The takeaway here is that an LLM is not a chatbot out of the box. You can think of an LLM as a very good autocomplete tool, for some given input text it has a decent idea of what should come next. It's up to us to shape the LLM to get it to produce *useful* output. 
+See how it produces the C# function asked for, but carries on producing output (such as how to use the function, or the same function in other languages), until it reaches the maximum length. The takeaway here is that an LLM is not a chatbot out of the box. Think of an LLM as a very good autocomplete tool, for some given input text it has a decent idea of what should come next. It's up to us to shape the LLM to get it to produce *useful* output. 
 
 ![C# function and then some](/assets/images/hands-on-llm-tutorial/010.png)
 
@@ -60,7 +64,7 @@ Try adjusting the temperature slider now, and see how it affects the output.  Tr
 
     The sky is blue, and 
  
-**Temperature** influences the randomness of the model's output; at higher temperatures the generated text is more creative, and at lower temperatures it's more focused. When programming against LLMs, using low temperatures is better if you need a more deterministic, repeatable output.  
+**Temperature** influences the randomness of the model's output; at higher temperatures the generated text is more creative, and at lower temperatures it's more focused. When programming against LLMs, using low temperatures is better if a more deterministic, repeatable output is needed.  
 
 {% gallery %}
 ![Completing text](/assets/images/hands-on-llm-tutorial/005.png)
@@ -73,13 +77,13 @@ Try adjusting the temperature slider now, and see how it affects the output.  Tr
 
 **Tokens** are mentioned frequently in LLM interfaces, conversations, as well as pricing.  
 
-Tokens are the units of text that the models understand. They are sometimes full words, and sometimes parts of words or punctuation. The best way to see for yourself is to try the [OpenAI Tokenizer](https://platform.openai.com/tokenizer) and see the example. 
+Tokens are the units of text that the models understand. They are sometimes full words, and sometimes parts of words or punctuation. The best way to see for yourself is to try the [OpenAI Tokenizer](https://platform.openai.com/tokenizer) and trye the example. 
 
 ![Token example](/assets/images/hands-on-llm-tutorial/008.png)
 
 Notice that some words get split up, some characters that often appear together are grouped up, and some punctuation marks get their own token. There is no exact conversion between tokens and words but the most common idea is to consider on average 4 to 5 characters as be a token.  
 
-LLMs come with a maximum **token context** or context window. Think of it as the number of tokens that the LLM can deal with while still (kind of) being effective at its predictions. The token context includes your input prompt, the output from the model, and any other previous tokens you may have included. LLMs come with a limited token context depending on the model. 
+LLMs come with a maximum **token context** or context window. Think of it as the number of tokens that the LLM can deal with while still (kind of) being effective at its predictions. The token context includes the input prompt, the output from the model, and any other role-setting or historic text that has been included. LLMs come with a limited token context depending on the model. 
 
 ![Token Context](/assets/images/hands-on-llm-tutorial/009.png)
 
@@ -91,7 +95,7 @@ Some well known LLMs and their limits:
 * Claude v2: 100k tokens
 * LLaMa2: 4k tokens
 
-It's tempting to think that the 100k+ LLMs are the best for being able to handle so much at once, but it's not a numbers game. In practice, LLMs start to lose attention when it has to deal with too much input, it 'forgets' what the important parts of your initial input were, and results in poor output. 
+It's tempting to think that the 100k+ LLMs are the best for being able to handle so much at once, but it's not a numbers game. In practice, LLMs start to lose attention when it has to deal with too much input, it 'forgets' what the important parts of the initial input were, and results in poor or distracted output. 
 
 ## Chatbots are just completion with stop sequences
 
@@ -104,9 +108,9 @@ Alice: Hi how are you?
 Assistant:  
 ```
 
-and hit generate. In many cases you will see the text completion produces an output for the Assistant, but carries on the conversation for Alice as well. This is the same principle as before, essentially, producing what a chat transcript could look like between these two characters. 
+and hit generate. In many cases, the text completion produces an output for the Assistant, but carries on the conversation for Alice as well. This is the same principle as before, essentially, producing what a chat transcript could look like between these two characters. 
 
-Now add a **Stop sequence** to the parameters in the completion interface. Add `Alice:` then repeat the above exercise. After each response it will stop instead of producing the next `Alice:`. You can carry on the conversation by having Alice ask another question, and then end each new input with `Assistant:`, to carry on the conversation.  
+Now add a **Stop sequence** to the parameters in the completion interface. Add `Alice:` then repeat the above exercise. After each response it will stop instead of producing the next `Alice:`. Carry on the conversation by having Alice ask another question, and then end each new input with `Assistant:`, to let the assistant fill its part in. 
 
 ```
 Alice: Is everything alright with my account?
@@ -118,7 +122,7 @@ Assistant:
 ![With stop sequences](../assets/images/hands-on-llm-tutorial/011b.png)
 {% endgallery %}
 
-There's your rudiemntary chatbot. Each time you hit generate, you are sending the previous conversations (the history) as well as your latest input. The model produces an output until it hits the stop sequence.
+That's a rudiemntary chatbot. Each time we hit generate, the previous conversations (the history) are being sent, along with the latest input. The model produces an output until it hits the stop sequence.
 
 
 {% notice "info" %}
@@ -128,11 +132,11 @@ OpenAI's Playground as well as Amazon Bedrock's interface make this exercise a b
 
 ## Using a chat interface
 
-Switch to the Chat playground. From what you've learned so far, it should now be a little more obvious how the chat based interface is working behind the scenes. The chat interface is the one most people will be familiar with, through the well known examples of ChatGPT and Claude. It is also the interface that most LLM programming is written for as it is tuned for Q&A type work. 
+Switch to the Chat playground. From what we've learned so far, it should now be a little more obvious how the chat based interface is working behind the scenes. The chat interface is the one most people will be familiar with, through the well known examples of ChatGPT and Claude. It is also the interface that most LLM programming is written for as it is tuned for Q&A type work. 
 
 ### Chat with history
 
-Try a simple exercise. Ask it to tell you a joke and then ask for an explanation. 
+Try a simple exercise. Ask it for a joke, and then ask for an explanation. 
 
 ```
 Tell me a joke
@@ -142,7 +146,7 @@ Tell me a joke
 Explain please?
 ```
 
-The chat interface retains history, so the previous question and answer are included in the input when you ask for the explanation. This history retaining feature is a useful and natural part of chatbots, but do keep in mind that it uses up some of your context window. 
+The chat interface retains history, so the previous question and answer are included in the input when the explanation was requested. This history retaining feature is a useful and natural part of chatbots, but do keep in mind that it uses up some of the context window.  
 
 ![Chat with context](../assets/images/hands-on-llm-tutorial/012.png)
 
@@ -153,7 +157,7 @@ A common task with LLMs is to ask it to summarize something. Grab a news article
 ```
 Summarize the following news article:
 
-<paste your news article here>
+<paste the news article here>
 ```
 
 ![Summarize news, it is good at ignoring irrelevant bits too](../assets/images/hands-on-llm-tutorial/013.png)
@@ -175,7 +179,7 @@ Question: What are the best locations to see the asteroid?
 
 ## Context and reasoning with a chatbot
 
-Remember that chatbots work with a context, and based on the additional hints and information you give it, it can generate text to fit that scenario. 
+Remember that chatbots work with a context, and based on the additional hints and information that it is given, it can generate text to fit that scenario. 
 
 Try the following input with the chat interface. 
 
@@ -218,7 +222,7 @@ As amusing as the answer is, it's a contrived example of the dangers that LLMs c
 
 ## Shaping the response
 
-So far I've only been showing basic interaction with LLMs. For programmatic interactions, it's important to get the LLM to produce an output that can be worked with in code. Most commonly, you would ask it to produce a single word, or even JSON or XML. 
+So far I've only been showing basic interaction with LLMs. For programmatic interactions, it's important to get the LLM to produce an output that can be worked with in code. It is most common to ask it to output a single word, or something structured like JSON or XML.
 
 Let's make the chatbot help with chemistry related questions. We want it to tell us the atomic number of a given element that the user mentions. 
 
@@ -257,7 +261,7 @@ Try the same questions as before, and the responses should be more consistent th
 
 ### Giving the LLM examples to learn from
 
-This time, we'd like the chat interface to produce JSON output so that it's easier to work with in our code. You can start by modifying the system message and simply asking for some JSON. 
+This time, we'd like the chat interface to produce JSON output so that it's easier to work with in our code. Start by modifying the system message and simply asking for some JSON. 
 
 Clear the chat, then in the System prompt area:
 
@@ -285,7 +289,7 @@ User: What about Nitrogen?
 Assistant: {"sym": "N", "num": 7, "wgt": 14.0067}
 ```
 
-Try your questions once more and observe as the JSON keys match your examples. 
+Try the questions once more and observe as the JSON keys match the examples. 
 
 {% gallery %}
 ![Ask for JSON](../assets/images/hands-on-llm-tutorial/017a.png)
@@ -295,15 +299,15 @@ Try your questions once more and observe as the JSON keys match your examples.
 
 ## Programming with Langchain
 
-Langchain is a framework that helps take away the heavy lifting when programming against LLMs including OpenAI, Bedrock and LLaMa. It's useful for prototyping and learning because it takes away a lot of the boilerplate work that you'd normally do, comes with some predefined templates, and the ability to 'use' tools. The general consensus, currently, is that it's a great way to start, although for an actual production application you might want more control over the interaction, and you end up doing it yourself. Either way, it's a good place to start. 
+Langchain is a framework that helps take away the heavy lifting when programming against LLMs including OpenAI, Bedrock and LLaMa. It's useful for prototyping and learning because it takes away a lot of the boilerplate work that we'd normally do, it comes with some predefined templates, and the ability to 'use' tools. The general consensus, currently, is that it's a great way to start, although for an actual production application a developer might want more control over the interaction, and end up doing it themselves. Either way, it's a good place to start for a tutorial at least. 
 
-Get your Python notebook ready, and in a cell install langchain as well as openai. 
+Once your Python notebook ready, install langchain and openai in a cell. 
 
 ```python
 ! pip install langchain openai
 ```
 
-Initialize an llm object, this will be used by all the modules going forward. You will need your API key, which can be generated [here for OpenAI](https://platform.openai.com/api-keys). In Azure OpenAI, it is visible by clicking 'View Code'.  
+Initialize an `llm` object, this will be used by all the modules going forward. Have an API key ready, which can be generated [here for OpenAI](https://platform.openai.com/api-keys). In Azure OpenAI, it is visible by clicking 'View Code'.  
 
 ```python
 from langchain.chat_models import ChatOpenAI
@@ -314,7 +318,7 @@ Here I'm telling it to use the GPT 3.5 Turbo model, with a temperature of 1.
 
 ### Basic completion
 
-Do a basic completion now, just as we did back in the Completion playground, but this time it's through the `llm`` object. Run it a few times to get different outputs. 
+Do a basic completion now, just as we did back in the Completion playground, but this time it's through the `llm` object. Run it a few times to get different outputs. 
 
 ```python
 llm.predict("The sky is")
@@ -341,7 +345,7 @@ In another cell, copy the body text from a news article, and get the LLM to summ
 text = """
 Summarize the following news article in one paragraph. 
 
-<paste your news article here>
+<paste the news article here>
 """
 
 llm.predict(text)
@@ -360,7 +364,7 @@ As before, but programmatically. Supply a news article and a question for the LL
 text = """
 Given this news article answer the question that follows.
 
-<paste your news article here>
+<paste the news article here>
 
 ---
 
@@ -397,7 +401,7 @@ while(True):
 
 ![The `llm` object doesn't remember things](../assets/images/hands-on-llm-tutorial/018.png)
 
-In order to give the LLM memory, we need to give the previous questions and answers to the LLM as an input, followed by the user's next question. We could build this up ourselves, but Langchain comes with built in helpers to do this for us. 
+In order to give the LLM memory, we need to supply the previous questions and answers to the LLM as an input, followed by the user's next question. We could build this up ourselves, but Langchain comes with built in helpers to do this for us. 
 
 Declare a Conversation Chain which is Langchain's wrapper class to help with user chats, which takes care of storing and sending previous conversations. With it, add an in-memory conversation buffer. As the name says, it automatically keeps the history in-memory. There are many other options for backing stores for history, the memory one is the simplest for a tutorial. 
 
@@ -424,16 +428,16 @@ Human: {input}
 AI:
 ```
 
-The `{input}` is where the user's input goes, and the `{history}` is where the ConversationChain puts the previous parts of the conversation. 
+The `{input}` is where the user's input goes, and the `{history}` is where the ConversationChain puts the previous conversation. 
 
-To see it in action, send a few questions using the conversation chain. Because we've set verbose=True above, you should also see the template being filled. 
+To see it in action, send a few questions using the conversation chain. Because we've set verbose=True above, we should also see the template being filled. 
 
 ```python
 print(conversation.run("My favorite color is green"))
 print(conversation.run("What is my favorite color?"))
 ```
 
-![Watch the memory build up as you send more messages](../assets/images/hands-on-llm-tutorial/019.png)
+![Watch the memory build up as more messaegs are sent](../assets/images/hands-on-llm-tutorial/019.png)
 
 You can now try the same 'inline' chatbot as before, but using the wrapper class with a memory buffer. 
 
@@ -458,7 +462,7 @@ You have now built a rudimentary chatbot.
 
 ## Providing tools to the LLM
 
-If you were to ask the LLM to summarize the contents of the news article at a URL, without giving it the contents, it could still generate a summary by guessing from the URL's words. LLMs on their own don't have the ability to crawl web pages. This is where tools come in; we can let the LLM know what our own code has the ability to fetch web pages, all the LLM has to do is invoke it if needed. 
+If we were to ask the LLM to summarize the contents of the news article at a URL, without giving it the actual contents, it could still generate a summary by guessing from the URL's words. LLMs on their own don't have the ability to crawl web pages. This is where tools come in; we can let the LLM know what our own code has the ability to fetch web pages, all the LLM has to do is invoke it if needed. 
 
 In this exercise we'll create a Langchain Tool that can fetch a web page and return its contents. We'll pass that tool to the LLM, then ask it to summarize the contents of a URL. 
 
@@ -514,7 +518,7 @@ You can have a look at the template being used by Langchain to inform the LLM ab
 agent.to_json()['repr']
 ```
 
-If you squint you should be able to pick out the template, including our suplied `get_content_from_page` tool. 
+A bit of squinting at the dense output should show the template, including our suplied `get_content_from_page` tool. 
 
 ```
 template='Answer the following questions as best you can. You have access to the following tools:
@@ -549,12 +553,12 @@ Watch the output as the LLM, in its chain of thought process, figures out it nee
 
 ![Fetch and summarize a page](../assets/images/hands-on-llm-tutorial/021.png)
 
-Try it with a few more URLs. You might find that the agent sometimes falls over and get into a loop (use the stop button next to the cell when this happens). The agent isn't perfect and can get confused at times. 
+Try it with a few more URLs. It is not uncommon for the agent to sometimes fall over and get into a loop (use the stop button next to the cell when this happens). The agent isn't perfect and can get confused at times. 
 
 
 ## Question answering over documents
 
-Although LLMs are trained by crawling over web content, even over trillions of tokens they don't have all the answers. This is especially true for documents or datasets that are specific to you or your business, which the LLM will not have had access to. 
+Although LLMs are trained by crawling over web content, even over trillions of tokens they don't have all the answers. This is especially true for documents or datasets that are specific to businesses and individuals, which the LLM will not have had access to. 
 
 If we want an LLM to answer a question over a specific datset or document store with certainty, we would need to provide those documents to the LLM as part of its context. However, even with 100k+ token LLMs, this isn't feasible if there are lots of documents. The LLM will either lose attention or the large number of documents just won't fit. 
 
@@ -563,7 +567,7 @@ Instead, the answer is to use something called **Retrieval Augmented Generation 
 In other words, Retrieval Augmented Generation is just a fancy phrasing for picking out most relevant documents before giving it to the LLM. 
 
 {% notice "info" %}
-If you are rolling your eyes at the numerous bits of superfluous jargon and fancy phrasing for what are basic concepts, you are not alone. The datascience world enjoy rewording things. Or as I call it, semantic recalibration. Get used to it. 
+If you are rolling your eyes at the numerous bits of pointless, superfluous jargon, and pretentious phrasing for what are basic concepts, you are not alone. Datascience academia appear to have a habit of rewording simple things. Or as I refer to it, semantic recalibration. We'll just have to get used to it. 
 {% endnotice %}
 
 Let's briefly look at RAG and embeddings, before doing a basic example in code. 
@@ -645,7 +649,7 @@ Install the tiktoken library.
 ! pip install tiktoken
 ```
 
-Initialize an OpenAIEmbeddings object with your API key. We'll use an OpenAI model called `text-embedding-ada-002` to create embeddings. 
+Initialize an OpenAIEmbeddings object with the same OpenAI API key. We'll use an OpenAI model called `text-embedding-ada-002` to create embeddings. 
 
 ```python
 # Initialize Embeddings object to use ADA 002 on OpenAI
@@ -661,13 +665,13 @@ You can do a little test to see what an embedding looks like.
 test_embedding = embeddings.embed_query("The quick brown fox jumps over the lazy little dogs")
 ```
 
-Have a look at the contents of `test_embedding`, you should see a large array of numbers. 
+Have a look at the contents of `test_embedding`, it's a large array of numbers. 
 
 ```python
 print(test_embedding)
 ```
 
-An interesting note, if you look at its length, the value is always the same, no matter what text you passed to the embedding model. In the case of ADA 002 model, the value is 1536, which is the number of dimensions (relationships as you'll recall) that the model represents its tokens in. 
+An interesting note, if we look at its length, the value is always the same, no matter what text we passed to the embedding model. In the case of ADA 002 model, the value is 1536, which is the number of dimensions (relationships as discussed earlier) that the model represents its tokens in. 
 
 ```python
 len(test_embedding)
@@ -703,7 +707,7 @@ db.similarity_search_with_score("Where did EasyJet cut capacity?")
 
 The question `Where did EasyJet cut capacity?` will have been converted to an embedding, and a similarity search performed across the in memory vector store. 
 
-As you can see, it does manage to find a relevant set of passages with some scores. But keep in mind that its similarity search will only find the most relevant _chunk_ that was stored, not the entire document. 
+It does manage to find a relevant set of passages with some scores. But keep in mind that its similarity search will only find the most relevant _chunk_ that was stored, not the entire document. 
 
 This is where LangChain comes in with another convenience wrapper. We pass the above vector store, along with the user's question to a `RetrievalQAWithSourcesChain`. Langchain uses the retriever to perform the search (as we've tested briefly above), figures out the relevant documents based on score, passes it to the `llm` along with the question, and returns an answer with the source document. 
 
@@ -718,7 +722,7 @@ print(result["answer"], "Source: ", result["sources"])
 ![Retrieval in Langchain](/assets/images/hands-on-llm-tutorial/026.png)
 
 
-The template that Langchain uses to instruct the LLM is simple though verbose. You can have a look at it:
+The template that Langchain uses to instruct the LLM is simple though verbose. Have a look at it:
 
 ```python
 chain.combine_documents_chain.llm_chain.prompt.template
@@ -732,9 +736,9 @@ Because embeddings and vector storage are more cost-effective than working with 
 One pitfall however is that the embeddings produced are specific to the embedding model used. In our example, if OpenAI ever removed ADA 002, then the embeddings would need to be performed again for every document. 
 
 
-## GenAI for personal use
+## LLMs for personal use
 
-Although this tutorial is mostly centered around closed, commercial LLMs, it's also possible to make use of local LLMs running on your computer. It's entirely offline and private, so the only cost is your own hardware and electricity. Several models have been released, and it's a pretty busy space as there's so much activity. 
+Although this tutorial is mostly centered around OpenAI which is a closed, hosted, commercial LLMs, it's also possible to make use of local LLMs running on your computer. It's entirely offline and private, so the only cost is your own hardware and electricity. Several models have been released, and it's a pretty busy space as there's so much activity. 
 
 Some examples of local LLMs are: LLaMa2, Stable Beluga and Mistral. There are a variety of ways to run them, and the best way to get started is with [oobabooga/text-generation-webui](https://github.com/oobabooga/text-generation-webui). 
 
@@ -744,6 +748,3 @@ Programmatic interaction with LangChain makes use of some of the above projects.
 
 Yet another way to run a local model is with [vllm](https://github.com/vllm-project/vllm), which hosts the model behind an HTTP interface that is very similar to OpenAI's own APIs. That means you can use OpenAI libraries to talk to local models. 
 
-
-
-Image generation is best done with [Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) and comes with many of its own [tutorials](https://stable-diffusion-art.com/) and [models](https://civitai.com/).

@@ -26,7 +26,7 @@ You'll also need a Python notebook, which can be a service like [Google Colab](h
 I'll first start with some direct LLM interactions, as these help to provide a base understanding of what's happening behind the scenes. From there we'll build up to the actual programmatic interaction in Python. 
 
 {% notice "info" %}
-The cost shouldn't be too high, writing this tutorial and practicing it cost me about $0.07.
+The cost in running through the steps of this tutorial shouldn't be too high; writing this tutorial and practicing excessively cost me about $0.05, and should be lower for you.
 {% endnotice %}
 
 

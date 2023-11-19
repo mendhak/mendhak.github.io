@@ -14,7 +14,7 @@ tags:
 extraWideMedia: false
 ---
 
-In this post I will go over an approach to getting developers familiar with LLMs, and how to write code against them. It is not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. The aim is to simply get developers comfortable interacting with LLMs. 
+In this post I will go over an approach to getting developers familiar with LLMs, and how to write code against them. The aim is to get developers comfortable interacting and programming with LLMs. It is only a starting point; it's not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. 
 
 As with any field, there are nuances in many of the concepts involved, but those will conveniently be hand-waved away for the sake of getting started.  
 
@@ -122,7 +122,7 @@ Assistant:
 ![With stop sequences](../assets/images/hands-on-llm-tutorial/011b.png)
 {% endgallery %}
 
-That's a rudiemntary chatbot. Each time we hit generate, the previous conversations (the history) are being sent, along with the latest input. The model produces an output until it hits the stop sequence.
+That's a rudimentary chatbot. Each time we hit generate, the previous conversations (the history) are being sent, along with the latest input. The model produces an output until it hits the stop sequence.
 
 
 {% notice "info" %}
@@ -132,7 +132,7 @@ OpenAI's Playground as well as Amazon Bedrock's interface make this exercise a b
 
 ## Using a chat interface
 
-Switch to the Chat playground. From what we've learned so far, it should now be a little more obvious how the chat based interface is working behind the scenes. The chat interface is the one most people will be familiar with, through the well known examples of ChatGPT and Claude. It is also the interface that most LLM programming is written for as it is tuned for Q&A type work. 
+Switch to the Chat playground. From what we've learned so far, it should now be a little more obvious how the chat based interface is working behind the scenes. The chat interface is the one most people will be familiar with, through the well known examples of ChatGPT and Claude. It is also the interface that most LLM programming is written for, as it is tuned for Q&A type work. 
 
 ### Chat with history
 

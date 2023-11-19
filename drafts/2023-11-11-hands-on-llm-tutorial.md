@@ -16,28 +16,28 @@ extraWideMedia: false
 
 In this post I will go over an approach to getting developers familiar with LLMs, and how to write code against them. It is not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. The aim is to simply get developers comfortable interacting with LLMs. 
 
-As with any field, are nuances in many of the concepts involved, but those will conveniently be hand-waved away for the sake of getting started.  
+As with any field, there are nuances in many of the concepts involved, but those will conveniently be hand-waved away for the sake of getting started.  
 
 For this tutorial you will need access to a commercial off-the-shelf LLM service, such as [OpenAI Playground](https://platform.openai.com/playground), [Azure OpenAI](https://oai.azure.com/portal/), or [Amazon Bedrock](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/text-playground/amazon.titan-text-express-v1); in my examples I will be referencing OpenAI's playground but the others will have similar functionality to follow along. 
 
 You'll also need a Python notebook, which can be a service like [Google Colab](https://colab.research.google.com), [Paperspace Gradient](https://www.paperspace.com/), or [locally in VSCode](https://code.visualstudio.com/docs/datascience/jupyter-notebooks). 
 
-I'll first start with some direct LLM interactions as it helps to have a base understanding of what's happening behind the scenes, and then build up to the actual programmatic interaction in Python. 
+I'll first start with some direct LLM interactions, as these help to provide a base understanding of what's happening behind the scenes. From there we'll build up to the actual programmatic interaction in Python. 
 
 
 ## Clarifying some terms
 
 It helps to be familiar with some of the words that are used in this area. Some are pure marketing, and some have specific meanings. 
 
-**AI** is supposed to be the branch of computer science trying to get machines to do intelligent things. It has now been coopted by mainstream media and is now employed as a marketing buzzword. It is used to describe any sufficiently advanced technology that wows people, which they don't understand. As an example, text to speech conversion (dictation) was referred to as AI when it first came out decades ago, but is now a pedestrian aspect of many application interfaces.  
+**AI** is supposed to be the branch of computer science aiming to enable machines to perform intelligent tasks. It has now been coopted by mainstream media and is additonally employed as a marketing buzzword. It is used to describe any sufficiently advanced technology that wows people, which they don't understand. As an example, text to speech conversion (dictation) was referred to as AI when it first came out decades ago, but is now a commonplace aspect of many application interfaces.  
 
-**Machine Learning** is a subset of AI (the field) that focuses on the development of algorithms and models to enable the performance of specific tasks, like predicting the weather, or identifying a dog breed from a photograph. 
+**Machine Learning** is a subset of AI (the field) that focuses on the development of algorithms and models to enable the performance of specific tasks, like predicting the weather, or identifying a dog breed from a photograph. It is a well established and mature field.
 
-**Large Language Models**, or LLMs, are a specific type of model that have been trained on a large amount of text data, to understand and generate human like language as an output. LLMs have been gaining a lot of media and business attention in the past few years. Well known LLMs are GPT by OpenAI, Claude by Anthropic, and LLaMa by Meta. 
+**Large Language Models**, or LLMs, are a specific type of model that have been trained on a large amount of text data, to understand and generate natural language as an output. LLMs have been gaining a lot of media and business attention in the past few years. Well known LLMs are GPT by OpenAI, Claude by Anthropic, and LLaMa by Meta. 
 
-**Image generation models**, are also gaining attention, and these can generate an image based on a text description, in various styles and degrees of realism. The most well known systems here are Dall-E, MidJourney and Stable Diffusion. 
+**Image generation models**, are also gaining attention, these can generate an image based on a text description, in various styles and degrees of realism. The most well known systems here are Dall-E, MidJourney and Stable Diffusion. 
 
-Similarly there are also models for music generation, video generation, code generation, and speech. The collective term for these content creation models is **Generative AI**, or shortened to GenAI to appear in-the-know in circles of acquaintances who don't know the difference and don't care anyway. 
+In the same vein, there are models for music generation, video generation, and speech. The collective term for these content creation models is **Generative AI**, often shortened to GenAI. 
 
 Of the many types, LLMs get a lot of attention from businesses, research, and hobbyists, because they are very easy to work with. It's simply text input and output, and there are a lot of techniques emerging to optimize working with them. 
 
@@ -332,7 +332,7 @@ llm.predict("The sky is")
 
 ### Summarizing text
 
-Set the temperature to 0.1 for the `llm`` object, as we need less creativity and more predictability for the rest of the exercises. 
+Set the temperature to 0.1 for the `llm` object, as we need less creativity and more predictability for the rest of the exercises. 
 
 ```python
 from langchain.chat_models import ChatOpenAI

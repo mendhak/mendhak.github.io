@@ -1,24 +1,30 @@
 ---
-title: Hands on LLM programming tutorial for developers
-description: Help make sense of programming with LLMs for people without a machine learning background
+title: Hands on introduction to LLM programming for developers
+description: Help make sense of programming with LLMs, a hands on tutorial for developers without a machine learning background
 tags:
   - genai
   - llm
   - langchain
   - openai
+  - python
+  - bedrock
+  - azure
+  - tutorial
 
 ---
 
-In this post I will go over an approach to getting developers familiar with LLMs, and how to write code against them. It is not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. The aim is to simply get developers comfortable interacting with LLMs. There are nuances in the concepts involved, and those will be skipped as well.   
+In this post I will go over an approach to getting developers familiar with LLMs, and how to write code against them. It is not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. The aim is to simply get developers comfortable interacting with LLMs. As with any field, are nuances in the concepts involved, and those will be conveniently hand-waved away. 
 
-For this tutorial you will need access to a commercial off-the-shelf LLM service, such as OpenAI Platform, Azure OpenAI, or Amazon Bedrock; in my examples I will be referencing OpenAI's playground but the others will have similar functionality to follow along. You'll also need a Python notebook, which can be a service like [Google Colab](https://colab.research.google.com), [Paperspace Gradient](https://www.paperspace.com/), or [locally in VSCode](https://code.visualstudio.com/docs/datascience/jupyter-notebooks). 
+For this tutorial you will need access to a commercial off-the-shelf LLM service, such as [OpenAI Playground](https://platform.openai.com/playground), [Azure OpenAI](https://oai.azure.com/portal/), or [Amazon Bedrock](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/text-playground/amazon.titan-text-express-v1); in my examples I will be referencing OpenAI's playground but the others will have similar functionality to follow along. You'll also need a Python notebook, which can be a service like [Google Colab](https://colab.research.google.com), [Paperspace Gradient](https://www.paperspace.com/), or [locally in VSCode](https://code.visualstudio.com/docs/datascience/jupyter-notebooks). 
+
+I'll first start with some direct LLM interactions as it helps to have a base understanding of what's happening behind the scenes, and then build up to the actual programmatic interaction in Python. 
 
 
 ## Clarify some terms
 
-It's boring but important to get familiar with some of the words that are used in this area. Some are pure marketing, and some have specific meanings. 
+It helps to be familiar with some of the words that are used in this area. Some are pure marketing, and some have specific meanings. 
 
-**AI** is supposed to be the branch of computer science trying to get machines to do intelligent things. It has now been coopted by mainstream media and is now a marketing buzzword, used to describe any sufficiently advanced technology that wows people. As an example, text to speech conversion (dictation) was referred to as AI when it first came out decades ago, but is now a pedestrian aspect of many application interfaces.  
+**AI** is supposed to be the branch of computer science trying to get machines to do intelligent things. It has now been coopted by mainstream media and is now employed as a marketing buzzword. It is used to describe any sufficiently advanced technology that wows people, which they don't understand. As an example, text to speech conversion (dictation) was referred to as AI when it first came out decades ago, but is now a pedestrian aspect of many application interfaces.  
 
 **Machine Learning** is a subset of AI (the field) that focuses on the development of algorithms and models to enable the performance of specific tasks, like predicting the weather, or identifying a dog breed from a photograph. 
 
@@ -28,10 +34,10 @@ It's boring but important to get familiar with some of the words that are used i
 
 Similarly there are also models for music generation, video generation, code generation, and speech. The collective term for these content creation models is **Generative AI**, or shortened to GenAI to appear in-the-know in circles of acquaintances who don't know the difference and don't care anyway. 
 
-Of the many types, LLMs get a lot of attention from businesses, research, and hobbyists, because they are very easy to work with, it's just text input and output; and there are a lot of techniques emerging to optimize working with them. 
+Of the many types, LLMs get a lot of attention from businesses, research, and hobbyists, because they are very easy to work with. It's simply text input and output, and there are a lot of techniques emerging to optimize working with them. 
 
 
-## Text completion and patterns
+## Text completion and temperature
 
 In your LLM playground, switch to the completions tab. Completions is very close to the raw interface of an LLM, you just provide it with some text and a few additional parameters. 
 
@@ -49,7 +55,7 @@ See how it produces the C# function asked for, but carries on producing output (
 
 ![C# function and then some](/assets/images/hands-on-llm-tutorial/010.png)
 
-Try adjusting the temperature slider now, and see how it affects the output.  For example, try the following input at temperature = 0 and then at temperature = 1. 
+Try adjusting the temperature slider now, and see how it affects the output.  Try the following prompt at temperature = 0 and then at temperature = 1. 
 
     The sky is blue, and 
  
@@ -64,7 +70,7 @@ Try adjusting the temperature slider now, and see how it affects the output.  Fo
 
 ### Tokens and context
 
-**Tokens** are mentioned frequently in LLM interfaces, conversations, as well as pricing, so they're a pretty important concept. 
+**Tokens** are mentioned frequently in LLM interfaces, conversations, as well as pricing.  
 
 Tokens are the units of text that the models understand. They are sometimes full words, and sometimes parts of words or punctuation. The best way to see for yourself is to try the [OpenAI Tokenizer](https://platform.openai.com/tokenizer) and see the example. 
 
@@ -84,7 +90,7 @@ Some well known LLMs and their limits:
 * Claude v2: 100k tokens
 * LLaMa2: 4k tokens
 
-It's tempting to think that the 100k+ LLMs are the best for being able to handle so much at once, but it's not a numbers game. In practice, LLMs start to lose attention when it has to deal with too much input, it starts 'forgetting' what the important parts of your initial input were, and start producing poor output. 
+It's tempting to think that the 100k+ LLMs are the best for being able to handle so much at once, but it's not a numbers game. In practice, LLMs start to lose attention when it has to deal with too much input, it 'forgets' what the important parts of your initial input were, and results in poor output. 
 
 ## Chatbots are just completion with stop sequences
 
@@ -121,7 +127,7 @@ OpenAI's Playground as well as Amazon Bedrock's interface make this exercise a b
 
 ## Using a chat interface
 
-Switch to the chat playground. It should now be a little more obvious how the chat based interface is working behind the scenes. The chat interface is the one most people will be familiar with, through the well known examples of ChatGPT and Claude, and it is also the interface that most LLM programming is written for. 
+Switch to the Chat playground. From what you've learned so far, it should now be a little more obvious how the chat based interface is working behind the scenes. The chat interface is the one most people will be familiar with, through the well known examples of ChatGPT and Claude. It is also the interface that most LLM programming is written for as it is tuned for Q&A type work. 
 
 ### Chat with history
 
@@ -135,7 +141,7 @@ Tell me a joke
 Explain please?
 ```
 
-The chat interface retains history, so the previous question and answer are included in the input when you ask for the explanation. This history retaining feature is an important part of chatbots, but remember that it uses up some of your context window. 
+The chat interface retains history, so the previous question and answer are included in the input when you ask for the explanation. This history retaining feature is a useful and natural part of chatbots, but do keep in mind that it uses up some of your context window. 
 
 ![Chat with context](../assets/images/hands-on-llm-tutorial/012.png)
 
@@ -168,7 +174,7 @@ Question: What are the best locations to see the asteroid?
 
 ## Context and reasoning with a chatbot
 
-It's important to remember that chatbots work with a context, based on the additional hints and information you give it, it can generate text to fit that scenario. 
+Remember that chatbots work with a context, and based on the additional hints and information you give it, it can generate text to fit that scenario. 
 
 Try the following input with the chat interface. 
 
@@ -202,14 +208,89 @@ This doesn't always work well though. With the following example from [LLMBenchm
 Sally (a girl) has 3 brothers. Each brother has 2 sisters. How many sisters does Sally have? Let's think step by step.
 ```
 
-I was reliablly informed that Sally ahd six sisters. 
+I was reliably informed that Sally had six sisters. 
 
-As amusing as the answer is, it's a contrived example of the dangers that LLMs come with. It has produced a reasonable looking passage of text that seems to answer the question, but it can be wrong, and it's really on us to verify it. 
+As amusing as the answer is, it's a contrived example of the dangers that LLMs come with. It has produced a reasonable looking passage of text that *seems* to answer the question, but it can be wrong, and it's really on us to verify it. 
 
 ![Not so great reasoning example](../assets/images/hands-on-llm-tutorial/015b.png)
 
 
 ## Shaping the response
 
-So far I've only been showing basic interaction with LLMs. For programmatic interactions, it's important to get the LLM to produce an output that can be worked with in code. For instance, you could ask it to produce a single word, or even JSON or XML. 
+So far I've only been showing basic interaction with LLMs. For programmatic interactions, it's important to get the LLM to produce an output that can be worked with in code. Most commonly, you would ask it to produce a single word, or even JSON or XML. 
+
+Let's make the chatbot help with chemistry related questions. We want it to tell us the atomic number of a given element that the user mentions. 
+
+Clear the chat and set the temperature to 0. Start by asking it to produce only the atomic number, and then follow up with some more element names. 
+
+```
+What is the atomic number of Oxygen? Respond only with the atomic number.
+```
+
+```
+What about Nitrogen?
+```
+
+```
+Tell me about Helium
+```
+
+The LLM can get distracted quite easily and go back to its chatty mode, which isn't great for programmatic interaction. 
+
+### System Messages
+
+A good way to deal with this is to give it a 'role' to play, known as the **system message**. This message gets added right at the beginning of the input to the LLM, which sets the context for the rest of the conversation. 
+
+Clear the chat messages, then in the System prompt area, add the following:
+
+```
+You are a helpful assistant with a vast knowledge of chemistry. When the user asks about an element, respond with only the atomic number of the element. Do not include additional information.
+```
+
+Try the same questions as before, and the responses should be more consistent this time.  
+
+{% gallery %}
+![Just chat mode](../assets/images/hands-on-llm-tutorial/016a.png)
+![With system message](../assets/images/hands-on-llm-tutorial/016b.png)
+{% endgallery %}
+
+### Giving the LLM examples to learn from
+
+This time, we'd like the chat interface to produce JSON output so that it's easier to work with in our code. You can start by modifying the system message and simply asking for some JSON. 
+
+Clear the chat, then in the System prompt area:
+
+```
+You are a helpful assistant with a vast knowledge of chemistry. When the user asks about an element, respond with the chemical symbol, atomic number and atomic weight in a JSON format. Do not include additional information.
+```
+
+Try asking about some elements and it should respond with some JSON, I got an output like `{"symbol": "V", "atomic_number": 23,  "atomic_weight": 50.9415 }`
+
+Although the LLM made up the JSON key names, there's no guarantee it will always use those key names. We want to control the JSON key names and have the LLM follow our schema. 
+
+This is where examples come in. In the System prompt area, it's possible to provide a few examples to get the LLM going, and then any subsequent answers it produces should follow those examples. This technique is known as **Few Shot Prompting**. 
+
+Clear the chat, then in the System prompt area:
+
+```
+You are a helpful assistant with a vast knowledge of chemistry. When the user asks about an element, respond with the chemical symbol, atomic number and atomic weight in a JSON format. Do not include additional information.
+
+Examples:
+
+User: Tell me about Helium. 
+Assistant: {"sym": "He", "num": 2, "wgt": 4.0026}
+
+User: What about Nitrogen?
+Assistant: {"sym": "N", "num": 7, "wgt": 14.0067}
+```
+
+Try your questions once more and observe as the JSON keys match your examples. 
+
+{% gallery %}
+![Ask for JSON](../assets/images/hands-on-llm-tutorial/017a.png)
+![Show some JSON (few shot prompting)](../assets/images/hands-on-llm-tutorial/017b.png)
+{% endgallery %}
+
+
+## Programming with Langchain
 

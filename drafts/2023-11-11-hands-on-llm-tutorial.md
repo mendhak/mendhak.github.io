@@ -12,6 +12,9 @@ tags:
   - tutorial
 
 extraWideMedia: false
+
+opengraph:
+  image: /assets/images/hands-on-llm-tutorial/000.png
 ---
 
 In this post I will go over an approach to getting developers familiar with LLMs, and how to write code against them. The aim is to get developers comfortable interacting and programming with LLMs. It is only a starting point; it's not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. 

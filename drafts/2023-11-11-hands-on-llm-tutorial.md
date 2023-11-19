@@ -318,7 +318,7 @@ Here I'm telling it to use the GPT 3.5 Turbo model, with a temperature of 1.
 
 ### Basic completion
 
-Do a basic completion now, just as we did back in the Completion playground, but this time it's through the `llm` object. Run it a few times to get different outputs. 
+Perform a basic completion now, just as we did back in the Completion playground, but this time it's through the `llm` object. Run the code a few times to get different outputs. 
 
 ```python
 llm.predict("The sky is")
@@ -332,14 +332,14 @@ llm.predict("The sky is")
 
 ### Summarizing text
 
-Set the temperature to 0.1 for the `llm` object, as we need less creativity and more predictability for the rest of the exercises. 
+Set the temperature to 0.1 for the `llm` object, as we need increased predictability for the rest of the exercises. 
 
 ```python
 from langchain.chat_models import ChatOpenAI
 llm = ChatOpenAI(temperature=0.1, model="gpt-3.5-turbo", openai_api_key="xxxxxxxxxxxxxxxxx")
 ```
 
-In another cell, copy the body text from a news article, and get the LLM to summarize it. 
+In another cell, copy the body text from a news article, and have the LLM summarize it. 
 
 ```python
 text = """

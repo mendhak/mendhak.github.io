@@ -18,9 +18,9 @@ In this post I will go over an approach to getting developers familiar with LLMs
 
 As with any field, there are nuances in many of the concepts involved, but those will conveniently be hand-waved away for the sake of getting started.  
 
-For this tutorial you will need access to a commercial off-the-shelf LLM service, such as [OpenAI Playground](https://platform.openai.com/playground), [Azure OpenAI](https://oai.azure.com/portal/), or [Amazon Bedrock](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/text-playground/amazon.titan-text-express-v1); in my examples I will be referencing OpenAI's playground but the others will have similar functionality to follow along. 
+For this tutorial you will need access to a commercial off-the-shelf LLM service, such as [OpenAI Playground](https://platform.openai.com/playground), [Azure OpenAI](https://oai.azure.com/portal/), or [Amazon Bedrock](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/text-playground/amazon.titan-text-express-v1); in my examples I will be referencing OpenAI's playground but the others will have similar functionality to follow along. The cost shouldn't be too high, writing this tutorial and practicing it cost me about $0.07. 
 
-You'll also need a Python notebook, which can be a service like [Google Colab](https://colab.research.google.com), [Paperspace Gradient](https://www.paperspace.com/), or [locally in VSCode](https://code.visualstudio.com/docs/datascience/jupyter-notebooks). 
+You'll also need a Python notebook, which can be a service like [Google Colab](https://colab.research.google.com), [Paperspace Gradient](https://www.paperspace.com/), or [locally in VSCode](https://code.visualstudio.com/docs/datascience/jupyter-notebooks) afresh, or in [my sample notebook](https://github.com/mendhak/notebook-llm-hands-on-tutorial/). 
 
 I'll first start with some direct LLM interactions, as these help to provide a base understanding of what's happening behind the scenes. From there we'll build up to the actual programmatic interaction in Python. 
 
@@ -29,7 +29,7 @@ I'll first start with some direct LLM interactions, as these help to provide a b
 
 It helps to be familiar with some of the words that are used in this area. Some are pure marketing, and some have specific meanings. 
 
-**AI** is supposed to be the branch of computer science aiming to enable machines to perform intelligent tasks. It has now been coopted by mainstream media and is additonally employed as a marketing buzzword. It is used to describe any sufficiently advanced technology that wows people, which they don't understand. As an example, text to speech conversion (dictation) was referred to as AI when it first came out decades ago, but is now a commonplace aspect of many application interfaces.  
+**AI** is supposed to be the branch of computer science aiming to enable machines to perform intelligent tasks. It has now been coopted by mainstream media and is additionally employed as a marketing buzzword. It is used to describe any sufficiently advanced technology that wows people, which they don't understand. As an example, text to speech conversion (dictation) was referred to as AI when it first came out decades ago, but is now a commonplace aspect of many application interfaces.  
 
 **Machine Learning** is a subset of AI (the field) that focuses on the development of algorithms and models to enable the performance of specific tasks, like predicting the weather, or identifying a dog breed from a photograph. It is a well established and mature field.
 
@@ -301,7 +301,7 @@ Try the questions once more and observe as the JSON keys match the examples.
 
 Langchain is a framework that helps take away the heavy lifting when programming against LLMs including OpenAI, Bedrock and LLaMa. It's useful for prototyping and learning because it takes away a lot of the boilerplate work that we'd normally do, it comes with some predefined templates, and the ability to 'use' tools. The general consensus, currently, is that it's a great way to start, although for an actual production application a developer might want more control over the interaction, and end up doing it themselves. Either way, it's a good place to start for a tutorial at least. 
 
-Once your Python notebook ready, install langchain and openai in a cell. 
+Once your Python notebook is ready, install langchain and openai in a cell. 
 
 ```python
 ! pip install langchain openai
@@ -437,7 +437,7 @@ print(conversation.run("My favorite color is green"))
 print(conversation.run("What is my favorite color?"))
 ```
 
-![Watch the memory build up as more messaegs are sent](../assets/images/hands-on-llm-tutorial/019.png)
+![Watch the memory build up as more messages are sent](../assets/images/hands-on-llm-tutorial/019.png)
 
 You can now try the same 'inline' chatbot as before, but using the wrapper class with a memory buffer. 
 
@@ -518,7 +518,7 @@ You can have a look at the template being used by Langchain to inform the LLM ab
 agent.to_json()['repr']
 ```
 
-A bit of squinting at the dense output should show the template, including our suplied `get_content_from_page` tool. 
+A bit of squinting at the dense output should show the template, including our supplied `get_content_from_page` tool. 
 
 ```
 template='Answer the following questions as best you can. You have access to the following tools:

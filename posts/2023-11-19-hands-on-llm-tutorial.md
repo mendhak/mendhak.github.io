@@ -17,15 +17,18 @@ opengraph:
   image: /assets/images/hands-on-llm-tutorial/000.png
 ---
 
-In this post I will go over an approach to getting developers familiar with LLMs, and how to write code against them. The aim is to get developers comfortable interacting and programming with LLMs. It is only a starting point; it's not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. 
+In this post I will go over an approach to getting developers familiar with, and write code against LLMs. The aim is to get developers comfortable interacting and programming with LLMs. It is only a starting point; it's not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. 
 
-As with any field, there are nuances in many of the concepts involved, but those will conveniently be hand-waved away for the sake of getting started.  
-
-For this tutorial you will need access to a commercial off-the-shelf LLM service, such as [OpenAI Playground](https://platform.openai.com/playground), [Azure OpenAI](https://oai.azure.com/portal/), or [Amazon Bedrock](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/text-playground/amazon.titan-text-express-v1); in my examples I will be referencing OpenAI's playground but the others will have similar functionality to follow along. The cost shouldn't be too high, writing this tutorial and practicing it cost me about $0.07. 
+For this tutorial you will need access to a commercial off-the-shelf LLM service, such as [OpenAI Playground](https://platform.openai.com/playground), [Azure OpenAI](https://oai.azure.com/portal/), or [Amazon Bedrock](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/text-playground/amazon.titan-text-express-v1); in my examples I will be referencing OpenAI's playground but the others will have similar functionality to follow along.  
 
 You'll also need a Python notebook, which can be a service like [Google Colab](https://colab.research.google.com), [Paperspace Gradient](https://www.paperspace.com/), or [locally in VSCode](https://code.visualstudio.com/docs/datascience/jupyter-notebooks) afresh, or in [my sample notebook](https://github.com/mendhak/notebook-llm-hands-on-tutorial/). 
 
 I'll first start with some direct LLM interactions, as these help to provide a base understanding of what's happening behind the scenes. From there we'll build up to the actual programmatic interaction in Python. 
+
+{% notice "info" %}
+The cost shouldn't be too high, writing this tutorial and practicing it cost me about $0.07.
+{% endnotice %}
+
 
 
 ## Clarifying some terms
@@ -44,6 +47,9 @@ In the same vein, there are models for music generation, video generation, and s
 
 Of the many types, LLMs get a lot of attention from businesses, research, and hobbyists, because they are very easy to work with. It's simply text input and output, and there are a lot of techniques emerging to optimize working with them. 
 
+{% notice "info" %}
+As with any field, there are nuances in many of the concepts involved, but those will conveniently be hand-waved away for the sake of getting started.  
+{% endnotice %}
 
 ## Text completion and temperature
 
@@ -570,7 +576,7 @@ Instead, the answer is to use something called **Retrieval Augmented Generation 
 In other words, Retrieval Augmented Generation is just a fancy phrasing for picking out most relevant documents before giving it to the LLM. 
 
 {% notice "info" %}
-If you are rolling your eyes at the numerous bits of pointless, superfluous jargon, and pretentious phrasing for what are basic concepts, you are not alone. Datascience academia appear to have a habit of rewording simple things. Or as I refer to it, semantic recalibration. We'll just have to get used to it. 
+If you are rolling your eyes at the numerous, pointless, superfluous jargon, and the pretentious phrasing for what are basic concepts, you are not alone. Datascience academia appear to have a habit of rewording simple things. Or as I refer to it, semantic recalibration. We'll just have to get used to it. 
 {% endnotice %}
 
 Let's briefly look at RAG and embeddings, before doing a basic example in code. 

@@ -11,6 +11,7 @@ tags:
   - azure
   - tutorial
 
+extraWideMedia: false
 ---
 
 In this post I will go over an approach to getting developers familiar with LLMs, and how to write code against them. It is not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. The aim is to simply get developers comfortable interacting with LLMs. As with any field, are nuances in the concepts involved, and those will be conveniently hand-waved away. 
@@ -551,4 +552,198 @@ Watch the output as the LLM, in its chain of thought process, figures out it nee
 Try it with a few more URLs. You might find that the agent sometimes falls over and get into a loop (use the stop button next to the cell when this happens). The agent isn't perfect and can get confused at times. 
 
 
+## Question answering over documents
 
+Although LLMs are trained by crawling over web content, even over trillions of tokens they don't have all the answers. This is especially true for documents or datasets that are specific to you or your business, which the LLM will not have had access to. 
+
+If we want an LLM to answer a question over a specific datset or document store with certainty, we would need to provide those documents to the LLM as part of its context. However, even with 100k+ token LLMs, this isn't feasible if there are lots of documents. The LLM will either lose attention or the large number of documents just won't fit. 
+
+Instead, the answer is to use something called **Retrieval Augmented Generation (RAG)**. We first take all our documents and convert them into embeddings, and store them. When a user asks a question, we match the user's question with the closest set of documents that are probably related to that question. We then grab that document and pass it to the LLM along with the user's question, to get a natural looking answer. The LLM only has to work with relevant documents to answer the question.
+
+In other words, Retrieval Augmented Generation is just a fancy phrasing for picking out most relevant documents before giving it to the LLM. 
+
+{% notice "info" %}
+If you are rolling your eyes at the numerous bits of superfluous jargon and fancy phrasing for what are basic concepts, you are not alone. The datascience world enjoy rewording things. Or as I call it, semantic recalibration. Get used to it. 
+{% endnotice %}
+
+Let's briefly look at RAG and embeddings, before doing a basic example in code. 
+
+#### How RAG works
+
+1. We first take each dataset or document, and pass it to an embedding model, which is a way of converting the text into a special numerical representation optimized for natural language searching. 
+2. Once we have these embeddings, we store them in a vector store, a database that's optimized for searching over embeddings. 
+3. When a user asks a question, we take their question and pass it to the same embedding model. 
+4. We use the vector store to search for the documents that most likely match that user's question. This is where embeddings shine as they are good at matching natural language documents together. 
+5. Once we have a document matching the user's question, we pass the document and the user's question to the LLM, to generate a natural looking response. 
+
+![The Retrieval Augmented Generation process](/assets/images/hands-on-llm-tutorial/022.png)
+
+#### How embeddings work
+
+Embeddings are a special way of representing words, by placing similar terms close to each other. 
+
+A good way to visualize it is with this image below.  
+
+You can have words like "king" and "queen" close to each other in the "male-female" dimension.  
+You can have "swam" and "swimming" close to each other in the "verb-tense" dimension.  
+You can have "Japan" and "Tokyo" close to each other in the "country-capital" dimension.  
+
+These are just examples of words close to each other, but in just one dimension. 
+An embedding is a vector that represents words close to each other across hundreds or *thousands* of dimensions. Embedding models have strong opinions of which kinds of words should be located near each other in such a space. By producing these numerical representations, they make it easy to search for similarity.  
+
+![Simple vectors [source](https://wordlift.io/blog/en/entity/what-are-embeddings/)](/assets/images/hands-on-llm-tutorial/023.png)
+
+### Retrieval Augmented Search with Langchain
+
+In a cell, use Langchain's WebBaseLoader to load three URLs. We will eventually ask a question that is answered in one of these pages. 
+
+```python
+# Document loading
+from langchain.document_loaders import WebBaseLoader
+
+urls = [
+    "https://www.cirium.com/thoughtcloud/aviation-analytics-on-the-fly-london-busiest-overseas-airline-markets/",
+    "https://www.cirium.com/thoughtcloud/summer-in-spain-airline-market/",
+    "https://www.cirium.com/thoughtcloud/analysis-china-slower-post-pandemic-aviation-recovery/",
+]
+loader = WebBaseLoader(urls)
+data = loader.load()
+```
+
+All this does so far is fetch the text from these pages. Have a peek inside by running `data` in a cell. 
+
+```python
+data
+```
+
+
+### Split up the documents
+
+We now need to split these documents into chunks for embedding and vector storage. I've arbitrarily chosen 500 as the chunk size. 
+
+```python
+# Splitting the documents into chunks for embedding and vector storage
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+
+text_splitter = RecursiveCharacterTextSplitter(chunk_size = 500, chunk_overlap = 0)
+documents = text_splitter.split_documents(data)
+```
+
+At this point, `documents` contains the same content from before, just split up, but with references to the original URLs. Have a peek. 
+
+```python
+documents[:5]
+```
+
+### Set up the embedding model
+
+The document chunks will need to be passed to an embedding model. The text can't just be passed as-is, it needs to be tokenized first. 
+
+Install the tiktoken library. 
+
+```python
+! pip install tiktoken
+```
+
+Initialize an OpenAIEmbeddings object with your API key. We'll use an OpenAI model called `text-embedding-ada-002` to create embeddings. 
+
+```python
+# Initialize Embeddings object to use ADA 002 on OpenAI
+from langchain.embeddings import OpenAIEmbeddings
+embeddings = OpenAIEmbeddings(openai_api_key="xxxxxxxxxxxxxxxxx", model="text-embedding-ada-002")
+```
+
+### What does an embedding actually look like? 
+
+You can do a little test to see what an embedding looks like. 
+
+```python
+test_embedding = embeddings.embed_query("The quick brown fox jumps over the lazy little dogs")
+```
+
+Have a look at the contents of `test_embedding`, you should see a large array of numbers. 
+
+```python
+print(test_embedding)
+```
+
+An interesting note, if you look at its length, the value is always the same, no matter what text you passed to the embedding model. In the case of ADA 002 model, the value is 1536, which is the number of dimensions (relationships as you'll recall) that the model represents its tokens in. 
+
+```python
+len(test_embedding)
+```
+
+![An embedding and length](/assets/images/hands-on-llm-tutorial/024.png)
+
+### Convert the documents to embeddings and store them
+
+This step is pretty simple, for once. Using the `documents` built earlier, we use the FAISS library to build an in memory vector store, using the `embeddings` object and calling OpenAI's ADA 002 model. 
+
+Install FAISSp
+
+```python
+!pip install faiss-cpu
+```
+
+And then run the conversion.
+
+```python
+db = FAISS.from_documents(documents, embeddings)
+```
+
+### Do the search
+
+At this point, the `db` is queryable, and we can get a preview of what a similarity search would look like. Try asking the question: 
+
+```python
+db.similarity_search_with_score("Where did EasyJet cut capacity?")
+```
+
+![Results from a similarity search](/assets/images/hands-on-llm-tutorial/025.png)
+
+The question `Where did EasyJet cut capacity?` will have been converted to an embedding, and a similarity search performed across the in memory vector store. 
+
+As you can see, it does manage to find a relevant set of passages with some scores. But keep in mind that its similarity search will only find the most relevant _chunk_ that was stored, not the entire document. 
+
+This is where LangChain comes in with another convenience wrapper. We pass the above vector store, along with the user's question to a `RetrievalQAWithSourcesChain`. Langchain uses the retriever to perform the search (as we've tested briefly above), figures out the relevant documents based on score, passes it to the `llm` along with the question, and returns an answer with the source document. 
+
+```python
+# Ask a question and retrieve the most likely document
+retriever = db.as_retriever()
+chain = RetrievalQAWithSourcesChain.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, return_source_documents=True, verbose=True)
+result = chain({"question": "Where did EasyJet cut capacity?"})
+print(result["answer"], "Source: ", result["sources"])
+```
+
+![Retrieval in Langchain](/assets/images/hands-on-llm-tutorial/026.png)
+
+
+The template that Langchain uses to instruct the LLM is simple though verbose. You can have a look at it:
+
+```python
+chain.combine_documents_chain.llm_chain.prompt.template
+```
+
+
+The only LLM related step here was at the end, where the user's question was answered based off a found document. The actual work happened in the storing and searching of the vector store. 
+
+Because embeddings and vector storage are more cost-effective than working with LLMs, it could become a regular fixture in businesses ecosystems. Postgres is a popular database in many tech stacks, and it has a vector search extension called [pgvector](https://github.com/pgvector/pgvector). Having regular data alongside embeddings in the same transactional database is very attractive for people who want to keep a small maintenance footprint.   
+
+One pitfall however is that the embeddings produced are specific to the embedding model used. In our example, if OpenAI ever removed ADA 002, then the embeddings would need to be performed again for every document. 
+
+
+## GenAI for personal use
+
+Although this tutorial is mostly centered around closed, commercial LLMs, it's also possible to make use of local LLMs running on your computer. It's entirely offline and private, so the only cost is your own hardware and electricity. Several models have been released, and it's a pretty busy space as there's so much activity. 
+
+Some examples of local LLMs are: LLaMa2, Stable Beluga and Mistral. There are a variety of ways to run them, and the best way to get started is with [oobabooga/text-generation-webui](https://github.com/oobabooga/text-generation-webui). 
+
+You can also run via commandline and Docker with [Ollama](https://ollama.ai/blog/ollama-is-now-available-as-an-official-docker-image) and [Python bindings for llama.cpp](https://github.com/abetlen/llama-cpp-python). I was even able to get [LLaMa2 running on my phone](https://www.youtube.com/watch?v=SVN7ljAnXbI).
+
+Programmatic interaction with LangChain makes use of some of the above projects. It can [talk to a local LLaMa2 model](https://python.langchain.com/docs/integrations/chat/llama2_chat), but it's worth noting that most of LangChain development is centered around OpenAI, so they tend to be slower to fix issues or introduce features for other platforms including LLaMa2 and even Amazon's Bedrock. 
+
+Yet another way to run a local model is with [vllm](https://github.com/vllm-project/vllm), which hosts the model behind an HTTP interface that is very similar to OpenAI's own APIs. That means you can use OpenAI libraries to talk to local models. 
+
+
+
+Image generation is best done with [Stable Diffusion WebUI](https://github.com/AUTOMATIC1111/stable-diffusion-webui) and comes with many of its own [tutorials](https://stable-diffusion-art.com/) and [models](https://civitai.com/).

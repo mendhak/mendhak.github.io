@@ -45,9 +45,11 @@ Try a few more fragments, which can be quite revealing.
 
     The following is a C# function to reverse a string:
 
-See how it produces the function, but carries on predicting until it reaches the maximum length.  
+See how it produces the C# function asked for, but carries on producing output (such as how to use the function, or the same function in other languages), until it reaches the maximum length. The takeaway here is that an LLM is not a chatbot out of the box. You can think of an LLM as a very good autocomplete tool, for some given input text it has a decent idea of what should come next. It's up to us to shape the LLM to get it to produce *useful* output. 
 
-Next, try adjusting the temperature slider, and see how it affects the output.  For example, try the following input at temperature = 0 and then at temperature = 1. 
+![C# function and then some](/assets/images/hands-on-llm-tutorial/010.png)
+
+Try adjusting the temperature slider now, and see how it affects the output.  For example, try the following input at temperature = 0 and then at temperature = 1. 
 
     The sky is blue, and 
  
@@ -70,9 +72,11 @@ Tokens are the units of text that the models understand. They are sometimes full
 
 Notice that some words get split up, some characters that often appear together are grouped up, and some punctuation marks get their own token. There is no exact conversion between tokens and words but the most common idea is to consider on average 4 to 5 characters as be a token.  
 
-LLMs come with a **token context** or context window. It includes your input prompt, the output from the model, and any other previous tokens you may have included. LLMs come with a limited token context which is the maximum number of tokens the LLM can handle while still (sort of) being effective at its predictions. 
+LLMs come with a maximum **token context** or context window. Think of it as the number of tokens that the LLM can deal with while still (kind of) being effective at its predictions. The token context includes your input prompt, the output from the model, and any other previous tokens you may have included. LLMs come with a limited token context depending on the model. 
 
-Some well known examples: 
+![Token Context](/assets/images/hands-on-llm-tutorial/009.png)
+
+Some well known LLMs and their limits: 
 
 * GPT 3.5: 16k tokens
 * GPT 4: 32k tokens
@@ -80,7 +84,132 @@ Some well known examples:
 * Claude v2: 100k tokens
 * LLaMa2: 4k tokens
 
-It might appear that the 100k+ LLMs are 'the best' for being able to handle so many, but it's not a numbers game. In practice, LLMs start to lose attention when it has to deal with too much input, and start producing nonsense output anyway. And it's more expensive. 
+It's tempting to think that the 100k+ LLMs are the best for being able to handle so much at once, but it's not a numbers game. In practice, LLMs start to lose attention when it has to deal with too much input, it starts 'forgetting' what the important parts of your initial input were, and start producing poor output. 
+
+## Chatbots are just completion with stop sequences
+
+While still in the Text Completion playground, switch to another model such as `davinci-002`. Since it isn't made for Q&A type tasks, it is better for illustrating the next concept. 
+
+Begin with a conversational type input like this:
+
+```
+Alice: Hi how are you?
+Assistant:  
+```
+
+and hit generate. In many cases you will see the text completion produces an output for the Assistant, but carries on the conversation for Alice as well. This is the same principle as before, essentially, producing what a chat transcript could look like between these two characters. 
+
+Now add a **Stop sequence** to the parameters in the completion interface. Add `Alice:` then repeat the above exercise. After each response it will stop instead of producing the next `Alice:`. You can carry on the conversation by having Alice ask another question, and then end each new input with `Assistant:`, to carry on the conversation.  
+
+```
+Alice: Is everything alright with my account?
+Assistant: 
+```
+
+{% gallery %}
+![Without stop sequences](../assets/images/hands-on-llm-tutorial/011a.png)
+![With stop sequences](../assets/images/hands-on-llm-tutorial/011b.png)
+{% endgallery %}
+
+There's your rudiemntary chatbot. Each time you hit generate, you are sending the previous conversations (the history) as well as your latest input. The model produces an output until it hits the stop sequence.
 
 
+{% notice "info" %}
+OpenAI's Playground as well as Amazon Bedrock's interface make this exercise a bit difficult by seemingly forcing the stop sequence tokens rather than letting the model continue producing output. 
+{% endnotice %}
+
+
+## Using a chat interface
+
+Switch to the chat playground. It should now be a little more obvious how the chat based interface is working behind the scenes. The chat interface is the one most people will be familiar with, through the well known examples of ChatGPT and Claude, and it is also the interface that most LLM programming is written for. 
+
+### Chat with history
+
+Try a simple exercise. Ask it to tell you a joke and then ask for an explanation. 
+
+```
+Tell me a joke
+```
+
+```
+Explain please?
+```
+
+The chat interface retains history, so the previous question and answer are included in the input when you ask for the explanation. This history retaining feature is an important part of chatbots, but remember that it uses up some of your context window. 
+
+![Chat with context](../assets/images/hands-on-llm-tutorial/012.png)
+
+### Summarizing news
+
+A common task with LLMs is to ask it to summarize something. Grab a news article from anywhere, and copy its contents. Ask the chatbot to summarize the news article. The models are pretty good at sifting through irrelevant bits in between too. 
+
+```
+Summarize the following news article:
+
+<paste your news article here>
+```
+
+![Summarize news, it is good at ignoring irrelevant bits too](../assets/images/hands-on-llm-tutorial/013.png)
+
+### Answering questions
+
+You can also ask the LLM to answer a question for a given text. Grab the contents of [this article about an asteroid](https://www.universetoday.com/164299/an-asteroid-will-occult-betelgeuse-on-december-12th/), and ask it a question about where the best locations would be to view it. 
+
+```
+Given the following news article, answer the question that follows. 
+
+Article: <paste the news article here>
+
+Question: What are the best locations to see the asteroid?
+```
+
+![Answering a question from the news body](../assets/images/hands-on-llm-tutorial/014.png)
+
+
+## Context and reasoning with a chatbot
+
+It's important to remember that chatbots work with a context, based on the additional hints and information you give it, it can generate text to fit that scenario. 
+
+Try the following input with the chat interface. 
+
+```
+Complete the sentence. She saw the bat ___
+```
+
+The output I got was alluding to the mammal: `flying through the night sky.`
+
+Clear the chat then try this. 
+
+```
+Complete the sentence. She went to the game and saw the bat  ___
+```
+
+This gave me a completion about a bat of the wooden variety: `She went to the game and saw the bat hitting home runs.`
+
+The ability to understand an input and respond, with some given context, makes LLMs appear as though they can be used for reasoning. This is considered an emergent property of its language skills, and at times, it is able to do a decent job. 
+
+You can ask the chat interface to emulate reasoning by adding a "Let's think step by step" at the end of a question. 
+
+```
+Who is regarded as the greatest physicist of all time, and what is the square root of their year or birth? Let's think step by step.
+``` 
+
+![Reasoning example](../assets/images/hands-on-llm-tutorial/015a.png)
+
+This doesn't always work well though. With the following example from [LLMBenchmarks](https://benchmarks.llmonitor.com/),
+
+```
+Sally (a girl) has 3 brothers. Each brother has 2 sisters. How many sisters does Sally have? Let's think step by step.
+```
+
+I was reliablly informed that Sally ahd six sisters. 
+
+As amusing as the answer is, it's a contrived example of the dangers that LLMs come with. It has produced a reasonable looking passage of text that seems to answer the question, but it can be wrong, and it's really on us to verify it. 
+
+![Not so great reasoning example](../assets/images/hands-on-llm-tutorial/015b.png)
+
+
+## Shaping the response
+
+So far I've only been showing basic interaction with LLMs. For programmatic interactions, it's important to get the LLM to produce an output that can be worked with in code. For instance, you could ask it to produce a single word, or even JSON or XML. 
 

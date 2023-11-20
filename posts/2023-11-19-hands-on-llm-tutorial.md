@@ -86,7 +86,7 @@ Try adjusting the temperature slider now, and see how it affects the output.  Tr
 
 **Tokens** are mentioned frequently in LLM interfaces, conversations, as well as pricing.  
 
-Tokens are the units of text that the models understand. They are sometimes full words, and sometimes parts of words or punctuation. The best way to see for yourself is to try the [OpenAI Tokenizer](https://platform.openai.com/tokenizer) and trye the example. 
+Tokens are the units of text that the models understand. They are sometimes full words, and sometimes parts of words or punctuation. The best way to see for yourself is to try the [OpenAI Tokenizer](https://platform.openai.com/tokenizer) and try the example. 
 
 ![Token example](/assets/images/hands-on-llm-tutorial/008.png)
 
@@ -412,7 +412,7 @@ while(True):
 
 In order to give the LLM memory, we need to supply the previous questions and answers to the LLM as an input, followed by the user's next question. We could build this up ourselves, but Langchain comes with built in helpers to do this for us. 
 
-Declare a Conversation Chain which is Langchain's wrapper class to help with user chats, which takes care of storing and sending previous conversations. With it, add an in-memory conversation buffer. As the name says, it automatically keeps the history in-memory. There are many other options for backing stores for history, the memory one is the simplest for a tutorial. 
+LangChain comes with a helpful wrapper class, ConversationChain, which takes care of storing and sending previous conversations. It has the ability to store conversations in various data stores, of which one is the in-memory ConversationBufferMemory. There are many other options for backing stores for history, in-memory is the simplest for a tutorial. Create the conversation chain now:
 
 ```python
 from langchain.chains import ConversationChain
@@ -597,6 +597,8 @@ Embeddings are a special way of representing words, by placing similar terms clo
 
 A good way to visualize it is with this image below.  
 
+![Simple vectors [source](https://wordlift.io/blog/en/entity/what-are-embeddings/)](/assets/images/hands-on-llm-tutorial/023.png)
+
 You can have words like "king" and "queen" close to each other in the "male-female" dimension.  
 You can have "swam" and "swimming" close to each other in the "verb-tense" dimension.  
 You can have "Japan" and "Tokyo" close to each other in the "country-capital" dimension.  
@@ -604,7 +606,6 @@ You can have "Japan" and "Tokyo" close to each other in the "country-capital" di
 These are just examples of words close to each other, but in just one dimension. 
 An embedding is a vector that represents words close to each other across hundreds or *thousands* of dimensions. Embedding models have strong opinions of which kinds of words should be located near each other in such a space. By producing these numerical representations, they make it easy to search for similarity.  
 
-![Simple vectors [source](https://wordlift.io/blog/en/entity/what-are-embeddings/)](/assets/images/hands-on-llm-tutorial/023.png)
 
 ### Retrieval Augmented Search with Langchain
 

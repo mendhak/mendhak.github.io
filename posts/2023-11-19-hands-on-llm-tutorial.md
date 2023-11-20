@@ -412,7 +412,7 @@ while(True):
 
 In order to give the LLM memory, we need to supply the previous questions and answers to the LLM as an input, followed by the user's next question. We could build this up ourselves, but Langchain comes with built in helpers to do this for us. 
 
-LangChain comes with a helpful wrapper class, ConversationChain, which takes care of storing and sending previous conversations. It has the ability to store conversations in various data stores, of which one is the in-memory ConversationBufferMemory. There are many other options for backing stores for history, in-memory is the simplest for a tutorial. Create the conversation chain now:
+LangChain comes with a helpful wrapper class, ConversationChain, which takes care of storing and sending previous conversations. It has the ability to store conversations in data stores, of which one is the in-memory ConversationBufferMemory. There are other options for backing stores for history, in-memory is the simplest for a tutorial. Create the conversation chain now:
 
 ```python
 from langchain.chains import ConversationChain

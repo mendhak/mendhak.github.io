@@ -306,9 +306,11 @@ Try the questions once more and observe as the JSON keys match the examples.
 {% endgallery %}
 
 
-## Programming with Langchain
+## Programming with LangChain
 
-Langchain is a framework that helps take away the heavy lifting when programming against LLMs including OpenAI, Bedrock and LLaMa. It's useful for prototyping and learning because it takes away a lot of the boilerplate work that we'd normally do, it comes with some predefined templates, and the ability to 'use' tools. The general consensus, currently, is that it's a great way to start, although for an actual production application a developer might want more control over the interaction, and end up doing it themselves. Either way, it's a good place to start for a tutorial at least. 
+LangChain is a framework that helps take away the heavy lifting when programming against LLMs including OpenAI, Bedrock and LLaMa. It's useful for prototyping and learning because it takes away a lot of the boilerplate work that we'd normally do, it comes with some predefined templates, and the ability to 'use' tools. The general consensus, currently, is that it's a great way to start, although for an actual production application a developer might want more control over the interaction, and end up doing it themselves. Either way, it's a good place to start for a tutorial at least. 
+
+In the next few steps let's repeat some of the above exercises, and then move on to more complex examples like agents and tools.  
 
 Once your Python notebook is ready, install langchain and openai in a cell. 
 
@@ -410,7 +412,7 @@ while(True):
 
 ![The `llm` object doesn't remember things](../assets/images/hands-on-llm-tutorial/018.png)
 
-In order to give the LLM memory, we need to supply the previous questions and answers to the LLM as an input, followed by the user's next question. We could build this up ourselves, but Langchain comes with built in helpers to do this for us. 
+In order to give the LLM memory, we need to supply the previous questions and answers to the LLM as an input, followed by the user's next question. We could build this up ourselves, but LangChain comes with built in helpers to do this for us. 
 
 LangChain comes with a helpful wrapper class, ConversationChain, which takes care of storing and sending previous conversations. It has the ability to store conversations in data stores, of which one is the in-memory ConversationBufferMemory. There are other options for backing stores for history, in-memory is the simplest for a tutorial. Create the conversation chain now:
 
@@ -473,7 +475,7 @@ You have now built a rudimentary chatbot.
 
 If we were to ask the LLM to summarize the contents of the news article at a URL, without giving it the actual contents, it could still generate a summary by guessing from the URL's words. LLMs on their own don't have the ability to crawl web pages. This is where tools come in; we can let the LLM know what our own code has the ability to fetch web pages, all the LLM has to do is invoke it if needed. 
 
-In this exercise we'll create a Langchain Tool that can fetch a web page and return its contents. We'll pass that tool to the LLM, then ask it to summarize the contents of a URL. 
+In this exercise we'll create a LangChain Tool that can fetch a web page and return its contents. We'll pass that tool to the LLM, then ask it to summarize the contents of a URL. 
 
 To begin, install the BeautifulSoup4 library which will be used to parse HTML content. 
 
@@ -501,7 +503,7 @@ Do a quick test to make sure it's working, by fetching a URL
 print(get_content_from_url('https://www.universetoday.com/164299/an-asteroid-will-occult-betelgeuse-on-december-12th/'))
 ```
 
-We now create a Langchain `Tool` wrapper and give it a description. This will help the LLM understand what the tool can do. 
+We now create a LangChain `Tool` wrapper and give it a description. This will help the LLM understand what the tool can do. 
 
 ```python
 from langchain.tools import Tool
@@ -510,7 +512,7 @@ fetch_tool = Tool(name="get_content_from_page",
                   description="Useful for when you need to get the contents of a web page")
 ```
 
-Finally, initialize a Langchain Agent, passing it the Tool defined above. 
+Finally, initialize a LangChain Agent, passing it the Tool defined above. 
 
 ```python
 from langchain.agents import AgentType, initialize_agent
@@ -519,9 +521,9 @@ agent = initialize_agent(
 )
 ```
 
-This creates a Langchain Agent, another useful wrapper in the framework. An 'Agent', in LLM terms, is a fancy way of saying that it has the ability to make use of tools, thereby giving it 'agency'. Technically speaking the LLM does not invoke anything, it simply outputs that it needs to call a certain tool; Langchain takes care of invoking it and returning the result to the LLM so that it can proceed with its reasoning. 
+This creates a LangChain Agent, another useful wrapper in the framework. An 'Agent', in LLM terms, is a fancy way of saying that it has the ability to make use of tools, thereby giving it 'agency'. Technically speaking the LLM does not invoke anything, it simply outputs that it needs to call a certain tool; LangChain takes care of invoking it and returning the result to the LLM so that it can proceed with its reasoning. 
 
-You can have a look at the template being used by Langchain to inform the LLM about the tool. 
+You can have a look at the template being used by LangChain to inform the LLM about the tool. 
 
 ```python
 agent.to_json()['repr']
@@ -607,9 +609,9 @@ These are just examples of words close to each other, but in just one dimension.
 An embedding is a vector that represents words close to each other across hundreds or *thousands* of dimensions. Embedding models have strong opinions of which kinds of words should be located near each other in such a space. By producing these numerical representations, they make it easy to search for similarity.  
 
 
-### Retrieval Augmented Search with Langchain
+### Retrieval Augmented Search with LangChain
 
-In a cell, use Langchain's WebBaseLoader to load three URLs. We will eventually ask a question that is answered in one of these pages. 
+In a cell, use LangChain's WebBaseLoader to load three URLs. We will eventually ask a question that is answered in one of these pages. 
 
 ```python
 # Document loading
@@ -719,7 +721,7 @@ The question `Where did EasyJet cut capacity?` will have been converted to an em
 
 It does manage to find a relevant set of passages with some scores. But keep in mind that its similarity search will only find the most relevant _chunk_ that was stored, not the entire document. 
 
-This is where LangChain comes in with another convenience wrapper. We pass the above vector store, along with the user's question to a `RetrievalQAWithSourcesChain`. Langchain uses the retriever to perform the search (as we've tested briefly above), figures out the relevant documents based on score, passes it to the `llm` along with the question, and returns an answer with the source document. 
+This is where LangChain comes in with another convenience wrapper. We pass the above vector store, along with the user's question to a `RetrievalQAWithSourcesChain`. LangChain uses the retriever to perform the search (as we've tested briefly above), figures out the relevant documents based on score, passes it to the `llm` along with the question, and returns an answer with the source document. 
 
 ```python
 # Ask a question and retrieve the most likely document
@@ -729,10 +731,10 @@ result = chain({"question": "Where did EasyJet cut capacity?"})
 print(result["answer"], "Source: ", result["sources"])
 ```
 
-![Retrieval in Langchain](/assets/images/hands-on-llm-tutorial/026.png)
+![Retrieval in LangChain](/assets/images/hands-on-llm-tutorial/026.png)
 
 
-The template that Langchain uses to instruct the LLM is simple though verbose. Have a look at it:
+The template that LangChain uses to instruct the LLM is simple though verbose. Have a look at it:
 
 ```python
 chain.combine_documents_chain.llm_chain.prompt.template
@@ -750,11 +752,11 @@ One pitfall however is that the embeddings produced are specific to the embeddin
 
 Hopefully this tutorial has demystified LLMs and unearthed some of the loose (almost frighteningly so) techniques that go behind LLM based applications. 
 
-For more about Langchain, I found it useful to go through their docs and just [tackle each example](https://python.langchain.com/docs/modules/), especially the ones under [agents](https://python.langchain.com/docs/modules/agents/) and [tools](https://python.langchain.com/docs/modules/agents/tools/). That said, keep in mind that Langchain still feels like in its 'early days' and its skyrocketing popularity and attention has not done it any favors. 
+For more about LangChain, I found it useful to go through their docs and just [tackle each example](https://python.langchain.com/docs/modules/), especially the ones under [agents](https://python.langchain.com/docs/modules/agents/) and [tools](https://python.langchain.com/docs/modules/agents/tools/). That said, keep in mind that LangChain still feels like in its 'early days' and its skyrocketing popularity and attention has not done it any favors. 
 
 The [Prompt Engineering Guide](https://www.promptingguide.ai/) site is a good catalog of the various techniques used by applications to coerce LLMs to give the right kind of response. These techniques will be useful regardless of how you interact with the LLMs. 
 
-OpenAI's offerings don't have to be the only commercial one you use, Anthropic's Claude is also pretty good, and [comes with its own guide](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design) and they also tell you how their prompts [differ from GPT's prompts](https://docs.anthropic.com/claude/docs/configuring-gpt-prompts-for-claude). Claude is available directly via [their site](https://claude.ai), or via Amazon Bedrock. From experience though, I've found that Langchain only partially integrates with Bedrock/Claude, and its OpenAI centric templates don't always work with other LLMs. Some important differences are that Claude is best suited to work with XML in its instructions, examples, and output, and further, it's best to place the question towards the end of your prompt, not the beginning. 
+OpenAI's offerings don't have to be the only commercial one you use, Anthropic's Claude is also pretty good, and [comes with its own guide](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design) and they also tell you how their prompts [differ from GPT's prompts](https://docs.anthropic.com/claude/docs/configuring-gpt-prompts-for-claude). Claude is available directly via [their site](https://claude.ai), or via Amazon Bedrock. From experience though, I've found that LangChain only partially integrates with Bedrock/Claude, and its OpenAI centric templates don't always work with other LLMs. Some important differences are that Claude is best suited to work with XML in its instructions, examples, and output, and further, it's best to place the question towards the end of your prompt, not the beginning. 
 
 ## LLMs for personal use
 

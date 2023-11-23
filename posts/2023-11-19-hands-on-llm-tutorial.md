@@ -746,6 +746,16 @@ Because embeddings and vector storage are more cost-effective than working with 
 One pitfall however is that the embeddings produced are specific to the embedding model used. In our example, if OpenAI ever removed ADA 002, then the embeddings would need to be performed again for every document. 
 
 
+## Where to learn more
+
+Hopefully this tutorial has demystified LLMs and unearthed some of the loose (almost frighteningly so) techniques that go behind LLM based applications. 
+
+For more about Langchain, I found it useful to go through their docs and just [tackle each example](https://python.langchain.com/docs/modules/), especially the ones under [agents](https://python.langchain.com/docs/modules/agents/) and [tools](https://python.langchain.com/docs/modules/agents/tools/). That said, keep in mind that Langchain still feels like in its 'early days' and its skyrocketing popularity and attention has not done it any favors. 
+
+The [Prompt Engineering Guide](https://www.promptingguide.ai/) site is a good catalog of the various techniques used by applications to coerce LLMs to give the right kind of response. These techniques will be useful regardless of how you interact with the LLMs. 
+
+OpenAI's offerings don't have to be the only commercial one you use, Anthropic's Claude is also pretty good, and [comes with its own guide](https://docs.anthropic.com/claude/docs/introduction-to-prompt-design) and they also tell you how their prompts [differ from GPT's prompts](https://docs.anthropic.com/claude/docs/configuring-gpt-prompts-for-claude). Claude is available directly via [their site](https://claude.ai), or via Amazon Bedrock. From experience though, I've found that Langchain only partially integrates with Bedrock/Claude, and its OpenAI centric templates don't always work with other LLMs. Some important differences are that Claude is best suited to work with XML in its instructions, examples, and output, and further, it's best to place the question towards the end of your prompt, not the beginning. 
+
 ## LLMs for personal use
 
 Although this tutorial is mostly centered around OpenAI which is a closed, hosted, commercial LLMs, it's also possible to make use of local LLMs running on your computer. It's entirely offline and private, so the only cost is your own hardware and electricity. Several models have been released, and it's a pretty busy space as there's so much activity. 

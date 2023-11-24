@@ -527,7 +527,7 @@ Since verbose is set to True, you should see the formatted examples being sent b
 
 ![Few shots, with LangChain](../assets/images/hands-on-llm-tutorial/027.png)
 
-This is pretty much what I'm doing for my own [LLM CLI Helper](https://github.com/mendhak/llm-cli-helper/tree/main). One additional improvement, is that I include a few of the previous questions and answers that I had asked the LLM. This history helps set up additional context, and lets me ask follow up questions to what I had previously asked.  
+This is pretty much what I'm doing for my own [LLM CLI Helper](https://github.com/mendhak/llm-cli-helper/tree/main). One additional improvement, is that I include a few of the previous questions and answers that I had asked the LLM. This history helps set up additional context, and lets me ask follow up questions, and makes the helper feel more natural.   
 
 ![LLM CLI Helper](../assets/images/hands-on-llm-tutorial/028.gif)
 

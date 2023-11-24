@@ -54,18 +54,19 @@ Now reopen the entry, then go to the SSH Agent section, under Private key, pick 
 ## Get Npiperelay
 
 
-[npiperelay](https://github.com/jstarks/npiperelay) allows named pipes to communicate between Linux in WSL and Windows.  Although it's a Windows based tool, it's still possible to run it from within WSL2, which makes for a convenient setup. 
+[npiperelay](https://github.com/jstarks/npiperelay) allows named pipes to communicate between Linux in WSL and Windows. It is a Windows based tool and needs to be run from the Windows side. 
 
-In your WSL2, download and extract the npiperelay binary. 
+You can do this from WSL2, download and extract the npiperelay binary to a Windows directory of your choice.  
 
 ```bash
+npiperelaypath=$(wslpath "C:/npiperelay")
 cd ~
 wget https://github.com/jstarks/npiperelay/releases/latest/download/npiperelay_windows_amd64.zip
-unzip npiperelay_windows_amd64.zip -d npiperelay
+unzip npiperelay_windows_amd64.zip -d $npiperelaypath
 rm npiperelay_windows_amd64.zip
 ```
 
-This puts the npiperelay.exe at `/home/username/npiperelay`.  
+This puts the npiperelay.exe at `C:\npiperelay\`, so adjust the path to your liking.  
 
 {% notice "info" %}
 You can also [download npiperelay](https://github.com/jstarks/npiperelay/releases) to the Windows side, and substitute the corresponding path below with slash notations, such as `/c/Temp/npiperelay.exe`
@@ -95,7 +96,8 @@ export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
 ss -a | grep -q $SSH_AUTH_SOCK
 if [ $? -ne 0 ]; then
     rm -f $SSH_AUTH_SOCK
-    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$HOME/npiperelay/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+    npiperelaypath=$(wslpath "C:/npiperelay")
+    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$npiperelaypath/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
 fi
 ```
 
@@ -123,7 +125,7 @@ cd ~
 
 echo "Get npiperelay"
 wget https://github.com/jstarks/npiperelay/releases/latest/download/npiperelay_windows_amd64.zip
-unzip -o npiperelay_windows_amd64.zip -d npiperelay
+unzip npiperelay_windows_amd64.zip -d $npiperelaypath
 rm npiperelay_windows_amd64.zip
 
 echo "Install socat"
@@ -136,7 +138,8 @@ export SSH_AUTH_SOCK=$HOME/.ssh/agent.sock
 ss -a | grep -q $SSH_AUTH_SOCK
 if [ $? -ne 0 ]; then
     rm -f $SSH_AUTH_SOCK
-    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$HOME/npiperelay/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
+    npiperelaypath=$(wslpath "C:/npiperelay")
+    (setsid socat UNIX-LISTEN:$SSH_AUTH_SOCK,fork EXEC:"$npiperelaypath/npiperelay.exe -ei -s //./pipe/openssh-ssh-agent",nofork &) >/dev/null 2>&1
 fi
 EOF
 

@@ -471,6 +471,66 @@ Run it, and have a conversation with the LLM! Ask it follow up questions to ensu
 
 You have now built a rudimentary chatbot. 
 
+## Shaped responses with few-shot examples
+
+We can now try another shaped response by providing a few samples to the LLM. We provide LangChain with a role, a few examples, and then the user input so that it does exactly what we ask of it. 
+
+We'll create an assistant that can help with the Linux commandline. Define the system prompt (role),
+
+```python
+from langchain import LLMChain
+from langchain.prompts.chat import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    AIMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+)
+system_message_prompt = SystemMessagePromptTemplate.from_template("You are a helpful assistant that outputs example Linux commands.I will describe what I want to do, and you will reply with a Linux command to accomplish that task. I want you to only reply with the Linux Bash command, and nothing else. Do not write explanations. Only output the command. If you don't have a Linux command to respond with, say you don't know, in an echo command")
+```
+
+Build a few examples, showing a human description followed by what the LLM should output
+
+```python
+example_human_1 = HumanMessagePromptTemplate.from_template("List files in the current directory")
+example_ai_1 = AIMessagePromptTemplate.from_template("\nls\n")
+example_human_2 = HumanMessagePromptTemplate.from_template("Push my git branch up")
+example_ai_2 = AIMessagePromptTemplate.from_template("\ngit push origin <branchname>\n")
+example_human_3 = HumanMessagePromptTemplate.from_template("What is your name?")
+example_ai_3 = AIMessagePromptTemplate.from_template("\necho Sorry, I don't know a bash command for that.\n")
+```
+
+Create the human prompt template, which is very straightforward in this case. 
+
+```python
+human_template = "\n{text}\n"
+human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
+```
+
+Finally bring them together into a LangChain "chain". 
+
+```python
+chat_prompt = ChatPromptTemplate.from_messages(
+    [system_message_prompt, example_human_1, example_ai_1, example_human_2, example_ai_2, example_human_3, example_ai_3, human_message_prompt]
+)
+
+chain = LLMChain(llm=llm, prompt=chat_prompt, verbose=True)
+```
+
+You can now try asking it for some Linux help. 
+
+```python
+print(chain.run("How to download a file from a URL?"))
+print(chain.run("Which Linux distro am I running?"))
+```
+
+Since verbose is set to True, you should see the formatted examples being sent before the user's own question. 
+
+![Few shots, with LangChain](../assets/images/hands-on-llm-tutorial/027.png)
+
+This is pretty much what I'm doing for my own [LLM CLI Helper](https://github.com/mendhak/llm-cli-helper/tree/main). One additional improvement, is that I include a few of the previous questions and answers that I had asked the LLM. This history helps set up additional context, and lets me ask follow up questions to what I had previously asked.  
+
+![LLM CLI Helper](../assets/images/hands-on-llm-tutorial/028.gif)
+
 ## Providing tools to the LLM
 
 If we were to ask the LLM to summarize the contents of the news article at a URL, without giving it the actual contents, it could still generate a summary by guessing from the URL's words. LLMs on their own don't have the ability to crawl web pages. This is where tools come in; we can let the LLM know what our own code has the ability to fetch web pages, all the LLM has to do is invoke it if needed. 

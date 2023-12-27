@@ -35,7 +35,7 @@ Contrast this with their REST APIs, from the same organisations, in these screen
 
 Notice the endpoints named in a human readable way, the documented requests and responses with examples, and simple curl commands to try out the endpoint with. The biggest advantage here is the ability to get started with the API right away, without having to install any libraries or tools or get familiar with academic terminology. This is low friction onboarding and invaluable to the first time user experience. 
 
-It does make sense to offer GraphQL APIs to in-house teams, as any lack of documentation quality is offset by ready communication channels and oral tradition. But offering it to third party developers shifts a great deal of cognitive burden onto them, and indeed this has been my unpleasant experience working with various GraphQL APIs. There's more reading to do, more terrible GraphQL explorers to learn to use, and more client side libraries that become necessary to adopt to achieve any sembleance of integration. The GraphQL landscape exemplifies the opposite of [Don't Make Me Think](https://en.wikipedia.org/wiki/Don%27t_Make_Me_Think).
+It does make sense to offer GraphQL APIs to in-house teams, as any lack of documentation quality is offset by ready communication channels and oral tradition. But offering it to third party developers shifts a great deal of cognitive burden onto them, and indeed this has been my unpleasant experience working with various GraphQL APIs. There's more reading to do, more terrible GraphQL explorers to learn to use, and more client side libraries that become necessary to adopt to achieve any semblance of integration. The GraphQL landscape exemplifies the opposite of [Don't Make Me Think](https://en.wikipedia.org/wiki/Don%27t_Make_Me_Think).
 
 
 ## What is the motivation?
@@ -63,7 +63,7 @@ All of them, or was this a selected set of voices? Do they hear feedback about G
 
 ## Other notes
 
-I did find one good example of a GraphQL API offering, and that was Shopify's. The object names, though still somewhat leaky, are better named and organized, and they [come with examples](https://shopify.dev/docs/api/admin-graphql/2023-10/queries/app) including curl. If I had to guess, what Shopify have probably done which others haven't, is think about the functionality they're trying to enable, and design around that. 
+I did find one good example of a GraphQL API offering, and that was Shopify's. The object names, though still somewhat leaky, are better named and organized, and they [come with examples](https://shopify.dev/docs/api/admin-graphql/2023-10/queries/app) as well as curl commands. If I had to guess, what Shopify have probably done which others haven't, is think about the functionality they're trying to enable, and design around that. 
 
 I had mistakenly thought that [Microsoft's Graph API](https://learn.microsoft.com/en-us/graph/overview) was great exception to my observations, as an example of what a good GraphQL offering could look like. But it turns out they've gone for a hybrid approach - it's a REST offering, with graph like querying capabilities. This is a good compromise, and potentially the best of both worlds.
 

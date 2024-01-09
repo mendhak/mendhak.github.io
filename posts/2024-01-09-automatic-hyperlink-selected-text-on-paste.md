@@ -39,6 +39,11 @@ document.querySelector('div').addEventListener("paste", (event) => {
       a.title = paste;
       window.getSelection().getRangeAt(0).surroundContents(a);
     }
+    else {
+      range = window.getSelection().getRangeAt(0)
+      range.deleteContents();
+      range.insertNode(document.createTextNode(paste));
+    }
     
   }
 });
@@ -46,4 +51,6 @@ document.querySelector('div').addEventListener("paste", (event) => {
 
 The [`isValidHttpUrl` function](https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url) can be as simple or as crude as you'd like. 
 
-It would be great if this became the norm, and I hope this post helps someone implement it.
+To make it a little smarter, allow the 'normal' paste operation to happen if the clipboard text is not a URL. That's done in the else block.  
+
+It would be great if this became more common, and I hope this post helps someone implement it.

@@ -46,3 +46,4 @@ document.querySelector('div').addEventListener("paste", (event) => {
 
 The [`isValidHttpUrl` function](https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url) can be as simple or as crude as you'd like. 
 
+It would be great if this became the norm, and I hope this post helps someone implement it!

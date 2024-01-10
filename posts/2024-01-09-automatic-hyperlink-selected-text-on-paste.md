@@ -12,7 +12,7 @@ tags:
 
 A really nice quality of life feature I've noticed in some applications is the ability to automatically hyperlink some selected text when pasting a URL over it. To be clear this isn't about automatically converting URLs in text into hyperlinks, rather when you have some text selected and you paste a URL over it, the text becomes a hyperlink to the URL just pasted.
 
-Here it is in action. Try selecting some text, then copy a URL, and paste it over the selected text. (This might require desktop browsers, not sure if it works on mobile)
+Here it is in action. Try selecting some text, then copy a URL, and paste it over the selected text. 
 
 <p class="codepen" data-height="300" data-default-tab="result" data-slug-hash="VwRjVQd" data-user="mendhak" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
   <span>See the Pen <a href="https://codepen.io/mendhak/pen/VwRjVQd">
@@ -25,32 +25,26 @@ This is a feature that I've seen in only a few applications: Slack, Notion, Conf
 
 Aside from those places, it's sadly not a common feature; I find myself trying it out in various other applications and missing it. Having to highlight text and click an additional button or press a shortcut is now a small but noticeable friction. 
 
-The implementation is actually quite simple. In the paste event, inspect the clipboard data. Check if it's a URL, and then  surround the selected text with an anchor tag. 
+The implementation is actually quite simple. In the paste event, inspect the clipboard data. Check if it's a URL, and if it is, surround the selected text with an anchor tag. 
 
 ```javascript
 document.querySelector('div').addEventListener("paste", (event) => {
-  event.preventDefault();
+  
   
   if(window.getSelection().toString()){
     let paste = (event.clipboardData || window.clipboardData).getData("text");
     if(isValidHttpUrl(paste)){
+      event.preventDefault();
       var a = document.createElement('a');
       a.href = paste;
       a.title = paste;
       window.getSelection().getRangeAt(0).surroundContents(a);
     }
-    else {
-      range = window.getSelection().getRangeAt(0)
-      range.deleteContents();
-      range.insertNode(document.createTextNode(paste));
-    }
-    
   }
 });
 ```
 
-The [`isValidHttpUrl` function](https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url) can be as simple or as crude as you'd like. 
+The [`isValidHttpUrl` function](https://stackoverflow.com/questions/5717093/check-if-a-javascript-string-is-a-url) can be as simple or as crude as you'd like.  
+The `event.preventDefault()` is to let the browser know we'll be handling the paste event for the special case of URLs.  
 
-To make it a little smarter, allow the 'normal' paste operation to happen if the clipboard text is not a URL. That's done in the else block.  
-
-It would be great if this became more common, and I hope this post helps someone implement it.
+It would be great if this became more commonly seen in more applications, and I hope this post helps someone implement it.

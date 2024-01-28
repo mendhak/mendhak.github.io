@@ -118,5 +118,5 @@ Like all the best solutions, it was inelegant and worked just fine. I made regul
 
 There were a few incidents where the sound played (very loudly) while I was in the middle of a meeting, but I'd pretend not to have heard it. In retrospect, I don't think I was fooling anyone.  
 
-The script is in [this Github repo](https://github.com/mendhak/Prime-Now-Checker).
+The script is in [this Github repo](https://github.com/mendhak/Prime-Now-Checker/blob/master/primenowchecker.user.js).
 

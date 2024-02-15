@@ -1,6 +1,6 @@
 ---
 title: "Use KeePassXC to sign your git commits"
-description: "How to use KeePassXC to sign your git commits using the git ssh feature"
+description: "How to use KeePassXC to sign your git commits using the git ssh signing feature"
 tags:
   - keepassxc
   - git

@@ -1,19 +1,20 @@
 ---
-title:      The simplest way to get started with Stable Diffusion on Ubuntu 
-description: "Simple set of instructions to run the Dream Script Stable Diffusion on Ubuntu 22.04"
+title:      The simplest way to get started with Stable Diffusion via CLI on Ubuntu 
+description: "Simple set of instructions to run the Dream Script Stable Diffusion via CLI, on Ubuntu 22.04"
 
 tags:
  - tech
  - ubuntu
  - machine-learning
  - images
+ - cli
 
 opengraph: 
   image: /assets/images/run-stable-diffusion-on-ubuntu/003.png
 
 ---
 
-Stable Diffusion is a machine learning model that can generate images from natural language descriptions.  Because it's open source, it's also easy to run it locally, which makes it very convenient to experiment with in your own time. The simplest and best way of running Stable Diffusion is through the [Dream Script Stable Diffusion](https://github.com/lstein/stable-diffusion) fork, which comes with some convenience functions.  
+Stable Diffusion is a machine learning model that can generate images from natural language descriptions.  Because it's open source, it's also easy to run it locally, which makes it very convenient to experiment with in your own time. The simplest and best way of running Stable Diffusion is through the [Automatic1111 repo](https://github.com/AUTOMATIC1111/stable-diffusion-webui), but there's also a commandline friendly [Dream Script Stable Diffusion](https://github.com/lstein/stable-diffusion) fork, which comes with some convenience functions.  
 
 ## Setup
 

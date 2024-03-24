@@ -171,6 +171,6 @@ A very obvious, glaring limitation is that the computer hosting Stable Diffusion
 
 Regarding the actual image **display**, I could go a bit more 'cinematic' and generate the images in landscape mode, and rotate them when displayed on the HTML page. That may be something I do in the future.  
 
-Regarding **APIs**, I had considered using OpenAI's DALL-E for image generation — I'm already using GPT3.5 for the "ELI5" feature — but the pricing for their image generation is prohibitive. The cost can be up to $0.08 per image, which is not worth it. 
+Regarding **APIs**, I had considered using OpenAI's DALL-E for image generation — I'm already using GPT3.5 for the "ELI5" feature — but the pricing for their image generation is prohibitive. The cost can be up to $0.08 per image, which is not worth it. But if I find myself using this feature a lot, I might consider finding an online image generation API, if it's cheap. 
 
 Overall I'm happy with the current setup, it's a fun project that adds a bit of extra enjoyment to my reading.

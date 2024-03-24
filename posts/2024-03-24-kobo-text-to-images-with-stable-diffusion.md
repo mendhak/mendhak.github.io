@@ -52,6 +52,8 @@ I'll first go over the Stable Diffusion integration for image generation, the EL
 
 At a high level, when the text is highlighted on the Kobo, a custom Visualize menu item is presented. Pressing that fires off a curl command from the Kobo to the Stable Diffusion API running on my PC. Stable Diffusion does its work and returns an image. The image is then saved to the Kobo's storage and displayed in an HTML file in a popup browser window.  
 
+The reason it works is because descriptive passages of text are often quite close to the prompts that you'd use for Stable Diffusion, as they're full of adjectives and scene descriptions. What's different is that books don't contain the _metadata_ of the scene, such as "a digital painting", the artist's style, "wide angle view", and so on. The output can be a bit hit and miss, but having a small bit of metadata hardcoded when making the request can help.  
+
 ### Stable Diffusion API
 
 I've first set up Stable Diffusion WebUI to launch with the API enabled. 

@@ -1,5 +1,5 @@
 ---
-title: "Enhancing Kobo with text to image generation and simple explanations"
+title: "Enhancing Kobo with text-to-image generation and simple explanations"
 # title: "Enhancing Kobo with Stable Diffusion text-to-image and OpenAI for ELI5"
 # title: "Enhancing reading on the Kobo with GenAI to visualize passages and simplify text"
 description: "How I modified my Kobo to generate images from higlighted text using Stable Diffusion, and ELI5 feature to simplify text using OpenAI."

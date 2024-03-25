@@ -43,7 +43,12 @@ I had been experimenting with Stable Diffusion, a generative AI model that can g
 ![Output](/assets/images/kobo-text-to-images-with-stable-diffusion/004.png)
 {% endgallery %}
 
-While I was doing this, the maritime terminology I kept encountering became a motivation to add the "ELI5" feature. I've noticed that when books get into their naval battles, the terminology starts flying thick and fast, and I can't keep up with the repeated dictionary lookups. Having those passages rephrased in simpler terms would be a great help.  
+While I was doing this, the maritime terminology I kept encountering became a motivation to add the "ELI5" feature. I've noticed that when books get into their naval battles, the terminology starts flying thick and fast, and I can't keep up with the repeated dictionary lookups. Having those passages rephrased in simpler terms would be a great help.
+
+{% gallery "ELI5 feature in action" %}
+![Choose the ELI5 menu](/assets/images/kobo-text-to-images-with-stable-diffusion/005.png)
+![Output](/assets/images/kobo-text-to-images-with-stable-diffusion/006.png)
+{% endgallery %}
 
 I'll first go over the Stable Diffusion integration for image generation, the ELI5 feature is just a minor addition after that.  
 

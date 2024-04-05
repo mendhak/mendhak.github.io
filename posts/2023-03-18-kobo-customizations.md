@@ -225,6 +225,6 @@ menu_item :reader  :Sleep              :power              :sleep
 menu_item :library :Import books       :nickel_misc        :rescan_books_full
 #--------------------------------------------------------------------------------------------
 menu_item :browser :Invert Screen      :nickel_setting     :toggle :invert
-menu_item :browser :Open Pop-Up        :nickel_browser     :modal
+menu_item :browser :Open Browser       :nickel_browser     :modal
 #--------------------------------------------------------------------------------------------
 ```

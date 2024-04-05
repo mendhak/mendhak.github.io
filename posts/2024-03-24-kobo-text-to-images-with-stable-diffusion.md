@@ -151,10 +151,13 @@ Finally, once the first command completes, the `chain_success` displays the prep
 
 Adding the ELI5 feature was a minor addition to the existing NickelMenu and packages setup, since the hard bits were taken care of.  
 
-All it needs is an OpenAI API key and a little prompt to send to the API: 
+All it needs is an OpenAI API key and a little prompt to send to the API, but ensuring that Wifi is connected first: 
 
 ```
-menu_item :selection :ELI5 :cmd_output :9000 :/usr/bin/curl -s -X POST https://api.openai.com/v1/chat/completions      -H "Content-Type: application/json"      -H "Authorization: Bearer sk-xxxxxxxxxxxx" -d '{ "model": "gpt-3.5-turbo-0125", "messages":[{"role":"user","content": "Explain in simpler language the following passage from a book I am reading: \n {1|aS|"$} "}],"max_tokens": 80 }' | jq -r '.choices[0].message.content' | fold -w 50 -s
+menu_item :selection :ELI5 :nickel_wifi :enable
+    chain_success :nickel_wifi :autoconnect
+    chain_success :cmd_output :9999 :quiet :sleep 2  # to allow connection to be established
+    chain_success :cmd_output :9999 :/usr/bin/curl -s -X POST https://api.openai.com/v1/chat/completions      -H "Content-Type: application/json"      -H "Authorization: Bearer sk-xxxxxxxxxxxxxxxxxxxxxx" -d '{ "model": "gpt-3.5-turbo-0125", "messages":[{"role":"user","content": "Explain in simpler language the following passage from a book I am reading: \n {1|aS|"$} "}],"max_tokens": 80 }' | jq -r '.choices[0].message.content' | fold -w 50 -s   
 ```
 
 The `cmd_output` simply outputs whatever the curl command returns, which is the simplified text. The `fold` command is used to wrap the text at 50 characters, so it fits on the screen.

@@ -1,6 +1,6 @@
 ---
 title: "Lessons learned in moving on from Lightroom"
-description: "Leaving Lightroom behind and moving on to better photography workflow"
+description: "Leaving Lightroom behind and moving on to better photography workflow tools."
 tags:
   - lightroom
   - photography
@@ -8,7 +8,7 @@ tags:
   - digikam
 
 opengraph:
-  image: /assets/images/moving-on-from-lightroom/008.png
+  image: /assets/images/moving-on-from-lightroom/008b.png
 
 ---
 

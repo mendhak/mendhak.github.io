@@ -135,7 +135,7 @@ Finally when I have something I'm happy with, I'll export the final image to dis
 
 #### Side note - cleaning up
 
-With the numerous sidecar files floating about, between Digikam and ON1, you can sometimes end up with orphaned `.xmp` files for missing images. This isn't a regular occurrence but is a minor annoyance. I have a script to help with that, which basically looks for `.xmp` files that don't have a corresponding image file, and deletes them. 
+With the numerous sidecar files floating about, between Digikam and ON1, you can sometimes end up with orphaned `.xmp` files for missing images. This isn't a regular occurrence, it is normally prevented by configuring Digikam to treat `on1` as additional sidecar files, but it could happen if you delete files externally or through other applications that don't get the association. It's a minor annoyance, I have a script to help with that, which basically looks for `.xmp` files that don't have a corresponding image file, and deletes them. 
 
 
 ```bash

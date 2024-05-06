@@ -70,7 +70,7 @@ There was another mistake I had made, which I wasn't exactly able to recover fro
 * Always export the final image locally, then publish manually. 
 * A manual step in a workflow is not a terrible thing, not every workflow needs to be optimal. 
 * If there's a proprietary format, minimize time with it. Do your work and get out. 
-* Enable sidecar files (XMPs), it's a lot of extras to manage, but it's worth it.
+* Enable sidecar files (XMPs), it's a boatload of new files that appear, but it's worth it.
 
 ### Photo processing software
 

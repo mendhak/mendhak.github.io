@@ -64,10 +64,13 @@ Thankfully, I was able to do a Flickr data export, then use [the flickr-export-o
 
 ![Digikam similarity search example](/assets/images/moving-on-from-lightroom/005.png)
 
+There was another mistake I had made, which I wasn't exactly able to recover from, which is sidecar files. Lightroom does have the ability to write metadata to XMP files, but it isn't something I had uniformly applied everywhere, and so a lot of metadata was stuck in the catalog file. XMPs are generally a good idea and understood by many asset management applications, but I had not been consistent with them. 
+
 **Lessons learned**: 
 * Always export the final image locally, then publish manually. 
 * A manual step in a workflow is not a terrible thing, not every workflow needs to be optimal. 
 * If there's a proprietary format, minimize time with it. Do your work and get out. 
+* Enable sidecar files (XMPs), it's a lot of extras to manage, but it's worth it.
 
 ### Photo processing software
 

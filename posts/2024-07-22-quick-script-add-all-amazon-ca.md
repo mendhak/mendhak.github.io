@@ -1,5 +1,5 @@
 ---
-title: Adding all AWS service CAs to your trust store
+title: Adding all AWS service certificate authorities to your trust store
 description: "How to add all the AWS CAs and service certificates to your trust store when working with their services, such as RDS, DocumentDB, Redis, etc."
 tags: 
   - aws

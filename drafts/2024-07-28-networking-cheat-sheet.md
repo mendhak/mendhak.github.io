@@ -195,19 +195,19 @@ To see what response I get from my DNS server,
 dig example.com
 ```
 
-To see more details, 
+To see more details, use the trace argument.  
 
 ```bash
 dig +trace example.com
 ```
 
-To get the SOA of a domain,
+To get the Start of Authority (SOA) of a domain,
 
 ```bash
 dig example.com SOA
 ```
 
-Similarlity to get MX records or TXT records, 
+Similarly, to get MX records or TXT records, 
 
 ```bash
 dig example.com MX

@@ -41,9 +41,9 @@ echo > /dev/tcp/portquiz.net/193 && echo Success
 
 In fact it's even possible to [make an HTTP request that way](https://unix.stackexchange.com/a/83927).
 
-### I want to look at a TLS certificate
+### Looking at certificates
 
-Misconfigured certificates can cause weird behaviours in browsers and client tooling, so I often want to inspect them directly. The idea is to look for anything from self signed certificates, to expired certificates, to corporate MITM proxies serving their own certificates.  
+Misconfigured certificates can cause weird behaviours in browsers and client-side tooling, so I often want to inspect them directly. The idea is to look for anything from self signed certificates, to expired certificates, to corporate MITM proxies serving their own certificates.  
 
 To look at the certificate being served, 
 
@@ -187,8 +187,21 @@ Check if I can use external DNS servers. I can't really use `nc` here since it's
 dig @1.1.1.1 example.com
 ```
 
-Check if DNS over TLS works, useful for Android's Private DNS feature. This will work from Termux too. 
+Checking if DNS over TLS is reachable, useful for Android's Private DNS feature. This will work from Termux too. 
 
 ```bash
 nc -v -w5 -z dns.adguard-dns.com 853
 ```
+
+To find out what DNS servers are being used, it's normally as simple as looking at 
+
+```bash
+cat /etc/resolv.conf
+```
+
+But in many more modern systems, it's not that simple. In Ubuntu 22.04, it's `resolvectl`. 
+
+```bash
+resolvectl status
+```
+

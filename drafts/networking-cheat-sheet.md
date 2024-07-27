@@ -16,7 +16,7 @@ extraWideMedia: false
 
 I'm not a networking professional, but I've often had to impersonate one. Here are some of the tools and commands I've found useful.  
 
-### Test a port on a server
+### Can I reach a port on a server?
 
 A corporate firewall or hotel wifi might block certain ports or protocols. [Portquiz.net](http://portquiz.net/) is a great site to test with, it listens on all ports and responds with HTML or text.  
 
@@ -38,7 +38,7 @@ echo > /dev/tcp/portquiz.net/193 && echo Success
 
 In fact it's even possible to [make an HTTP request that way](https://unix.stackexchange.com/a/83927).
 
-### Looking at a site's certificate
+### I want to look at a TLS certificate
 
 Misconfigured certificates can cause weird behaviours in browsers and client tooling, so I often want to inspect them directly. The idea is to look for anything from self signed certificates, to expired certificates, to corporate MITM proxies serving their own certificates.  
 
@@ -78,7 +78,7 @@ A lot can go wrong with certificates, and it's not always coded for or tested fo
 
 At the other end, a site that's never going to have a certificate is [NeverSSL](https://neverssl.com). This is useful when testing on captive portals or where there's https interception. 
 
-### Test a web server URL
+### Testing a web server URL
 
 This one's simple, I just want to 'look' at a site URL without browser behaviours getting in the way.  
 It has been needed more commonly than I thought, especially when a browser has cached a file or a redirect response.   
@@ -136,15 +136,16 @@ There's a lot more that curl can do, it deserves [its own cheatsheet](https://qu
 
 ### Listening and echoing on a port
 
-Sometimes it's not the server that's the problem, but the client. To help with this I need to set up listeners and watch what happens when the request comes in.  
+Sometimes it's not the server that's the problem, but the client. To help with this I need to set up listeners and watch what happens when the request comes in. This is a useful way of looking at what's being sent.  
+Or more commonly, to test if nothing is being sent at all — which is what happens when an actual network engineer tells you they've opened a firewall rule, but they haven't.  
 
-The simplest listener is using nc. If the port is below 1024, use sudo.   
+The simplest listener is using `nc`. (If the port is below 1024, use sudo)
 
 ```bash
 nc -l 8081
 ```
 
-Once it's listening, use nc to send some text, `echo -n "Hello" | nc localhost 8081` from another terminal.   
+Once it's listening, use `nc` to send some text, `echo -n "Hello" | nc localhost 8081` from another terminal.   
 
 
 To listen on a UDP port, use the `-u` flag.  

@@ -1,5 +1,5 @@
 ---
-title: "My list of useful troubleshooting tools and commands"
+title: "My list of useful network troubleshooting tools and commands"
 description: "My favourite networking troubleshooting commands, like curl, nc, dig, openssl, etc."
 tags:
   - networking
@@ -143,6 +143,15 @@ Sometimes it's not the server that's the problem, but the client. To help with t
 
 This is commonly used when an actual network engineer tells you they've opened a firewall rule, but they haven't, and you know they haven't, but you don't want to look stupid when you tell them they haven't.  
 
+To find out what's listening on a port. 
+
+```bash
+sudo netstat -plunt
+```
+
+On Windows, use `netstat -bona`.  
+
+
 The simplest listener is using `nc`. (If the port is below 1024, use sudo)
 
 ```bash
@@ -180,20 +189,45 @@ There’s no way it’s DNS
 It was DNS*
 {% endnotice %}
 
+To see what response I get from my DNS server,
 
-Check if I can use external DNS servers. I can't really use `nc` here since it's a UDP service, but `dig` will work.  
+```bash
+dig example.com
+```
+
+To see more details, 
+
+```bash
+dig +trace example.com
+```
+
+To get the SOA of a domain,
+
+```bash
+dig example.com SOA
+```
+
+Similarlity to get MX records or TXT records, 
+
+```bash
+dig example.com MX
+dig example.com TXT
+```
+
+
+To check if I can use external DNS servers from my network, I can't really use `nc` here since it's a UDP service, but `dig` can be pointed at other DNS servers.  
 
 ```bash
 dig @1.1.1.1 example.com
 ```
 
-Checking if DNS over TLS is reachable, useful for Android's Private DNS feature. This will work from Termux too. 
+To check if DNS over TLS is reachable, useful for Android's Private DNS feature. This will work from Termux too. 
 
 ```bash
 nc -v -w5 -z dns.adguard-dns.com 853
 ```
 
-To find out what DNS servers are being used, it's normally as simple as looking at 
+To find out what DNS servers are being used on my system, it's normally as simple as looking at the resolv.conf file. 
 
 ```bash
 cat /etc/resolv.conf

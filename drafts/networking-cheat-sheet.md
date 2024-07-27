@@ -78,7 +78,7 @@ A lot can go wrong with certificates, and it's not always coded for or tested fo
 
 At the other end, a site that's never going to have a certificate is [NeverSSL](https://neverssl.com). This is useful when testing on captive portals or where there's https interception. 
 
-### Testing a web server URL
+### Testing a website URL
 
 This one's simple, I just want to 'look' at a site URL without browser behaviours getting in the way.  
 It has been needed more commonly than I thought, especially when a browser has cached a file or a redirect response.   
@@ -88,43 +88,43 @@ I've found that browsers may lie, but curl does not.
 curl -v http://example.com:8080
 ```
 
-Test a web server but only look at its response headers
+Test a web server but only look at its response **headers**
 
 ```bash
 curl -vI http://servername:8080
 ```
 
-Test a web server but ignore its certificates
+Test a web server but ignore its **certificates**
 
 ```bash
 curl -kv https://example.com
 ```
 
-Test a web server using a proxy
+Test a web server using a **proxy**
 
 ```bash
 curl -v -x http://proxy.internal:3128 http://example.com
 ```
 
-If everything is using a proxy, test a web server but bypass the proxy
+If everything is using a **proxy**, test a web server but bypass the proxy
 
 ```bash
 curl -v --noproxy '*' http://example.com
 ```
 
-When testing load balancers, I sometimes need to pass the hostname explicitly. 
+When testing **load balancers**, I may need to pass the hostname explicitly. 
 
 ```bash
 curl -v -H "Host: example.com" http://my-load-balancer.amazonaws.com:8293
 ```
 
-Sometimes I also need to forcefully resolve a hostname to a specific IP address, again while testing out-of-the-balance infrastructure. This is how to get curl to ignore DNS resolution.  
+Sometimes I also need to forcefully **resolve a hostname to a specific IP address**, again while testing out-of-the-balance infrastructure. This is how to get curl to ignore DNS resolution.  
 
 ```bash
 curl -v --resolve example.com:80:192.168.50.123 http://example.com
 ```
 
-In rarer cases, I've had to map a hostname and port to a completely different hostname and different port. 
+In rarer cases, I've had to map a hostname and port to a **completely different hostname and port**. 
 
 ```bash
 curl -v --connect-to example.com:80:differentdomain.net:85 http://example.com 
@@ -136,8 +136,9 @@ There's a lot more that curl can do, it deserves [its own cheatsheet](https://qu
 
 ### Listening and echoing on a port
 
-Sometimes it's not the server that's the problem, but the client. To help with this I need to set up listeners and watch what happens when the request comes in. This is a useful way of looking at what's being sent.  
-Or more commonly, to test if nothing is being sent at all — which is what happens when an actual network engineer tells you they've opened a firewall rule, but they haven't.  
+Sometimes it's not the server that's the problem, but the client. To help with this I need to set up listeners, send a request to the listener, and watch what happens when the request comes in.  
+
+This is commonly used when an actual network engineer tells you they've opened a firewall rule, but they haven't, and you know they haven't, but you don't want to look stupid when you tell them they haven't.  
 
 The simplest listener is using `nc`. (If the port is below 1024, use sudo)
 
@@ -146,7 +147,6 @@ nc -l 8081
 ```
 
 Once it's listening, use `nc` to send some text, `echo -n "Hello" | nc localhost 8081` from another terminal.   
-
 
 To listen on a UDP port, use the `-u` flag.  
 

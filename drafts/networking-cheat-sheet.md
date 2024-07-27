@@ -12,6 +12,9 @@ tags:
 
 extraWideMedia: false
 
+opengraph:
+  image: /assets/images/networking-cheat-sheet/000.png
+
 ---
 
 I'm not a networking professional, but I've often had to impersonate one. Here are some of the tools and commands I've found useful.  

@@ -12,5 +12,5 @@ services:
       - ELEVENTY_ENV=development
     #   - DEBUG=Eleventy*
     ports:
-      - 8080:8080
+      - 0.0.0.0:8080:8080
     command: /bin/bash -c "npm install && npm start"

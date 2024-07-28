@@ -1,5 +1,5 @@
 ---
-title: "My list of useful network troubleshooting tools and commands"
+title: "Useful network troubleshooting commands and tools"
 description: "My favourite networking troubleshooting commands, like curl, nc, dig, openssl, etc."
 tags:
   - networking
@@ -9,6 +9,7 @@ tags:
   - linux
   - ubuntu
   - openssl
+  - curl
 
 extraWideMedia: false
 
@@ -17,11 +18,17 @@ opengraph:
 
 ---
 
-I'm not a networking professional, but I've often had to impersonate one. Here are some of the tools and commands I've found useful.  
+I'm not a networking professional, but I've often had to impersonate one. Here are some of the tools and commands I've found useful over the years.  
 
-### Can I reach a port on a server?
+### Reach a port on a server
 
-A corporate firewall or hotel wifi might block certain ports or protocols. [Portquiz.net](http://portquiz.net/) is a great site to test with, it listens on all ports and responds with HTML or text.  
+It's not unusual for corporate firewalls or hotel WiFi to block certain ports/protocols, it might allow web traffic but not VPN or SSH; I want to find out if that's happening. 
+
+In work scenarios, an app on a remote server may be unreachable due to local firewall rules blocking traffic or is genuinely having issues on its side. 
+
+This is where [Portquiz.net](http://portquiz.net/) is helpful for testing - it listens on all ports and responds with HTML, helping identify whether the issue lies in a firewall rule or the new application itself.
+
+To test a remote port, use `nc` (netcat). 
 
 ```bash 
 nc -v -w5 -z portquiz.net 193
@@ -33,7 +40,7 @@ Sometimes `nc` isn't available, so I use `telnet` instead.
 telnet portquiz.net 193
 ```
 
-But what if telnet isn't available either? One of the neat features in Linux Bash is you can query `/dev/tcp` directly. 
+But what if telnet isn't available either? One of the neat features in Linux Bash is I can query `/dev/tcp` directly and not need any extra tools. 
 
 ```bash
 echo > /dev/tcp/portquiz.net/193 && echo Success
@@ -41,9 +48,56 @@ echo > /dev/tcp/portquiz.net/193 && echo Success
 
 In fact it's even possible to [make an HTTP request that way](https://unix.stackexchange.com/a/83927).
 
-### Looking at certificates
+### Set up a listener on a port
 
-Misconfigured certificates can cause weird behaviours in browsers and client-side tooling, so I often want to inspect them directly. The idea is to look for anything from self signed certificates, to expired certificates, to corporate MITM proxies serving their own certificates.  
+I need this when an actual network engineer tells me they've opened a firewall rule, but they haven't, and I know they haven't, but I don't want to look stupid when I tell them they haven't. 
+
+The simplest listener is using `nc`. (If the port is below 1024, use sudo)
+
+```bash
+nc -l 8081
+```
+
+Once it's listening, use `nc` to send some text, `echo -n "Hello" | nc servername 8081` from another terminal, and 'Hello' should appear in the first terminal session.     
+
+To listen on a UDP port, use the `-u` flag.  
+
+```bash
+nc -u -l 8081
+```
+
+Send a UDP packet using `echo -n "Hello" | nc -u servername 8081` from another terminal and watch the first one. It's important to note that UDP is connectionless, sending a packet is a one-way operation and there is no indication of success.  
+
+### Listening and echoing HTTP requests
+
+When I need to work at the HTTP layer, and troubleshoot message bodies and headers, I use my [HTTP Echo utility](/posts/2019-03-01-docker-http-https-echo.md). It's a web server that echoes requests back to the sender. It runs in a container and can be deployed with the rest of the infrastructure being tested.    
+
+```bash
+docker run -p 8080:8080 -p 8443:8443 --rm -t mendhak/http-https-echo:33
+```
+
+I can then browse to any arbitrary path like [https://localhost:8443/hello-world](https://localhost:8443/hello-world) and see the request echoed back in the browser.   
+
+![Request echoed back in the browser](/assets/images/docker-http-https-echo/002.png)
+
+I can send a request with curl,
+
+```bash
+curl -k -X PUT -H "Arbitrary:Header" -d aaa=bbb https://localhost:8443/hello-world` 
+```
+ 
+and see the request echoed back too, as well as see the request in the container logs.  
+
+
+
+The tool allows for more involved tests, like JWTs, JSON payloads, empty responses, delays, custom content types, mTLS. 
+
+### Inspecting a site's certificates
+
+Misconfigured certificates can cause weird behaviours in browsers and client-side tooling; the browser might throw warnings, or a database client might fail to connect. 
+So I often want to inspect the certificates directly. 
+
+The idea is to look for anything 'unusual' which might require extra work. It could be self signed certificates, to expired certificates, to corporate MITM proxies serving their own certificates. The examples here are for port 443 but can be used for any port.  
 
 To look at the certificate being served, 
 
@@ -51,7 +105,7 @@ To look at the certificate being served,
 openssl s_client -connect example.com:443
 ```
 
-Inspect a site's certificate and look at its start and end dates
+To get a certificate's start and end dates,
 
 ```bash
 openssl s_client -connect example.com:443 | openssl x509 -noout -dates
@@ -59,33 +113,93 @@ openssl s_client -connect example.com:443 | openssl x509 -noout -dates
 
 The `x509` subcommand can be used to look at many other properties of a certificate.  
 
-Here is how to view a certificate's SANs (Subject Alternative Names)
+Here is how to view a certificate's SANs (Subject Alternative Names). This can produce amusing results on Cloudflare hosted sites where they bundle many sites together.  
 
 ```bash
 openssl s_client -connect example.com:443 | openssl x509 -noout -ext subjectAltName
 ```
 
-To just view **all** of the certificate's properties
+To view **all** of the certificate's properties,
 
 ```bash
 openssl s_client -connect example.com:443 | openssl x509 -noout -text
 ```
 
-### Working with bad certificates
+### Testing certificate scenarios with BadSSL
 
-A lot can go wrong with certificates, and it's not always coded for or tested for. Certificates could be malformed, self signed, mismatched, expired, revoked.
+A lot can go wrong with certificates, because we make naive assumptions about them. We assume they're always there, always valid, always signed by a trusted CA.  
 
-[BadSSL](https://badssl.com/) has lots of examples to work with. Testing against its examples helps with making client code more robust. I've found the expired, wrong host and self signed to be useful tests. It even has certificates on different TLS versions.  
+Of course that's wrong, certificates could be malformed, self signed, not match the hostname, expired, revoked. They could be too large, missing a chain, come with a weak signature or protocol version.  
+
+[BadSSL](https://badssl.com/) is a useful tool in the certificate space. It has lots of certificate scenarios to work against. Testing against its examples helps with making client code more robust. I've found the expired, wrong host, and self signed to be useful tests. It even has certificates on different TLS versions, key exchanges, and HSTS upgrade testing.  
 
 ![BadSSL](/assets/images/networking-cheat-sheet/001.png)
 
-At the other end, a site that's never going to have a certificate is [NeverSSL](https://neverssl.com). This is useful when testing on captive portals or where there's https interception. 
+At the other end, a site that's never going to have a certificate is [NeverSSL](https://neverssl.com). This is useful when testing on captive portals or where there's https interception in a network, or https redirection by a browser.   
+
+
+### Testing DNS
+
+{% notice "warning" %}
+*It’s not DNS,  
+There’s no way it’s DNS,  
+It was DNS.*
+{% endnotice %}
+
+A basic DNS lookup can be done with `dig`.
+
+```bash
+dig example.com
+```
+
+To see more details, use the trace argument.  
+
+```bash
+dig +trace example.com
+```
+
+To get the Start of Authority (SOA) of a domain,
+
+```bash
+dig example.com SOA
+```
+
+I can also get MX records or TXT records, which is a common way to figure out what services that domain is using.  
+
+```bash
+dig example.com MX
+dig example.com TXT
+```
+
+To check if I can use external DNS servers from my network, I can't really use `nc` here since it's a UDP service, but `dig` can be pointed at other DNS servers.  
+
+```bash
+dig @1.1.1.1 example.com
+```
+
+To check if DNS-over-TLS (DoT) is reachable, useful for Android's Private DNS feature. This will work from Termux too. 
+
+```bash
+nc -v -w5 -z dns.adguard-dns.com 853
+```
+
+To find out what DNS servers are being used on a local computer, it's normally as simple as looking at the resolv.conf file. 
+
+```bash
+cat /etc/resolv.conf
+```
+
+But in many more modern systems, it's not that simple. In Ubuntu 22.04, it's `resolvectl`. 
+
+```bash
+resolvectl status
+```
 
 ### Testing a website URL
 
-This one's simple, I just want to 'look' at a site URL without browser behaviours getting in the way.  
-It has been needed more commonly than I thought, especially when a browser has cached a file or a redirect response.   
-I've found that browsers may lie, but curl does not.  
+This one's the simplest, I just want to 'look' at a site URL without browser behaviours getting in the way.  
+
+It has been needed more commonly than I thought, especially when a browser has cached a file or a redirect response. I've found that browsers may lie, but curl does not.  
 
 ```bash
 curl -v http://example.com:8080
@@ -136,106 +250,12 @@ curl -v --connect-to example.com:80:differentdomain.net:85 http://example.com
 
 There's a lot more that curl can do, it deserves [its own cheatsheet](https://quickref.me/curl.html).
 
+### Find out what's listening on a port
 
-### Listening and echoing on a port
-
-Sometimes it's not the server that's the problem, but the client. To help with this I need to set up listeners, send a request to the listener, and watch what happens when the request comes in.  
-
-This is commonly used when an actual network engineer tells you they've opened a firewall rule, but they haven't, and you know they haven't, but you don't want to look stupid when you tell them they haven't.  
-
-To find out what's listening on a port. 
+When port conflicts occur, I need to find out what's listening on a port. 
 
 ```bash
 sudo netstat -plunt
 ```
-
+The response will contain the PID of the process listening on the port.  
 On Windows, use `netstat -bona`.  
-
-
-The simplest listener is using `nc`. (If the port is below 1024, use sudo)
-
-```bash
-nc -l 8081
-```
-
-Once it's listening, use `nc` to send some text, `echo -n "Hello" | nc localhost 8081` from another terminal.   
-
-To listen on a UDP port, use the `-u` flag.  
-
-```bash
-nc -u -l 8081
-```
-
-Then similarly, send a UDP packet using `echo -n "Hello" | nc -u localhost 8081` from another terminal.
-
-### Listening and echoing HTTP requests
-
-When I need to work with HTTP itself and troubleshoot message bodies and headers, I use my [http-https-echo utility](https://github.com/mendhak/docker-http-https-echo). It's basically a web server that runs in a container and can be deployed with the rest of the infrastructure.  
-
-```bash
-docker run -p 8080:8080 -p 8443:8443 --rm -t mendhak/http-https-echo:33
-```
-
-I can then send a request, such as `curl -k -X PUT -H "Arbitrary:Header" -d aaa=bbb https://localhost:8443/hello-world` and see the request echoed back, as well as in the container logs.  
-
-![docker http https echo](/assets/images/docker-http-https-echo/003.png)
-
-
-### Testing DNS
-
-{% notice "warning" %}
-*It’s not DNS  
-There’s no way it’s DNS  
-It was DNS*
-{% endnotice %}
-
-To see what response I get from my DNS server,
-
-```bash
-dig example.com
-```
-
-To see more details, use the trace argument.  
-
-```bash
-dig +trace example.com
-```
-
-To get the Start of Authority (SOA) of a domain,
-
-```bash
-dig example.com SOA
-```
-
-Similarly, to get MX records or TXT records, 
-
-```bash
-dig example.com MX
-dig example.com TXT
-```
-
-
-To check if I can use external DNS servers from my network, I can't really use `nc` here since it's a UDP service, but `dig` can be pointed at other DNS servers.  
-
-```bash
-dig @1.1.1.1 example.com
-```
-
-To check if DNS over TLS is reachable, useful for Android's Private DNS feature. This will work from Termux too. 
-
-```bash
-nc -v -w5 -z dns.adguard-dns.com 853
-```
-
-To find out what DNS servers are being used on my system, it's normally as simple as looking at the resolv.conf file. 
-
-```bash
-cat /etc/resolv.conf
-```
-
-But in many more modern systems, it's not that simple. In Ubuntu 22.04, it's `resolvectl`. 
-
-```bash
-resolvectl status
-```
-

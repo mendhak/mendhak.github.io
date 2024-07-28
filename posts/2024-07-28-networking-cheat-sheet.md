@@ -1,5 +1,5 @@
 ---
-title: "Useful network troubleshooting commands and tools"
+title: "My most useful network troubleshooting commands and tools"
 description: "My favourite networking troubleshooting commands, like curl, nc, dig, openssl, etc."
 tags:
   - networking

@@ -48,7 +48,24 @@ echo > /dev/tcp/portquiz.net/193 && echo Success
 
 In fact it's even possible to [make an HTTP request that way](https://unix.stackexchange.com/a/83927).
 
-When connecting to encrypted ports serving TLS, I use `openssl` instead. Redis is a common example; in AWS settings I need to connect via TLS _and_ use credentials. Here's how I do it with openssl:   
+When connecting to **encrypted ports** serving TLS, I use `openssl` instead. Openssl noticeably seems to "hang" after running a command. It's actually just waiting for input, because the server hasn't closed the connection yet.  
+
+Try this out, use openssl to connect to example.com. When it's waiting for input, enter the bottom three lines shown, then press enter twice.  
+
+```bash
+$ openssl s_client -connect example.com:443
+
+...
+
+GET / HTTP/1.1
+Host: example.com
+Connection: Close
+
+
+```
+
+
+Redis is another common example. In an AWS settings I will need to connect via TLS _and_ use credentials. Here's how:   
 
 ```bash
 openssl s_client -connect elasticache-serverless-xyz123.serverless.euw1.cache.amazonaws.com:6379
@@ -229,20 +246,6 @@ Test a web server but ignore its **certificates**
 
 ```bash
 curl -kv https://example.com
-```
-
-Side note, it's also possible to request a web page through openssl. Openssl noticeably seems to "hang" after running a command (where I'd normally press Ctrl+C). It's actually just waiting for input, because the server hasn't closed the connection.  
-Try this out, use openssl to connect to exapmle.com. Then enter the bottom three lines shown, then press enter twice. 
-
-```bash
-$ openssl s_client -connect example.com:443
-...
-
-GET / HTTP/1.1
-Host: example.com
-Connection: Close
-
-
 ```
 
 Or together in one line, 

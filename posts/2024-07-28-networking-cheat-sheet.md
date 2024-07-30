@@ -217,6 +217,26 @@ Test a web server but ignore its **certificates**
 curl -kv https://example.com
 ```
 
+Side note, it's also possible to request a web page through openssl. If you've noticed it hang after running a command (where you normally press Ctrl+C), it's waiting for you to send some input.    
+Try this out, use openssl to connect to exapmle.com. Then enter the bottom three lines shown, then press enter twice. 
+
+```bash
+$ openssl s_client -connect example.com:443
+...
+
+GET / HTTP/1.1
+Host: example.com
+Connection: Close
+
+
+```
+
+Or together in one line, 
+
+```bash
+echo -e "GET / HTTP/1.1\r\nHost: example.com\r\nConnection: Close\r\n\r\n" | openssl 2>&1 s_client -quiet -state -connect example.com:443
+```
+
 Test a web server using a **proxy**
 
 ```bash

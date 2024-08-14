@@ -74,7 +74,9 @@ It's also one of the (many) reasons that `curl | bash` type installations, often
 
 The best way to protect yourself from a reverse shell attack is to be careful about what you run on your machine. If you're running a script from the internet, make sure you understand what it does first, don't just blindly run it. 
 
-For developers, it's important to be avoid trying to make OS calls from code, especially when passing user input directly to the command. Those situations should be avoided as much as possible. Bash is rich and powerful in the creativity it proffers, and so sanitisation is not really going to help that much. 
+For developers, it's important to be avoid trying to make OS calls from code, especially when passing user input directly to the command. Those situations should be avoided as much as possible. Bash is rich and powerful in the creativity it proffers, and so sanitisation is not really going to help that much.
+
+For application deployments, this is one of the (many) reasons why containers are useful; they provide a level of isolation, and therefore a reduced blast radius if something goes wrong.  
 
 Just for reference, the following command can show you all the established connections on your machine, with the process ID and command. 
 
@@ -87,3 +89,5 @@ Here is what the reverse shell example would look like. An established connectio
 ```
 tcp        0      0 127.0.0.1:49364         127.0.0.1:1337          ESTABLISHED 24449/bash 
 ```
+
+Note: it's not a perfect way of detecting reverse shells though, there are ways of hiding the connection, and the connection isn't always active. Other tools like [Fenrir](https://github.com/Neo23x0/Fenrir) might help as well. 

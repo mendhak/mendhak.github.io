@@ -66,7 +66,7 @@ When you're done, just `exit` to close the connection.
 
 ## Why is this dangerous?
 
-This demonstrates just how easy it is to set up a reverse shell. It's not just limited to Bash, it can be done in [several languages and environments](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/). 
+This demonstrates just how easy it is to set up a reverse shell; the danger is its simplicity. It's not just limited to Bash, it can be done in [several languages and environments](https://swisskyrepo.github.io/InternalAllTheThings/cheatsheets/shell-reverse-cheatsheet/). 
 
 The `whoami` command would have shown that it's the user running on the compromised machine, which means their permissions are the attacker's permissions. 
 

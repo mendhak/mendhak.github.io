@@ -156,6 +156,20 @@ To view **all** of the certificate's properties,
 openssl s_client -connect example.com:443 | openssl x509 -noout -text
 ```
 
+I sometimes need to know what TLS versions a site supports. This is sometimes needed if a connecting client is very old, and doesn't understand modern ciphers.
+
+Check if a site supports TLS 1, 1.1, 1.2, 1.3, etc.  
+
+```bash
+openssl s_client -connect example.com:443 -tls1
+openssl s_client -connect example.com:443 -tls1_1
+openssl s_client -connect example.com:443 -tls1_2
+openssl s_client -connect example.com:443 -tls1_3
+```
+
+If you see a certificate come back, that TLS version is supported. 
+
+
 ### Testing certificate scenarios with BadSSL
 
 A lot can go wrong with certificates, because we make naive assumptions about them. We assume they're always there, always valid, always signed by a trusted CA.  

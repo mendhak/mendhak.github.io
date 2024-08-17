@@ -10,7 +10,7 @@ tags:
   - standard
   - simplified
  
-last_modified_at: 2022-07-06
+last_modified_at: 2024-08-17
 
 
  
@@ -208,3 +208,8 @@ NIST have [announced](https://csrc.nist.gov/News/2022/pqc-candidates-to-be-stand
 
 They are also proceeding to the [fourth round](https://csrc.nist.gov/News/2022/pqc-candidates-to-be-standardized-and-round-4#fourth-round) for additional candidates to standardize on.  
 
+## Update, 2024-08-17
+
+NIST have [announced](https://csrc.nist.gov/News/2024/postquantum-cryptography-fips-approved) that they have standardized three post-quantum cryptography encryption schemes. They don't get to retain their cooler names, instead they're now simply known as Federal Information Processing Standard (FIPS). CRYSTALS-Kyber becomes FIPS 203, CRYSTALS-Dilithium becomes FIPS 204, Sphincs+ becomes 205. FALCON is expected to become FIPS 206 in late 2024. 
+
+At this point we can expect to see efforts to implement these algorithms in software and hardware, and eventually see them roll out into our userspace. 

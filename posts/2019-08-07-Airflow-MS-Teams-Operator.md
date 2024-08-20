@@ -7,9 +7,11 @@ tags:
   - airflow
   - python
   - teams
+
+last_modified_at: 2024-08-20T19:15:00Z
 ---
 
-This Apache Airflow operator can send messages to specific MS Teams Channels.  It can be especially useful if you use MS Teams for your chatops.  
+This Apache Airflow operator can send messages to specific MS Teams Channels.  It can be especially useful if you use MS Teams for your chatops. There are various options to customize the appearance of the cards. 
 
 {% githubrepocard "mendhak/Airflow-MS-Teams-Operator" %}
 
@@ -21,44 +23,88 @@ Common usages for this would be:
 * Notify developers when a DAG has failed with option to view logs
 
 
+## Screenshots
+
+{% gallery %}
+![Header, subtitle, and body](/assets/images/Airflow-MS-Teams-Operator/001.png)
+![Coloured header, body, button, in dark mode](/assets/images/Airflow-MS-Teams-Operator/004.png)
+![Header, subtitle, body, facts, and a button](/assets/images/Airflow-MS-Teams-Operator/002.png)
+![Body and empty green header](/assets/images/Airflow-MS-Teams-Operator/005.png)
+![Body with coloured text and coloured button](/assets/images/Airflow-MS-Teams-Operator/003.png)
+![Body and coloured header, without logo](/assets/images/Airflow-MS-Teams-Operator/006.png)
+{% endgallery %}
+
+
 
 ## Usage
 
-From your DAG, call the operator.  
+The usage can be very basic from just a message, to several parameters including a full card with header, subtitle, body, facts, and a button. There are some style options too.
+
+A very basic message:
 
 ```python
-op1 = MSTeamsWebhookOperator(task_id='msteamtest',
-    http_conn_id='msteams_webhook_url',
-    message = "Hello from Airflow!",
-    subtitle = "This is the **subtitle**",
-    theme_color = "00FF00",
-    button_text = "My button",
-    button_url = "https://example.com",
-    #proxy = "https://yourproxy.domain:3128/",
-    dag=dag)
+ op1 = MSTeamsPowerAutomateWebhookOperator(
+        task_id="send_to_teams",
+        http_conn_id="msteams_webhook_url",
+        body_message="DAG **lorem_ipsum** has completed successfully in **localhost**",
+    )
 ```
 
-`http_conn_id` : Hook pointing at MS Teams Webhook  
-`message` : (Templated) the card's headline.   
-`subtitle` : (Templated) the card's subtitle  
-`button_text` : Text for action button at the bottom of the card  
-`button_url` : What URL the button sends the user to  
-`theme_color` : Color for the card's top line, without the `#`  
+Add a button:
+    
+```python
+op1 = MSTeamsPowerAutomateWebhookOperator(
+        task_id="send_to_teams",
+        http_conn_id="msteams_webhook_url",
+        body_message="DAG **lorem_ipsum** has completed successfully in **localhost**",
+        button_text="View Logs",
+        button_url="https://example.com",
+    )
+```
 
-This sends a card to your channel:
+Add a heading and subtitle:
 
-![MS Teams](/assets/images/Airflow-MS-Teams-Operator/001.png)
+```python
+op1 = MSTeamsPowerAutomateWebhookOperator(
+        task_id="send_to_teams",
+        http_conn_id="msteams_webhook_url",
+        heading_title="DAG **lorem_ipsum** has completed successfully",
+        heading_subtitle="In **localhost**",
+        body_message="DAG **lorem_ipsum** has completed successfully in **localhost**",
+        button_text="View Logs",
+        button_url="https://example.com",
+    )
+```
+
+Add some colouring — header bar colour, subtle subtitle, body text colour, button colour:
+
+```python
+op1 = MSTeamsPowerAutomateWebhookOperator(
+        task_id="send_to_teams",
+        http_conn_id="msteams_webhook_url",
+        header_bar_style="good",
+        heading_title="DAG **lorem_ipsum** has completed successfully",
+        heading_subtitle="In **localhost**",
+        heading_subtitle_subtle=False,
+        body_message="DAG **lorem_ipsum** has completed successfully in **localhost**",
+        body_message_color_type="good",
+        button_text="View Logs",
+        button_url="https://example.com",
+        button_style="positive",
+    )
+```
+
+You can also look at [this sample_dag.py](https://github.com/mendhak/Airflow-MS-Teams-Operator/blob/master/sample_dag.py), for an example of how to use this operator in a DAG. 
+A full list of parameters can be find in the [README](https://github.com/mendhak/Airflow-MS-Teams-Operator/#parameters). 
+
 
 There is a bit of prep work required in Teams as well as Airflow to enable this functionality.  
 
 
 ## Prepare MS Teams
 
-Pick the channel you want messages sent to, click the `…` > `Connectors` and search for Incoming Webhook. 
+Create a webhook to post to Teams. The Webhook needs to be of the PowerAutomate type, not the deprecated Incoming Webhook type. Currently this is done either through the 'workflows' app in Teams, or via [PowerAutomate](https://powerautomate.com). 
 
-Click Configure, give it a name and you will be given a webhook URL. 
-
-![Webhook](/assets/images/Airflow-MS-Teams-Operator/002.png)
 
 {% notice "warning" %}
 Webhooks don't usually have additional authentication; you should treat this URL as sensitive and keep it in a safe place. 
@@ -66,37 +112,42 @@ Webhooks don't usually have additional authentication; you should treat this URL
 
 ## Prepare Airflow
 
-In Airflow, create a new Connection under Admin > Connections
 
-![http](/assets/images/Airflow-MS-Teams-Operator/003.png)
+Once that's ready, [create an HTTP Connection](https://airflow.apache.org/docs/apache-airflow/stable/howto/connection.html) in Airflow with the Webhook URL. 
 
-Note the `Host` field starts directly with `outlook.office.com` and the `Schema` is where you specify `https`.  
+* Conn Type: HTTP
+* Host: The URL without the https://
+* Schema: https
 
-## Copy hook and operator
+Copy the [ms_teams_power_automate_webhook_operator.py](https://github.com/mendhak/Airflow-MS-Teams-Operator/blob/master/ms_teams_powerautomate_webhook_operator.py) file into your Airflow dags folder and `import` it in your DAG code.
 
-Copy the MS Teams operator and Hook into your own Airflow project. 
 
-{% button "MS Teams Hook", "https://github.com/mendhak/Airflow-MS-Teams-Operator/blob/master/ms_teams_webhook_hook.py" %} {% button "MS Teams Operator", "https://github.com/mendhak/Airflow-MS-Teams-Operator/blob/master/ms_teams_webhook_operator.py" %}
 
-Import it into your DAG
+{% button "MS Teams Operator", "https://github.com/mendhak/Airflow-MS-Teams-Operator/blob/master/ms_teams_powerautomate_webhook_operator.py" %} 
 
 ```python
-from ms_teams_webhook_operator import MSTeamsWebhookOperator
+from ms_teams_powerautomate_webhook_operator import MSTeamsPowerAutomateWebhookOperator
 ```
-
-You can now use the operator as shown above. 
 
 
 ## Notifying MS Teams on DAG failures
 
-You can also use the operator to notify MS Teams whenever a DAG fails.  This will create a card with a 'View Log' button that developers can click on and go directly to the log of the failing DAG operator.  Very convenient. 
+You can use Airflow's built in `on_failure_callback` to notify MS Teams when a DAG fails. This will create a card with a 'View Log' button that developers can click on and go directly to the log of the failing DAG operator.  Very convenient. 
 
 
-![http](/assets/images/Airflow-MS-Teams-Operator/004.png)
-
-To do this, create a method that receives the failure context, which calls `MSTeamsWebhookOperator`.  Set this method in the `on_failure_callback` of the DAG.  
+Create a method that receives the failure context, which calls `MSTeamsPowerAutomateWebhookOperator`.  Set this method in the `on_failure_callback` of the DAG.  
 
 ```python
+
+def get_formatted_date(**kwargs):
+        iso8601date = kwargs["execution_date"].strftime("%Y-%m-%dT%H:%M:%SZ")
+        # Teams date/time formatting: https://learn.microsoft.com/en-us/adaptive-cards/authoring-cards/text-features#datetime-example 
+        formatted_date = (
+            f"{{ '{{{{DATE({iso8601date}, SHORT)}}}} at {{{{TIME({iso8601date})}}}}' }}"
+        )
+        print(formatted_date)
+        return formatted_date
+
 def on_failure(context):
 
     dag_id = context['dag_run'].dag_id
@@ -107,11 +158,14 @@ def on_failure(context):
     logs_url = "https://myairflow/admin/airflow/log?dag_id={}&task_id={}&execution_date={}".format(
          dag_id, task_id, context['ts'])
 
-    teams_notification = MSTeamsWebhookOperator(
+    teams_notification = MSTeamsPowerAutomateWebhookOperator(
         task_id="msteams_notify_failure", trigger_rule="all_done",
-        message="`{}` has failed on task: `{}`".format(dag_id, task_id),
+        header_bar_style="attention",
+        heading_title="Airflow DAG Failure",
+        heading_subtitle=get_formatted_date(**context),
+        body_message="`{}` has failed on task: `{}`".format(dag_id, task_id),
         button_text="View log", button_url=logs_url,
-        theme_color="FF0000", http_conn_id='msteams_webhook_url')
+        http_conn_id='msteams_webhook_url')
     teams_notification.execute(context)
 
 
@@ -125,28 +179,3 @@ default_args = {
 
 Of course substitute the `logs_url` with the address of your own Airflow.  For convenience you can move the method out into a common Python module that every DAG imports from.  
 
-## Proxies
-
-Some corporate environments make use of outbound proxies.  If you are behind an outbound proxy for Internet access, there are two ways that you can specify your server. 
-
-The easiest way is to put the details in the `Extra` field when creating the HTTP Connection. 
-
-```
-{"proxy":"http://my-proxy:3128"}
-```
-
-You can also pass the `proxy` argument to the `MSTeamsWebhookOperator` operator.  
-
-```python
-proxy = "https://my-proxy:3128/",
-```
-
-
-
-# How it works
-
-MS Teams allows creating [actionable message cards](https://docs.microsoft.com/en-gb/outlook/actionable-messages/send-via-connectors) which enable you to send formatted JSON with various things like column layout, text blocks, action buttons, headlines, subtitles and so on.  There are plenty of examples on the [Message Card Playground](https://messagecardplayground.azurewebsites.net/).  
-
-The [incoming webhook](https://docs.microsoft.com/en-us/microsoftteams/platform/concepts/connectors/connectors-using) connector is already bundled with MS Teams, and is the simplest means of communicating with a channel.  
-
-The main work happens in the hook which inherits from Airflow's own `HttpHook`; in turn this is simply a Python script which takes the arguments and [builds up](https://github.com/mendhak/Airflow-MS-Teams-Operator/blob/master/ms_teams_webhook_hook.py#L94-L115) the `MessageCard` before performing an HTTP POST.

@@ -27,10 +27,10 @@ Common usages for this would be:
 
 {% gallery %}
 ![Header, subtitle, and body](/assets/images/Airflow-MS-Teams-Operator/001.png)
-![Coloured header, body, button, in dark mode](/assets/images/Airflow-MS-Teams-Operator/004.png)
-![Header, subtitle, body, facts, and a button](/assets/images/Airflow-MS-Teams-Operator/002.png)
+![Header, subtitle, body, facts, and a button](/assets/images/Airflow-MS-Teams-Operator/004.png)
+![Body with coloured text and coloured button](/assets/images/Airflow-MS-Teams-Operator/002.png)
 ![Body and empty green header](/assets/images/Airflow-MS-Teams-Operator/005.png)
-![Body with coloured text and coloured button](/assets/images/Airflow-MS-Teams-Operator/003.png)
+![Coloured header, body, button, in dark mode](/assets/images/Airflow-MS-Teams-Operator/003.png)
 ![Body and coloured header, without logo](/assets/images/Airflow-MS-Teams-Operator/006.png)
 {% endgallery %}
 

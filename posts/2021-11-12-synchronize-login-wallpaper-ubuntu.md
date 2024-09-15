@@ -14,7 +14,7 @@ extraWideMedia: false
 On Ubuntu 22.04 and 24.04, the background image that you set for your desktop doesn't appear on the login screen. I will go over two ways of synchronizing the login screen wallpaper to match the one chosen for the desktop.  
 
 {% notice %}
-To skip straight to the scripts, see [this Github repository](https://github.com/mendhak/change-login-background).
+To skip straight to the scripts, see [this Github repository](https://github.com/mendhak/ubuntu-change-login-background).
 {% endnotice %}
 
 

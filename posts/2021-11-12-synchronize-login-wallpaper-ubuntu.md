@@ -189,7 +189,7 @@ Exit and restart Variety so that it picks up the config changes. Now try changin
 
 An additional step, if it appeals, is to make the login screen background a blurred version of the current desktop background. This can be done with `imagemagick` installed, and tweaking the above scripts to created a blurred version just before settings it as the login background. 
 
-The `sync_desktop_wallpaper_to_login.sh` script becomes: (modify the paths below to reflect yours)
+The `sync_desktop_wallpaper_to_login.sh` script becomes: 
 
 ```bash
 current_wallpaper_uri=$(gsettings get org.gnome.desktop.background picture-uri | sed "s/'//g")
@@ -199,7 +199,7 @@ convert $current_wallpaper_path -channel RGBA -blur 0x26 $blurredpath
 sudo ./change.sh "$blurredpath"
 ```
 
-Similarly the `set_both_wallpapers.sh` script becomes: (modify the paths below to reflect yours)
+Similarly the `set_both_wallpapers.sh` script becomes: 
 
 ```bash
 #!/bin/bash 

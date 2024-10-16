@@ -16,8 +16,8 @@ WSL (Windows Subsystem for Linux) has been gaining popularity in recent years, a
 
 
 {% notice "info" %}
-This is a follow up to the previous post, [Using KeePass to serve SSH keys](/keepass-and-keeagent-setup/).  
-This post also assumes you have [already installed WSL <i class="fab fa-ubuntu"></i>](https://docs.microsoft.com/en-us/windows/wsl/install-win10) 
+This is a follow up to the previous post, [Using KeePass to serve SSH keys](/posts/2019-07-28-keepass-and-keeagent-setup.md).  
+This post also assumes you have [already installed WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) 
 {% endnotice %}
 
 

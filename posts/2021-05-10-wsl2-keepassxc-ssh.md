@@ -16,7 +16,7 @@ last_modified_at: 2023-08-22
 ---
 
 
-I have previously shown how to [serve keys to WSL1](/wsl-keepassxc-ssh/), here I'll be going over the method to do it for **WSL2**. 
+I have previously shown how to [serve keys to WSL1](/posts/2020-05-03-wsl-keepassxc-ssh.md), here I'll be going over the method to do it for **WSL2**. 
 
 KeepassXC can be used to serve SSH keys to WSL2, which is useful when remoting on to servers, or using Git over SSH. Some benefits of putting your SSH key into your KeepassXC are that you can have a strong password on the private key but don't need to type it out each time, and that you don't need to save your keys on disk - you can let KeePassXC manage the storage, unlocking and serving of the keys for you.  
 

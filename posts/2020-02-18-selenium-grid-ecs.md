@@ -84,7 +84,7 @@ npx smashtest --test-server=http://your-load-balancer-12345.eu-west-1.elb.amazon
 This will run the tests against your new Grid and if you refresh the Selenium Hub page you can see where the test is running, indicated by a dimmed browser icon. 
 
 {% notice "info" %}
-To understand the Smashtest syntax above, see [this tutorial](/smashtest-tutorial/).  
+To understand the Smashtest syntax above, see [this tutorial](/posts/2021-06-19-smashtest-tutorial.md).  
 {% endnotice %}
 
 ## Overview

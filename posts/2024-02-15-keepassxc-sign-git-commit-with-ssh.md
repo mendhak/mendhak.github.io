@@ -22,7 +22,7 @@ It's a convenient option, with everything being in one place; it's certainly eas
 
 {% notice "info" %}
 This post assumes you're already using KeePassXC to manage your SSH keys.   
-To set up KeePassXC as an SSH agent in WSL2/Ubuntu, see [this post](/wsl2-keepassxc-ssh/)
+To set up KeePassXC as an SSH agent in WSL2/Ubuntu, see [this post](/posts/2021-05-10-wsl2-keepassxc-ssh.md)
 {% endnotice %}
 
 #### Get the latest git

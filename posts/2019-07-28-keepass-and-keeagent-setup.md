@@ -147,5 +147,5 @@ For occasional use keys, you can double click the *SSH Key Status* column to loa
 
 
 {% notice "info" %}
-For instructions on using this setup with WSL (Ubuntu), see [Using KeeAgent with WSL and Ubuntu ](/keeagent-with-wsl/).
+For instructions on using this setup with WSL (Ubuntu), see [Using KeeAgent with WSL and Ubuntu ](/posts/2019-08-01-keeagent-with-wsl.md).
 {% endnotice %}

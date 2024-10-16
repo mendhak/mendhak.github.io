@@ -6,7 +6,6 @@
   /* Set sans-serif & mono fonts */
   --sans-font: Roboto,"Nimbus Sans L","Avenir Next",Avenir,"Segoe UI",Arial,Helvetica,"Helvetica Neue",sans-serif;
   --mono-font: "Ubuntu Mono", Consolas, Menlo, Monaco, "Andale Mono",  monospace;
-  --excalidraw-filter: 0;
 }
 
 /* Change some colors for dark mode */
@@ -14,7 +13,6 @@
 :root {
   --bg: #333333;
   --accent: #fedb8b;
-  --excalidraw-filter: 1;
 }
 }
 
@@ -231,10 +229,4 @@ nav :is(ol,ul) li {
 div.video > iframe {
   aspect-ratio: 16 / 9;
   width: 100%;
-}
-
-
-/* Excalidraw images */
-img.excalidraw {
-  filter: invert(var(--excalidraw-filter));
 }

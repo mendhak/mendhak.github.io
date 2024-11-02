@@ -1,9 +1,8 @@
-
 function showDraft(data) {
 	return process.env.ELEVENTY_ENV === 'development';
 }
 
-module.exports = function() {
+export default async function() {
 	return {
 		eleventyComputed: {
 			eleventyExcludeFromCollections: function(data) {

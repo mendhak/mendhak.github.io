@@ -219,7 +219,7 @@ It still feels quite rough in many areas; some of the documentation feels like i
 
 The tooling and by extensions, ecosystem, feels fragmented. I didn't like that the 'usual' cosign command couldn't be used for Python sigstore files, and at the same time the various features would have me contend with rekor, fulcio and gitsign, each of which has its own packages, or lack of packages. It would be much neater if there were a single `sigstore` command which contained all of the subcommands necessary. 
 
-Finally, discoverability feels poor. The ability to verify a bundle requires additional information which is difficult to discover and in some cases, even discovering that information isn't enough. 
+Finally, metadata discoverability feels poor. The ability to verify a bundle requires additional information which is difficult to discover and in some cases, even discovering that information isn't enough. 
 
 There are other similar efforts happening, one of which is called [OpenPubkey](https://github.com/openpubkey/openpubkey). OpenPubkey makes use of JWTs signed by identity providers (Github, Google, Microsoft) and adds key information into the `nonce` field. The advantage here is that there is no central infrastructure needed, everything is in the token, but it feels like a hack, and that there would be difficulty if and when these identity providers rotate their keys. 
 

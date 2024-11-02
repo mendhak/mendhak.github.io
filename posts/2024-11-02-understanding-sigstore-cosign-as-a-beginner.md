@@ -221,7 +221,7 @@ The tooling and by extensions, ecosystem, feels fragmented. I didn't like that t
 
 Finally, metadata discoverability feels poor. The ability to verify a bundle requires additional information which is difficult to discover and in some cases, even discovering that information isn't enough. 
 
-There are other similar efforts happening, one of which is called [OpenPubkey](https://github.com/openpubkey/openpubkey). OpenPubkey makes use of JWTs signed by identity providers (Github, Google, Microsoft) and adds key information into the `nonce` field. The advantage here is that there is no central infrastructure needed, everything is in the token, but it feels like a hack, and that there would be difficulty if and when these identity providers rotate their keys. 
+There are other similar efforts happening, one of which is called [OpenPubkey](https://github.com/openpubkey/openpubkey). OpenPubkey makes use of JWTs signed by identity providers (Github, Google, Microsoft) and adds key information into the `nonce` field. Aside from making British people giggle, the advantage here is that there is no central infrastructure needed, everything is in the token, but it feels like a hack, and that there would be difficulty if and when these identity providers rotate their keys. 
 
 It should be interesting to see how this pans out over the next few years, but there does seem to be promise of improvements in the industry, I am looking forward to it. 
 

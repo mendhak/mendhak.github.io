@@ -81,7 +81,7 @@ Inspecting the bundle and following the [log index URL](https://search.sigstore.
 ![Python docs vs Rekor log](/assets/images/understanding-sigstore-cosign/002.png)
 
 
-Substituting for Github still did not work though. 
+I raised an issue and they helpfully fixed the issue. Anyway, substituting for Github still did not work though. 
 
 ```bash
 $ cosign verify-blob Python-3.14.0a1.tgz --bundle Python-3.14.0a1.tgz.sigstore --cert-identity hugo@python.org --cert-oidc-issuer https://github.com/login/oauth

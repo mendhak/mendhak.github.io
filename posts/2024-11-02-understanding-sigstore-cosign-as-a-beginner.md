@@ -99,6 +99,48 @@ OK: Python-3.14.0a1.tgz
 
 I could not figure out what was different about this, or how I would have provided the public key that the error message asked for, but having to use yet _another_ tool to do the verification was not ideal. 
 
+I finally got a helpful answer from the sigstore discussion forum, I was missing a `--new-bundle-format` flag. That is, this worked:
+
+```bash
+$ cosign verify-blob Python-3.14.0a1.tgz --bundle Python-3.14.0a1.tgz.sigstore --cert-identity hugo@python.org --cert-oidc-issuer https://github.com/login/oauth --new-bundle-format
+Verified OK
+```
+
+### Verifying Github and npm attestations without their own CLIs
+
+I also learned that [both Github Actions as well as npm](https://blog.sigstore.dev/cosign-verify-bundles/) have integrated cosign workflows, which they call attestations.That is, it should now be possible to verify npm tarballs as well as Github Artifacts, if the author has chosen to make use of attestation workflows. 
+
+It did take a bit of trial and error to figure out where to get the bundle from, which even the blog author attests (ha) to.  
+
+npm has documented instructions on [how to push attestations up](https://docs.npmjs.com/generating-provenance-statements), but the actual verification is hidden away behind an `npm audit signatures` command. They also embed their cosign bundle inside a wrapper JSON. The equivalent cosign way would be:
+
+```bash
+$ curl https://registry.npmjs.org/semver/-/semver-7.6.3.tgz > semver-7.6.3.tgz
+$ curl https://registry.npmjs.org/-/npm/v1/attestations/semver@7.6.3 | jq '.attestations[]|select(.predicateType=="https://slsa.dev/provenance/v1").bundle' > npm-provenance.sigstore.json
+$ cosign verify-blob --bundle npm-provenance.sigstore.json --new-bundle-format --certificate-oidc-issuer="https://token.actions.githubusercontent.com" --certificate-identity="https://github.com/npm/node-semver/.github/workflows/release-integration.yml@refs/heads/main" semver-7.6.3.tgz
+Verified OK
+```
+
+Github hides theirs behind a `gh attestation verify` which I am not interested in, I'd like to see the actual files involved. For Github Actions, if the author makes use of the [attest build provenance action](https://github.com/actions/attest-build-provenance), the attestation is made visible at a special dedicated URL that contains attestation information, I thought that was quite neat. 
+
+[This example](https://github.com/cli/cli/attestations/2733309) is from the gh CLI itself, though there is no 'direct' link between the artifact and the attestation page; there is a link from the Github Action build where the artifact was created, but those artifact links are often expired.
+
+{% gallery "Artifact and attestation" %}
+![The artifact in releases](/assets/images/understanding-sigstore-cosign/006.png)
+![The attestation details](/assets/images/understanding-sigstore-cosign/005.png)  
+{% endgallery %}
+
+It took a bit of figuring out but the verification was slightly easier than npm. I had to download the JSON from the attestation page, and also use the new bundle format flag. The certificate identity was the Build Signer URI, and the issuer was the Issuer field. 
+
+```bash
+$ curl https://github.com/cli/cli/attestations/2733309/download > gh_2.60.1_linux_386.deb.cosign.bundle
+$ curl -L https://github.com/cli/cli/releases/download/v2.60.1/gh_2.60.1_linux_386.deb > gh_2.60.1_linux_386.deb 
+$ cosign verify-blob gh_2.60.1_linux_386.deb --bundle cli-cli-attestation-2733309.sigstore.json --cert-identity https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk  --cert-oidc-issuer https://token.actions.githubusercontent.com --new-bundle-format
+Verified OK
+```
+
+
+
 ### If verifying is hard, nobody will verify
 
 A recurring speed bump in all my verification attempts was to keep trying to figure out how to supply the additional parameters to verify. The need for specifying a certificate identity and certificate OIDC issuer was introduced specifically [to mitigate a security risk](https://github.com/sigstore/cosign/issues/2056), which makes sense.
@@ -111,6 +153,7 @@ cosign verify-blob test.txt --bundle test.txt .cosign.bundle --certificate-ident
 
 This reminds me of StackOverflow answers regarding certificate validation errors, where the top voted answer is often how to _disable_ validation, with a wink-wink disclaimer saying not to use it in production.  
 
+Further, I don't think it's a good idea that the verification for various ecosystems is hidden behind their own CLIs (ie, npm, gh and python). I would feel better with the consistency of being able to use the cosign CLI across ecosystems, but I wonder if my outlook will change in the future. 
 
 ### Keyless is not private
 
@@ -217,7 +260,7 @@ Sigstore's suite of tools does a lot of things. Its overall goal is to improve t
 
 It still feels quite rough in many areas; some of the documentation feels like it's written for someone _already_ familiar with sigstore (and it took me a lot of searching to find answers to the questions I had), and there are a lot of things hidden or abstracted away, but this is also meant to be its strength. To that end, I did find this useful page talking about how to do [Cosign, the manual way](https://edu.chainguard.dev/open-source/sigstore/cosign/cosign-manual-way/).
 
-The tooling and by extensions, ecosystem, feels fragmented. I didn't like that the 'usual' cosign command couldn't be used for Python sigstore files, and at the same time the various features would have me contend with rekor, fulcio and gitsign, each of which has its own packages, or lack of packages. It would be much neater if there were a single `sigstore` command which contained all of the subcommands necessary. 
+The tooling and by extensions, ecosystem, feels fragmented. I didn't like that the 'usual' cosign command couldn't be used for Python sigstore files without having to ask (similar for Github and npm attestations), and at the same time the various Sigstore features would have me contend with rekor, fulcio and gitsign, each of which has its own packages, or lack of packages. It would be much neater if there were a single `sigstore` command which contained all of the subcommands necessary. 
 
 Finally, metadata discoverability feels poor. The ability to verify a bundle requires additional information which is difficult to discover and in some cases, even discovering that information isn't enough. 
 

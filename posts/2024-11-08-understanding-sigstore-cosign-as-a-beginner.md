@@ -1,5 +1,5 @@
 ---
-title: A newbie's lens on Sigstore cosign's advantages and pain points
+title: Modern artifact signing with Cosign, what works and what hurts
 description: Trying to understand cosign as a beginner, figuring out where it fits and where it's a bit rough
 tags:
   - supply chain
@@ -9,11 +9,11 @@ tags:
   - security
 ---
 
-I've been seeing some buzz around Sigstore recently, it's a project that aims to improve software supply chain security by making signing and checking easier. It has seen ongoing work in the [Python](https://blog.sigstore.dev/announcing-the-1-0-release-of-sigstore-python-4f5d718b468d/) and [Maven](https://central.sonatype.org/news/20220302_firstlook/) ecosystems, which is pretty significant.   
+I've been seeing some buzz around Sigstore recently, it's a project that aims to improve software supply chain security by making signing and checking easier. It has seen ongoing work in the [Python](https://blog.sigstore.dev/announcing-the-1-0-release-of-sigstore-python-4f5d718b468d/) and [Maven](https://central.sonatype.org/news/20220302_firstlook/) ecosystems, as well as [npm](https://docs.npmjs.com/generating-provenance-statements) and [Github Actions](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations/using-artifact-attestations-to-establish-provenance-for-builds), which is pretty significant.   
 
-It removes much of the risk and maintenance around signing and verification. Although PGP exists, and has been used in this space for a long time, many developers find it difficult to work with. Sigstore is an attractive alternative because Sigstore makes it possible to work without keys and automates away as much as possible. I thought it would be worth getting a closer look at signing artifacts using cosign, with my newbie lens on. 
+It removes much of the risk and maintenance around signing and verification. Although PGP exists, and has been used in this space for a long time, many developers find it difficult to work with. Sigstore is an attractive alternative because Sigstore makes it possible to work without keys and automates away as much as possible. I thought it would be worth getting a closer look at signing artifacts using cosign, with my newcomer's lens on. 
 
-## How it works
+## Newbie's view of how it works
 
 Sigstore's main selling point is its "keyless" signing capability — more precisely, its ability to work with temporary key pairs that users don't need to manage. 
 
@@ -108,7 +108,7 @@ Verified OK
 
 ### Verifying Github and npm attestations without their own CLIs
 
-I also learned that [both Github Actions as well as npm](https://blog.sigstore.dev/cosign-verify-bundles/) have integrated cosign workflows, which they call attestations.That is, it should now be possible to verify npm tarballs as well as Github Artifacts, if the author has chosen to make use of attestation workflows. 
+I also learned that [both Github Actions as well as npm](https://blog.sigstore.dev/cosign-verify-bundles/) have integrated cosign workflows, which they call attestations. That is, it should now be possible to verify npm tarballs as well as Github Artifacts, if the author has chosen to make use of attestation workflows. 
 
 It did take a bit of trial and error to figure out where to get the bundle from, which even the blog author attests (ha) to.  
 
@@ -121,7 +121,7 @@ $ cosign verify-blob --bundle npm-provenance.sigstore.json --new-bundle-format -
 Verified OK
 ```
 
-Github hides theirs behind a `gh attestation verify` which I am not interested in, I'd like to see the actual files involved. For Github Actions, if the author makes use of the [attest build provenance action](https://github.com/actions/attest-build-provenance), the attestation is made visible at a special dedicated URL that contains attestation information, I thought that was quite neat. 
+Github hides theirs behind a `gh attestation verify` command in their own CLI, which I am not interested in, I'd like to see the actual pieces involved. For Github Actions, if the author makes use of the [attest build provenance action](https://github.com/actions/attest-build-provenance), the attestation is made visible at a special dedicated URL that contains attestation information, I thought that was quite neat. 
 
 [This example](https://github.com/cli/cli/attestations/2733309) is from the gh CLI itself, though there is no 'direct' link between the artifact and the attestation page; there is a link from the Github Action build where the artifact was created, but those artifact links are often expired.
 
@@ -138,7 +138,6 @@ $ curl -L https://github.com/cli/cli/releases/download/v2.60.1/gh_2.60.1_linux_3
 $ cosign verify-blob gh_2.60.1_linux_386.deb --bundle cli-cli-attestation-2733309.sigstore.json --cert-identity https://github.com/cli/cli/.github/workflows/deployment.yml@refs/heads/trunk  --cert-oidc-issuer https://token.actions.githubusercontent.com --new-bundle-format
 Verified OK
 ```
-
 
 
 ### If verifying is hard, nobody will verify
@@ -162,7 +161,7 @@ When using the keyless workflow, the email address from the identity provider (G
 In general, I did not feel comfortable using this workflow. Indeed this privacy aspect is a [known issue](https://blog.sigstore.dev/privacy-in-sigstore-57cac15af0d0/), but there aren't any convenient solutions. A promising one looks to be Pairwise Pseudonymous Identifiers, but it's not widely supported by OIDC providers yet. A simple alternative is to use _keyed_ workflow, where you generate a private and public key yourself, and use that with cosign to sign the artifacts. However this isn't too far off from just using `openssl` to sign artifacts.  
 
 
-## Automated signing with `cosign`
+## Automated signing is where `cosign` shines
 
 With CI/CD systems, there is no browser, so you can't really log in as yourself. Instead, cosign recognizes various well known CI systems and uses OIDC tokens that those providers can generate. 
 
@@ -254,13 +253,15 @@ cosign verify-blob README.md --bundle local.bundle  --key https://github.com/men
 ```
 
 
-## Other notes
+## My thoughts
 
 Sigstore's suite of tools does a lot of things. Its overall goal is to improve the software supply chain. I think at least in terms of CI/CD, it is something worth looking at, for blobs at least. It does feel like a good approach to signing. Short lived certificates are generated, signs the thing it needs to sign, and records the activity in a transparency log. 
 
 It still feels quite rough in many areas; some of the documentation feels like it's written for someone _already_ familiar with sigstore (and it took me a lot of searching to find answers to the questions I had), and there are a lot of things hidden or abstracted away, but this is also meant to be its strength. To that end, I did find this useful page talking about how to do [Cosign, the manual way](https://edu.chainguard.dev/open-source/sigstore/cosign/cosign-manual-way/).
 
-The tooling and by extensions, ecosystem, feels fragmented. I didn't like that the 'usual' cosign command couldn't be used for Python sigstore files without having to ask (similar for Github and npm attestations), and at the same time the various Sigstore features would have me contend with rekor, fulcio and gitsign, each of which has its own packages, or lack of packages. It would be much neater if there were a single `sigstore` command which contained all of the subcommands necessary. 
+Considering that it's a supply chain security tool, it ought to take its distribution channels more seriously; currently it's only providing .deb for Debian and Ubuntu, but one of the fundamental tenets in supply chain security is staying up to date, so it's important to participate in OS native package managers and their supply chain security. 
+
+The tooling and by extensions, ecosystem, feels fragmented. I didn't like that the 'usual' cosign command couldn't be used for Python sigstore files without having to ask or hunting around and guessing (similar for Github and npm attestations), and each ecosystem seemingly wants to hide away details in their own tooling. At the same time the various Sigstore features would have me contend with rekor, fulcio and gitsign, each of which has its own packages, or lack of packages. It would be much neater if there were a single `sigstore` command which contained all of the subcommands necessary. 
 
 Finally, metadata discoverability feels poor. The ability to verify a bundle requires additional information which is difficult to discover and in some cases, even discovering that information isn't enough. 
 

@@ -11,7 +11,9 @@ tags:
 
 I've been seeing some buzz around Sigstore recently, it's a project that aims to improve software supply chain security by making signing and checking easier. It has seen ongoing work in the [Python](https://blog.sigstore.dev/announcing-the-1-0-release-of-sigstore-python-4f5d718b468d/) and [Maven](https://central.sonatype.org/news/20220302_firstlook/) ecosystems, as well as [npm](https://docs.npmjs.com/generating-provenance-statements) and [Github Actions](https://docs.github.com/en/actions/security-for-github-actions/using-artifact-attestations/using-artifact-attestations-to-establish-provenance-for-builds), which is pretty significant.   
 
-It removes much of the risk and maintenance around signing and verification. Although PGP exists, and has been used in this space for a long time, many developers find it difficult to work with. Sigstore is an attractive alternative because Sigstore makes it possible to work without keys and automates away as much as possible. I thought it would be worth getting a closer look at signing artifacts using cosign, with my newcomer's lens on. 
+Sigstore is a project that aims to improve supply chain security, and one of its prominent projects is Cosign used for signing and verification. 
+
+It removes much of the risk and maintenance around signing and verification. Although PGP exists, and has been used in this space for a long time, many developers find it difficult to work with. Sigstore's tools are an attractive alternative because they make it possible to work without keys and automates away as much as possible. I thought it would be worth getting a closer look at signing artifacts using cosign, with my newcomer's lens on. 
 
 ## Newbie's view of how it works
 
@@ -40,7 +42,7 @@ cosign sign-blob test.txt --bundle test.txt.cosign.bundle
 
 This opened up a browser to initiate the OAuth workflow, where I logged in with my Github account.
 
-![sigstore sign in](/assets/images/understanding-sigstore-cosign/001.png)
+![Sigstore sign in](/assets/images/understanding-sigstore-cosign/001.png)
 
 Once signed in, the process continued in the terminal, where it requested the short lived certificate, signed the artifact, recorded the transaction, and output the bundle file. 
 
@@ -62,9 +64,9 @@ It isn't obvious where the transparency ledger is or where the record of the tra
 
 ### My first in-the-wild verification didn't work
 
-I had noticed that Python releases now came with sigstore bundle links, so I thought to try and verify them. Sadly, in the [Python 3.14 release](https://www.python.org/downloads/release/python-3140a1/), although there were sigstore bundles provided, I wasn't able to verify them with cosign. 
+I had noticed that Python releases now came with Sigstore bundle links, so I thought to try and verify them. Sadly, in the [Python 3.14 release](https://www.python.org/downloads/release/python-3140a1/), although there were Sigstore bundles provided, I wasn't able to verify them with cosign. 
 
-I downloaded the main file and the sigstore bundle, and looked at [their sigstore documentation](https://www.python.org/downloads/metadata/sigstore/) to construct the command. Although their examples use a python pip module for sigstore, I wanted to use the same cosign tool that I'd supposedly be using everywhere else. I thought it was a reasonable expectation to be able to substitute one for the other.    
+I downloaded the main file and the Sigstore bundle, and looked at [their Sigstore documentation](https://www.python.org/downloads/metadata/sigstore/) to construct the command. Although their examples use a python pip module for Sigstore, I wanted to use the same cosign tool that I'd supposedly be using everywhere else. I thought it was a reasonable expectation to be able to substitute one for the other.    
 
 But I got an error:  
 
@@ -89,7 +91,7 @@ $ cosign verify-blob Python-3.14.0a1.tgz --bundle Python-3.14.0a1.tgz.sigstore -
 ... bundle does not contain cert for verification, please provide public key
 ```
 
-Finally, I gave in, using the python sigstore module worked. But why?
+Finally, I gave in, using the python Sigstore module worked. But why?
 
 ```bash
 $ python3 -m sigstore verify identity --bundle Python-3.14.0a1.tgz.sigstore --cert-identity hugo@python.org --cert-oidc-issuer https://github.com/login/oauth Python-3.14.0a1.tgz
@@ -99,7 +101,7 @@ OK: Python-3.14.0a1.tgz
 
 I could not figure out what was different about this, or how I would have provided the public key that the error message asked for, but having to use yet _another_ tool to do the verification was not ideal. 
 
-I finally got a helpful answer from the sigstore discussion forum, I was missing a `--new-bundle-format` flag. That is, this worked:
+I finally got a helpful answer from the Sigstore discussion forum, I was missing a `--new-bundle-format` flag. That is, this worked:
 
 ```bash
 $ cosign verify-blob Python-3.14.0a1.tgz --bundle Python-3.14.0a1.tgz.sigstore --cert-identity hugo@python.org --cert-oidc-issuer https://github.com/login/oauth --new-bundle-format
@@ -257,11 +259,11 @@ cosign verify-blob README.md --bundle local.bundle  --key https://github.com/men
 
 Sigstore's suite of tools does a lot of things. Its overall goal is to improve the software supply chain. I think at least in terms of CI/CD, it is something worth looking at, for blobs at least. It does feel like a good approach to signing. Short lived certificates are generated, signs the thing it needs to sign, and records the activity in a transparency log. 
 
-It still feels quite rough in many areas; some of the documentation feels like it's written for someone _already_ familiar with sigstore (and it took me a lot of searching to find answers to the questions I had), and there are a lot of things hidden or abstracted away, but this is also meant to be its strength. To that end, I did find this useful page talking about how to do [Cosign, the manual way](https://edu.chainguard.dev/open-source/sigstore/cosign/cosign-manual-way/).
+It still feels quite rough in many areas; some of the documentation feels like it's written for someone _already_ familiar with Sigstore (and it took me a lot of searching to find answers to the questions I had), and there are a lot of things hidden or abstracted away, but this is also meant to be its strength. To that end, I did find this useful page talking about how to do [Cosign, the manual way](https://edu.chainguard.dev/open-source/sigstore/cosign/cosign-manual-way/).
 
 Considering that it's a supply chain security tool, it ought to take its distribution channels more seriously; currently it's only providing .deb for Debian and Ubuntu, but one of the fundamental tenets in supply chain security is staying up to date, so it's important to participate in OS native package managers and their supply chain security. 
 
-The tooling and by extensions, ecosystem, feels fragmented. I didn't like that the 'usual' cosign command couldn't be used for Python sigstore files without having to ask or hunting around and guessing (similar for Github and npm attestations), and each ecosystem seemingly wants to hide away details in their own tooling. At the same time the various Sigstore features would have me contend with rekor, fulcio and gitsign, each of which has its own packages, or lack of packages. It would be much neater if there were a single `sigstore` command which contained all of the subcommands necessary. 
+The tooling and by extensions, ecosystem, feels fragmented. I didn't like that the 'usual' cosign command couldn't be used for Python Sigstore files without having to ask or hunting around and guessing (similar for Github and npm attestations), and each ecosystem seemingly wants to hide away details in their own tooling. At the same time the various Sigstore features would have me contend with rekor, fulcio and gitsign, each of which has its own packages, or lack of packages. It would be much neater if there were a single `sigstore` command which contained all of the subcommands necessary. 
 
 Finally, metadata discoverability feels poor. The ability to verify a bundle requires additional information which is difficult to discover and in some cases, even discovering that information isn't enough. 
 

@@ -85,7 +85,7 @@ A browser receiving this information could now, quite simply, present the inform
 
 AdGuardDNS have also released a [browser extension](https://github.com/AdguardTeam/dns-sde-extension/) that emulates what the blocking behaviour could look like, which I was able to try out. By try out, I mean I modified it to place the extracted information over a meme. 
 
-![AdGuard SDE emulation](/assets/images/structured-dns-errors/001.png)
+![Adguard's SDE emulation extension modified. Think of the memes.](/assets/images/structured-dns-errors/001.png)
 
 Here I visited `ad.doubleclick.net` which was blocked, and the extension then queried [a separate endpoint](https://dns.adguard.ch/resolve?name=doubleclick.net&sde=1) to get the additional information. It's worth noting that the emulation behaviour is required for now, since browsers don't yet even look for this information. Once they do I'd imagine no extension would be required at all.  
 

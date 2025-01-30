@@ -26,4 +26,6 @@ Hardoced feature flags do away with many of these issues; they are simple, relia
 
 Simply start with a simple JSON file, read it in at application startup, and use it to control the visibility of features. Keep on top of the flags, remove them when they're no longer needed. If they live too long, make them the actual behaviour and remove the flag. Change a value through the normal development process, get it reviewed, tested, and deployed.  
 
-For most teams and products, this will often be good enough and will have a lot of mileage. When a team actually gets to the point of needing to change a feature at runtime at scale, then much like state management in SPAs, they'll know they need it. Premature optimization is not the way to go. It's bad design, bad engineering, and only serves well for brief moments of self-congratulatory smugness at tech conferences when the sales-speaker asks if anyone is using them.
+For most teams and products, this will often be good enough and will have a lot of mileage. When a team actually gets to the point of needing to change a feature at runtime at scale, then much like state management in SPAs, they'll know they need it. 
+
+Premature optimization is not the way to go. It's bad design, bad engineering, and only serves well for brief moments of self-congratulatory smugness at tech conferences when the sales-speaker asks if anyone is using them.

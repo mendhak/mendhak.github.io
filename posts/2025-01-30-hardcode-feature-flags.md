@@ -22,7 +22,7 @@ From a security perspective, they are a liability, as the surface area for attac
 
 In any case, adding more moving parts to any software system should always be given scrutiny to see if it's actually necessary and whether the risks it introduces are worth the problems being solved.
 
-Hardoced feature flags do away with many of these issues; they are simple, reliable, and safe. They are the most boring way to do it, and that's why they're the best way to do it.
+Hardcoded feature flags do away with many of these issues; they are simple, reliable, and safe. They are the most boring way to do it, and that's why they're the best way to do it.
 
 Simply start with a simple JSON file, read it in at application startup, and use it to control the visibility of features. Keep on top of the flags, remove them when they're no longer needed. If they live too long, make them the actual behaviour and remove the flag. Change a value through the normal development process, get it reviewed, tested, and deployed.  
 

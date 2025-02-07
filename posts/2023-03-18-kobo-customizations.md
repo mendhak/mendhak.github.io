@@ -127,7 +127,7 @@ The Kobo also has an Overdrive app, and as luck would have it, my local library 
 
 Adding new fonts to the Kobo is really easy. Connect the Kobo to a computer, and create a new folder at the root level called `fonts`. Then just copy the font files (ttf) into that folder. 
 
-Some fonts I chose to try were [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif), [Linux Libertine](https://www.dafont.com/linux-libertine.font) and [Bookerly](https://the-digital-reader.com/how-to-install-bookerly-ember-roboto-and-other-fonts-kobo-ereaders/).  
+Some fonts I chose to try were [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif), [Linux Libertine](https://www.dafont.com/linux-libertine.font) and [Bookerly](https://developer.amazon.com/en-US/alexa/branding/echo-guidelines/identity-guidelines/typography).  
 
 
 ![Fonts selection](/assets/images/kobo-customizations/008.png)

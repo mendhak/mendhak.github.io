@@ -20,7 +20,11 @@ The native way is actually quite simple. Design CSS for one color scheme, then o
 
 
 
-<iframe width="100%" height="300" src="//jsfiddle.net/35e0a97a/9rmvu68e/2/embedded/result,css,html/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe height="300" style="width: 100%;" scrolling="no" title="Dark mode Toggles - Pure CSS Way" src="https://codepen.io/mendhak/embed/myyWzPB?default-tab=" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/mendhak/pen/myyWzPB">
+  Dark mode Toggles - Pure CSS Way</a> by mendhak (<a href="https://codepen.io/mendhak">@mendhak</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 
 The user's preference value is read from the operating system or the browser's own setting. Life is simple, but there's one glaring omission — letting the user set this preference at a more granular website or page level. For instance, a user might set a preference for dark mode in their browser, but would want to switch to light mode [for a text-heavy page](https://graphicdesign.stackexchange.com/questions/15142/which-is-easier-on-the-eyes-dark-on-light-or-light-on-dark).  
@@ -30,7 +34,11 @@ The user's preference value is read from the operating system or the browser's o
 
 The most common technique for offering a toggle is to use Javascript to apply a custom class at the body level. The `prefers-color-scheme` feature is still used to start with, and clicking the button then applies the alternate class based on the current detected theme. 
 
-<iframe width="100%" height="300" src="//jsfiddle.net/35e0a97a/6g5dreyj/26/embedded/result,css,js,html/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe height="300" style="width: 100%;" scrolling="no" title="Dark mode toggles - Hacky JS way" src="https://codepen.io/mendhak/embed/KwwWGgE?default-tab=" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/mendhak/pen/KwwWGgE">
+  Dark mode toggles - Hacky JS way</a> by mendhak (<a href="https://codepen.io/mendhak">@mendhak</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 The CSS is messier, and grows unwieldy as the site's style expands. As a convenience, it's also common to save the user's toggled theme to local storage so that it is automatically loaded on their next visit. 
 
@@ -38,7 +46,11 @@ The CSS is messier, and grows unwieldy as the site's style expands. As a conveni
 
 I've [managed](https://stackoverflow.com/a/75124760/974369) to work out a way of using Javascript to toggle the light and dark themes, while still making use of the `prefers-color-scheme` feature, and without any custom classes. It requires looping through every stylesheet's [rules](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleSheet/cssRules), inspecting the media of each one, and swapping the light and dark color themes out. The code also includes storing the user's preference in localStorage, so it remembers on page refresh. 
 
-<iframe width="100%" height="300" src="//jsfiddle.net/35e0a97a/xmt1k659/78/embedded/result,js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+<iframe height="300" style="width: 100%;" scrolling="no" title="Dark mode toggles - Hacky JS with CSS Media Features" src="https://codepen.io/mendhak/embed/ZYYeqKz?default-tab=" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+  See the Pen <a href="https://codepen.io/mendhak/pen/ZYYeqKz">
+  Dark mode toggles - Hacky JS with CSS Media Features</a> by mendhak (<a href="https://codepen.io/mendhak">@mendhak</a>)
+  on <a href="https://codepen.io">CodePen</a>.
+</iframe>
 
 The code involved is somewhat complicated and unoptimized and will probably be slow for heavy stylesheets. The CSSStyleSheet and CSSRule APIs aren't widely used nor are they well documented. However, it works, so it could be considered the best of both worlds: it respects the user's choice at a granular site level, while still allowing the use of native CSS features. 
 

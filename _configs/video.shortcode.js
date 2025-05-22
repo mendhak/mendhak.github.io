@@ -31,7 +31,7 @@ export default function(url, width) {
 
 function getYouTubeTimeStampFromURL(url) {
   let regExp = /[?&]t=(?:(\d+)m(\d+)s|(\d+)s)/;
-  console.log(url.match(regExp));
+
   let match = url.match(regExp);
   return match ?
   (match[1] && match[2] ? `?start=${match[1]*60 + parseInt(match[2])}` :

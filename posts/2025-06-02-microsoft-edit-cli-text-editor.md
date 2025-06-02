@@ -63,4 +63,4 @@ Opening multiple files is possible, and I just use the bottom right menu to swit
 
 ![Switching between files](/assets/images/microsoft-edit-cli-text-editor/006.png)
 
-While writing this post using `edit`, it did exactly what I wanted: it got out of my way. I'm now convinced enough to add it to my `$PATH` and give it a proper shot. 
+While writing this post using `edit`, it did exactly what I wanted: it got out of my way. I'm now convinced enough to add it to my `$PATH` and give it a proper shot. Because it's so approachable with its mouse and keyboard flow support, this could also be a good starting point for people new to the terminal.

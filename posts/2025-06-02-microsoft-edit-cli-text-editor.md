@@ -7,7 +7,9 @@ tags:
   - vim
   - nano
   - linux
-
+  
+opengraph:
+  image: /assets/images/microsoft-edit-cli-text-editor/001.png
 ---
 
 My terminal-based text editing almost always occurs in short sessions. I'll usually want to modify something and get out. To me, it makes no sense to have to step on a learning curve for a text editor. A good tool gets out of your way, which is why I don't tend to favour `vim`, and only tolerate `nano`. 

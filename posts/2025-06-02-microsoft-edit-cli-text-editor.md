@@ -35,7 +35,7 @@ edit myfile.txt
 
 Within just a few minutes, I had a pretty good grasp of it, mostly because there wasn't anything to 'learn'. It's like the original gedit or notepad right in the terminal, out of the box. 
 
-Another thought that occurred: it's like someone reimplemented a terminal text editor, while cognizant of the slew of modern rich TUI tools that have emerged such as [rich](https://github.com/Textualize/rich), [click](https://github.com/pallets/click/), and [textual](https://github.com/Textualize/textual). 
+Another thought that occurred: it's like someone reimplemented a terminal text editor, while cognizant of the slew of modern rich TUI tools that have emerged such as [rich](https://github.com/Textualize/rich), [posting](https://posting.sh/), and [textual](https://github.com/Textualize/textual). 
 
 Using `edit` immediately felt intuitive and natural (minus some `vim`/`nano` shortcuts I had to Ctrl+Z from muscle memory).
 

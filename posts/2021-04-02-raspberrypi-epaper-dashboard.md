@@ -54,9 +54,9 @@ Although any Raspberry Pi can be used, the best one to get here is the Raspberry
 
 ### Picture frame
 
-You'll need a 6"x4" picture frame to hold everything together.  This is the best size just larger than the e-paper display.  The back needs to be made of cheap material so that it can be cut out for the e-paper display's connection mechanism.  
+You'll need a 18x13 cm (7"x5") picture frame to hold everything together.  This is the best size just larger than the e-paper display.  The back needs to be made of cheap material so that it can be cut out for the e-paper display's connection mechanism.  
 
-{% button "Picture frame", "https://www.wilko.com/wilko-6-x-4-inch-black-easy-photo-frame/p/0242493" %}
+{% button "Picture frame", "https://www.tescophoto.com/harriet-photo-frame" %}
 
 
 

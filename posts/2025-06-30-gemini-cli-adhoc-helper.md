@@ -37,7 +37,7 @@ You can use the `ls` command to list files in a directory!
 
 To that end, it does have a `--prompt` flag which works in a non-interactive mode, and this is what I'm interested in. 
 
-Unfortunately, out of the box, I found its defaults to be somewhat unsafe; it has access to some tools already, and those tools execute even when using the `--prompt` flag, without asking. A decision probably made to make it more convenient. 
+Unfortunately, out of the box, I found its defaults to be somewhat unsafe. Gemini CLI comes with [a security risk](https://github.com/google-gemini/gemini-cli/issues/2744): it has access to some tools already, and those tools execute even when using the `--prompt` flag, without asking. A decision probably made to make it more convenient. 
 
 ### How I configured it
 

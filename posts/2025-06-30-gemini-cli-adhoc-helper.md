@@ -49,7 +49,7 @@ $ cat ~/.gemini/settings.json
 {
   "theme": "Dracula",
   "selectedAuthType": "oauth-personal",
-  "coreTools": [],
+  "coreTools": false,
   "autoAccept": false
 }
 

@@ -41,7 +41,7 @@ Unfortunately, out of the box, I found its defaults to be somewhat unsafe. Gemin
 
 ### How I configured it
 
-Gemini can work off a settings file, located at `~/.gemini/settings.json`, in which I disabled its core tools: 
+Gemini can work off a settings file, located at `~/.gemini/settings.json`, in which I minimised its core tools: 
 
 ```json
 $ cat ~/.gemini/settings.json

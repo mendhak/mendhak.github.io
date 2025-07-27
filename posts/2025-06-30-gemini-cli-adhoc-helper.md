@@ -51,7 +51,7 @@ $ cat ~/.gemini/settings.json
   "selectedAuthType": "oauth-personal",
   "coreTools": ["MemoryTool"],
   "autoAccept": false,
-  "allowMCPServers": [],
+  "allowMCPServers": []
 }
 
 

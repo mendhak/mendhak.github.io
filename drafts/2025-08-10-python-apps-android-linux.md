@@ -47,7 +47,7 @@ More developer focused tools like `docker` and `uv` installed using their normal
 ![Hitting it from a browser](/assets/images/python-apps-android-linux/006.png)
 {% endgallery %}
 
-### Reaching Android Linux ports from the outside
+### Reaching ports from the outside
 
 One limitation though, is that the ports are only accessible locally from the device itself. That is, `http://localhost:8080` from the Android device worked, but `http://<my-phone-ip>:8080` from another device on the network did not. 
 

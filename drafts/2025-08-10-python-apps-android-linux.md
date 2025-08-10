@@ -56,7 +56,7 @@ But this was overcome thanks to Tailscale, a 'mesh network' utility that allows 
 {% figure "/assets/images/python-apps-android-linux/007.png", "Connecting to a listening port on Android Linux Terminal via Tailscale" %}
 
 
-### Developing remotely on Android Linux
+### Developing remotely on Android Linux with VSCode
 
 With the tooling in place and network connectivity established, the next logical step was to try and develop remotely on the device. This wasn't necessary of course, a very simple way to work could be to develop on the desktop, push it up to Github, and pull down in Android Linux Terminal. But that's a lot of extra steps and for personal app development, a fast feedback loop is important.  
 

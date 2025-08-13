@@ -98,4 +98,4 @@ Because it's a sandboxed environment, it does have limitations — there are no 
 
 There's still some work that could happen to make personal app development easier, such as being able to launch a script from the home screen, but I can probably live without it for now. 
 
-I'm already thinking of other things I could do, involving more helper scripts, [a spongebob mocking generator](https://gist.github.com/mendhak/b4302d1a546053ae528b3151423dde0d), or even exploring if running a local LLM is feasible... I might need to wait for hardware acceleration to be available to do that though. 
+I'm already thinking of other things I could do, involving more helper scripts, [a spongebob mocking generator](https://github.com/mendhak/textual_spongebob_mocking_text_generator/), or even exploring if running a local LLM is feasible... I might need to wait for hardware acceleration to be available to do that though. 

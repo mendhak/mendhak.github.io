@@ -61,7 +61,7 @@ The reason it works is because for repos in org_1, the git clone URL will includ
 
 By matching on these fragments, we include different configuration files. Those configuration files in turn set the `sshCommand` to make use of the correct SSH keys. 
 
-## Solutions I don't like
+## Solutions I didn't like
 
 In my research, these were the most common solutions as suggested on the internet and various mediocre LLM responses.
 

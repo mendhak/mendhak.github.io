@@ -1,6 +1,6 @@
 ---
-title: Getting Firefox's chatbot sidebar talking to a local LLM
-description: How to get the Firefox AI chatbot sidebar to talk to a local open-webui talking to ollama
+title: Getting Firefox's chatbot sidebar loading a local LLM
+description: How to get the Firefox AI chatbot sidebar to make use of a local open-webui talking to ollama
 tags:
   - firefox
   - local

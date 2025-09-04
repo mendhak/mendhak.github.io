@@ -38,7 +38,7 @@ ollama pull qwen2.5:1.5b
 
 ## open-webui
 
-Now ollama just provides an API, but no web interface. The Firefox chatbot sidebar needs to load a web interface, that's where [open-webui](https://github.com/open-webui/open-webui) comes in. 
+Ollama just provides an API, but no web interface. The Firefox chatbot sidebar needs to load a web interface, that's where [open-webui](https://github.com/open-webui/open-webui) comes in. 
 
 I decided to run it in Docker. 
 

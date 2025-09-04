@@ -66,18 +66,3 @@ That's it, the chatbot sidebar started showing "localhost" as an option in the t
 Although it's possible, and great for privacy as well as tinkering, I don't generally like messing about in the `about:config` settings. It's too easy to forget what's been changed, and why. 
 
 If I want to make this a more permanent solution, I'd probably look to run open-webui in systemd too. I don't think this would be a huge strain on the system, since ollama does unload the models from memory when not in use. 
-
-Here is what the systemd service file might look like:
-
-```ini
-# /etc/systemd/system/open-webui.service
-[Unit]
-Description=open-webui
-After=network.target
-
-[Service]
-Environment="OPEN_WEBUI_HOST=0.0.0.0"
-ExecStart=/usr/bin/docker run -d -p 8080:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main  
-ExecStop=/usr/bin/docker stop -t 2 open-webui
-Restart=always
-RestartSec=5

@@ -61,5 +61,9 @@ Under `about:config`, I searched for `browser.ml.chat.hideLocalhost` and set it 
 
 That's it, the chatbot sidebar started showing "localhost" as an option in the top dropdown. 
 
+## Notes
 
+Although it's possible, and great for privacy as well as tinkering, I don't generally like messing about in the `about:config` settings. It's too easy to forget what's been changed, and why. 
+
+If I want to make this a more permanent solution, I'd probably look to run open-webui in systemd too. I don't think this would be a huge strain on the system, since ollama does unload the models from memory when not in use. 
 

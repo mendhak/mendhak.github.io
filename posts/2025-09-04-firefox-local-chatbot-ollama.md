@@ -9,7 +9,7 @@ tags:
 
 ---
 
-Firefox has a chatbot sidebar that can be used to interact with the popular LLM chatbot providers, such as Claude, Gemini, and Claude. It is possible to allow it to also talk to a local LLM, although it's not a readily visible option. 
+Firefox has a chatbot sidebar that can be used to interact with the popular LLM chatbot providers, such as Claude, Gemini, and ChatGPT. It is possible to allow it to also talk to a local LLM, although it's not a readily visible option. 
 
 ![Firefox running open-webui with ollama](/assets/images/firefox-local-chatbot-ollama/001.png)
 

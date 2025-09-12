@@ -1,5 +1,5 @@
 ---
-title: The Firefox chatbot sidebar with a local LLM
+title: A local LLM in the Firefox sidebar
 description: How to get the Firefox AI chatbot sidebar to make use of a local open-webui talking to ollama
 tags:
   - firefox

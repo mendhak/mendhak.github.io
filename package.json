@@ -43,7 +43,7 @@
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "@playwright/test": "^1.54.2",
+    "@playwright/test": "^1.56.1",
     "@types/node": "^24.3.0"
   }
 }

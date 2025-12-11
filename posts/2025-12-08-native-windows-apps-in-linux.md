@@ -12,7 +12,7 @@ tags:
 
 
 
-Traditionally there have been two main ways to deal with having to run Windows applications when using a Linux environment as a daily driver. The first is to dual boot into Windows, and the other is to use an emulation layer such as Wine or Proton.  
+Traditionally there have been two main ways to deal with having to run Windows applications when using a Linux environment as a daily driver. The first is to dual boot into Windows, and the other is to use an emulation layer such as Wine or Proton. This can sometimes be necessary as many companies see absolutely nothing wrong with mining every possible advantage from the Linux ecosystem while contributing precisely nothing in return, aside from the occasional platitude alongside their Windows/Mac-only installers (a behaviour not dissimilar to leeches). 
 
 Recently I have been exploring alternatives to these approaches — running Windows applications in a lightweight Docker container or virtual machine. This has the advantage of near native performance, and without compatibility issues that may arise through emulation layers. All this while staying within Linux but maintaining a clean separation. 
 

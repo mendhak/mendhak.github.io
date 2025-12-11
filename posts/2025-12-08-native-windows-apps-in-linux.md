@@ -12,7 +12,7 @@ tags:
 
 
 
-Traditionally there have been two main ways to deal with having to run Windows applications when using a Linux environment as a daily driver. The first is to dual boot into Windows, and the other is to use an emulation layer such as Wine or Proton. This can sometimes be necessary as many companies see absolutely nothing wrong with mining every possible advantage from the Linux ecosystem while contributing precisely nothing in return, aside from the occasional platitude alongside their Windows/Mac-only installers (a behaviour not dissimilar to leeches). 
+Traditionally there have been two main ways to deal with having to run Windows applications when using a Linux environment as a daily driver. The first is to dual boot into Windows, and the other is to use an emulation layer such as Wine or Proton. 
 
 Recently I have been exploring alternatives to these approaches — running Windows applications in a lightweight Docker container or virtual machine. This has the advantage of near native performance, and without compatibility issues that may arise through emulation layers. All this while staying within Linux but maintaining a clean separation. 
 
@@ -77,3 +77,5 @@ There's a slight lag the first time I launched an application as the RDP connect
 There's no real GPU integration that I could see, though [WinBoat has an open issue about it](https://github.com/TibixDev/winboat/issues/239). Having GPU integration would be extremely useful for the photo processing application I like to use, ON1 Photo RAW, and would give me one less major reason to dual boot. However, I still wouldn't use this to run games; for that I'd still dual boot or use Proton thanks to the excellent work being done there. 
 
 Overall, these feel like a decent solution for running the occasional Windows application, but not for intense and prolonged use. It's a nice option to have in the toolbox for when it's needed, and it's good to see that these projects have matured well over the past few years. 
+
+In an ideal world, this wouldn't be necessary, but in reality there are oftentimes applications that are exclusive to non-free operating systems. So, wanting to run such applications can sometimes be necessary as many companies see absolutely nothing wrong with mining every possible advantage from the Linux ecosystem while contributing precisely nothing in return, aside from the occasional platitude alongside their Windows/Mac-only installers (a behaviour not dissimilar to leeches). 

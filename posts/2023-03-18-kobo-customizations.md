@@ -1,6 +1,6 @@
 ---
 title: My Kobo Customizations
-description: Calibre Web syncing, new fonts, immersive reading, book covers, Pocket login, dark mode everywhere, Nickel Menu features
+description: Calibre Web syncing, new fonts, immersive reading, book covers, Instapaper login, dark mode everywhere, Nickel Menu features
 tags:
   - kobo
   - calibre
@@ -15,7 +15,7 @@ opengraph:
 last_modified_at: 2023-08-28
 ---
 
-I recently switched from a Kindle device to a Kobo Libra 2, and have been playing around with its customization and tweaks. These are the ones I've found useful so far. They include dark mode, immersive reading, less fidgeting, Pocket and Overdrive. Most important is integration with Calibre Web, and some unlocked features with NickelMenu. 
+I recently switched from a Kindle device to a Kobo Libra 2, and have been playing around with its customization and tweaks. These are the ones I've found useful so far. They include dark mode, immersive reading, less fidgeting, Instapaper and Overdrive. Most important is integration with Calibre Web, and some unlocked features with NickelMenu. 
 
 {% figure "/assets/images/kobo-customizations/000.jpg", "Kobo Libra 2", "half" %}
 
@@ -114,9 +114,9 @@ An image should appear the next time the Kobo is put to sleep.
 
 ### Sending articles to Kobo
 
-Kobo comes with Pocket integration, which happens to be integrated with my main browser, Firefox. This allows me to save a web page to Pocket, and it appears in the Pocket collection in Kobo. 
+Kobo comes with Instapaper integration, this allows me to use Instapaper app and browser extensions to send articles to the Kobo device for later reading. It's particularly useful for longform type articles. 
 
-Pocket's normal login is via Firefox SSO, but no such option appears on the Kobo Pocket app. The Kobo Pocket app expects a regular Pocket username and password. I had to go through the [Forgot Password](https://getpocket.com/forgot?ep=1) workflow on Pocket to set a password, and I was then able to log into the Kobo. 
+The [process for activating Instapaper](https://help.kobo.com/hc/en-us/articles/33359968957463-Use-Instapaper-with-your-Kobo-eReader) is pretty simple on the Kobo, go to `More` > `My Articles` > `Link with Instapaper`. Follow the steps given there, and the articles should start syncing to the device.  
 
 
 ### Borrowing books from Overdrive library
@@ -184,7 +184,7 @@ Here are some of the ones I've made use of:
 
 **Screenshots** — toggling this menu option turns the power button into a screenshot button. Remember to un-toggle it, or it becomes difficult to recover the device from sleep.
 
-**Overdrive** and **Pocket**  — easy to get to these two apps from the menu
+**Overdrive** and **Instapaper**  — easy to get to these two apps from the menu
 
 **Sketch Pad, Solitaire, Sudoku, Word Scramble, Unblock It** — various simple games. Sketch Pad is a quick way of just drawing with your finger, and it saves as SVG.  
 
@@ -202,7 +202,7 @@ menu_item :main :Invert & Reboot :nickel_setting :toggle: invert
     chain_success :power :reboot
 menu_item :main    :Screenshots        :nickel_setting     :toggle :screenshots
 menu_item :main    :Overdrive          :nickel_open: store:overdrive
-menu_item :main    :Pocket             :nickel_open:       library:pocket
+menu_item :main    :Instapaper         :nickel_open:       library:instapaper
 menu_item :main    :Sketch Pad         :nickel_extras      :sketch_pad
 menu_item :main    :Solitaire          :nickel_extras      :solitaire
 menu_item :main    :Sudoku             :nickel_extras      :sudoku

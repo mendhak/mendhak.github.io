@@ -33,11 +33,17 @@ You can use the `ls` command to list files in a directory!
 
 
 
-### The `--prompt` flag
+### Gemini CLI's non interactive mode
 
-To that end, it does have a `--prompt` flag which works in a non-interactive mode, and this is what I'm interested in. 
+To that end, the Gemini CLI takes a positional prompt which is the question being asked. It can be passed in two ways:
 
-Unfortunately, out of the box, I found its defaults to be somewhat unsafe. Gemini CLI comes with [a security risk](https://github.com/google-gemini/gemini-cli/issues/2744): it has access to some tools already, and those tools execute even when using the `--prompt` flag, without asking. A decision probably made to make it more convenient. 
+    gemini "How do I list all files in a directory?"
+    # or
+    echo "How do I list all files in a directory?" | gemini -
+
+This positional prompt is basically the non-interactive mode, which is what I'm interested in. 
+
+Unfortunately, out of the box, I found its defaults to be somewhat unsafe. Gemini CLI comes with [a security risk](https://github.com/google-gemini/gemini-cli/issues/2744): it has access to some tools already, and those tools execute even when using the non interactive mode, without asking. A decision probably made to make it more convenient. 
 
 ### How I configured it
 
@@ -47,13 +53,27 @@ Gemini can work off a settings file, located at `~/.gemini/settings.json`, in wh
 $ cat ~/.gemini/settings.json
 
 {
-  "theme": "Dracula",
-  "selectedAuthType": "oauth-personal",
-  "coreTools": ["MemoryTool"],
-  "autoAccept": false,
-  "allowMCPServers": []
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "ui": {
+    "theme": "Dracula"
+  },
+  "tools": {
+    "autoAccept": false,
+    "core": []
+  },
+  "mcp": {
+    "allowed": []
+  },
+  "telemetry": {
+    "enabled": false,
+    "target": "local",
+    "outfile": "/dev/null"
+  }
 }
-
 
 ```
 
@@ -62,16 +82,18 @@ Further, it can take a `~/.gemini/GEMINI.md` file which gives it the context for
 ```bash
 $ cat ~/.gemini/GEMINI.md
 
-Act only as an adhoc commandline assistant. 
-When asked a question, answer the question briefly. 
+You will act as an assistant that answers questions about how to perform actions in a Linux commandline environment. 
+When asked a question, generate a sample command that can accomplish what the user is asking for. 
+If the question is not related to Linux, answer the question in brief.
 Important: NEVER offer to run any tools.
+
 ```
 
 And finally, to be able to use the `?` command, I added this to my `.bashrc`:
 
 ```bash
 ? () {
-    gemini --prompt "$*"
+    gemini "$*"
 }
 ```
 

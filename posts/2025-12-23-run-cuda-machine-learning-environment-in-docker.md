@@ -121,6 +121,4 @@ And now the fun part, which is running those notebooks. The example that spurred
 
 ## Sample repo
 
-I have pushed a sample repository demonstrating this setup to GitHub: https://github.com/mendhak/devcontainer-nvidia-cuda-environment 
-
-It should be enough to just clone the repo and open it in VS Code to get started. But make sure that the NVIDIA Container Toolkit is installed on the host first, otherwise the container won't have access to the GPU.
+I have pushed a [sample repository](https://github.com/mendhak/devcontainer-nvidia-cuda-environment) demonstrating this setup to GitHub. It should be enough to just clone the repo and open it in VS Code to get started. But make sure that the NVIDIA Container Toolkit is installed on the host first, otherwise the container won't have access to the GPU.

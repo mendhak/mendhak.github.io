@@ -73,36 +73,9 @@ For other databases, the community once again steps in with [various scripts](ht
 
 I actually ended up setting up [a Github repo](https://github.com/mendhak/stackoverflow-data-exploration/) complete with Dockerfile, docker-compose, and helper scripts to make it easier to reproduce the steps. 
 
-I started by building `sodata` into a Docker image; it clones from github so it can be built anywhere. 
+{% githubrepocard "mendhak/stackoverflow-data-exploration" %}
 
-```Dockerfile
-FROM debian:bookworm-slim
-
-RUN apt-get update && apt-get install -y \
-    cmake \
-    g++ \
-    make \
-    git \
-    libexpat1 \
-    libexpat1-dev \
-    libpqxx-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-
-WORKDIR /app
-
-RUN git clone https://github.com/sth/sodata.git . && \
-    mkdir -p build && \
-    cd build && \
-    cmake .. && \
-    make pgimport && \
-    cp pgimport /usr/local/bin/
-
-WORKDIR /data
-
-ENTRYPOINT ["pgimport"]
-CMD ["-h"]
-```
+I started by building `sodata` into [a Docker image](https://github.com/mendhak/stackoverflow-data-exploration/blob/main/Dockerfile); it clones from the original Github for convenience.
 
 After building it, 
 

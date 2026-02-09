@@ -17,7 +17,7 @@ Since the Linux Terminal app was introduced for Android, I've been curious about
 
 Considering that a smartphone is a portable computer, it makes sense that a user ought to have the ability to run their own apps on their own devices. The notion of running bespoke scripts or utilities for personal workflows feels logical and privacy friendly (and is long overdue). 
 
-### Exploring and installing tools
+## Exploring and installing tools
 
 The Android Linux Terminal app is [technically a webview](https://www.androidauthority.com/android-linux-terminal-app-3489887/) which connects to a local Debian Bookworm VM, and works well. All the usual suspects worked straight away. 
 
@@ -47,7 +47,7 @@ More developer focused tools like `docker` and `uv` installed using their normal
 ![Hitting it from a browser](/assets/images/python-apps-android-linux/006.png)
 {% endgallery %}
 
-### Reaching ports from the outside
+## Reaching ports from the outside
 
 One limitation though, is that the ports are only accessible locally from the device itself. That is, `http://localhost:8080` from the Android device worked, but `http://<my-phone-ip>:8080` from another device on the network did not. 
 
@@ -56,7 +56,7 @@ But this was overcome thanks to Tailscale, a 'mesh network' utility that allows 
 {% figure "/assets/images/python-apps-android-linux/007.png", "Connecting to a listening port on Android Linux Terminal via Tailscale" %}
 
 
-### Developing remotely on Android Linux with VSCode
+## Developing remotely on Android Linux with VSCode
 
 With the tooling in place and network connectivity established, the next logical step was to try and develop remotely on the device. This wasn't necessary of course, a very simple way to work could be to develop on the desktop, push it up to Github, and pull down in Android Linux Terminal. But that's a lot of extra steps and for personal app development, a fast feedback loop is important.  
 
@@ -66,13 +66,13 @@ To that end, there is a [VSCode extension for Tailscale](https://tailscale.com/k
 
 This is where the power of personal development comes in. I can now write Python scripts in a familiar environment, and run them on the Android device. I don't need permission from anyone, I don't need to publish it anywhere, I can just write a script and run it.
 
-### My book rating prediction example
+## My book rating prediction example
 
 In the screenshot above, I'm actually training [a simple machine learning model](https://github.com/mendhak/goodreads_book_rating_prediction/blob/master/generate_content_model.ipynb) right on the device. This model uses my existing Goodreads data to then predict whether I would like a new book, given some metadata about it. 
 
 {% figure "/assets/images/python-apps-android-linux/009.png", "Model prediction output", "half" %}
 
-### Developing TUIs with Textual
+## Developing TUIs with Textual
 
 TUIs (Terminal User Interfaces) are interactive user interface applications for the terminal. A popular library for this is [Textual](https://textual.textualize.io/). It's made for Python, and is pretty simple to use. 
 

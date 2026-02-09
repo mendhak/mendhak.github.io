@@ -53,7 +53,7 @@ remote: Enumerating objects...
 
 Similarly when cloning a repo in org_2, git will use the correct key.
 
-### How it works
+## How it works
 
 The [`includeIf` section](https://git-scm.com/docs/git-config#_includes) in .gitconfig allows conditionally including configuration from another file. There are different kinds of conditions, and the `hasconfig:remote` is what's being used here. The fragment will match on the remote URL of the repository. 
 
@@ -61,7 +61,7 @@ The reason it works is because for repos in org_1, the git clone URL will includ
 
 By matching on these fragments, we include different configuration files. Those configuration files in turn set the `sshCommand` to make use of the correct SSH keys. 
 
-### Managing multiple SSH signing keys
+## Managing multiple SSH signing keys
 
 I've previously written about [signing git commits using SSH keys](./2024-02-15-keepassxc-sign-git-commit-with-ssh.md). When there are multiple SSH keys for multiple organisations, the process is similar to the above.  
 

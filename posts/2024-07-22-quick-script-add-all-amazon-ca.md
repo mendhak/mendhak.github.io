@@ -40,7 +40,7 @@ But note, not everything looks at the same trust store. For example, Python does
 
 
 
-### How the script works
+## How the script works
 
 It first creates a temporary directory to download the bundle in. It then uses `awk` (which I still don't understand) to split the bundle into individual certificates, with the `.crt` extension as that's what the trust store expects. 
 

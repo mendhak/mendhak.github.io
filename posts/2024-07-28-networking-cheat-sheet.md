@@ -20,7 +20,7 @@ opengraph:
 
 I'm not a networking professional, but I've often had to impersonate one. Here are some of the tools and commands I've found useful over the years.  
 
-### Reach a port on a server
+## Reach a port on a server
 
 It's not unusual for corporate firewalls or hotel WiFi to block certain ports/protocols, it might allow web traffic but not VPN or SSH; I want to find out if that's happening. 
 
@@ -79,7 +79,7 @@ PING
 ```
 
 
-### Set up a listener on a port
+## Set up a listener on a port
 
 I need this when an actual network engineer tells me they've opened a firewall rule, but they haven't, and I know they haven't, but I don't want to look stupid when I tell them they haven't. 
 
@@ -99,7 +99,7 @@ nc -u -l 8081
 
 Send a UDP packet using `echo -n "Hello" | nc -u servername 8081` from another terminal and watch the first one. It's important to note that UDP is connectionless, sending a packet is a one-way operation and there is no indication of success.  
 
-### Listening and echoing HTTP requests
+## Listening and echoing HTTP requests
 
 When I need to work at the HTTP layer, and troubleshoot message bodies and headers, I use my [HTTP Echo utility](/posts/2019-03-01-docker-http-https-echo.md). It's a web server that echoes requests back to the sender. It runs in a container and can be deployed with the rest of the infrastructure being tested.    
 
@@ -109,7 +109,7 @@ docker run -p 8080:8080 -p 8443:8443 --rm -t mendhak/http-https-echo:33
 
 I can then browse to any arbitrary path like [https://localhost:8443/hello-world](https://localhost:8443/hello-world) and see the request echoed back in the browser.   
 
-![Request echoed back in the browser](/assets/images/docker-http-https-echo/002.png)
+![docker http-https-echo output in the browser](/assets/images/docker-http-https-echo/002.png "Request echoed back in the browser")
 
 I can send a request with curl,
 
@@ -123,7 +123,7 @@ and see the request echoed back too, as well as see the request in the container
 
 The tool allows for more involved tests, like JWTs, JSON payloads, empty responses, delays, custom content types, mTLS. 
 
-### Inspecting a site's certificates
+## Inspecting a site's certificates
 
 Misconfigured certificates can cause weird behaviours in browsers and client-side tooling; the browser might throw warnings, or a database client might fail to connect. 
 So I often want to inspect the certificates directly. 
@@ -170,7 +170,7 @@ openssl s_client -connect example.com:443 -tls1_3
 If you see a certificate come back, that TLS version is supported. 
 
 
-### Testing certificate scenarios with BadSSL
+## Testing certificate scenarios with BadSSL
 
 A lot can go wrong with certificates, because we make naive assumptions about them. We assume they're always there, always valid, always signed by a trusted CA.  
 
@@ -178,12 +178,12 @@ Of course that's wrong, certificates could be malformed, self signed, not match 
 
 [BadSSL](https://badssl.com/) is a useful tool in the certificate space. It has lots of certificate scenarios to work against. Testing against its examples helps with making client code more robust. I've found the expired, wrong host, and self signed to be useful tests. It even has certificates on different TLS versions, key exchanges, and HSTS upgrade testing.  
 
-![BadSSL](/assets/images/networking-cheat-sheet/001.png)
+![Various scenarios available on Bad SSL](/assets/images/networking-cheat-sheet/001.png "Bad SSL")
 
 At the other end, a site that's never going to have a certificate is [NeverSSL](https://neverssl.com). This is useful when testing on captive portals or where there's https interception in a network, or https redirection by a browser.   
 
 
-### Testing DNS
+## Testing DNS
 
 {% notice "warning" %}
 *It’s not DNS,  
@@ -240,7 +240,7 @@ But in many more modern systems, it's not that simple. In Ubuntu 22.04, it's `re
 resolvectl status
 ```
 
-### Testing a website URL
+## Testing a website URL
 
 This one's the simplest, I just want to 'look' at a site URL without browser behaviours getting in the way.  
 
@@ -301,7 +301,7 @@ curl -v --connect-to example.com:80:differentdomain.net:85 http://example.com
 
 There's a lot more that curl can do, it deserves [its own cheatsheet](https://quickref.me/curl.html).
 
-### Find out what's listening on a port
+## Find out what's listening on a port
 
 When port conflicts occur, I need to find out what's listening on a port. 
 

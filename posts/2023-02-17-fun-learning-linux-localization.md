@@ -1,5 +1,5 @@
 ---
-title: Fun and learnings with localization on Linux
+title: I had fun learning about Linux localization and fonts
 description: Things I learned about date and time localization and fonts with Python and Bash and SVG
 tags:
   - linux
@@ -27,7 +27,7 @@ I have a simple [epaper dashboard project](https://github.com/mendhak/waveshare-
 {% endgallery %}
 
 
-### Python Babel library
+## Python Babel library
 
 The simplest way to play around and experiment with locales was using the Python [Babel library](https://babel.pocoo.org/). It provides some simple utility functions that do the thinking and formatting. Babel itself gets its information from the Unicode Common Locale Data Repository (CLDR) project, a massive collection of locale metadata, formatting and parsing for dates, times, numbers, units, names, even down to words like 'yesterday'. As an example, here's the CLDR data for [date formats in Icelandic](https://unicode-org.github.io/cldr-staging/charts/latest/verify/dates/is.html). What's in this database isn't _always_ going to match reality, but it's the closest thing to a standardized formatting there is. Making use of the Babel library was then as simple as:
 

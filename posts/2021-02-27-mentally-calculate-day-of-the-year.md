@@ -15,7 +15,7 @@ The Doomsday algorithm is a memory trick that lets you figure out the day of the
 
 ### The last day in February
 
-For this year of writing (2026) the last day in February is the 28<sup>th</sup> and it falls on a Saturday.  This is the *anchor* day, and is the only variation you need to memorize for a given year.  
+For this year of writing (2026) the last day in February is the 28<sup>th</sup> and it falls on a **Saturday**.  This is the *anchor* day, and is the only variation you need to memorize for a given year.  
 
 The rest of the mnemonic stays the same every year.  There will be a day in each month which also falls on that anchor day (Saturday).  Once you know where you are in a month, you can work forwards or backwards to figure out the day.
 

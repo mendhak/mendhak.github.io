@@ -56,13 +56,13 @@ Most photo processing software actually did come with _some_ asset management fe
 
 It can do RAW imports, flagging and rejecting, rating, colours, sharing and publishing. It also does GPS correlation, which is pretty important to me. I record my GPX tracks and let the [geotagging tool](https://userbase.kde.org/Digikam/Geotagging) correlate the photos; it can even do reverse geocoding and put the location name in the metadata. 
 
-![Digikam GPS correlation for my recent Peak District holiday](/assets/images/moving-on-from-lightroom/006.png)
+![A Digikam screen with images, a map, and a GPX trail, correlating photos on the trail](/assets/images/moving-on-from-lightroom/006.png "Digikam GPS correlation for my recent Peak District holiday")
 
 Digikam's similarity search is a great way of finding duplicates and helping clean up years of accumulated sprawl. It actually helped me recover from a major mistake I had made, which was exporting directly from Lightroom to Flickr. The changes were stuck in the Lightroom Catalog (lrcat) file. 
 
 Thankfully, I was able to do a Flickr data export, then use [the flickr-export-organizer script](https://github.com/tagspaces/flickr-export-organizer) to rearrange the files into a folder structure. Digikam's similarity search then helped me identify similar photos and I'd then drag them into the right folders. It was a bit of a manual process, and the final files don't sit exactly next to its original files, but I'm satisfied with this salvage operation. 
 
-![Digikam similarity search example](/assets/images/moving-on-from-lightroom/005.png)
+![Similarity search results for an image of a chair](/assets/images/moving-on-from-lightroom/005.png "Digikam similarity search example")
 
 There was another mistake I had made, which I wasn't exactly able to recover from, which is sidecar files. Lightroom does have the ability to write metadata to XMP files, but it isn't something I had uniformly applied everywhere, and so a lot of metadata was stuck in the catalog file. XMPs are generally a good idea and understood by many asset management applications, but I had not been consistent with them. 
 
@@ -111,7 +111,7 @@ I thought it struck a good balance between enthusiast and professional wofkflows
 
 What sold me on this software was the ability to take it easy or go deep on the editing. There are several presets it comes with, which act as a good starting point because they just perform actions in the develop module, which you can carry on from. Or you can choose to start fresh and make your own adjustments to different parts of the image. 
 
-![ON1 Photo Raw. Presets on the left, and layer masks on the right](/assets/images/moving-on-from-lightroom/007.png)
+![ON1 Photo Raw edit screen, with presets on the left and adjustments on the right](/assets/images/moving-on-from-lightroom/007.png "ON1 Photo Raw. Presets on the left, and layer masks on the right")
 
 It's not perfect; there's a thankfully smaller proprietary lock-in which is limited to the image level rather than a more egregious catalog level. Each image you process gets a corresponding `.on1` file which stores the changes you've made to it, a somewhat decent compromise that gets out of my way. For HDRs and panoramas, the combined image is in an `.onphoto` file, but can be converted to TIFF. Even regular images can be converted to TIFF, which is a good way to not be locked in.  
 
@@ -132,7 +132,7 @@ Finally when I have something I'm happy with, I'll export the final image to dis
 * Don't be afraid to try out new software, and don't be afraid to move on.
 * Don't be afraid to pay for software, but make sure it respects your time.
 
-![Work in progress](/assets/images/moving-on-from-lightroom/008.png)
+![Photo of a tree against the backdrop of a streaky sky, being edited in ON1](/assets/images/moving-on-from-lightroom/008.png "Work in progress")
 
 ----
 

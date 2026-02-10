@@ -38,15 +38,15 @@ curl -k -X PUT -H "Arbitrary:Header" -d aaa=bbb https://localhost:8443/hello-wor
 ```
 
 {% gallery "`curl` and browser output" %}
-![curl output](/assets/images/docker-http-https-echo/001.png)
-![browser response](/assets/images/docker-http-https-echo/002.png)
+![Docker image reflected back to curl client with various metadata](/assets/images/docker-http-https-echo/001.png "curl output")
+![Docker image reflected back to browser with metadata](/assets/images/docker-http-https-echo/002.png "browser response")
 {% endgallery %}
 
 
 
 You can also see the request appear in the docker logs  
 
-![Docker log output](/assets/images/docker-http-https-echo/003.png)
+![Container log output showing requests, responses and start and stop messages](/assets/images/docker-http-https-echo/003.png "Docker log output")
 
 ## Features
 

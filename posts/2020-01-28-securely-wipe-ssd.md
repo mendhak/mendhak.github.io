@@ -19,7 +19,7 @@ As an overview you'll need to find out the disk's label, unfreeze the disk, set 
 
 If the disk is already connected to your motherboard, you can leave it there.  If you've already removed it from the case, you can connect it to your machine with a USB-SATA converter.  Preferably, do this over SATA but the option exists to use USB.  
 
-![USB SATA converter](/assets/images/securely-wipe-ssd/usb-sata-connected.jpg)
+![A 2.5 inch SSD connected to a PC USB port](/assets/images/securely-wipe-ssd/usb-sata-connected.jpg "USB SATA converter")
 
 There have been some forum posts about disks being bricked when attempting these operations over USB, however I have wiped about a dozen SSDs without issue.  Your mileage may vary.
 
@@ -28,11 +28,11 @@ There have been some forum posts about disks being bricked when attempting these
 
 You'll need to know the correct hard drive label to feed into later commands.  The easiest way to do this is to open up the Ubuntu _Disks_ application and look for the hard drive that you've plugged in. 
 
-![Get the label of the disk](/assets/images/securely-wipe-ssd/wipe-ssd-00.png)
+![Using disk viewer to get the disk label](/assets/images/securely-wipe-ssd/wipe-ssd-00.png "Get the label of the disk")
 
 You can also use the `sudo fdisk -l` command, and look for your disk there. 
 
-![`fdisk` output](/assets/images/securely-wipe-ssd/wipe-ssd-01.png)
+![Output of fdisk showing many disks](/assets/images/securely-wipe-ssd/wipe-ssd-01.png "`fdisk` output")
 
 In this case, the drive is `/dev/sda` - though if you have other SATA SSDs then there may be a mix of sda, sdb, sdc and so on in there.  For reference the drive will just be referenced as `/dev/sdX` from here on.
 
@@ -59,7 +59,7 @@ You can check if your disk is frozen using
 
     sudo hdparm -I /dev/sdX
 
-![Disk frozen status](/assets/images/securely-wipe-ssd/wipe-ssd-02.png)
+![Output of hdparm showing not frozen](/assets/images/securely-wipe-ssd/wipe-ssd-02.png "Disk frozen status")
 
 If you see `not    frozen` then you're OK to proceed.  But if you just see `frozen`, you will need to unfreeze the disk. 
 
@@ -79,13 +79,13 @@ According to the spec, as a prerequisite to issuing an erase command, you'll nee
 
     sudo hdparm --user-master u --security-set-pass hunter2 /dev/sdX 
 
-![Set password](/assets/images/securely-wipe-ssd/wipe-ssd-03.png)
+![Use of hdparm to set a password on the SSD](/assets/images/securely-wipe-ssd/wipe-ssd-03.png "Set password")
 
 Test to make sure that the password has indeed been set. 
 
     sudo hdparm -I /dev/sdX
 
-![Confirm password is set](/assets/images/securely-wipe-ssd/wipe-ssd-04a.png)
+![Use of hdparm to confirm that a password is set](/assets/images/securely-wipe-ssd/wipe-ssd-04a.png "Confirm password is set")
 
 This time you should see, under `Master password`, the `not    enabled` has become `enabled`.  The line `Security level high` also appears at the bottom of the list.  
 
@@ -95,7 +95,7 @@ This time you should see, under `Master password`, the `not    enabled` has beco
 
 The hdparm output also shows what kind of erase the drive supports.  
 
-![Type of erase](/assets/images/securely-wipe-ssd/wipe-ssd-04b.png)
+![hdparm output indicating supported erase types](/assets/images/securely-wipe-ssd/wipe-ssd-04b.png "Type of erases supported")
 
 The `SECURITY ERASE UNIT` command will rotate the disk's internal encryption key, rendering the data on disk invalid.  
 The `ENHANCED SECURITY ERASE UNIT` will rotate the encryption key and also write a manufacturer-determined pattern to the disk as an added measure. 
@@ -114,7 +114,7 @@ To perform a normal Security Erase,
 
 Be sure to wait a few minutes more than the estimate.  
 
-![Erase command](/assets/images/securely-wipe-ssd/wipe-ssd-05.png)
+![Use of hdparm to erase the disk](/assets/images/securely-wipe-ssd/wipe-ssd-05.png "Erase command")
 
 
 ## Test that it's erased
@@ -125,12 +125,12 @@ Once again, run
 
 Notice that the `Security level high` line no longer appears.  Under `Master password` the status has returned to `not enabled`. This tells us that the disk has been reset.
 
-![Confirm erasure](/assets/images/securely-wipe-ssd/wipe-ssd-06.png)
+![Use of hdparm to confirm disk erased showing master password is not enabled](/assets/images/securely-wipe-ssd/wipe-ssd-06.png "Confirm erasure")
 
 Unplug and re-plug the SSD, then open the _Disks_ application. The disk should appear but without any of your previous partitions. 
 
 
-![Confirm erasure](/assets/images/securely-wipe-ssd/wipe-ssd-07.png)
+![Use of Disks application to confirm erasure](/assets/images/securely-wipe-ssd/wipe-ssd-07.png "Confirm erasure")
 
 You can also verify by reading bytes directly off the disk with the `dd` command. 
 
@@ -138,7 +138,7 @@ You can also verify by reading bytes directly off the disk with the `dd` command
 
 If you've done an Enhanced Erase you will see the pattern which was set by the manufacturer.  
 
-![Enhanced security erase](/assets/images/securely-wipe-ssd/wipe-ssd-08.png)
+![Garbled output from dd command indicating an enhanced erase](/assets/images/securely-wipe-ssd/wipe-ssd-08.png "Enhanced security erase")
 
 In the case of a regular erase you will see nothing. 
 
@@ -154,7 +154,7 @@ To address this paranoia, you can take this a step further by performing a `dd` 
 
 Wait until the 'no space left on device' error appears.
 
-![`dd` fill](/assets/images/securely-wipe-ssd/wipe-ssd-09.png)
+![Output of dd command until there is no longer space left on the device](/assets/images/securely-wipe-ssd/wipe-ssd-09.png "`dd` fill")
 
 And you're done.  
 

@@ -51,7 +51,7 @@ Converting normal markdown images to use lightbox, and [super wide images!](http
 
 Developing with Eleventy was a joy, and I spent a pretty intense 3 weeks working on the 'Eleventy Satisfactory' theme.  Working on one idea would lead to others in a cascade, and getting to grips with the various data wrangling features like computed data and nunjucks made for efficient snippets that weren't too unwieldy.  Overall a very satisfying experience.  
 
-![Github activity lit up](/assets/images/escaping-jekyll-to-eleventy/001.png)
+![Github activity chart with green squares representing activity on a day](/assets/images/escaping-jekyll-to-eleventy/001.png "Github activity lit up")
 
 
 ## Other thoughts

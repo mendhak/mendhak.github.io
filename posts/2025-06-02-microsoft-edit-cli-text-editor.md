@@ -31,7 +31,7 @@ After that, just `edit` a file:
 edit myfile.txt
 ```
 
-![Writing this blog post](/assets/images/microsoft-edit-cli-text-editor/001.png)
+![edit terminal text editor, with this blog post being written in it](/assets/images/microsoft-edit-cli-text-editor/001.png "Writing this blog post")
 
 Within just a few minutes, I had a pretty good grasp of it, mostly because there wasn't anything to 'learn'. It's like the original gedit or notepad right in the terminal, out of the box. 
 
@@ -41,11 +41,11 @@ Using `edit` immediately felt intuitive and natural (minus some `vim`/`nano` sho
 
 The shortcuts are intuitive, because they're what most GUI text editors and IDEs use. `Ctrl+S` to save (how did it take this long?), and `Ctrl+Q` to quit, and `Alt+Z` to word wrap. I can even `Ctrl+Z` to undo. 
 
-![The `edit` edit menu](/assets/images/microsoft-edit-cli-text-editor/002.png)
+![The Edit menu in the edit editor](/assets/images/microsoft-edit-cli-text-editor/002.png "The `edit` edit menu")
 
 The find supports regex! 
 
-![Regex](/assets/images/microsoft-edit-cli-text-editor/003.png)
+![Using regex in the search feature in edit](/assets/images/microsoft-edit-cli-text-editor/003.png "Using regex in find!")
 
 Clicking somewhere in a document moves the mouse cursor to that position — again, it's that natural visual way of editing. I _believe_ `nano` and `vim` can do this with some configuration settings, but it isn't a default.  
 
@@ -53,14 +53,14 @@ It's possible to use the mouse as well as usual keyboard shortcuts to highlight 
 
 Overall, they've done a pretty decent job of porting the fast click-and-shortcut experience over from UI land. 
 
-![There's even column select](/assets/images/microsoft-edit-cli-text-editor/004.png)
+![Ability to select a column](/assets/images/microsoft-edit-cli-text-editor/004.png "There's even column select")
 
 The menus at the top are clickable, and there's a file picker too. 
 
-![File picker](/assets/images/microsoft-edit-cli-text-editor/005.png)
+![File select dialog showing various files in the directory](/assets/images/microsoft-edit-cli-text-editor/005.png "File picker")
 
 Opening multiple files is possible, and I just use the bottom right menu to switch between them. 
 
-![Switching between files](/assets/images/microsoft-edit-cli-text-editor/006.png)
+![Switcher dialog showing the current files being edited in this session](/assets/images/microsoft-edit-cli-text-editor/006.png "Switching between files")
 
 While writing this post using `edit`, it did exactly what I wanted: it got out of my way. I'm now convinced enough to add it to my `$PATH` and give it a proper shot. Because it's so approachable with its mouse and keyboard flow support, this could also be a good starting point for people new to the terminal.

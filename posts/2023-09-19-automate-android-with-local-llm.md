@@ -16,6 +16,12 @@ opengraph:
   image: /assets/images/automate-android-with-local-llm/000.png
 ---
 
+{% notice "warning" %}
+
+Due to the rapidly changing nature of the LLM landscape, this post may already be outdated. I'll still leave it up as it can be skimmed for general concept and ideas, which  serve as a useful learning exercise. 
+
+{% endnotice %}
+
 While most well known Large Language Models (LLMs) are closed and behind paywalls, there exist open models such as LLaMa and its derivatives, available for free and private use. A thriving open-source community has built up around them, and projects like MLC and llama.cpp bring these LLMs to consumer devices such as phones and laptops. 
 
 These projects have currently captured my attention; it's pretty fascinating to see an LLM running on low end hardware, and to imagine what possibilities this could open up in the future through this increased accessibility to the masses. 

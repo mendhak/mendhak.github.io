@@ -17,6 +17,13 @@ opengraph:
   image: /assets/images/hands-on-llm-tutorial/000.png
 ---
 
+{% notice "warning" %}
+
+Due to the rapidly changing nature of LLM programming, this tutorial is likely to be outdated. I'll still leave it up as it can be skimmed for general concept and ideas, which  serve as a useful learning exercise. 
+
+The specific libraries, platforms, and techniques will probably have changed.  
+{% endnotice %}
+
 In this post I will go over an approach to getting developers familiar with, and write code against LLMs. The aim is to get developers comfortable interacting and programming with LLMs. It is only a starting point; it's not meant to be in depth in any way, nor will it cover the inner workings of LLMs or how to make your own. 
 
 For this tutorial you will need access to a commercial off-the-shelf LLM service, such as [OpenAI Playground](https://platform.openai.com/playground), [Azure OpenAI](https://oai.azure.com/portal/), or [Amazon Bedrock](https://us-east-1.console.aws.amazon.com/bedrock/home?region=us-east-1#/text-playground/amazon.titan-text-express-v1); in my examples I will be referencing OpenAI's playground but the others will have similar functionality to follow along.  
@@ -643,7 +650,7 @@ If you are rolling your eyes at the numerous, pointless, superfluous jargon, and
 
 Let's briefly look at RAG and embeddings, before doing a basic example in code. 
 
-#### How RAG works
+### How RAG works
 
 1. We first take each dataset or document, and pass it to an embedding model, which is a way of converting the text into a special numerical representation optimized for natural language searching. 
 2. Once we have these embeddings, we store them in a vector store, a database that's optimized for searching over embeddings. 

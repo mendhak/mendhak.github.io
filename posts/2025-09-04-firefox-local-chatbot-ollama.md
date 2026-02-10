@@ -1,17 +1,18 @@
 ---
-title: A local LLM in the Firefox sidebar
+title: Talking to a local LLM in the Firefox sidebar
 description: How to get the Firefox AI chatbot sidebar to make use of a local open-webui talking to ollama
 tags:
   - firefox
   - local
   - ollama
   - open-webui
+  - privacy
 
 ---
 
 Firefox has a chatbot sidebar that can be used to interact with the popular LLM chatbot providers, such as Claude, Gemini, and ChatGPT. It is possible to allow it to also talk to a local LLM, although it's not a readily visible option. 
 
-![Firefox running open-webui with ollama](/assets/images/firefox-local-chatbot-ollama/001.png)
+![Firefox running open-webui with ollama, with the qwen2 model loaded](/assets/images/firefox-local-chatbot-ollama/001.png "Firefox with local chatbot")
 
 The steps, roughly, involved installing ollama, open-webui, and configuring Firefox. 
 
@@ -46,7 +47,7 @@ I decided to run it in Docker.
 docker run -d -p 8080:8080 --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webui --restart always ghcr.io/open-webui/open-webui:main
 ```
 
-![open-webui running in Docker](/assets/images/firefox-local-chatbot-ollama/002.png)
+![docker logs of open-webui container](/assets/images/firefox-local-chatbot-ollama/002.png "open-webui running in Docker")
 
 Then quickly tested it by browsing to http://localhost:8080. 
 

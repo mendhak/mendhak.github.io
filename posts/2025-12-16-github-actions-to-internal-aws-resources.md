@@ -19,7 +19,7 @@ One approach I've used is to set up a proxy in the VPC that the Github Actions r
 
 To put that into a little more detail: the approach is to create an ECS Fargate task that runs in the same VPC as the internal resources, and then use AWS Session Manager to create a secure tunnel from the Github Actions runner to that ECS task. The ECS task runs a proxy server such as Squid, which then forwards the requests to the actual internal resources. 
 
-![Solution overview](/assets/images/github-actions-to-internal-aws-resources/001.png)
+![Github Actions components proxying through an SSM tunnel to an ECS Fargate task running Squid proxy](/assets/images/github-actions-to-internal-aws-resources/001.png "Solution overview")
 
 In this example I'm going to set up a Squid proxy server, as my main use case is to run UI tests using Playwright. However, this approach can be used for any type of proxy server, such as HAProxy for TCP connections.
 

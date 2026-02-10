@@ -1,5 +1,5 @@
 ---
-title: Isolated GPU-enabled development with Docker and CUDA
+title: Run your development environments in isolation with Docker and CUDA
 description: How to set up a CUDA-enabled machine learning development environment in Docker using the NVIDIA container toolkit and devcontainers, providing a degree of isolation and safety.
 tags:
   - docker

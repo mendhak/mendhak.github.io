@@ -18,7 +18,7 @@ Recently I have been exploring alternatives to these approaches — running Wind
 
 In this screenshot below I am running Affinity Studio natively on my Linux Desktop, while the application itself is running in a Windows 11 installation inside a Docker container.
 
-![Affinity Photo on Linux Mint](/assets/images/native-windows-apps-in-linux/001.png)
+![Affinity Photo running via WinApps on Linux Mint host](/assets/images/native-windows-apps-in-linux/001.png "Affinity Photo on Linux Mint")
 
 WinApps and Winboat are two projects that facilitate this approach.
 
@@ -32,11 +32,11 @@ It can work with any Windows installation in a Docker container, Podman, or a Vi
 
 The Winapps setup guide is quite straightforward and it walks you through setting up a Windows installation in a Docker container, a ready to go Docker Compose file, and a Winapps configuration file to connect to the Windows instance. An interesting aspect of the Docker approach is that the Windows VM is accessible via a browser tab using NoVNC, so you can interact with the Windows desktop if needed.
 
-![Windows VM in a browser tab](/assets/images/native-windows-apps-in-linux/002.png)
+![Viewing the Windows VM from a browser tab](/assets/images/native-windows-apps-in-linux/002.png "Windows VM in a browser tab")
 
 Once this is set up, it's a matter of running the Winapps script which helps configure the actual integration of shortcuts. 
 
-![Picking applications](/assets/images/native-windows-apps-in-linux/003.png)
+![Picking application in WinApps setting screen](/assets/images/native-windows-apps-in-linux/003.png "Picking applications")
 
 
 WinApps can be pretty flexible, and it even lets you create your own custom shortcuts to standalone applications. As an example, I recently needed to run the Epomaker Aula software for configuring my mechanical keyboard. I just ran the application from the Windows VM, passing it the USB device from Linux.  
@@ -52,14 +52,14 @@ WinBoat works quite similarly to WinApps behind the scenes, but where WinApps fo
 It comes with its own installer GUI, as an AppImage or .deb package. The installer asks a few questions then automatically downloads the Windows ISO, sets up the Docker container, and configures everything. 
 
 {% gallery %}
-![Winboat installer](/assets/images/native-windows-apps-in-linux/004.png)
-![Winboat setup process](/assets/images/native-windows-apps-in-linux/005.png)
+![Welcome to Winboat screen](/assets/images/native-windows-apps-in-linux/004.png "Winboat installer")
+![Pre-requisites screen](/assets/images/native-windows-apps-in-linux/005.png "Winboat setup process")
 {% endgallery %}
 
 
 Once that's done, the WinBoat application lets you launch the Windows applications you need from its own UI. It doesn't integrate the Windows applications with the system menu, instead it keeps the list contained within its own interface. I found this to be a nice and clean approach as well, it makes launching the application a deliberate action and keeps things separated.
 
-![Winboat main interface](/assets/images/native-windows-apps-in-linux/006.png)
+![Winboat interface listing available applications](/assets/images/native-windows-apps-in-linux/006.png "Winboat main interface")
 
 
 ## Brief mention - Cassowary

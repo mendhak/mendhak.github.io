@@ -1,5 +1,5 @@
 ---
-title: Using threat modelling to choose a password manager
+title: Use threat modelling to choose a password manager
 description: Choosing and discarding from among many password managers by using threat modelling
 tags:
   - keepass
@@ -22,8 +22,8 @@ Most password managers hold secrets in a 'vault' or an encrypted database of sor
 
 Several popular password managers are web based, for the simple reason that accessing them via the browser is very convenient. The web interface is the password manager and the user uses it to find, edit, and create new entries. The vault sits behind this interface on the provider's servers. It's simple and inexpensive from an implementation point of view, which is why there are so many providers in this space. 
 
-<img class="excalidraw" src="/assets/images/threat-modelling-to-pick-password-manager/001_web_based.png" />
 
+![Threat Model of a web based password manager](/assets/images/threat-modelling-to-pick-password-manager/001.png "Web based password managers")
 
 ### Trust
 
@@ -37,6 +37,10 @@ Bitwarden is one such provider that runs an open source stack, and it is suffici
 
 The always-on attack surface remains, and it takes just one incident or one lapse for a compromise, which a user would be powerless against.
 
+{% notice "info" %}
+**My takeaway**: Online password managers present an always-on attack surface, and are a poor option in terms of security, but very convenient. If going this route, choose a provider with a good reputation, and one that is open source.
+{% endnotice %}
+
 ### Costs and incentives
 
 The other factor is costs. Since the vendor needs money to keep things running, they need to charge money, which is understandable. It also means that the password management service is only available to the user as long as payments continue. This is a one-way transactional relationship, in that the user is subject to the whims of the provider and its availability, its featureset, and any restrictions they choose to place. 
@@ -47,29 +51,45 @@ Feature development is not the only way to attract customers, the other is adver
 
 What's more, this campaign launched shortly after 1Password went from being a standalone offline password manager, to an online subscription based password manager. That was a pretty good way to highlight the transactional, whimsical nature of this relationship. These combined actions did not fill me with assurance, and after watching them for a while, I started referring to them as the NordVPN of password managers: popular and untrustworthy.
 
+{% notice "info" %}
+**My takeaway**: Subscription based managers are a risky choice, as you are at a transactional mercy. 1Password's advertising and referral campaign is a red flag, and I would avoid it.
+{% endnotice %}
+
 ### Mobile and desktop clients
 
 Most online password managers also maintain desktop and mobile clients. A copy of the vault is placed on the device for the local password manager UI to work with. The local password manager would interact with its hosted APIs to get the copy of the vault, as well as to enable various features or interactions that the local application needs to provide. 
 
-<img class="excalidraw" src="/assets/images/threat-modelling-to-pick-password-manager/002_mobile_web_based.png" />
+![Threat Model of mobile and desktop clients of a web based password manager](/assets/images/threat-modelling-to-pick-password-manager/002.png "Mobile and desktop clients of online password managers")
 
 There are now additional attack surfaces available. The local vault which may be the same or yet another implementation of its online counterpart, with unknown security for closed source solutions. And the backend services or APIs that facilitate the application and its features. 
 
 It's not a great idea to have so many attack vectors or to increase them. There's a dichotomy at play here: we want to use password managers to improve our security posture; we choose to compromise our posture for the sake of convenience. 
 
+{% notice "info" %}
+**My takeaway**: Having multiple clients means more attack surfaces, which means more risk, but more convenience. If going this route, choose a provider with a good reputation, and one that is open source.
+{% endnotice %}
+
 ### Browser extensions 
 
 Password managers provide browser extensions as a convenience tool, to help fill entries on web pages without the user having to manually copy and paste. These extensions act as a tunnel between the browser and the password manager vault. But it also means that they are a means of sending commands and controlling its behavior. A popular attack against extensions is to use hidden fields and have the password manager automatically fill them. Conversely though, without an extension, the risk of being phished exists, as it's still possible to be tricked into pasting passwords into a fake, convincing-looking website. It's probably best to keep paying attention to URLs, but if a browser extension must be used, disable auto-fill.
 
+{% notice "info" %}
+**My takeaway**: Browser extensions present a risk, but they can be mitigated by disabling auto-fill and using click-to-fill instead and paying attention to URLs. 
+{% endnotice %}
+
 ### Built-in password managers
 
-Browsers now come with their own, built-in password managers. In terms of threat modelling, they are very similar to online password managers. They store the credentials in their local database, and take care of syncing it across different devices and sessions. This is probably the most convenient password manager of all, the user doesn't even have to think about it. It's only slightly better than not having a password manager, the additional risk here is that of lock-in and lock-out. 
+Browsers and OSes now come with their own, built-in password managers. In terms of threat modelling, they are very similar to online password managers. They store the credentials in their local database, and take care of syncing it across different devices and sessions. This is probably the most convenient password manager of all, the user doesn't even have to think about it. It's only slightly better than not having a password manager, the additional risk here is that of lock-in and lock-out. 
 
 Browsers are often gateways to the ecosystems of the vendors that create them: Edge (Microsoft), Chrome (Google), Safari (Apple), and continuing with the theme of convenience, will be the default choice for people encountering the innocuous 'remember your password?' dialog for the first time. Storing credentials in the same ecosystem used for everything else means that the vendors become the custodians of the user's vault _and_ the services they access. The relationship dynamic is hugely disadvantageous to the user. 
 
-The user is permitted to access the vault as long as the user is compliant with the vendor's policies, terms, and not subject to any software bugs or administrative errors. Once a user is locked out, the prevailing assumption in all interactions with the vendor is always that the user is at fault, and the user needs to prove their trustworthiness. It doesn't even have to be an error, simply losing a primary device is enough to make getting back in very difficult. This happens to people regularly, and sadly (from my observations), it does not seem to prompt any initiatives to migrate password managers. Nor do the vendors have any incentive to take any care; they benefit from the lock-in and the difficulty of moving. 
+A critical point to note is that the user is being _permitted_ to access the vault as long as the user is compliant with the vendor's policies, terms, and not subject to any software bugs or administrative errors. Once a user is locked out, the prevailing assumption in all interactions with the vendor is always that the user is at fault, and the user needs to prove their trustworthiness. It doesn't even have to be an error, simply losing a primary device is enough to make getting back in very difficult. This happens to people regularly, and sadly (from my observations), it does not seem to prompt any initiatives to migrate password managers. Nor do the vendors have any incentive to take any care; they benefit from the lock-in and the difficulty of moving. 
 
 An important point that using the browser itself overlooks: the user wouldn't be storing their ecosystem's password in the browser. They would instead be using a weak password as their ecosystem's main password. Overall, using the browser's built in password save feature is only marginally better than not using a password manager at all. 
+
+{% notice "info" %}
+**My takeaway**:  OS and browser built-in password managers are the worst option in terms of privacy and security. They are a huge lock-in, and I would avoid them at all costs. 
+{% endnotice %}
 
 
 ## Offline Password Managers
@@ -77,7 +97,7 @@ An important point that using the browser itself overlooks: the user wouldn't be
 The simplest kind of password manager from a threat modelling perspective is offline. There will be a vault file, and a desktop or CLI application to interact with it. The attack surface attention now shifts to the vault database. 
 
 
-<img class="excalidraw" src="/assets/images/threat-modelling-to-pick-password-manager/003_offline.png" />
+![Threat Model of an offline password manager](/assets/images/threat-modelling-to-pick-password-manager/003.png "Offline password managers")
 
 The most well known vault database format is [KDBX](https://keepass.info/help/kb/kdbx_4.html). Because the KDBX format is open and documented, there are numerous applications that work with this vault format. [KeePass2](https://keepass.info/) is the reference implementation by the same creator of KDBX, but there is also [KeePassXC](https://keepassxc.org/). There are mobile and commandline clients for KDBX too. 
 
@@ -89,6 +109,10 @@ There is no sync mechanism built in, it now becomes the user's responsibility to
 
 Because the attack surface is now greatly reduced, and the focus is intently on the application and its database format, it's vital that the software and its vault format be open source. To this end, KeePass and the KDBX format can be considered highly trustworthy as they have gone through an [EU audit](https://joinup.ec.europa.eu/collection/eu-fossa-2/project-deliveries). Pass can be considered trustworthy as well, as it uses PGP which is a well known encryption system that's been in use and trusted for decades. 
 
+{% notice "info" %}
+**My takeaway**: Offline, open-source password managers have a greatly reduced attack surface, and are highly trustworthy, but require effort and responsibility on the user's part. 
+{% endnotice %}
+
 
 ## Other decision factors
 
@@ -97,6 +121,10 @@ Because the attack surface is now greatly reduced, and the focus is intently on 
 Password managers support two-factor authentication (2FA) codes, specifically TOTP codes. These are the usually 6 digit codes generated that are valid for 30-90 seconds, specific to a site and login. This is an aspect to threat modelling that I haven't really gone over. The spirit of 2FA was to make compromises more difficult; a compromised password could still mean there's another code, somewhere else, that the attacker doesn't have access to, which is the 2FA code. Keeping 2FA codes alongside passwords means the compromise is easy again. With that in mind, I would not use 2FA codes with online password managers as the risk and its impact is much higher. But with offline password managers, the risk is lower, so it isn't an entirely terrible thing to do. 
 
 The best option of course is to use a separate application, on a separate device, for 2FA needs. Applying similar threat modelling principles, it's easy to see that built-in authenticators, tied to ecosystems, aren't advisable. Authy is tied to phone numbers, and is probably the most convenient choice with a lower risk as long as you don't lose your phone. Aegis authenticator is not tied to anything and is the equivalent of offline password managers, you're doing the syncing.
+
+{% notice "info" %}
+**My takeaway**: 2FA codes should be kept separate from passwords, but if they must be kept together, they are better off in an offline password manager than an online one.
+{% endnotice %}
 
 ### Document storage
 
@@ -110,7 +138,9 @@ If the people involved are technical and trustworthy enough, then sharing via Ke
 
 ## My choices
 
-The cryptocurency era brought about a popular saying: not your keys, not your crypto. A similar one plays in my mind here: not your vault, not your credentials. I'm most comfortable with the aspects and freedom provided by the offline password managers KeePass and KeePassXC. Syncing files is a solved problem nowadays so it's not a huge hit in terms of convenience and functionality. I'm backing up to several places including Google Drive, a Raspberry Pi, and a UNC share. It also means that I can safely lose or reset devices without worrying about credentials and 2FA codes. In case of a disaster, a copy will be somewhere, at worst mostly recoverable. 
+The cryptocurency era brought about a popular saying: not your keys, not your crypto. A similar one plays in my mind here: not your vault, not your credentials. 
+
+I'm most comfortable with the aspects and freedom provided by the offline password managers [KeePass2](https://keepass.info/), [KeePassDX](https://www.keepassdx.com/), and [KeePassXC](https://keepassxc.org/). Syncing files is a solved problem nowadays so it's not a huge hit in terms of convenience and functionality. I'm backing up to several places including Google Drive, a Raspberry Pi, and a UNC share. It also means that I can safely lose or reset devices without worrying about credentials and 2FA codes. In case of a disaster, a copy will be somewhere, at worst mostly recoverable. 
 
 I'm still undecided about 2FA codes, I have them both in KeePass, as well as Authy. I'm still slightly uncomfortable that Authy is tied to a phone number, and perhaps I should have a good look at Aegis.
 

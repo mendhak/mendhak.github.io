@@ -36,18 +36,18 @@ As I have [aphantasia](https://en.wikipedia.org/wiki/Aphantasia), I am unable to
 I had been experimenting with Stable Diffusion, a generative AI model that can generate images from text prompts. I thought it would be interesting to see if I could integrate this into my Kobo e-reader to generate images from text passages that I highlight. I don't need an accurate rendering or consistency across image generations, just a rough idea of what the scene might look like, to nudge me along. 
 
 {% gallery "The visualize menu and its output on my Kobo Libra 2" %}
-![Choose the visualize menu](/assets/images/kobo-text-to-images-with-stable-diffusion/001.png)
-![Output](/assets/images/kobo-text-to-images-with-stable-diffusion/002.png)
+![Text about a dining room, being highlighted on Kobo](/assets/images/kobo-text-to-images-with-stable-diffusion/001.png "Choose the visualize menu")
+![Generated image of the dining room](/assets/images/kobo-text-to-images-with-stable-diffusion/002.png "The dining room")
 
-![Another example](/assets/images/kobo-text-to-images-with-stable-diffusion/003.png)
-![Output](/assets/images/kobo-text-to-images-with-stable-diffusion/004.png)
+![Text about a summerhouse, being highlighted on Kobo](/assets/images/kobo-text-to-images-with-stable-diffusion/003.png "Another example, using visualize menu")
+![Generated image of a summerhouse](/assets/images/kobo-text-to-images-with-stable-diffusion/004.png "The summerhouse")
 {% endgallery %}
 
 While I was doing this, the maritime terminology I kept encountering became a motivation to add the "ELI5" feature. I've noticed that when books get into their naval battles, the terminology starts flying thick and fast, and I can't keep up with the repeated dictionary lookups. Having those passages rephrased in simpler terms would be a great help.
 
 {% gallery "ELI5 feature in action" %}
-![Choose the ELI5 menu](/assets/images/kobo-text-to-images-with-stable-diffusion/005.png)
-![Output](/assets/images/kobo-text-to-images-with-stable-diffusion/006.png)
+![Text about a bosun's pipes, being highlighted on Kobo](/assets/images/kobo-text-to-images-with-stable-diffusion/005.png "Choose the ELI5 menu")
+![Dialog with explanation](/assets/images/kobo-text-to-images-with-stable-diffusion/006.png "The ELI5")
 {% endgallery %}
 
 I'll first go over the Stable Diffusion integration for image generation, the ELI5 feature is just a minor addition after that.  

@@ -63,7 +63,7 @@ The `omghacker:` is the prompt from the "compromised machine".
 
 You can now try running commands against it. Try `ls`, `pwd`, `whoami`, etc.
 
-![Reverse shell](/assets/images/simple-reverse-shell-in-linux-bash/001.png)
+![Output appearing in the reverse shell of various commands being run by the pretend attacker](/assets/images/simple-reverse-shell-in-linux-bash/001.png "Reverse shell")
 
 
 

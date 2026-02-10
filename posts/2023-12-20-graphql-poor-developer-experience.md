@@ -13,24 +13,24 @@ tags:
 
 ---
 
-GraphQL's touted advantages are numerous, including data retrieval efficiency, and flexibility that it can enable. [This page](https://www.apollographql.com/docs/intro/benefits/) even calls its developer experience its greatest benefit, but this is only true from the API owner's perspective, not the API consumer's. That might explain why it sells so well to API development teams in organisations; their local experience gives them the assumption that their own experience will mirror the consumer's.
+GraphQL's touted advantages are numerous, including data retrieval efficiency, and flexibility that it can enable. [The Apollo GraphQL page](https://www.apollographql.com/docs/intro/benefits/) even calls its developer experience its greatest benefit, but this is only true from the API owner's perspective, not the API consumer's. That might explain why it sells so well to API development teams in organisations; their local experience gives them the assumption that their own experience will mirror the consumer's.
 
 Of course this is not true, GraphQL APIs are a poor user experience, especially the first time user experience. The documentation is often dense and hard to follow, and this is best illustrated through some real life examples such as the [Github GraphQL API](https://docs.github.com/en/graphql) and the [Gitlab GraphQL API](https://docs.gitlab.com/ee/api/graphql/). Both have to introduce help documentation on how to understand GraphQL itself, and the user is immediately hit with jargon and terminology that they must adopt, as well as recommended tooling and libraries that the user should look at right away as the way of getting familiar with their API. 
 
 But that isn't enough, working through the reference documentation is another chore, and the user is given a list of unintuitively named objects to sift through to figure out how to accomplish their goal. Have a look at the object names in these screenshots.
 
-{% gallery %}
-![Gitlab](/assets/images/graphql-poor-developer-experience/001.png)
-![Github](/assets/images/graphql-poor-developer-experience/002.png)
+{% gallery "GraphQL API documentation is dense and jargon-filled" %}
+![GraphQL API resources documentation on Gitlab](/assets/images/graphql-poor-developer-experience/001.png "Gitlab GraphQL")
+![Github 'mutations' documentation](/assets/images/graphql-poor-developer-experience/002.png "Github GraphQL")
 {% endgallery %}
 
-These are completely unhelpful to a new user, and appear to be more like leaky abstractions of internal implementation details. Few of the actual objects come with a decent explanation and many just refer to other parts of the equally sparse documentation. This isn't specific to these two examples, it's a common pattern across many GraphQL APIs.
+These are completely unhelpful to a new user, and appear to be more like leaky abstractions of internal implementation details. Few of the actual objects come with a decent explanation and many just refer to other parts of the equally sparse documentation. The Github documentation's usage of the word 'mutation' feels particularly elitist and academic, and is a barrier to entry for the uninitiated.  This isn't specific to these two examples, it's a common pattern across many GraphQL APIs.
 
 Contrast this with their REST APIs, from the same organisations, in these screenshots. 
 
-{% gallery %}
-![Gitlab](/assets/images/graphql-poor-developer-experience/003.png)
-![Github](/assets/images/graphql-poor-developer-experience/004.png)
+{% gallery "REST documentation is simple and straightforward" %}
+![Branches API documentation on Gitlab](/assets/images/graphql-poor-developer-experience/003.png "Gitlab REST")
+![Branches API documentation on Github](/assets/images/graphql-poor-developer-experience/004.png "Github REST")
 {% endgallery %}
 
 Notice the endpoints named in a human readable way, the documented requests and responses with examples, and simple curl commands to try out the endpoint with. The biggest advantage here is the ability to get started with the API right away, without having to install any libraries or tools or get familiar with academic terminology. This is low friction onboarding and invaluable to the first time user experience. 

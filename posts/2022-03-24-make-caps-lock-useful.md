@@ -26,7 +26,7 @@ It is even harmful.  An accidental press of Caps Lock can lead to accidental sho
 
 I have been searching for better uses of the Caps Lock key and am listing some better uses I've found, as well as some observations regarding this key.   
 
-{% figure "/assets/images/make-caps-lock-useful/001full.png", "Caps Lock key replaced on my keyboard with a shrug (MT3 Susuwatari)", "half" %}
+{% figure "/assets/images/make-caps-lock-useful/001full.png", "Caps Lock key replaced on my keyboard with a shrug (MT3 Susuwatari)", "half", true, "Keyboard with dark keycaps and a shrug symbol on Caps Lock key" %}
 
 {% notice "info" %}
 Of course there are some fields where the Caps Lock key gets used regularly, such as engineering drawing, certain kinds of data entry, and legal.  However for the purposes of self-serving hyperbole, these shall be ignored. 
@@ -47,11 +47,11 @@ By far one of the most intuitive, most human ways I've found of entering special
 
 To enable Compose Keys in Ubuntu 20.04, open [Gnome Tweaks](https://linuxhint.com/gnome_tweak_installation_ubuntu/) keyboard settings, look for the Compose Key option. Caps Lock can be selected here.  
 
-![Gnome Tweaks Compose Key](/assets/images/make-caps-lock-useful/003.png)
+![Keyboard and mouse settings in Ubuntu 20.04, with Compose Key selection dialog](/assets/images/make-caps-lock-useful/003.png "Gnome Tweaks Compose Key")
 
 In Ubuntu 22.04, it's available directly in Settings.  Go to Keyboard, and under 'Special Character Entry' change the Compose Key there.  
 
-![Ubuntu 22.04 Compose Key](/assets/images/make-caps-lock-useful/003b.png)
+![Keyboard settings in Ubuntu 22.04, with Compose Key menu](/assets/images/make-caps-lock-useful/003b.png "Ubuntu 22.04 Compose Key setting")
 
 There are [Compose Key Cheatsheets available](https://cheatography.com/davechild/cheat-sheets/ubuntu-compose-key-combinations/) which usually list the most common combinations; the [complete list is massive](https://cgit.freedesktop.org/xorg/lib/libX11/plain/nls/en_US.UTF-8/Compose.pre)
 
@@ -63,7 +63,7 @@ Note that the Compose Keys are a _sequence_.  Don't hold down Caps while pressin
 
 The Chromebook actually recognizes how unnecessary this key is, and goes ahead and replaces the Caps Lock key entirely.  The button in its place can show the Launcher or start a search.  That's pretty functional. 
 
-![Chromebook Keyboard](/assets/images/make-caps-lock-useful/002.jpg)
+![Keyboard of a Chromebook with a search button in place of Caps Lock](/assets/images/make-caps-lock-useful/002.jpg "Chromebook Keyboard")
 
 
 ## PowerToys, as a video conferencing tool
@@ -102,7 +102,7 @@ AutoHotKey adds a lot of versatility, it can also be used to [switch keyboard la
 
 In Ubuntu this can be done by remapping the keyboard shortcut for input sources. 
 
-![Keyboard shortcuts](/assets/images/make-caps-lock-useful/004.png)
+![Keyboard shortcut to switch input sources](/assets/images/make-caps-lock-useful/004.png "Keyboard shortcuts")
 
 
 ## Turn it off

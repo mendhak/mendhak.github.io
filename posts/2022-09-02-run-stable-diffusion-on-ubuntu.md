@@ -14,6 +14,10 @@ opengraph:
 
 ---
 
+{% notice "warning" %}
+Due to the rapidly evolving nature of the GenAI ecosystem, the instructions in this post may become outdated as applications are developed, updated, and abandoned. 
+{% endnotice %}
+
 Stable Diffusion is a machine learning model that can generate images from natural language descriptions.  Because it's open source, it's also easy to run it locally, which makes it very convenient to experiment with in your own time. The simplest and best way of running Stable Diffusion is through the [Automatic1111 repo](https://github.com/AUTOMATIC1111/stable-diffusion-webui), but there's also a commandline friendly [Dream Script Stable Diffusion](https://github.com/lstein/stable-diffusion) fork, which comes with some convenience functions.  
 
 ## Setup

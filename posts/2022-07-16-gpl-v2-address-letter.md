@@ -48,8 +48,8 @@ I ordered what seemed to be a 'global' stamp, for the smallest but safest amount
 After a few weeks of waiting, I eventually received the 'African Daisy global forever vert pair' stamp which was round!  I should have noticed that the seller sent me the item using stamps at a much lower denomination that those I had ordered.  Oh well.
 
 {% gallery "Ebay seller sent me some stamps" %}
-![](/assets/images/gpl-v2-address-letter/003a.jpg)
-![](/assets/images/gpl-v2-address-letter/003b.jpg)
+![Envelope from ebay seller containing stamps](/assets/images/gpl-v2-address-letter/003a.jpg)
+![Round global US stamps, 2022](/assets/images/gpl-v2-address-letter/003b.jpg)
 {% endgallery %}
 
 
@@ -57,7 +57,7 @@ After a few weeks of waiting, I eventually received the 'African Daisy global fo
 
 With the self addressed envelope ready, I wrote the request and addressed it to the GPLv2 address.  Luckily I did have some UK stamps available to send the letter with.  
 
-![I wrote a letter](/assets/images/gpl-v2-address-letter/004a.jpg)
+![Letter to FSF, with envelope affixed with UK stamps](/assets/images/gpl-v2-address-letter/004a.jpg "I wrote a letter")
 
 Writing the address on the envelope was awkward, as I haven't used a pen in several years; it took a few attempts and some wasted envelopes, printing the address would have taken less time.  But it was ready so I posted it in my nearest Royal Mail box. 
 
@@ -65,7 +65,7 @@ Writing the address on the envelope was awkward, as I haven't used a pen in seve
 
 I had posted the letter in June 2022 and about five later weeks later, I received a reply.  The round stamps looked sufficiently stamped upon with wavy lines, known as [cancellation marks](https://en.wikipedia.org/wiki/Cancellation_\(mail\)), which are yet another thing that philatelists like to collect! 
 
-![I received a reply](/assets/images/gpl-v2-address-letter/005a.jpg)
+![Envelope with cancellation marks, using the round global US stamps](/assets/images/gpl-v2-address-letter/005a.jpg "I received a reply")
 
 
 Anyway the letter inside contained the full license text on 5 sheets of double-sided paper.   

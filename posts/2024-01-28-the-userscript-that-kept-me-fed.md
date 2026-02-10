@@ -14,7 +14,7 @@ Most sites decided that the best course of action was to emulate fainting goats 
 
 Amazon Prime Now was one of the few places that was able to manage the surge of traffic well, and wasn't blocking anyone from shopping. The catch was that you could only see available delivery slots at checkout. Annoyingly, the slots were usually unavailable, and seemed to be released throughout the day at irregular intervals. 
 
-![Dramatic reenactment of the Prime Now checkout page. I didn't take any screenshots back then so I've recreated them just for illustration](/assets/images/the-userscript-that-kept-me-fed/001.png)
+![Amazon Prime Now checkout page with no delivery windows](/assets/images/the-userscript-that-kept-me-fed/001.png "Dramatic reenactment of the Prime Now checkout page. I didn't take any screenshots back then so I've recreated them just for illustration")
 
 I was constantly refreshing checkout, to see if any slots had become available. I was struggling to focus on work while keeping an eye on the page; I'd frequently miss out on released slots. 
 
@@ -70,7 +70,7 @@ if(slotUnavailable){
 }
 ```
 
-![Userscript counting down](/assets/images/the-userscript-that-kept-me-fed/002.png)
+![Prime Now Checkout, with the userscript performing a countdown](/assets/images/the-userscript-that-kept-me-fed/002.png "Userscript counting down")
 
 And if a slot was available, of course, make the banner prominently tell me. 
 
@@ -81,7 +81,7 @@ else {
 }
 ```
 
-![Delivery slot found](/assets/images/the-userscript-that-kept-me-fed/003.png)
+![Prime Now Checkout with found slots](/assets/images/the-userscript-that-kept-me-fed/003.png "Delivery slot found")
 
 ## Adding some noise
 
@@ -90,7 +90,9 @@ There was still one problem though — I didn't always have the tab visible, so 
 I needed a noisier notification, and I found the perfect clip to help me out. 
 
 
-<audio controls preload="auto" src="/assets/images/the-userscript-that-kept-me-fed/whoop.mp3" autostart="false" ></audio>
+<audio controls preload="auto" src="/assets/images/the-userscript-that-kept-me-fed/whoop.mp3" autostart="false"  >
+<p>Short clip of Zoidberg from Futurama saying "Whoop whoop whoop whoop!"</p>
+</audio>
 
 This required a little more setup. I created the `audio` element, and set its source to the clip.
 

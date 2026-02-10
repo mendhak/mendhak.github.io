@@ -18,12 +18,12 @@ I have a simple [epaper dashboard project](https://github.com/mendhak/waveshare-
 
 
 {% gallery "The end result, localized epaper dashboard examples" %}
-![Thai `th_TH`](/assets/images/fun-learning-linux-localization/004.png)
-![Chinese Traditional `zh_TW`](/assets/images/fun-learning-linux-localization/005.png)
-![Swedish `sv_SE`](/assets/images/fun-learning-linux-localization/006.png)
-![Korean `ko_KR`](/assets/images/fun-learning-linux-localization/007.png)
-![Vietnamese `vi_VN`](/assets/images/fun-learning-linux-localization/008.png)
-![Greek `el_GR`](/assets/images/fun-learning-linux-localization/009.png)
+![Eink dashboard with Thai](/assets/images/fun-learning-linux-localization/004.png "Thai `th_TH`")
+![Eink dashboard with Chinese Traditional](/assets/images/fun-learning-linux-localization/005.png "Chinese Traditional `zh_TW`")
+![Eink dashboard with Swedish](/assets/images/fun-learning-linux-localization/006.png "Swedish `sv_SE`")
+![Eink dashboard with Korean](/assets/images/fun-learning-linux-localization/007.png "Korean `ko_KR`")
+![Eink dashboard with Vietnamese](/assets/images/fun-learning-linux-localization/008.png "Vietnamese `vi_VN`")
+![Eink dashboard with Greek](/assets/images/fun-learning-linux-localization/009.png "Greek `el_GR`")
 {% endgallery %}
 
 

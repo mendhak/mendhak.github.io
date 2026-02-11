@@ -30,9 +30,9 @@ The screen will display:
 
 Here it is in action
 
-{% gallery "epaper dashboard" %}
-![In a picture frame](/assets/images/raspberrypi-epaper-dashboard/001.jpg)
-![Generated image](/assets/images/raspberrypi-epaper-dashboard/002.png)
+{% gallery "The epaper dashboard" %}
+![Waveshare epaper dashboard in a photo frame](/assets/images/raspberrypi-epaper-dashboard/001.jpg "In a picture frame")
+![Rendered PNG image showing calendar, weather and time.](/assets/images/raspberrypi-epaper-dashboard/002.png "Dashboard generated image")
 {% endgallery %}
 
 
@@ -80,7 +80,7 @@ Wait a few minutes, and let the Pi connect over WiFi.  You should be able to SSH
 
 ### Configure the application
 
-[The Github Repo](https://github.com/mendhak/waveshare-epaper-display#readme) covers all configuration instructions. This includes:
+[The Github Repo](https://github.com/mendhak/waveshare-epaper-display) covers all configuration instructions. This includes:
 
 * Installing the code and dependencies 
 * Choosing a weather provider (OpenWeatherMap, Met Office, AccuWeather, Met.no, Weather.gov, Climacell)

@@ -105,7 +105,7 @@ sudo apt install gqrx-sdr
 After launching it, I had to select the right device. In my case it was this Realtek one. 
 
 
-![GQRX configure i/o devices](/assets/images/listening-to-radio-on-ubuntu/image.png)
+![GQRX configuration screen allowing selection of device](/assets/images/listening-to-radio-on-ubuntu/image.png "GQRX configure i/o devices")
 
 After the main application started, I tried tuning in to a few London radio stations. This was done by scrolling or typing the numbers above the graph. 
 
@@ -113,15 +113,15 @@ There was a kHz option over to the right, which I left at 0.  I set the mode to 
 
 Here I tried 95.800 for Capital FM. I set the gain to 0.1 and it seemed to produce a 'decent' output, but there was still a bit of static. But I was listening to radio! 
 
-![Capital FM](/assets/images/listening-to-radio-on-ubuntu/image-2.png)
+![GQRX rtl showing 95.8 FM spectrum](/assets/images/listening-to-radio-on-ubuntu/image-2.png "Capital FM")
 
 I tried 97.3 and it was a bit clearer:
 
-![97.3 FM](/assets/images/listening-to-radio-on-ubuntu/image-3.png)
+![GQRX rtl showing 97.3 FM spectrum](/assets/images/listening-to-radio-on-ubuntu/image-3.png "97.3 FM")
 
 Sadly, when I tried ClassicFM, I could 'see' there was something in that river of yellow, but it just wouldn't tune in, there was a lot of static.  
 
-![Classic FM](/assets/images/listening-to-radio-on-ubuntu/image-1.png)
+![GQRX rtl showing 101.00 FM spectrum](/assets/images/listening-to-radio-on-ubuntu/image-1.png "Classic FM")
 
 After some searching, I found that ClassicFM was available on DAB, which GQRX didn't support. 
 
@@ -197,7 +197,7 @@ sudo snap connect sdrangel:raw-usb
 Then I could run it. It was fascinating to watch!
 
 
-![ADS-B with SDRAngel](/assets/images/listening-to-radio-on-ubuntu/image-4.png)
+![SDRangel listing ADS-B signal received by the antenna](/assets/images/listening-to-radio-on-ubuntu/image-4.png "ADS-B with SDRAngel")
 
 
 ## Hamfax

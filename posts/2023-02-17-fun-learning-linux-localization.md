@@ -1,5 +1,5 @@
 ---
-title: Fun and learnings with localization on Linux
+title: I had fun learning about Linux localization and fonts
 description: Things I learned about date and time localization and fonts with Python and Bash and SVG
 tags:
   - linux
@@ -18,16 +18,16 @@ I have a simple [epaper dashboard project](https://github.com/mendhak/waveshare-
 
 
 {% gallery "The end result, localized epaper dashboard examples" %}
-![Thai `th_TH`](/assets/images/fun-learning-linux-localization/004.png)
-![Chinese Traditional `zh_TW`](/assets/images/fun-learning-linux-localization/005.png)
-![Swedish `sv_SE`](/assets/images/fun-learning-linux-localization/006.png)
-![Korean `ko_KR`](/assets/images/fun-learning-linux-localization/007.png)
-![Vietnamese `vi_VN`](/assets/images/fun-learning-linux-localization/008.png)
-![Greek `el_GR`](/assets/images/fun-learning-linux-localization/009.png)
+![Eink dashboard with Thai](/assets/images/fun-learning-linux-localization/004.png "Thai `th_TH`")
+![Eink dashboard with Chinese Traditional](/assets/images/fun-learning-linux-localization/005.png "Chinese Traditional `zh_TW`")
+![Eink dashboard with Swedish](/assets/images/fun-learning-linux-localization/006.png "Swedish `sv_SE`")
+![Eink dashboard with Korean](/assets/images/fun-learning-linux-localization/007.png "Korean `ko_KR`")
+![Eink dashboard with Vietnamese](/assets/images/fun-learning-linux-localization/008.png "Vietnamese `vi_VN`")
+![Eink dashboard with Greek](/assets/images/fun-learning-linux-localization/009.png "Greek `el_GR`")
 {% endgallery %}
 
 
-### Python Babel library
+## Python Babel library
 
 The simplest way to play around and experiment with locales was using the Python [Babel library](https://babel.pocoo.org/). It provides some simple utility functions that do the thinking and formatting. Babel itself gets its information from the Unicode Common Locale Data Repository (CLDR) project, a massive collection of locale metadata, formatting and parsing for dates, times, numbers, units, names, even down to words like 'yesterday'. As an example, here's the CLDR data for [date formats in Icelandic](https://unicode-org.github.io/cldr-staging/charts/latest/verify/dates/is.html). What's in this database isn't _always_ going to match reality, but it's the closest thing to a standardized formatting there is. Making use of the Babel library was then as simple as:
 

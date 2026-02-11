@@ -6,13 +6,13 @@ date: 2023-01-28
 
 A rite of passage exists, that after a certain amount of time spent writing on a platform, a blogger feels a need to revamp or migrate to something else.  I used to come across such posts on various other blogs and I'd be dismissive of them. Just be happy with what you have, right?  As it turns out, **no**, there are always good reasons to move, and it took me a while to understand that. I can say I am glad to be free of the torturous hell that is Jekyll and Ruby. 
 
-### Jekyll and Minimal Mistakes
+## Jekyll and Minimal Mistakes
 
 I had originally picked Jekyll purely for convenience — Github Pages automatically builds and deploys it.  I'm always in favor of managed services, so this fit the bill perfectly.  Just write in Markdown, push to Github, and the post appears on the site momentarily.  
 
 There was also an excellent theme to get started with, called [minimal mistakes](https://mmistakes.github.io/minimal-mistakes/). It's a very popular theme for Jekyll with several features and many configuration options, not limited to  images, galleries, notices, buttons, and color themes too. 
 
-### Running it locally
+## Running it locally
 
 Over time though, as the writing became more involved, I needed to preview what I wrote, which meant running Ruby locally.  This is where the problems started.  And persisted, while I tolerated.    
 
@@ -22,7 +22,7 @@ Each time I'd run it after a few weeks away, another part of the setup would hav
 
 A lot of the problems encountered felt symptomatic of the Ruby philosophy of hiding things away to appear like 'magic', which was once praised widely during its peak popularity phase. Little rotting nuggets of said philosophy were now worming its way to the surface and cheerily waving hello at me.  
 
-### Choosing another platform
+## Choosing another platform
 
 Although the next obvious choice was Hugo, I had been hearing quite a bit about [Eleventy](https://www.11ty.dev/).  I started experimenting with both and ended up using Eleventy for a few other minor things, such as [the GPSLogger page](https://gpslogger.app/) and my [noodles website](https://noodles.mendhak.com/). 
 
@@ -30,7 +30,7 @@ What I like about it is its low touch approach — it isn't tied to any framewor
 
 I did find a few different blog themes, but what I was missing was a feature-set like that of minimal-mistakes. 
 
-### Modifications
+## Modifications
 
 I decided to use an Eleventy starter base, and start adding some of those features in, or a close approximation.  Since I've got no web design skills, [SimpleCSS](https://simplecss.org/) was a good place to start. It has a sensible set of defaults and comes with automatic dark and light themes. I was able to modify it to achieve a simplified version of [the Hylia theme](https://hylia.website).  
 
@@ -51,10 +51,10 @@ Converting normal markdown images to use lightbox, and [super wide images!](http
 
 Developing with Eleventy was a joy, and I spent a pretty intense 3 weeks working on the 'Eleventy Satisfactory' theme.  Working on one idea would lead to others in a cascade, and getting to grips with the various data wrangling features like computed data and nunjucks made for efficient snippets that weren't too unwieldy.  Overall a very satisfying experience.  
 
-![Github activity lit up](/assets/images/escaping-jekyll-to-eleventy/001.png)
+![Github activity chart with green squares representing activity on a day](/assets/images/escaping-jekyll-to-eleventy/001.png "Github activity lit up")
 
 
-### Other thoughts
+## Other thoughts
 
 I have a lot more confidence in the continuity of Eleventy as compared to Jekyll.  However, one disadvantage now is that I've developed a theme, which is its own maintenance overhead, and the opposite of using something managed.  
 

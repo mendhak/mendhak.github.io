@@ -42,7 +42,7 @@ cosign sign-blob test.txt --bundle test.txt.cosign.bundle
 
 This opened up a browser to initiate the OAuth workflow, where I logged in with my Github account.
 
-![Sigstore sign in](/assets/images/understanding-sigstore-cosign/001.png)
+![Options to sign in to Sigstore with Github, Google, Microsoft](/assets/images/understanding-sigstore-cosign/001.png "Sigstore sign in")
 
 Once signed in, the process continued in the terminal, where it requested the short lived certificate, signed the artifact, recorded the transaction, and output the bundle file. 
 
@@ -80,7 +80,7 @@ $ cosign verify-blob Python-3.14.0a1.tgz --bundle Python-3.14.0a1.tgz.sigstore -
 
 Inspecting the bundle and following the [log index URL](https://search.sigstore.dev/?logIndex=140392186), I noticed that the OIDC issuer is actually Github, not Google as the Python documentation specified.  
 
-![Python docs vs Rekor log](/assets/images/understanding-sigstore-cosign/002.png)
+![Python documentation mentioning Google as the issuer, but the verification shows Github](/assets/images/understanding-sigstore-cosign/002.png "Python docs vs Rekor log")
 
 
 I raised an issue and they helpfully fixed the issue. Anyway, substituting for Github still did not work though. 
@@ -128,8 +128,8 @@ Github hides theirs behind a `gh attestation verify` command in their own CLI, w
 [This example](https://github.com/cli/cli/attestations/2733309) is from the gh CLI itself, though there is no 'direct' link between the artifact and the attestation page; there is a link from the Github Action build where the artifact was created, but those artifact links are often expired.
 
 {% gallery "Artifact and attestation" %}
-![The artifact in releases](/assets/images/understanding-sigstore-cosign/006.png)
-![The attestation details](/assets/images/understanding-sigstore-cosign/005.png)  
+![List of GH cli releases](/assets/images/understanding-sigstore-cosign/006.png "The artifact in releases")
+![Attestation page for a GH cli release](/assets/images/understanding-sigstore-cosign/005.png "The attestation details")  
 {% endgallery %}
 
 It took a bit of figuring out but the verification was slightly easier than npm. I had to download the JSON from the attestation page, and also use the new bundle format flag. The certificate identity was the Build Signer URI, and the issuer was the Issuer field. 
@@ -218,7 +218,7 @@ Signing Docker images is very similar to blobs.
 
 A few differences though. It is discouraged to sign tags (such as `:1.0.0` or `:latest`), and there is a plan to remove that ability in the future. It is better to sign digests instead, however that does lead to quite a bit of clutter in many Docker registries currently. In this screenshot below, the tag that I've just worked on sits alongside multiple digest tags each one of which appears to be a signed layer.  
 
-![Clutter](/assets/images/understanding-sigstore-cosign/003.png)
+!["Numerous layers created as a result of signing Docker layers](/assets/images/understanding-sigstore-cosign/003.png "Clutter")
 
 Unfortunately that put me off for now as it means I'm not able to control which tags are available for download, and feels like too much of a workaround. I hope in the future registries are able to work with this format a little more directly. 
 
@@ -240,7 +240,7 @@ cosign sign-blob --bundle local.bundle --key cosign.key README.md
 
 The transparency log record is [much simpler](https://search.sigstore.dev/?logIndex=146138179). 
 
-![Signed with local key pair](/assets/images/understanding-sigstore-cosign/004.png)
+![A transparency log in Sigstore signed with a local key pair](/assets/images/understanding-sigstore-cosign/004.png "Signed with local key pair")
 
 Verifying just requires the public key, no issuer or identity.
 

@@ -35,17 +35,16 @@ gpedit.msc
 
 Go to startup/shutdown scripts:
 
-![GPEdit settings](/assets/images/xbox-controller-off/001.png)
+![Local Computer Policy, Computer Configuration, Windows Settings, Scripts, Shutdown](/assets/images/xbox-controller-off/001.png "GPEdit settings")
 
 
 Under the scripts tab, add the powershell script (adding to the PowerShell tab didn't work for me, I used this tab instead):
 
-![Powershell](/assets/images/xbox-controller-off/002.png)
+![Shutdown script calling powershell, invoking this script](/assets/images/xbox-controller-off/002.png "Adding the shutdown script")
 
 Or add the EXE directly:
 
-![Exe](/assets/images/xbox-controller-off/003.png)
-
+![Adding the executable as a shutdown script](/assets/images/xbox-controller-off/003.png "The exe way")
 Apply and close.
 
 Finally, Start > Run...

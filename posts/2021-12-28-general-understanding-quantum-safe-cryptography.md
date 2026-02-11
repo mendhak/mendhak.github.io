@@ -31,7 +31,7 @@ The significance is that the stated problem is how you'd go about decrypting mes
 
 On today's computers (usually referred to as classical machines), for large values, this would take trillions of years, and it is this difficulty which gives us the assurance we need that our key exchanges and authentication steps are safe.  That assurance goes away with quantum computers.  
 
-![prime factors of an integer](/assets/images/general-understanding-quantum-safe-cryptography/001.png)
+![The easiness of multiplying prime numbers, but difficulty of decomposing them](/assets/images/general-understanding-quantum-safe-cryptography/001.png "The prime factors of an integer")
 
 
 
@@ -130,7 +130,7 @@ These choices will be narrowed down further over the next year.  Among the publi
 
 ### Performance
 
-In terms of performance, Kyber and Saber are the highest ranked.  The results can be seen [here](https://csrc.nist.gov/CSRC/media/Presentations/fpga-benchmarking-of-crystals-kyber-ntru-and-saber/images-media/session-3-gaj-high-speed-hardware.pdf).  High performance algorithms are more likely to be used in protocols where speed is a concern, such as HTTPS/TLS.  
+In terms of performance, Kyber and Saber are the highest ranked.  The results can be seen [on the NIST site](https://csrc.nist.gov/CSRC/media/Presentations/fpga-benchmarking-of-crystals-kyber-ntru-and-saber/images-media/session-3-gaj-high-speed-hardware.pdf). High performance algorithms are more likely to be used in protocols where speed is a concern, such as HTTPS/TLS.  
 
 ### VPNs
 
@@ -181,7 +181,7 @@ There's also [another thread](https://groups.google.com/a/list.nist.gov/g/pqc-fo
 
 This is the part that's closer to us as developers and end users.  Microsoft, IBM, and AWS are working with universities on the [Open Quantum Safe](https://openquantumsafe.org/) project.  The project has created a library called [`liboqs`](https://github.com/open-quantum-safe/liboqs) containing quantum resistant algorithms, which will be made available for use to other software projects.  The project is also prototyping integration into most commonly used protocols such as TLS, SSH, and certificates.  Importantly they also have a [fork of OpenSSL](https://github.com/open-quantum-safe/openssl) with some quantum safe algorithms implemented.  They've got demo integrations with Apache httpd, nginx, curl and [Chromium browser](https://github.com/open-quantum-safe/oqs-demos/releases/).  There are [Docker images too!](https://hub.docker.com/u/openquantumsafe)
 
-![Open Quantum Safe](/assets/images/general-understanding-quantum-safe-cryptography/008.jpg)
+![Various components of Open Quantum Safe project](/assets/images/general-understanding-quantum-safe-cryptography/008.jpg "Open Quantum Safe")
 
 ### Cloudflare
 

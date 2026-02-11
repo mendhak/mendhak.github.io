@@ -38,7 +38,7 @@ which does a few things:
 
 It also fails gracefully by allowing all of the above to be optional, which means you don't have to do anything at all. And you're not limited to JSON files, you can also provide in memory lists, or even your own configuration.  
 
-### Appsettings in action
+## Appsettings in action
 
 Suppose there's just an `appsetting.json` file with a Subject and a Name section. 
 
@@ -110,7 +110,7 @@ I'm always a fan of making security easy, and this is a great example.
 
 ### Notes
 
-The actual double underscore notation `__` doesn't seem well promoted, or it isn't readily surfaced via search results and samples. The first place I've encountered it was [here](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-7.0#non-prefixed-environment-variables) under the title 'Non-prefixed environment variables'. 
+The actual double underscore notation `__` doesn't seem well promoted, or it isn't readily surfaced via search results and samples. The first place I've encountered it was [on the documentation page](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-7.0#non-prefixed-environment-variables) under the title 'Non-prefixed environment variables'. 
 
 I've created a [sample repo here](https://github.com/mendhak/Dotnet-Configuration-Inheritance-Demo/) demonstrating the environment and appsettings capabilities.  
 

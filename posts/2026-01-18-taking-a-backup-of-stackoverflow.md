@@ -16,9 +16,9 @@ It isn't possible to predict what the actual outcome will be. Although _posting_
 
 
 {% gallery "Posting activity on the important Stack Exchange sites" %}
-![Stack Overflow posting activity](/assets/images/taking-a-backup-of-stackoverflow/001.png)
-![Super User posting activity](/assets/images/taking-a-backup-of-stackoverflow/002.png)
-![Ask Ubuntu posting activity](/assets/images/taking-a-backup-of-stackoverflow/003.png)
+![Graph showing StackOverflow new posts reducing over time](/assets/images/taking-a-backup-of-stackoverflow/001.png "Stack Overflow posting activity")
+![Graph showing SuperUser new posts reducing over time](/assets/images/taking-a-backup-of-stackoverflow/002.png "SuperUser posting activity")
+![Graph showing Ask Ubuntu new posts reducing over time](/assets/images/taking-a-backup-of-stackoverflow/003.png "Ask Ubuntu posting activity")
 {% endgallery %}
 
 ## The questions I wanted to answer
@@ -38,7 +38,7 @@ There's no guarantee, in the event of a shutdown, that the knowledge will be pre
 They used to post [data dumps to archive.org](https://archive.org/details/stackexchange), but in 2023 briefly cancelled the data dump, reinstated it after backlash, then [cancelled and moved the data dumps](https://meta.stackexchange.com/q/401324) behind user authentication in 2024, while also discouraging archive.org reuploads.
 
 
-![Data dump access in 2026](/assets/images/taking-a-backup-of-stackoverflow/004.png)
+![Settings screen on StackOverflow allowing data dump download](/assets/images/taking-a-backup-of-stackoverflow/004.png "Data dump access in 2026")
 
 They have also briefly experimented with [adding watermarks to the data dumps](https://meta.stackexchange.com/questions/412018/fabricated-data-in-posts-xml-for-multiple-all-data-dumps) in early 2025, which is a worrying sign of things to come. Although, it's somewhat understandable why they did this, given the rampant commercial exploitations they're experiencing.
 
@@ -62,7 +62,7 @@ Given the years and volumes of accumulated questions and answers, I was a little
 
 The most important tables to me are the `Posts` table (105 GB uncompressed), which contains both questions and answers, and the `Comments` table (28 GB uncompressed) which will have little bits of additional context. 
 
-![Stack Overflow data dump contents](/assets/images/taking-a-backup-of-stackoverflow/005.png)
+![Listing of files inside the data dump, on Linux](/assets/images/taking-a-backup-of-stackoverflow/005.png "Stack Overflow data dump contents")
 
 The schema is documented on [this post](https://meta.stackexchange.com/q/2677), and there is surprisingly little official documentation available on how to work with it. We know that it's an export of a Microsoft SQL Server database, so restoring it should be a matter of using its [XML loading capabilities](https://learn.microsoft.com/en-us/sql/relational-databases/xml/load-xml-data?view=sql-server-ver17).
 
@@ -98,8 +98,8 @@ docker run --network host -v /home/mendhak/Downloads/StackOverflowData/stackover
 The `--network host` makes use of some clever Linux networking, so that the `pgimport` container could connect to the Postgres instance. The `/data` folder is mounted in both containers, and maps to the location where the Stack Overflow data dump XML files are stored. The `-o Posts` indicates that I only want to import the `Posts.xml` file, and the `-I` indicates that I want to create indexes after the import. The way the tool works is that it first converts the XML into a CSV file, and then uses Postgres' `COPY` command to bulk load the data.
 
 {% gallery "Importing Stack Overflow data dump into Postgres" %}
-![Starting the import](/assets/images/taking-a-backup-of-stackoverflow/006.png)
-![Complete!](/assets/images/taking-a-backup-of-stackoverflow/007.png)
+![Linux terminal showing the import process beginning](/assets/images/taking-a-backup-of-stackoverflow/006.png "Starting the import")
+![Linux terminal showing the import process completing](/assets/images/taking-a-backup-of-stackoverflow/007.png "Complete!")
 {% endgallery %}
 
 ### Exploring the data
@@ -112,7 +112,7 @@ CREATE INDEX idx_post_id ON public.posts (id);
 
 The `posts` table contains both questions and answers. The `PostTypeID` column indicates whether a row is a question (1) or an answer (2). The `ParentID` column links answers to their respective questions.
 
-![Sample posts data](/assets/images/taking-a-backup-of-stackoverflow/008.png)
+![Query results from the POSTS table for a specific post ID](/assets/images/taking-a-backup-of-stackoverflow/008.png "Sample posts data")
 
 
 Other useful queries included getting all questions with at least one answer (and concatenating them, why not):
@@ -133,7 +133,7 @@ LIMIT 50;
 
 ```
 
-![Sample of recent questions and answers](/assets/images/taking-a-backup-of-stackoverflow/009.png)
+![Query results from POSTS table showing recent questions and answers](/assets/images/taking-a-backup-of-stackoverflow/009.png "Sample of recent questions and answers")
 
 So this was a good start on the exploration, and I think it was enough to prove that the data could be restored to a database and queried. 
 
@@ -207,7 +207,7 @@ LIMIT 5;
 
 And it worked, I got back the most relevant posts with a cosine distance score. 
 
-![Vector search results for "Content Security Policy"](/assets/images/taking-a-backup-of-stackoverflow/010.png)
+![SQL vector similarity search results for "Content Security Policy"](/assets/images/taking-a-backup-of-stackoverflow/010.png "Vector search results for "Content Security Policy")
 
 I stopped here, but I didn't think it would involve too much extra effort to get this working as a RAG system, with local LLM tools such as Ollama, OpenWebUI, or LM Studio. 
 

@@ -13,8 +13,17 @@
 :root {
   --bg: #333333;
   --accent: #fedb8b;
+  --code: #F9AEC7;
 }
+
 }
+
+@media not (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
 
 /* Make the middle column slightly wider, and font slightly larger */
 body {
@@ -59,7 +68,14 @@ blockquote {
 /* H1s should have the accent color, to make it stand out */
 h1 {
   color: var(--accent);
+  font-size: 2.25rem;
 }
+
+h2 { font-size: 2rem; }
+h3 { font-size: 1.74rem; }
+h4 { font-size: 1.52rem; }
+h5 { font-size: 1.32rem; }
+h6 { font-size: 1.25rem; }
 
 /* Use the nice Lora font for headings */
 h1,h2,h3,h4,h5,h6 {
@@ -234,4 +250,21 @@ nav :is(ol,ul) li {
 div.video > iframe {
   aspect-ratio: 16 / 9;
   width: 100%;
+}
+
+/* PrismJS code highlight, gives better contrast. 
+I have a PR open for the color here. Once this is merged: https://github.com/PrismJS/prism-themes/pull/165
+then the --code line isn't needed */
+pre[class*="language-"],
+code[class*="language-"],
+pre code {
+  --code: #ffd700;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  word-wrap: break-word !important;
+  overflow-x: hidden;
+}
+
+.lightbox-image {
+  cursor: pointer;
 }

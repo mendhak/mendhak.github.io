@@ -31,7 +31,7 @@ You can also skip the steps and go straight to [the setup script](#all-together-
 Open up KeePassXC's settings, and choose to `Enable SSH Agent` and also `Use OpenSSH for Windows instead of Pageant`.  
 The second option requires the OpenSSH service in Windows to already be running, you will get an error message if it isn't. 
 
-![keepassxc settings](/assets/images/wsl-ssh-keepassxc/001.png)
+![KeepassXC settings, enable SSH agent and OpenSSH](/assets/images/wsl-ssh-keepassxc/001.png "KeepassXC settings")
 
 
 
@@ -46,9 +46,9 @@ Now reopen the entry, then go to the SSH Agent section, under Private key, pick 
 
 
 {% gallery "KeePassXC settings" %}
-![](/assets/images/wsl-ssh-keepassxc/002.png)
-![](/assets/images/wsl-ssh-keepassxc/003.png)
-![](/assets/images/wsl-ssh-keepassxc/004.png)
+![KeepassXC entry for Github Key](/assets/images/wsl-ssh-keepassxc/002.png "My Github Key")
+![Private and public key attached to KeepassXC entry](/assets/images/wsl-ssh-keepassxc/003.png "The attached keys")
+![KeepassXC SSH settings, add key to agent](/assets/images/wsl-ssh-keepassxc/004.png "Add key to agent")
 {% endgallery %}
 
 ## Get Npiperelay

@@ -17,7 +17,7 @@ last_modified_at: 2023-08-28
 
 I recently switched from a Kindle device to a Kobo Libra 2, and have been playing around with its customization and tweaks. These are the ones I've found useful so far. They include dark mode, immersive reading, less fidgeting, Instapaper and Overdrive. Most important is integration with Calibre Web, and some unlocked features with NickelMenu. 
 
-{% figure "/assets/images/kobo-customizations/000.jpg", "Kobo Libra 2", "half" %}
+{% figure "/assets/images/kobo-customizations/000.jpg", "Kobo Libra 2", "half", true, "Kobo Libra 2 with Eyes of the Void cover on display" %}
 
 ## Better reading
 
@@ -30,16 +30,16 @@ I prefer an immersive experience when reading, without any distractions such as 
 `Footer`: `Off`  
 `Show book progress bar`: `Uncheck`    
 
-![Hide distractions](/assets/images/kobo-customizations/001.png)
+![Reading settings with header, footer, show progress](/assets/images/kobo-customizations/001.png "Hide distractions")
 
 ### Dark mode, easier on the eyes
 
-To help with reading at night, it's also useful to have dark mode, which is very easy on the eyes in combination with the warm front light. 
+To help with reading at night, it's also useful to have dark mode, which can be easy on the eyes in combination with the warm front light. I don't always use it, but I do flip it on sometimes.
 
 `More` > `Settings` > `Reading settings` (Page Appearance)  
 `Dark Mode`: `On`  
 
-![Kobo dark mode](/assets/images/kobo-customizations/003.png)
+![Reading settings with dark mode](/assets/images/kobo-customizations/003.png "Kobo dark mode")
 
 ### Reading without fidgeting
 
@@ -48,21 +48,21 @@ The Kobo Libra 2 has physical page turn buttons. I find it easy to hold the devi
 `More` > `Settings` > `Reading settings`  
 `Button Controls`: `Inverted`  
 
-![Top button is for next page](/assets/images/kobo-customizations/002.png)
+![Button control settings with default and inverted options](/assets/images/kobo-customizations/002.png "Setting top button for next page")
 
 Also, when reading on my side, the device keeps automatically rotating to landscape. I've locked the rotation to portrait. 
 
 `More` > `Settings` > `Reading settings` (Page Appearance)  
 `Reading orientation`: `Portrait`  
 
-![Lock to portrait](/assets/images/kobo-customizations/004.png)
+![Page appearance settings for reading orientation](/assets/images/kobo-customizations/004.png "Lock to portrait")
 
 Old muscle memory still remains, and I'll accidentally touch the screen while reading, which causes a jump to next page. While I can't disable the touch screen entirely for navigation, I can disable tapping to go forward. 
 
 `More` > `Settings` > `Reading settings` (Page Appearance)  
 `Page forward and back by`: `Swiping only`  
 
-![Swipe to change page](/assets/images/kobo-customizations/005.png)
+!["Page forward and back settings"](/assets/images/kobo-customizations/005.png "Swipe to change page")
 
 ## Some nice to have extras
 
@@ -75,7 +75,7 @@ I like the book cover that appears when a device is turned off. I've enabled the
 
 The info panel option is worth playing around with if you want some stats, or just uncheck it. 
 
-![Book cover full screen](/assets/images/kobo-customizations/006.png)
+![Sleep and power off settings](/assets/images/kobo-customizations/006.png "Showing the book cover, full screen")
 
 ### Custom image screensavers
 
@@ -130,7 +130,7 @@ Adding new fonts to the Kobo is really easy. Connect the Kobo to a computer, and
 Some fonts I chose to try were [Noto Serif](https://fonts.google.com/noto/specimen/Noto+Serif), [Linux Libertine](https://www.dafont.com/linux-libertine.font) and [Bookerly](https://developer.amazon.com/en-US/alexa/branding/echo-guidelines/identity-guidelines/typography).  
 
 
-![Fonts selection](/assets/images/kobo-customizations/008.png)
+![Font face dropdown with various font options](/assets/images/kobo-customizations/008.png "Fonts selection")
 
 
 ## Syncing Kobo with Calibre Web
@@ -157,15 +157,19 @@ That's the Calibre Web setup, and next is getting the Kobo device to make use of
 
 Connect the Kobo to a computer, and when the device is mounted, edit the file `.kobo/Kobo/Kobo eReader.conf`. Look for the line: 
 
+```
     api_endpoint=https://storeapi.kobo.com
+```    
 
 And change it to the value that Calibre Web gave earlier. 
 
+```
     api_endpoint=https://example.com/kobo/xxxxxxxxxxxxxxxx
+```
 
 Unmount the Kobo, then sync the device from the top right icon on the home screen. The Kobo now attempts to sync with Calibre Web, which responds with the list of books from the created shelf. 
 
-![Sync Kobo](/assets/images/kobo-customizations/015.png)
+![Kobo sync menu callout](/assets/images/kobo-customizations/015.png "Sync Kobo")
 
 
 
@@ -174,7 +178,7 @@ Unmount the Kobo, then sync the device from the top right icon on the home scree
 
 NickelMenu is third party software that can run on the Kobo and it comes with various quality of life improvements and unlocks hidden features on the Kobo. 
 
-[NickelMenu](https://pgaskin.net/NickelMenu/) creates an additional menu at the bottom right of the Kobo home screen, and can also add additional menu _items_ in the reader view menu, and the word selection menu. 
+[Kobo home page in dark](https://pgaskin.net/NickelMenu/) creates an additional menu at the bottom right of the Kobo home screen, and can also add additional menu _items_ in the reader view menu, and the word selection menu. 
 
 Here are some of the ones I've made use of:
 
@@ -190,7 +194,7 @@ Here are some of the ones I've made use of:
 
 **Toggle screensaver** — allows switching between the [book cover](#full-screen-covers) or the [custom images](#custom-image-screensavers) as the screensaver.
 
-![My NickelMenu options](/assets/images/kobo-customizations/020.png)
+![Kobo home screen in dark mode with NickelMenu options](/assets/images/kobo-customizations/020.png "My NickelMenu options")
 
 
 I followed the instructions to install NickelMenu, created a custom menu file, and these are its contents:

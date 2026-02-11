@@ -27,13 +27,13 @@ Certificate Transparency Logs (CRTs) are an Internet standard for monitoring cer
 
 This public ledger is visible to anyone and can be seen on sites such as [crt.sh](https://crt.sh). Try some searches such as [example.com](https://crt.sh/?q=example.com) and [google.com](https://crt.sh/?q=google.com).
 
-![Example.com](/assets/images/use-wildcard-certificates-for-internal-infrastructure/002.png)
+![Certificate transparency logs for example.com and example.org](/assets/images/use-wildcard-certificates-for-internal-infrastructure/002.png "Example.com")
 
 Which means, any certificates issued against internal infrastructure using public DNS should be visible in this log. And it is! The risk here is that an attacker now has an inventory of a company's infrastructure that they would not normally have or easily gain.
 
 A commonly cited example of such exposure was the Transport for New South Wales department with their domain `transport.nsw.gov.au`, and a search on a CRT logs website [reveals a huge number of internal domains](https://crt.sh/?q=transport.nsw.gov.au). 
 
-![The list goes on](/assets/images/use-wildcard-certificates-for-internal-infrastructure/003.png)
+![Transparency logs for several individual domains in NSW AU](/assets/images/use-wildcard-certificates-for-internal-infrastructure/003.png "The list goes on")
 
 Presumably towards the end of 2020, they seem to have cleaned up their presence (I can only assume due to the attention this CRT received).
 

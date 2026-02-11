@@ -12,6 +12,12 @@ opengraph:
   
 ---
 
+{% notice "warning" %}
+As of 2026, Smashtest hasn't had any repo activity in a long time, and potentially is no longer being maintained. 
+
+It was lovely while it lasted, but it is worth considering a move to Playwright instead. It will still remain one of my favourite testing frameworks due to its readability, ease of use, interactive mode, and that it was one of the first to make testing more accessible to non-developers.
+{% endnotice %}
+
 Smashtest is a DSL on top of Selenium that makes reading and writing tests easy.  It focuses on improving productivity with a lot of helpful features, it can run tests in parallel and also comes with an interactive mode.  
 
 ## Setup 

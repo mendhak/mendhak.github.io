@@ -38,7 +38,10 @@ There isn't a dedicated key on a physical keyboard, instead you have to assign a
 
 You would normally [assign this through settings](https://help.ubuntu.com/community/ComposeKey), to a key that you don't usually use, or something out of the way. I strongly recommend the Caps Lock key, the [most useless key on the keyboard](/posts/2022-03-24-make-caps-lock-useful.md) as shown here. 
 
-![Use caps lock as the compose key](/assets/images/compose-keys-user-friendly/001.png)
+{% gallery "Use caps lock as the compose key" %}
+![Ubuntu settings screen allowing selection of compose key](/assets/images/compose-keys-user-friendly/001.png "Ubuntu settings")
+![Linux Mint settings screen allowing selection of compose key](/assets/images/compose-keys-user-friendly/002.png "Linux Mint settings")
+{% endgallery %}
 
 So in the examples above, I normally press Caps Lock, followed by the sequence. 
 

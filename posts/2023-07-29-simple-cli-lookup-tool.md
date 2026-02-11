@@ -160,4 +160,4 @@ I plan on continuing to run the Stable Beluga version and OpenAI version alterna
 
 {% githubrepocard "mendhak/llm-cli-helper" %}
 
-![?](/assets/images/simple-cli-lookup-tool/000.png)
+![Demo of simple CLI lookup tool asking a question and a follow up](/assets/images/simple-cli-lookup-tool/000.png "Demo of `?` in action")

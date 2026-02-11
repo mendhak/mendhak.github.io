@@ -15,13 +15,13 @@ openGraph:
 
 Google's [Gemini CLI](https://github.com/google-gemini/gemini-cli/) is command line, context aware assistant: it looks at your current directory, tools, and tries to make helpful suggestions. Here I go over how I was able to _somewhat_ trim it down to a simple adhoc helper. I just type `? "How do I..."` and get an answer. 
 
-### What `gemini` does
+## What `gemini` does
 
 By default, `gemini` runs in an interactive mode. It starts up a text interface with a little text-input-box, where you can ask questions, it provides answers, and you carry on the chat there. 
 
-![Gemini CLI in action](/assets/images/gemini-cli-adhoc-helper/001.png)
+![Gemini CLI screenshot](/assets/images/gemini-cli-adhoc-helper/001.png "Gemini CLI in action)
 
-### What I want
+## What I want
 
 I'm not so interested in this mode, I would prefer that this tool answer my question and get out of my way. And I'm really keen on using `?` as the invoker because it's so short and easy to type. 
 
@@ -33,7 +33,7 @@ You can use the `ls` command to list files in a directory!
 
 
 
-### Gemini CLI's non interactive mode
+## Gemini CLI's non interactive mode
 
 To that end, the Gemini CLI takes a positional prompt which is the question being asked. It can be passed in two ways:
 
@@ -45,7 +45,7 @@ This positional prompt is basically the non-interactive mode, which is what I'm 
 
 Unfortunately, out of the box, I found its defaults to be somewhat unsafe. Gemini CLI comes with [a security risk](https://github.com/google-gemini/gemini-cli/issues/2744): it has access to some tools already, and those tools execute even when using the non interactive mode, without asking. A decision probably made to make it more convenient. 
 
-### How I configured it
+## How I configured it
 
 Gemini can work off a settings file, located at `~/.gemini/settings.json`, in which I minimised its core tools: 
 
@@ -99,5 +99,5 @@ And finally, to be able to use the `?` command, I added this to my `.bashrc`:
 
 That's it, the results were just what I wanted:
 
-![The adhoc helper in action](/assets/images/gemini-cli-adhoc-helper/002.png)
+![Question mark alias being used to ask a question](/assets/images/gemini-cli-adhoc-helper/002.png "The adhoc helper in action")
 

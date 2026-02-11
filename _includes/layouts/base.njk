@@ -76,7 +76,7 @@
     <a href="/">{{ metadata.title }}</a>
   </header>
   <main>
-    <h1><a href="">{%- if title %}{{ title | markdown | safe }}{%- endif %}</a></h1>
+    {%- if title %}<h1><a href="">{{ title | markdown | safe }}</a></h1>{%- endif %}
     {{ content | safe }}
   </main>
 
@@ -92,7 +92,7 @@
 
     <ul class="photostream">
         {%- for photo in photostream -%}
-        <li><a href="{{ photo.link }}"><img width="150" height="150" alt="thumbnail" src="{{ photo.img }}" loading="lazy"></a></li>&nbsp;&nbsp;&nbsp;
+        <li><a href="{{ photo.link }}"><img width="150" height="150" alt="Photostream thumbnail {{ loop.index }}" src="{{ photo.img }}" loading="lazy"></a></li>&nbsp;&nbsp;&nbsp;
         {%- endfor -%}
     </ul>
   </footer>

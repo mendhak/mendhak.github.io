@@ -21,7 +21,7 @@ Using just this statement we can figure out the required aspect ratio.  Once we 
 
 To illustrate this principle, in the image below, we take a sheet of paper with height `x` and width `y`.  It is cut width-wise, and one half is discarded.  The remaining half is rotated.  That new height and width should have the same ratio as the original piece of paper.  
 
-![Maintain ratio while folding](/assets/images/paper-sizes-standard/001preview.png)
+![A0 page folded in half and rotated 90 degree, the size of an A1](/assets/images/paper-sizes-standard/001preview.png "Maintain ratio while folding")
 
 
 ## Calculate the ratio
@@ -30,16 +30,15 @@ Using the above image as reference, we can now calculate the ratio of an A0 pape
 
 Given a sheet with `x` height and `y` width, the next size down results in a 'new' sheet with `y` height and `x/2` width.  And remember that the ratio must be maintained.  Which means:
 
-![](/assets/images/paper-sizes-standard/002.png)
+![x/y=y/(x/2) or 2(y/x)](/assets/images/paper-sizes-standard/002.png " ")
 
 Move the x and y across the equal sign, and we get:
 
-![](/assets/images/paper-sizes-standard/003.png)
+![x^2=2y^2](/assets/images/paper-sizes-standard/003.png " ")
 
 Reducing it finally gives us the ratio,
 
-![](/assets/images/paper-sizes-standard/004.png)
-
+![x/y=√2](/assets/images/paper-sizes-standard/004.png " ")
 Or in simplest terms, the ratio `x÷y = √2`.  
 
 The ratio of height to width of a standard sheet of paper is √2, or 1.414...
@@ -58,13 +57,13 @@ That gives us the convenient formula `x*y=1`, and we can start substituting x as
 
 We solve for x by substituting y=1/x. 
 
-![Solving for `x`](/assets/images/paper-sizes-standard/006.png)
+![x/y = √2 = x^2. x=4√2 ](/assets/images/paper-sizes-standard/006.png "Solving for `x`")
 
 Which is [`1.1892071150...`](https://www.wolframalpha.com/input/?i=4th+root+of+2)
 
 And solve for y by substituting x=1/y.
 
-![Solving for `y`](/assets/images/paper-sizes-standard/007.png)
+![y/x = 1/√2 = y^2. y=1/(4√2) ](/assets/images/paper-sizes-standard/007.png "Solving for `y`")
 
 Which is [`0.8408964152...`](https://www.wolframalpha.com/input/?i=1/(4th+root+of+2))
 
@@ -100,7 +99,7 @@ This is an easy mental model to figure out paper sizes knowing the A0 starting p
 The B series paper is used for posters, books and newspapers, and is meant for use when the A series is not 'suitable'.  Its sizes are related to the A series - each B size is the geometrical mean between adjacent sizes in the A series.  The earlier principle of aspect ratio still remains, so we still have `x÷y = √2`.  Furthermore, the width of a B0 sheet is set to 1000mm exactly.  
 
 
-![B0](/assets/images/paper-sizes-standard/008.png)
+![x/y = x/1000 = √2.  x=1000*√2](/assets/images/paper-sizes-standard/008.png "B0")
 
 B0 has a height of 1414mm and width of 1000mm.  
 

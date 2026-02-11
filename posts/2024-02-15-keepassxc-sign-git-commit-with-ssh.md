@@ -25,7 +25,7 @@ This post assumes you're already using KeePassXC to manage your SSH keys.
 To set up KeePassXC as an SSH agent in WSL2/Ubuntu, see [this post](/posts/2021-05-10-wsl2-keepassxc-ssh.md)
 {% endnotice %}
 
-#### Get the latest git
+## Get the latest git
 
 It's best to have the latest version installed. On Ubuntu, you can get the latest git by adding their repository. 
 
@@ -95,13 +95,13 @@ If you use SSH for your git pushes and fetches, you've already [told Github](htt
 
 Go to the [Add new SSH key page](https://github.com/settings/ssh/new), and select "Signing Key" from the "Key Type" dropdown.  Then paste in your public key. 
 
-![SSH key specifically for signing](/assets/images/keepassxc-sign-git-commit-with-ssh/004.png)
+![Setting screen on Github adding an SSH key of type signing](/assets/images/keepassxc-sign-git-commit-with-ssh/004.png "SSH key specifically for signing")
 
 ### Push a signed commit
 
 Push your signed commit up to Github, and it should appear with the verified badge. 
 
-![Verified badge](/assets/images/keepassxc-sign-git-commit-with-ssh/003.png)
+![Signed commit dialog on Github mentioning that it's verified](/assets/images/keepassxc-sign-git-commit-with-ssh/003.png "Verified badge")
 
 
 ## How to verify a signed commit locally
@@ -130,14 +130,14 @@ And that's it. If you now view the log, you should see "Good signature" listed a
 git log --show-signature
 ```
 
-![Good signature](/assets/images/keepassxc-sign-git-commit-with-ssh/005.png)
+![Output of git log --show-signature with various signed commits](/assets/images/keepassxc-sign-git-commit-with-ssh/005.png "Good signatures")
 
 
 ## Notes and references
 
 Although this post is about KeePassXC, it should also work the same with other SSH agents like [KeeAgent](https://code.mendhak.com/keepass-and-keeagent-setup/), or the built in ssh-agent by just adding the key using `ssh-add ~/.ssh/id_ed25519`. 
 
-#### My `~/.gitconfig`
+## My `~/.gitconfig`
 
 For your reference, this is what my `~/.gitconfig` looks like after setting this up. 
 

@@ -1,7 +1,7 @@
 ---
 title: "Mentally calculate the day of the week, given a date in the current year"
 description: "Use the Doomsday algorithm to mentally calculate the day of the week that a given date of the year falls on"
-last_modified_at: 2023-01-26
+last_modified_at: 2026-02-09
 
 tags: 
   - date
@@ -13,13 +13,13 @@ tags:
 
 The Doomsday algorithm is a memory trick that lets you figure out the day of the week that a given date falls on. I'll go over the simplest variation of this which is a good starting point, and requires refreshing just once a year.  
 
-### The last day in February
+## The last day in February
 
-For this year of writing (2023) the last day in February is the 28<sup>th</sup> and it falls on a Tuesday.  This is the *anchor* day, and is the only variation you need to memorize for a given year.  
+For this year of writing (2026) the last day in February is the 28<sup>th</sup> and it falls on a **Saturday**.  This is the *anchor* day, and is the only variation you need to memorize for a given year.  
 
-The rest of the mnemonic stays the same every year.  There will be a day in each month which also falls on that anchor day (Tuesday).  Once you know where you are in a month, you can work forwards or backwards to figure out the day.
+The rest of the mnemonic stays the same every year.  There will be a day in each month which also falls on that anchor day (Saturday).  Once you know where you are in a month, you can work forwards or backwards to figure out the day.
 
-### The Even Months
+## The Even Months
 
 For the remaining even months in the year, just match the month number with itself.  
 
@@ -29,10 +29,10 @@ For the remaining even months in the year, just match the month number with itse
 * The 10<sup>th</sup> of the 10<sup>th</sup> month (October 10)
 * The 12<sup>th</sup> of the 12<sup>th</sup> month (December 12)
 
-All fall on the anchor day (Tuesday).  
+All fall on the anchor day (Saturday).  
 
 
-### The Odd Months
+## The Odd Months
 
 For the odd months, remember this:  "9 to 5 at 7-11". 
 
@@ -41,23 +41,23 @@ For the odd months, remember this:  "9 to 5 at 7-11".
 * The 7<sup>th</sup> of the 11<sup>th</sup> month (November 7)
 * The 11<sup>th</sup> of the 7<sup>th</sup> month (July 11)
 
-All fall on the anchor day (Tuesday). 
+All fall on the anchor day (Saturday). 
 
 
-### January
+## January
 
 For January, remember this: "3 out of 4".  
 
 The anchor day is on the 3<sup>rd</sup> every 3 out of 4 years.  It's on the 4<sup>th</sup> on leap years.  
 
-That means for 2021, January 3<sup>rd</sup> falls on the anchor day (Tuesday).
+That means for 2026, January 3<sup>rd</sup> falls on the anchor day (Saturday).
 
 
-### March
+## March
 
 If you look at a calendar, you'll notice that all the dates in February and March fall on the same day.
 
-That means just like February, March 28<sup>th</sup> falls on the anchor day (Tuesday).  Even easier, any multiple of 7 in March will also match the anchor day.
+That means just like February, March 28<sup>th</sup> falls on the anchor day (Saturday).  Even easier, any multiple of 7 in March will also match the anchor day.
 
 
 ## Practice
@@ -67,16 +67,16 @@ You can now practice - pick a random date in the year.  Figure out that month's 
 Example: December 25<sup>th</sup> 2021.  
 
 1. The 12<sup>th</sup> of the 12<sup>th</sup> month.  
-1. December 12<sup>th</sup> is a Tuesday.  
-1. 12 + 14 days = 26<sup>th</sup> is a Tuesday
-1. 25<sup>th</sup> is a Saturday
+1. December 12<sup>th</sup> is a Saturday.  
+1. 12 + 14 days = 26<sup>th</sup> is a Saturday
+1. 25<sup>th</sup> is a Friday
 
 Example: September 15<sup>th</sup> 2021. 
 
 1.  5<sup>th</sup> of the 9<sup>th</sup> month
-1.  September 5<sup>th</sup> is a Tuesday
-1.  5 + 7 = 12<sup>th</sup> is a Tuesday. 
-1.  Plus a few more days, September 15<sup>th</sup> is a Wednesday
+1.  September 5<sup>th</sup> is a Saturday
+1.  5 + 7 = 12<sup>th</sup> is a Saturday. 
+1.  Plus a few more days, September 15<sup>th</sup> is a Tuesday
 
 
 

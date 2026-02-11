@@ -85,7 +85,7 @@ A browser receiving this information could now, quite simply, present the inform
 
 AdGuardDNS have also released a [browser extension](https://github.com/AdguardTeam/dns-sde-extension/) that emulates what the blocking behaviour could look like, which I was able to try out. By try out, I mean I modified it to place the extracted information over a meme. 
 
-![Adguard's SDE emulation extension modified. Think of the memes.](/assets/images/structured-dns-errors/001.png)
+![Modified extension with a 'held back' meme, displaying the blocked domain and filter message](/assets/images/structured-dns-errors/001.png "Adguard's SDE emulation extension modified. Think of the memes.")
 
 Here I visited `ad.doubleclick.net` which was blocked, and the extension then queried [a separate endpoint](https://dns.adguard.ch/resolve?name=doubleclick.net&sde=1) to get the additional information. It's worth noting that the emulation behaviour is required for now, since browsers don't yet even look for this information. Once they do I'd imagine no extension would be required at all.  
 
@@ -93,9 +93,16 @@ Here I visited `ad.doubleclick.net` which was blocked, and the extension then qu
 
 The `c` field seems to only allow email, telephone, or SIP; I think it could benefit from also allowing an HTTPS URL pointing at an informational page, but the people authoring the draft [had their concerns](https://github.com/ietf-wg-dnsop/draft-ietf-dnsop-structured-dns-error/pull/51) which makes sense, as it's an attack vector, but makes it not that great for the end users. 
 
-![Contact types for SDE](/assets/images/structured-dns-errors/002.png)
+
+
+| Name | Meaning | Reference |
+| ---- | ------- | --------- |
+| sips | SIP Call | [RFC5630] |
+| tel | Telephone Number | [RFC3966] |
+| mailto | Internet mail | [RFC6068] |
+
 
 It would be nice if tools such as [Pi-Hole](https://pi-hole.net/) could also take advantage of the feature by passing it on to the browser when it encounters it from an upstream provider. That said, when I queried my Pi-Hole for a blocked domain, it doesn't seem to return the EDE field at all. Maybe this isn't such a simple task. 
 
-![Pi-Hole](/assets/images/structured-dns-errors/003.png)
+![Pihole output for doubleclick.net but without EDE field](/assets/images/structured-dns-errors/003.png "Pi-Hole")
 

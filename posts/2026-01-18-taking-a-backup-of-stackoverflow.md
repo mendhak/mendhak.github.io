@@ -207,7 +207,7 @@ LIMIT 5;
 
 And it worked, I got back the most relevant posts with a cosine distance score. 
 
-![SQL vector similarity search results for Content Security Policy](/assets/images/taking-a-backup-of-stackoverflow/010.png "Vector search results for "Content Security Policy")
+![SQL vector similarity search results for Content Security Policy](/assets/images/taking-a-backup-of-stackoverflow/010.png "Vector search results for Content Security Policy")
 
 I stopped here, but I didn't think it would involve too much extra effort to get this working as a RAG system, with local LLM tools such as Ollama, OpenWebUI, or LM Studio. 
 

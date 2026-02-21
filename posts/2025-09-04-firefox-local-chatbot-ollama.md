@@ -19,7 +19,7 @@ The steps, roughly, involved installing ollama, open-webui, and configuring Fire
 
 ## Ollama
 
-Ollama is a tool that helps simplify running LLMs locally, and it provides a CLI as well as an HTTP API interface. Installing ollama was simple enough, there's [a convenience script](https://github.com/ollama/ollama/blob/main/docs/linux.md) which also sets it up as a systemd service. 
+Ollama is a tool that helps simplify running LLMs locally, and it provides a CLI as well as an HTTP API interface. Installing ollama was simple enough, there's [a convenience script](https://github.com/ollama/ollama/blob/main/docs/linux.mdx) which also sets it up as a systemd service. 
 
 The only change I made was to the `/etc/systemd/system/ollama.service` file, to make it listen on all interfaces. I added this line to the [Service] section:
 

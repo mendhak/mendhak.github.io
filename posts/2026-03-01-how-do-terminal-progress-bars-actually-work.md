@@ -223,3 +223,56 @@ So to put it another way, we are using the control sequences to move around on t
 The examples here are meant to be educational, or for quick-and-dirty progress indicators without dependencies. 
 
 In practice, for production grade scripts, you should consider using a library such as [tqdm](https://github.com/tqdm/tqdm) or [rich](https://rich.readthedocs.io/en/latest/progress.html). They handle a lot of edge cases and have many features and effects that you can easily use.  
+
+## In Bash
+
+The examples above are all Python for simplicity, but you can do it in Bash too, though it's a bit more verbose and less readable. Here are the main examples anyway, done in Bash.
+
+The number indicator:
+
+```bash
+num_steps=20
+
+for ((step=1; step<=num_steps; step++)); do
+    printf "\rProcessing %2d/%2d" "$step" "$num_steps"
+    sleep 0.2
+done
+
+echo -e "\nDone!"
+```
+
+The single character spinner:
+
+```bash
+chars=("|" "/" "-" "\\")
+total=20    
+for ((step=0; step<total; step++)); do
+    char="${chars[step % ${#chars[@]}]}"
+    printf "\r%s Processing..." "$char"
+    sleep 0.2
+done
+echo -e "\nDone!"
+```
+
+And the progress bar:
+
+```bash
+total=20
+bar_size=20
+
+for ((i=1; i<=total; i++)); do
+
+    percent=$(( i * 100 / total ))
+    filled=$(( i * bar_size / total ))
+    empty=$(( bar_size - filled ))
+
+    bar_str=$(printf "%${filled}s" | tr ' ' '#')
+    empty_str=$(printf "%${empty}s" | tr ' ' '-')
+
+    echo -ne "\rProcessing: [${bar_str}${empty_str}] ${percent}%"
+    
+    sleep 0.1
+done
+
+echo -e "\nDone!"
+```

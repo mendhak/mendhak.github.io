@@ -86,7 +86,7 @@ See if you can find other interesting characters to use as spinners, here I've u
 
 ### With a ✔ checkmark
 
-You can take it a step further and replace the final progress message with a checkmark to indicate completion, and this is a fairly common pattern. The way it works, instead of a newline in the last message, we use another carriage return to overwrite the last progress message. 
+You can take it a step further and replace the final progress message with a checkmark to indicate completion, and this is a fairly common pattern and looks nice. The way it works, instead of a newline in the last message, we use another carriage return to overwrite the last progress message. 
 
 ```python
 

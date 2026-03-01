@@ -62,6 +62,8 @@ Under `about:config`, I searched for `browser.ml.chat.hideLocalhost` and set it 
 
 That's it, the chatbot sidebar started showing "localhost" as an option in the top dropdown. 
 
+If not on port 8080, the URL can be set manually by changing `browser.ml.chat.provider` to the actual URL. 
+
 ## Notes
 
 Although it's possible, and great for privacy as well as tinkering, I don't generally like messing about in the `about:config` settings. It's too easy to forget what's been changed, and why. 

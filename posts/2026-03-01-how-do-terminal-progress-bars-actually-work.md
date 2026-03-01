@@ -243,8 +243,9 @@ echo -e "\nDone!"
 
 The single character spinner:
 
+{% raw %}
 ```bash
-chars=("|" "/" "-" "\\")
+chars=("|", "/" "-" "\\")
 total=20    
 for ((step=0; step<total; step++)); do
     char="${chars[step % ${#chars[@]}]}"
@@ -253,9 +254,11 @@ for ((step=0; step<total; step++)); do
 done
 echo -e "\nDone!"
 ```
+{% endraw %}
 
 And the progress bar:
 
+{% raw %}
 ```bash
 total=20
 bar_size=20
@@ -276,3 +279,4 @@ done
 
 echo -e "\nDone!"
 ```
+{% endraw %}

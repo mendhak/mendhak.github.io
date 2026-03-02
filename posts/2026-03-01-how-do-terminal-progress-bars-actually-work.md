@@ -8,9 +8,9 @@ tags:
 
 ---
 
-Terminal progress indicators are a common sight in command-line applications, often used to show progress of long running tasks and ensuring users don't get bored. Implementing them in scripts these days is pretty straightforward thanks to various libraries, but I've been curious about how they actually work under the hood. 
+Terminal progress indicators are a common sight in command-line applications, often used to show progress of long running tasks and ensuring users don't get bored. Implementing them in scripts these days is pretty straightforward thanks to various libraries, but I've been curious about how they actually work under the hood.  
 
-The answer, at its core, is fairly trivial. Most progress indicators make use of the character `\r`, the carriage return character. The carriage return is actually what's called a **control** character, which moves the cursor back to the beginning of the line. That in turn allows the next output to overwrite the previous one on the same line. In other words, it's a crude animation technique. 
+The answer turned out to be very simple; the magic sauce is the character `\r`, the carriage return character. The carriage return is actually what's called a **control** character, it moves the cursor back to the **beginning** of the line. That in turn allows the next output to overwrite the previous output on the same line. To put it another way, this act of overwriting the previous output is little more than a crude animation technique. 
 
 Most modern terminal emulators and environments support this behaviour just fine, and that is how most progress indicators are implemented which I'll show below. It'll even work with SSH sessions so you can have progress indicators in remote scripts.  
 

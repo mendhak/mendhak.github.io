@@ -9,7 +9,7 @@ tags:
 ---
 
 
-While Linux is the best environment for development purposes and is where I spend most of my efforts, Windows has been my go-to for gaming and photo processing needs. But given how much time I spend in Linux, I naturally wondered whether I could reduce the need to dual boot. 
+While Linux is the best environment for development purposes, Windows has been my go-to for gaming and photo processing needs. But given how much time I spend in Linux, I naturally wondered whether I could reduce the need to dual boot. 
 
 Gaming has certainly improved considerably, thanks to the efforts of Proton and Wine, but photo processing has always felt out of reach. Recently though, the same effort that's gone into gaming has made it possible to run ON1 on Linux, and it works quite well. In this post I will walk through the steps I took.  
 

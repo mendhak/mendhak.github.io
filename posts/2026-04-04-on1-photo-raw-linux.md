@@ -68,7 +68,9 @@ Open Lutris, click the `+` button, and a dialog with install options appears.
 
 ![Options to install an application through Lutris including a local install script and a manual installation](/assets/images/on1-photo-raw-linux/003.png "Options to install an application through Lutris")
 
-It's possible to do the manual method, but the local install script method is simplest, it takes a YML file which describes the steps needed to get ON1 and its dependencies working. Save this file: 
+It's possible to do the manual method, but the local install script method is simplest, it takes a YML file which describes the steps needed to get ON1 and its dependencies working. The installer script is available [on the Lutris site](https://lutris.net/games/on1-photo-raw/).
+
+Or just save the file I used:  
 
 ```yml
 name: ON1 Photo RAW 2026
@@ -132,6 +134,8 @@ script:
         args: TargetDir="C:\Program Files\ON1\ON1 Photo RAW 2026"
 
 ```
+
+
 
 In the Lutris install dialog, select "Install from a local install script", and pass it the YML file you just saved, and click Install. It will then ask you to provide the three files needed. 
 

@@ -39,13 +39,21 @@ This is the video I used for undervolting an RTX 5080. It's worth watching just 
 Notice that the first part of undervolting is just reducing the voltage but keeping nearly the same clock speeds. 
 
 
-Here is the curve I ended up with after following the video and benchmarking for stability. Pay attention to the point at which the curve is flattened. 
+Here is the curve I ended up with after following the video and benchmarking for stability. Pay attention to the numbers at the point at which the curve is flattened. 
 
 ![MSI Afterburner voltage curve showing 2782 MHz frequency at 850 mVs](/assets/images/linux-undervolt-gpu/001.png "MSI Afterburner voltage curve")
 
-From the screenshot it can be seen: `2782 MHz` clock frequency, at `850 mV`. This is a `+581 MHz` boost in clock speed for free, and with a much lower voltage than the stock `1.05 V`.
+The numbers I ended up with are: 
 
-In the main MSI Afterburner window I have set the memory clock to `+2000`. 
+* `2782 MHz` clock frequency
+* `850 mV` voltage
+* `+581 MHz` boost in clock speed for free
+* Memory clock set to `+2000` (in the main MSI Afterburner window)
+
+All this at a much lower voltage than the stock `1.05 V`.
+
+That's it for undervolting. It's a good idea to save these settings to a slot, in case I want to experiment with even lower voltages. If at any point things feel unstable, I can just hit a working preset or the reset button and go back to defaults. 
+
 
 ## Linux - use LACT
 
@@ -68,6 +76,7 @@ In the LACT interface (using my numbers above as an example):
 
 That last line requires explanation: GDDR memory is "Double Data Rate" which means it transfers data twice per clock cycle. MSI Afterburner displays the effective transfer rate (doubled), while LACT uses the actual memory clock frequency in MT/s (MegaTransfers per second). Therefore, to match MSI Afterburner's +2000 MHz in LACT, I needed to set +4000 MHz. 
  
+## Results
 
 Here's a before and after of the benchmark score, showing like for like performance. Under default settings, the GPU consumed 350W and ran at 72°C; after undervolting it consumed 250W and ran at 62°C, while maintaining the same performance.
 

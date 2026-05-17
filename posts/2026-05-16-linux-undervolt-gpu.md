@@ -16,7 +16,7 @@ I will cover how I undervolted my GPU on both Windows and Linux, and the perform
 
 ## How undervolting works
 
-A GPU will usually run at a stock speed that it is designed for. During intense operations such as gaming or rendering, it will normally boost its clock speed to improve performance, and it does this by increasing the voltage drawn. That in turn increases heat and power consumptions.
+A GPU will usually run at a stock speed that it is designed for. During intense operations such as gaming or rendering, it will normally boost its clock speed to improve performance, and it does this by increasing the voltage drawn. That in turn increases heat and power consumption.
 
 However, the stock voltage is often higher than what is actually needed for the GPU to run at that speed. By undervolting, you reduce the voltage supplied to the GPU. 
 

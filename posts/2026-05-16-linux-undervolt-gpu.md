@@ -10,7 +10,7 @@ tags:
 ---
 
 
-Undervolting is something I've been ignoring for a long time on my GPU. In recent times, with the GPU shortage and the need to hold on to our PC parts for longer, undervolting is becoming more important. It helps reduce heat and makes the components last longer, and in some cases can even improve performance. 
+Undervolting is something I've been ignoring for a long time on my GPU. In recent times, with the GPU shortage and the need to hold on to our PC parts for longer, undervolting is becoming more important. It helps reduce heat, reduce power consumption, might make the components last longer, and in some cases can even improve performance. 
 
 I will cover how I undervolted my GPU on both Windows and Linux, and the performance improvements I got from it. 
 

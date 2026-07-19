@@ -9,7 +9,7 @@ tags:
 
 ---
 
-An unfortunate aspect regarding the privacy discourse is how it has been subverted into a set of meaningless soundbites that detract from actual privacy issues. A commonly used refrain, often used to gatekeep services and software, is about how "they are selling your data". That's a gross oversimplification of what privacy is, and actively harms the concept of privacy by framing it as a binary. 
+An unfortunate aspect regarding the privacy discourse is how it has been subverted into a set of meaningless soundbites that detract from actual privacy issues. A commonly used refrain, often used to gatekeep software and services, is about how "they are selling your data". That's a gross oversimplification of what privacy is, and actively harms the concept of privacy by framing it as a binary. 
 
 It takes just a few seconds of critical thinking to watch it fall apart. 
 

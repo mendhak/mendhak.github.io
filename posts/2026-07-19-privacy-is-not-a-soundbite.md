@@ -57,7 +57,9 @@ Windows 11 requires an online account to be set up, which is a privacy loss, and
 
 On iOS, all browsers are effectively Safari wrappers, which is a disturbing privacy loss, as not only does it remove user choice, it requires the use of a proprietary closed source engine, tightly integrated with the OS, which is forced upon users in their 'best interests'. 
 
-When going shopping these days, it's becoming increasingly difficult to pay with cash, and in some cases impossible. A person may not always want to have their purchases tied to their identity, regardless of reason, and the lack of choice is a privacy loss in the name of efficiency and convenience.
+Kindles and Kobos have been going in separate directions, where Kindles are increasingly tied to Amazon accounts and curtailing your ability to sideload books, and Kobo being more open to loading books onto a device that you own. This locking down is increasingly present in phones, laptops, and TVs, and it boils down to an assertion over who owns the device you bought, and whether you have the ability to control what happens on it. 
+
+When going shopping these days (or even parking), it's becoming increasingly difficult to pay with cash, and in some cases outright not a possibility. A person may not always want to have their purchases tied to their identity, regardless of reason, and the lack of choice is a privacy loss in the name of efficiency and convenience.
 
 ## Security and privacy don't always align
 

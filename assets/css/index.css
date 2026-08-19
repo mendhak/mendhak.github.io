@@ -4,7 +4,8 @@
 
 :root {
   /* Set sans-serif & mono fonts */
-  --sans-font: Noto Serif,"Nimbus Sans L","Avenir Next",Avenir,"Segoe UI",Arial,Helvetica,sans-serif;
+  --sans-font: "Roboto","Nimbus Sans L","Avenir Next",Avenir,"Segoe UI",Arial,Helvetica,sans-serif;
+  --serif-font: Lora,Georgia,"Times New Roman",Times,serif;
   --mono-font: "Ubuntu Mono", Consolas, Menlo, Monaco, "Andale Mono",  monospace;
 }
 
@@ -22,6 +23,11 @@
   @view-transition {
     navigation: auto;
   }
+}
+
+html {
+  /* Set the font globally */
+  font-family: var(--serif-font);
 }
 
 
@@ -77,9 +83,9 @@ h4 { font-size: 1.4rem; }
 h5 { font-size: 1.2rem; }
 h6 { font-size: 1.0rem; }
 
-/* Use Noto Serif for headings */
+/* Use Lora for headings */
 h1,h2,h3,h4,h5,h6 {
-  font-family: Noto Serif,serif;
+  font-family: Lora,serif;
   margin-bottom: 0.25em;
 }
 

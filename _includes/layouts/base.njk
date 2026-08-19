@@ -8,40 +8,26 @@
 
   <style>
     {# Couldn't put this into a .css file for minification, because the font URLs need the | htmlBaseUrl helper.  #}
-    /* noto-serif-400 - latin */
-    @font-face {
-      font-family: 'Noto Serif';
-      font-style: normal;
-      font-weight: 400;
-      src: local(''),
-          url('{{ "/assets/fonts/noto-serif-v33-latin-regular.ttf" | htmlBaseUrl }}') format('truetype');
-    }
-
-    /* noto-serif-700 - latin */
-    @font-face {
-      font-family: 'Noto Serif';
-      font-style: normal;
-      font-weight: 700;
-      src: local(''),
-          url('{{ "/assets/fonts/noto-serif-v33-latin-700.ttf" | htmlBaseUrl }}') format('truetype');
-    }
-
-    /* lora-700 - latin */
-    @font-face {
-      font-family: 'Lora';
-      font-style: normal;
-      font-weight: 700;
-      src: local(''),
-          url('{{ "/assets/fonts/lora-v26-latin-700.woff2" | htmlBaseUrl }}') format('woff2');
-    }
 
     /* lora-regular - latin */
     @font-face {
       font-family: 'Lora';
       font-style: normal;
       font-weight: 400;
+      font-display: swap;
       src: local(''),
-          url('{{ "/assets/fonts/lora-v26-latin-regular.woff2" | htmlBaseUrl }}') format('woff2');
+          url('{{ "/assets/fonts/lora-v37-latin-regular.woff2" | htmlBaseUrl }}') format('woff2');
+    }
+
+
+    /* lora-700 - latin */
+    @font-face {
+      font-family: 'Lora';
+      font-style: normal;
+      font-weight: 700;
+      font-display: swap;
+      src: local(''),
+          url('{{ "/assets/fonts/lora-v37-latin-700.woff2" | htmlBaseUrl }}') format('woff2');
     }
 
 

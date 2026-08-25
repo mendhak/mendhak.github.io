@@ -11,7 +11,7 @@ This will do the npm install and npm start together.
 docker compose up
 ```
 
-Then browse to http://localhost:8080/
+Then browse to http://localhost:8011/
 
 
 **Running it with Node**
@@ -28,7 +28,7 @@ To serve the site, and watch for changes:
 npm run start
 ```
 
-Then browse to http://localhost:8080/
+Then browse to http://localhost:8011/
 
 
 To just build the site once (normally used for Github Actions): 

@@ -4,7 +4,7 @@
   "pathPrefix": "/",
   "language": "en",
   "paginationSize": 7,
-  "favicon": "/assets/images/blogprofile.png",
+  "favicon": "/assets/images/blogprofile_sm.jpg",
   "description": "Articles, information, and tutorials on development, programming, technology, science.",
   "tags": ["mendhak", "articles", "blog", "programming", "development", "science", "opinion"],
   "feed": {

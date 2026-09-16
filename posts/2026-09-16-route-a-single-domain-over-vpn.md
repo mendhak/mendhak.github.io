@@ -1,5 +1,5 @@
 ---
-title: Routing individual domains over a VPN
+title: Routing only a few domains over a VPN
 description: A guide to routing specific domains through a VPN using pi-hole, nginx, and gluetun. Or, how to view imgur and civitai from the UK. 
 tags:
   - imgur

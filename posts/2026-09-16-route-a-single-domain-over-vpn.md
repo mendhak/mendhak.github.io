@@ -105,9 +105,18 @@ The final piece is configuring pi-hole to override the DNS entries. This has to 
 
 ![Screenshot of pi-hole DNS override configuration showing imgur.com being pointed at 192.168.50.111, the IP address of the mini PC running nginx](/assets/images/route-a-single-domain-over-vpn/001.png "Pi-hole DNS override configuration")
 
-The domains took a bit of trial and error, mostly by inspecting browser network traffic to identify what was returning a 403, and what was critical for the page to load correctly
+The domains took a bit of trial and error, mostly by inspecting browser network traffic to identify what was returning a 403, and what was critical for the page to load correctly. 
 
-There is supposedly a way of [injecting dnsmasq_lines](https://docs.pi-hole.net/ftldns/configfile/#dnsmasq_lines) which might allow for wildcards instead of adding domains individually, but I haven't explored that yet as there aren't a lot of domains that I need to override... not yet. 
+However, imgur itself was a tricky case. Firefox wasn't content just requesting the IP address directly, it would also request the `AAAA` record as well as `HTTP` type queries. To combat that, I had to add an override in pi-hole's dnsmas configuration:
+
+```
+address=/imgur.com/192.168.50.111
+
+local=/#/imgur.com/
+```
+
+The address line tells dnsmasq to resolve `imgur.com` to the local IP address `192.168.50.111`. The `local` line tells dnsmasq that this domain shouldn't be forwarded externally, just treat it as a local domain. 
+
 
 
 ![screenshot of a ComfyUI workflow on civitai](/assets/images/route-a-single-domain-over-vpn/003.png "Screenshot of a ComfyUI workflow on civitai.")

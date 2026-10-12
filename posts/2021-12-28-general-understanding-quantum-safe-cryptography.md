@@ -10,10 +10,8 @@ tags:
   - standard
   - simplified
  
-last_modified_at: 2024-08-17
+last_modified_at: 2026-10-12
 
-
- 
 
 opengraph: 
   image: /assets/images/general-understanding-quantum-safe-cryptography/012.jpg
@@ -213,3 +211,45 @@ They are also proceeding to the [fourth round](https://csrc.nist.gov/News/2022/p
 NIST have [announced](https://csrc.nist.gov/News/2024/postquantum-cryptography-fips-approved) that they have standardized three post-quantum cryptography encryption schemes. They don't get to retain their cooler names, instead they're now simply known as Federal Information Processing Standard (FIPS). CRYSTALS-Kyber becomes FIPS 203, CRYSTALS-Dilithium becomes FIPS 204, Sphincs+ becomes 205. FALCON is expected to become FIPS 206 in late 2024. 
 
 At this point we can expect to see efforts to implement these algorithms in software and hardware, and eventually see them roll out into our userspace. 
+
+
+## Update, 2026-10-12
+
+Two years later, and we are starting to see broader adoption of these algorithms. The names and use cases are becoming recognized, and implemented. 
+
+### ML-KEM 
+
+Module Lattice based Key Encapsulation Mechanism. This was formerly CRYSTALS-Kyber, now [FIPS 203](https://csrc.nist.gov/pubs/fips/203/final). We would use this for negotating a shared secret (symmetric key) over insecure channels. Its main use cases would be web traffic, VPN tunnels (including experimental PQ WireGuard extensions), and encrypted messaging apps. The main issue for vendors to grapple with is the large packet sizes involved, compared to the traditional RSA or ECDH key exchanges that it's looking to replace.
+
+### ML-DSA
+
+Module Lattice based Digital Signature Algorithm. This was formerly CRYSTALS-Dilithium, now [FIPS 204](https://csrc.nist.gov/pubs/fips/204/final). We would use this for digital signatures in various applications, that includes code signing, document signing, X509 certificates, and TLS/webserver identity verification. It's looking to replace RSA and ECDSA signatures. 
+
+### SLH-DSA
+
+Stateless Hash-based Digital Signature Algorithm. This was formerly SPHINCS+, now [FIPS 205](https://csrc.nist.gov/pubs/fips/205/final). SLH-DSA is more of an insurance policy - because lattice based maths is relatively young, it provides a fallback option in the case of such a doomsday scenario. It has the advantage of being quantum-safe without relying on complex lattice-based mathematics; the tradeoff is that it has a significantly larger signature size and slower performance compared to ML-DSA. That's not to say it won't be used, it will probably see uses in the case of high security, long term trust scenarios such as Root Certificate Authorities and firmware signing. 
+
+### FN-DSA 
+
+Alright this one is a mouthful: **F**ast-Fourier Transform over **N**TRU-based **D**igital **S**ignature **A**lgorithm. This was formerly FALCON, and is currently in draft status as [FIPS-206](https://csrc.nist.gov/csrc/media/presentations/2025/fips-206-fn-dsa-(falcon)/images-media/fips_206-perlner_2.1.pdf). It was due a while ago but has slipped, due to the complexities involved in its securely implementing it without side channel vulnerabilities. Its primary use cases are around constrained environments including embedded devices and IoT hardware, and applications where packet size limits may make ML-DSA signatures problematic. FN-DSA achieves the smallest signature sizes among the PQC standards, making it particularly attractive for bandwidth-constrained applications. 
+
+
+### OpenSSH roadmap
+
+OpenSSH has [already implemented support](https://www.openssh.org/pq.html) for ML-KEM, as key exchange was considered a higher priority over digital signatures. Namely these are `sntrup761x25519-sha512` and `mlkem768x25519-sha256`. To see these in action, you can run the following command on a relatively recent OpenSSH client:
+
+```bash
+$ ssh -v git@github.com exit 2>&1 | grep "kex: algorithm"
+debug1: kex: algorithm: sntrup761x25519-sha512@openssh.com
+```
+
+
+### Cloudflare roadmap
+
+Cloudflare, [in their post](https://blog.cloudflare.com/post-quantum-roadmap/), outlined a plan to target 2029 for full post-quantum security, and are already seeing that 65% of human traffic is post-quantum encrypted. They also have a page where you can test that your browser is connecting using a post-quantum key exchange: [https://pq.cloudflareresearch.com/](https://pq.cloudflareresearch.com/). 
+
+### Others
+
+Google have [rolled out ML-DSA signatures](https://blog.google/security/security-for-the-quantum-era-implementing-post-quantum-cryptography-in-android/) in Android Keystore, verified boot, and remote attestation. 
+
+[OpenSSL 3.5.0](https://github.com/openssl/openssl/releases/tag/openssl-3.5.0) added support for ML-KEM, ML-DSA, and SLH-DSA, and they've changed their defaults to prefer post-quantum key exchange. 

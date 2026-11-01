@@ -25,6 +25,12 @@ Thankfully I recently switched to [ON1 Photo Raw](/posts/2024-05-05-moving-on-fr
 ![ON1 Photo RAW running on Linux showing the various panels and tools and an image of a tree being edited](/assets/images/on1-photo-raw-linux/006a.png "ON1 Photo RAW on Linux Mint")
 
 
+### tl;dr for the impatient
+
+You can go straight to the Lutris website for [the install script](https://lutris.net/games/on1-photo-raw/).
+
+For Arch, have a look at [this gist](https://gist.github.com/elainerjackson/57565ea5ac730c0f3435e02e67ee23a7).
+
 
 ## Steps
 

@@ -8,9 +8,7 @@ tags:
 
 ---
 
-To me, it's important to understand how things work behind the scenes. I've noticed that tutorials and introductions to MCP are often hand-wavy, don't explain the details, and rely on prebuilt MCP clients without showing what's happening under the hood.
-
-The purpose of this tutorial is to understand how the protocol works at a low level, using tools commonly found on Linux systems, such as curl, jq, and Bash.
+I like to understand what's happening behind the scenes with any technology, especially when a tool or protocol is usually introduced through prebuilt clients. In this tutorial we will use tools commonly found on Linux systems to send MCP requests ourselves, and see how a few of its features work. The focus will be on understanding the protocol, transports, and authentication at a low level, and gaining an insight into how MCP clients and servers communicate under the hood.
 
 ## Setup
 
@@ -283,7 +281,7 @@ We can see the result of calling the tool which correctly returns the sum of 5 a
 
 ## Resources and prompts
 
-While tools are a common feature of MCP servers, MCP can do more than that. Resources let clients retrieve data or other content. Prompts provide reusable message templates for interactions with a model.
+While tools are a common feature of MCP servers, MCP can do more than that. Resources let clients retrieve data, assets, configuration, or other content. Prompts provide a way of interacting with other LLMs through reusable message templates. 
 
 Add the following code to the MCP server to define a resource and a prompt. The resource example returns a simple table of users, and the prompt returns a hard-coded response to any question.
 
@@ -1155,5 +1153,7 @@ Create a file, `.mcp.json` with the following contents
 }
 ```
 
-Click Start above the `my_mcp_test` entry in VSCode, which should prompt you for authentication. It opens a browser and goes through the authorization flow, obtains a token, then initiates communication with the  discover endpoint, and fetches the tools, resources, and prompts available. As you watch this, you should be able to relate it to the low level steps we've gone through above. 
+Click Start above the `my_mcp_test` entry in VSCode, which should prompt you for authentication. It opens a browser and goes through the authorization flow, obtains a token, then initiates communication with the  discover endpoint, and fetches the tools, resources, and prompts available. 
+
+As you watch this, you should be able to relate it to the low level steps we've gone through above. 
 

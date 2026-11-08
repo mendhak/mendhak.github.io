@@ -1,6 +1,6 @@
 ---
-title: A hands-on, low level understanding of MCP through commandline tools (including authentication)
-description: A low level MCP tutorial using curl, jq, docker, and bash commands to understand how the protocol works
+title: A hands-on, low-level guide to MCP using command-line tools
+description: A low-level MCP tutorial using curl, jq, Docker, and Bash to explore the protocol, transports, and authentication.
 tags:
   - mcp
   - bash
@@ -8,9 +8,9 @@ tags:
 
 ---
 
-To me it's important to understand how things work behind the scenes. I've noticed that tutorials and introductions to MCP are often quite hand-wavy and don't really explain anything in detail, and rely on prebuilt MCP clients without showing what's happening under the hood. 
+To me, it's important to understand how things work behind the scenes. I've noticed that tutorials and introductions to MCP are often hand-wavy, don't explain the details, and rely on prebuilt MCP clients without showing what's happening under the hood.
 
-The purpose of this tutorial is to gain an understanding of how the protocol works at a low level, using tools you'd commonly find on a Linux system such as curl, jq, and bash. 
+The purpose of this tutorial is to understand how the protocol works at a low level, using tools commonly found on Linux systems, such as curl, jq, and Bash.
 
 ## Setup
 
@@ -39,7 +39,7 @@ def add(a: int, b: int) -> int:
 
 ```
 
-This is a barebones MCP server, with a single tool registered, namely the `add` tool which adds two integers together.
+This is a bare-bones MCP server with a single registered tool: `add`, which adds two integers together.
 
 
 ## Start the server
@@ -50,11 +50,11 @@ We can now start the MCP server and have it listen over stdio. stdio stands for 
 fastmcp run server.py:mcp --transport stdio
 ```
 
-It will start the MCP server and appears as though nothing is happening, but it's actually waiting for commands from clients. 
+The MCP server starts, but it may appear as though nothing is happening. In fact, it's waiting for commands from clients.
 
 ## Discover command
 
-The very first command to send is the discover command, which asks the server to list what it's capable of. Every MCP client does this as part of the initial handshake.  According to the spec, the discover command has the following structure. 
+The first command to send is the discover command, which asks the server to list what it's capable of. Most MCP clients will call discover automatically as part of the initial handshake. According to the spec, the discover command has the following structure.
 
 ```json
 {
@@ -74,9 +74,9 @@ The very first command to send is the discover command, which asks the server to
 }
 ```
 
-The `id` field is a unique identifier for the request which allows the client to match responses with requests. The `method` is of course the method we are calling, in this case `server/discover`. The `_meta` field contains some information about the client. The `protocolVersion` we're passing here is for MCP version "2026-07-28", this matters because there have been a significant number of changes in the protocol since the previous iterations of MCP. 
+The `id` field is a unique identifier for the request, which allows the client to match responses with requests. The `method` is the method we're calling, in this case `server/discover`. The `_meta` field contains information about the client. The protocol version we're passing is `2026-07-28`. This matters because the protocol has changed significantly since earlier versions.
 
-Now the stdio transport expects us to send single line JSON messages, so we can't just paste that nicely formatted JSON. Try pasting the following single line version instead, and you should see a similar response from the server. 
+The stdio transport expects single-line JSON messages, so we can't just paste the formatted JSON above. Try pasting this single-line version instead, and you should see a similar response from the server.
 
 ```bash
 $ fastmcp run server.py:mcp --transport stdio
@@ -87,13 +87,13 @@ $ fastmcp run server.py:mcp --transport stdio
 
 The `id` of the response matches the `id` of the request. Under `capabilities` are the different features the server supports, which we'll get into soon. Under `supportedVersions` we can see that the server supports the same MCP version "2026-07-28". 
 
-This request-response cycle demonstrates the basic flow of how MCP clients interact with local MCP servers, sending requests and receiving responses in a structured JSON format. If you've ever added an MCP server in VSCode with a command like `npx` or `uvx`, then this is essentially what happens under the hood: VSCode launches the server process, and communicates with it using the same JSON-RPC messages. 
+This request-response cycle demonstrates how MCP clients interact with local MCP servers, sending requests and receiving responses in a structured JSON format. If you've ever added an MCP server in VS Code with a command like `npx` or `uvx`, this is essentially what happens under the hood: VS Code launches the server process and communicates with it using JSON-RPC messages.
 
 Press Ctrl+C a few times to stop the server process. 
 
 ## Discover command with `jq`
 
-Let's do the discover call again, but pipe the nicely formatted JSON through `jq` to make it a single line for the server, and to pretty print the response for easier reading. 
+Let's make the discover call again, piping the formatted JSON through `jq` to turn it into a single line for the server and pretty-printing the response for easier reading.
 
 
 ```bash
@@ -153,9 +153,7 @@ That's much more readable.
 
 ## List tools
 
-
-Next, issue a `tools/list` command to list out all available tools. Its payload is quite similar to the discover command. 
-
+Next, issue a `tools/list` command to list all available tools. Its payload is quite similar to the discover command.
 
 ```bash
 echo '{
@@ -284,9 +282,9 @@ We can see the result of calling the tool which correctly returns the sum of 5 a
 
 ## Resources and prompts
 
-While tools are the most common feature of MCP servers, it can do more than just that. Resources are a feature that let you query pieces of data or assets. Prompts allow for natural language interactions with the server, often there will be an LLM involved behind these endpoints. 
+While tools are a common feature of MCP servers, MCP can do more than that. Resources let clients retrieve data or other content. Prompts provide reusable message templates for interactions with a model.
 
-Add the following code to the MCP server to define a resource and a prompt endpoint. In the resource example, we have a simple users table with a schema representing it. The prompt example is a hardcoded response to any question asked. 
+Add the following code to the MCP server to define a resource and a prompt. The resource example returns a simple table of users, and the prompt returns a hard-coded response to any question.
 
 ```python
 @mcp.resource("database://users")
@@ -304,7 +302,7 @@ def ask_question(question: str) -> str:
     return f"You asked: {question} but there is no answer."
 ```
 
-Restart the MCP server so that the new endpoings are picked up. 
+Restart the MCP server so that the new endpoints are picked up.
 
 ## List and call the resources
 
@@ -363,7 +361,7 @@ $ (echo '{
   "params": {
     "_meta": {
       "io.modelcontextprotocol/protocolVersion": "2026-07-28",
-      "io.modelcontextprotocol/cliewe are essentially impersonatingntCapabilities": {}
+      "io.modelcontextprotocol/clientCapabilities": {}
     },
     "uri": "database://users"
   }
@@ -769,7 +767,7 @@ curl -s -X POST http://localhost:8000/mcp -H "Content-Type: application/json" -H
 
 MCPs support HTTP streaming, which allows tools to emit partial results as they become available, or to report progress over time. This is often seen during chat interactions as portions of the response are generated and sent to the client. 
 
-We'll add a very simple tool, `slow_count`, that counts to a given number and reporting progress along the way. Edit the `server.py` file, and at this point the entire file should look like this: 
+We'll add a simple tool, `slow_count`, that counts to a given number and reports progress along the way. Edit the `server.py` file; at this point, the entire file should look like this:
 
 ```python
 import asyncio
@@ -815,7 +813,7 @@ Restart the server.
 fastmcp run server.py:mcp --transport http --port 8000
 ```
 
-Now call the `slow_count` tool, and notice how the response comes back in chunks as counting progresses. 
+Now call the `slow_count` tool. Notice how progress notifications arrive as it counts, followed by the final result.
 
 ```bash
 
@@ -868,7 +866,7 @@ We will need an identity server, for that we will use Keycloak; don't worry I ha
 
 We will also need to configure the MCP server to require an access token, issued by that identity server, for incoming requests. 
 
-However, it isn't enough to just let any MCP client connect. In the MCP 2026-07-28 protocol, clients are expected to be preconfigured ahead of time with the identity server, and have an online presence registered with it. This is known as th Client Identification Metadata Document (CIMD). 
+However, it isn't enough to let any MCP client connect. In the MCP 2026-07-28 protocol, clients are expected to be pre-registered with the identity server and have an online JSON URL registered. This is known as the Client ID Metadata Document (CIMD).
 
 As an example, the CIMD URL for VSCode is https://vscode.dev/oauth/client-metadata.json 
 
@@ -915,7 +913,7 @@ Place those in the same directory as your MCP server setup files. Bring up the K
 docker compose up
 ```
 
-And after a few minutes, Keycloak should be ready. You can browse Keycloak at http://localhost:8080 to access the admin console, use the credentials admin/admin. 
+And after a few minutes, Keycloak should be ready. You can browse Keycloak at http://localhost:8080 to access the admin console, use the credentials `admin`/`admin`. 
 
 You will find a [client profile](http://localhost:8080/admin/master/console/#/mcp/realm-settings/client-policies/cimd-profile/edit-profile) and a [client policy](http://localhost:8080/admin/master/console/#/mcp/realm-settings/client-policies/cimd-policy/edit-policy/client-id-uri/edit-condition) configured for VSCode's metadata. 
 
@@ -1019,7 +1017,7 @@ server: uvicorn
 content-length: 0
 www-authenticate: Bearer resource_metadata="http://localhost:8000/.well-known/oauth-protected-resource/mcp"
 ```
-Notice in the response header, the `www-authenticate` field indicates that the resource is protected by OAuth, and it also provides the URL to the resource metadata. The This tells the client that it needs to obtain a valid access token from the identity provider (Keycloak) to access the MCP server.
+Notice that the `www-authenticate` response header indicates that the resource is protected by OAuth and provides the URL for the resource metadata. This tells the client that it needs to obtain a valid access token from the identity provider (Keycloak) to access the MCP server.
 
 Let's query that URL
 
@@ -1072,11 +1070,11 @@ echo "$CODE_VERIFIER"
 
 Take a moment to study the URL, notice that the client ID is set to VSCode's CIMD URL. That code verifier will be used later, so keep it in mind.    
 
-Copy the URL into a browser and begin the login process, and use `test`/`test` for the login credentials. After logging in, you will see a constent screen, "Grant Access to Visual Studio Code". 
+Copy the URL into a browser and begin the login process, using `test`/`test` as the login credentials. After logging in, you'll see a consent screen: "Grant Access to Visual Studio Code."
 
 ![grant access consent screen](/assets/images/low-level-mcp-tutorial/004.png)
 
-After granting access, the brwoser will attempt tto redirect to the `redirect_uri` from earlier, but nothing is listening there, so it fails to load the page. That's expected, we can still carry on. 
+After granting access, the browser will attempt to redirect to the `redirect_uri` from earlier, but nothing is listening there, so the page fails to load. That's expected; we can still carry on.
 
 Suppose we were being redirected to the following URL after granting access:
 
@@ -1096,7 +1094,7 @@ curl -s -X POST http://localhost:8080/realms/mcp/protocol/openid-connect/token \
 
 ```
 
-This gives us an access token in the response, which I've truncted: 
+This gives us an access token in the response, which I've truncated:
 
 ```
 {"access_token":"eyJh.....
@@ -1111,7 +1109,7 @@ where we can see the audience matching our MCP server's URL.
 And finally, now that we have an access token, we can use it to call the discover endpoint of our MCP server, this time with the access token included in the Authorization header:
 
 ```bash
-curl -s -i -X POST http://localhost:8000/mcp -H "Content-Type: application/json" -H "MCP-Protocol-Version: 2026-07-28" -H "Mcp-Method: server/discover" -H "Authorization: Bearer eyJ.... \
+curl -s -i -X POST http://localhost:8000/mcp -H "Content-Type: application/json" -H "MCP-Protocol-Version: 2026-07-28" -H "Mcp-Method: server/discover" -H "Authorization: Bearer eyJ...." \
   -d '{     
   "jsonrpc": "2.0",
   "id": "discover-1",

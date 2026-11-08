@@ -1157,3 +1157,4 @@ Click Start above the `my_mcp_test` entry in VSCode, which should prompt you for
 
 As you watch this, you should be able to relate it to the low level steps we've gone through above. 
 
+The [actual spec itself](https://modelcontextprotocol.io/specification/2026-07-28/architecture) should now make much more sense, along with the features I haven't covered, such as [elicitation](https://modelcontextprotocol.io/specification/2026-07-28/client/elicitation) which lets servers request additional information from users. 

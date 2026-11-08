@@ -1,5 +1,5 @@
 ---
-title: A hands-on, low-level guide to MCP using command-line tools
+title: A hands-on, low-level understanding of MCP using command-line tools
 description: A low-level MCP tutorial using curl, jq, Docker, and Bash to explore the protocol, transports, and authentication.
 tags:
   - mcp

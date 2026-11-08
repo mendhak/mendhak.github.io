@@ -22,6 +22,7 @@ cd tutorial_mcp_low_level
 uv init
 uv sync
 uv add fastmcp
+source .venv/bin/activate
 ```
 
 
@@ -1155,3 +1156,4 @@ Create a file, `.mcp.json` with the following contents
 ```
 
 Click Start above the `my_mcp_test` entry in VSCode, which should prompt you for authentication. It opens a browser and goes through the authorization flow, obtains a token, then initiates communication with the  discover endpoint, and fetches the tools, resources, and prompts available. As you watch this, you should be able to relate it to the low level steps we've gone through above. 
+
